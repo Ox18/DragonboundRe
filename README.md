@@ -7,15 +7,15 @@
 ||Basic|Adanced|
 |--|--|--|
 | 🌪 Weather Effect |✖ | ✔ |
-| Animation Mobile |✖  | ✔ |
-| Ranking Search |✔ | ✔ |
-| Multiple servers |✖  | ✔ |
-| Use session | ✖ | ✔ |
-| Buy Avatar | ✔ | ✔ |
-| Avatar Rares| ✔ | ✔ |
-| Bunge | ✖ | ✔ |
-| Send a gift | ✖ | ✔ |
-| Build % | 65% | 92% |
+| 🚜 Animation Mobile |✖  | ✔ |
+| 🏆 Ranking Search |✔ | ✔ |
+| 💻 Multiple servers |✖  | ✔ |
+| 🍪 Use session | ✖ | ✔ |
+| 💰 Buy Avatar | ✔ | ✔ |
+| 👚 Avatar Rares| ✔ | ✔ |
+| 💥 Bunge | ✖ | ✔ |
+| 🎁 Send a gift | ✖ | ✔ |
+| 🔧 Build % | 65% | 92% |
 
 
 ## 1. Server Basic
