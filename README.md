@@ -1,6 +1,6 @@
 # OpenBound 
 > is a game engine based on the Dragonbound game
-
+<br>
 ### What is the difference between basic and advanced?
 
 
@@ -17,7 +17,7 @@
 | 🎁 Send a gift | ✖ | ✔ |
 | 🔧 Build % | 65% | 92% |
 
-
+<br><br>
 # 1. Server Basic
 
 ### Utilities:
@@ -37,7 +37,7 @@ npm install
 node web.js
 node game.js
 ```
-
+<br><br>
 # 2. Server Advanced
 ### Utilities:
 - [DataBase.sql](https://github.com/alexwathever/Openbound-HTML5/blob/main/Client%20-%20Advanced%20-%20v120/DataBase/game.sql)
