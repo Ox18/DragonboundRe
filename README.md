@@ -56,6 +56,21 @@ npm install
 node web.js
 node game.js
 ```
-<br>br>
-> @Discord :rocket: [Click](lo) to enter the group.
+<br><br>
+## Contributors
+
+### Developers
+
+-   [AlexWathever](https://github.com/WickedPeanuts/)  (Wilmer Delgado)
+
+
+### Bug Reports/Testers
+
+-   ...
+
+### Game client assets
+
+- ....
+<br>
+> Discord Group :speech_balloon: [Click](lo) to enter the group.
 
