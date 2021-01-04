@@ -57,4 +57,5 @@ node web.js
 node game.js
 ```
 
+@Discord :rocket: [Click](lo) to enter the group.
 
