@@ -6,7 +6,7 @@
 
 ||Basic|Adanced|
 |--|--|--|
-| Weather Effect |✖ | ✔ |
+| 🌪 Weather Effect |✖ | ✔ |
 | Animation Mobile |✖  | ✔ |
 | Ranking Search |✔ | ✔ |
 | Multiple servers |✖  | ✔ |
