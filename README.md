@@ -2,8 +2,7 @@
 # OpenBound 
 > is a game engine based on the Dragonbound game
 <br>
-**Discord Group** :speech_balloon: 
-[Click](lol.com) to enter the grooup 
+**Discord Group** :speech_balloon: (www.lol.com)
 <br>
 ### What is the difference between basic and advanced?
 
