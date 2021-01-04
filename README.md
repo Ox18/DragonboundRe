@@ -72,5 +72,6 @@ node game.js
 
 - ....
 <br>
-> Discord Group :speech_balloon: [Click](lo) to enter the group.
+> Discord Group :speech_balloon: 
+  [Click](lol.com) to enter the grooup 
 
