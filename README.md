@@ -51,7 +51,7 @@ node game.js
 - MySQL
 
 ### Install Modules:
-```
+```bash
 npm install
 ```
 
