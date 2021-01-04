@@ -1,5 +1,9 @@
+
 # OpenBound 
 > is a game engine based on the Dragonbound game
+<br>
+**Discord Group** :speech_balloon: 
+[Click](lol.com) to enter the grooup 
 <br>
 ### What is the difference between basic and advanced?
 
@@ -72,6 +76,4 @@ node game.js
 
 - ....
 <br>
-> Discord Group :speech_balloon: 
-  [Click](lol.com) to enter the grooup 
 
