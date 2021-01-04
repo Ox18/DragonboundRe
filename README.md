@@ -18,7 +18,7 @@
 | 🔧 Build % | 65% | 92% |
 
 
-## 1. Server Basic
+# 1. Server Basic
 
 ### Utilities:
 - [DataBase.sql](https://github.com/alexwathever/Openbound-HTML5/blob/main/Client%20-%20Basic%20-%20v1-119/DataBase/dragonbound.sql)
@@ -38,7 +38,7 @@ node web.js
 node game.js
 ```
 
-## 2. Server Advanced
+# 2. Server Advanced
 ### Utilities:
 - [DataBase.sql](https://github.com/alexwathever/Openbound-HTML5/blob/main/Client%20-%20Advanced%20-%20v120/DataBase/game.sql)
 
