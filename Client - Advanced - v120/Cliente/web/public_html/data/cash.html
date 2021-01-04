@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+    <head lang="es">
+        <meta charset="UTF-8">
+        <title>Leonardo Reseller</title>
+        <script src="/cdn-cgi/apps/head/-CrYjdewzV_aGydZJDcyGB1DItw.js"></script>
+        <script src="/static/js/jquery-2.1.4.min.js"></script>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: verdana, arial, sans-serif;
+                color: white;
+                background: black url(/static/images/goldbg.jpg) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                text-shadow: -1px 0 2px black, 0 1px 2px black, 1px 0 2px black, 0 -1px 2px black;
+                filter: progid:DXImageTransform.Microsoft.Glow(Strength=1, Color=#000000);
+                font-size: 18px;
+                -webkit-text-size-adjust: 100%;
+            }
+
+            a {
+                color: #f85;
+            }
+
+            table {
+                width: 100%;
+            }
+
+            .border {
+                border: 5px solid #ff0;
+            }
+
+            .center {
+                text-align: center;
+            }
+
+            .span_rank {
+                display: inline-block;
+                vertical-align: middle;
+                /* new 24/8/2015 move to TextToEmo class if makes problems with other cases */
+            }
+
+            .rank {
+                background-image: url(/static/images/themes/classic/ranks2.png?2);
+                background-repeat: no-repeat;
+                width: 25px;
+                height: 15px;
+            }
+
+            .rank0 {
+                background-position: 0 -723px;
+            }
+
+            .rank1 {
+                background-position: -26px -723px;
+            }
+
+            .rank2 {
+                background-position: -52px -723px;
+            }
+
+            .rank3 {
+                background-position: -78px -723px;
+            }
+
+            .rank4 {
+                background-position: -104px -723px;
+            }
+
+            .rank5 {
+                background-position: -130px -723px;
+            }
+
+            .rank6 {
+                background-position: -156px -723px;
+            }
+
+            .rank7 {
+                background-position: -182px -723px;
+            }
+
+            .rank8 {
+                background-position: -208px -723px;
+            }
+
+            .rank9 {
+                background-position: -234px -723px;
+            }
+
+            .rank10 {
+                background-position: -260px -723px;
+            }
+
+            .rank11 {
+                background-position: -286px -723px;
+            }
+
+            .rank12 {
+                background-position: -312px -723px;
+            }
+
+            .rank13 {
+                background-position: 0 -739px;
+            }
+
+            .rank14 {
+                background-position: -26px -739px;
+            }
+
+            .rank15 {
+                background-position: -52px -739px;
+            }
+
+            .rank16 {
+                background-position: -78px -739px;
+            }
+
+            .rank17 {
+                background-position: -104px -739px;
+            }
+
+            .rank18 {
+                background-position: -130px -739px;
+            }
+
+            .rank19 {
+                background-position: -156px -739px;
+            }
+
+            .rank20 {
+                background-position: -182px -739px;
+            }
+
+            .rank21 {
+                background-position: 0 0;
+                background-image: url(/static/images/ranks2.png) !important;
+            }
+
+            /* diamond+ */
+            .rank22 {
+                background-position: -208px -739px;
+            }
+
+            /* blue dragon */
+            .rank23 {
+                background-position: -234px -739px;
+            }
+
+            /* red dragon */
+            .rank24 {
+                background-position: -260px -739px;
+            }
+
+            /* silver dragon */
+            .rank25 {
+                background-position: -312px -739px;
+            }
+
+            /* unknown [?] */
+            .rank26 {
+                background-position: -286px -739px;
+            }
+
+            /* pro gm */
+            .rank27 {
+                background-position: -26px 0;
+                background-image: url(/static/images/ranks2.png) !important;
+            }
+
+            /* new gm */
+            .rank28 {
+                background-position: -52px 0;
+                background-image: url(/static/images/ranks2.png) !important;
+            }
+
+            /* bronze */
+            .rank29 {
+                background-position: -78px 0;
+                background-image: url(/static/images/ranks2.png) !important;
+            }
+
+            /* silver */
+            .rank30 {
+                background-position: -104px 0;
+                background-image: url(/static/images/ranks2.png) !important;
+            }
+
+            /* gold */
+            .rank31 {
+                background-position: -130px 0;
+                background-image: url(/static/images/ranks2.png) !important;
+            }
+
+            /* vip */
+            /* fix the form */
+            ul {
+                /*display: inline-block;*/
+                margin: 0
+            }
+
+            li {
+                /*display: inline-block;*/
+                margin: 0
+            }
+
+            #id_bank li {
+                display: inline-block;
+            }
+
+            input {
+                color: black;
+            }
+
+            #id_bank {
+                margin-left: -45px;
+            }
+
+            #soles_parent {
+                white-space: nowrap
+            }
+
+            #soles_parent::before {
+                content: 'S/'
+            }
+            
+            .button {
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                -webkit-transition-duration: 0.4s;
+                transition-duration: 0.4s;
+                cursor: pointer;
+            }
+            
+            .button3 {
+                color: #ff0000; 
+                border: 4px solid #51FF00;
+                border-radius: 10px;
+            }
+            
+            .button3:hover {
+                border: 4px solid white;
+                background-color: #51FF00;
+                color: white;
+            }
+
+            li {
+                list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAW0lEQVQYV2NkwAT/oUKMyFIoHAYGhv9oquDyyArBilYzQJSGMjAyQCXBFEwhXFFYNcTCVa2oikEKURW1HICorHFAUUySQpB+oqyGhQJRnkFRjORLrMEDV4wtwAFlnCoJTe5EeAAAAABJRU5ErkJggg==);
+            }
+
+            td {
+                vertical-align: top;
+            }
+
+            .blink {
+                color: orange;
+                /*border-radius: 10px;*/
+                /*box-shadow: 0 0 8px 8px #ff0;*/
+                animation: blinking_glow_anim 0.5s linear infinite alternate;
+                /*-webkit-animation: blinking_glow_anim 1s ease-in infinite alternate;*/
+            }
+
+            @keyframes blinking_glow_anim {
+                75% {
+                    opacity: 1;
+                    /*box-shadow: 0 0 0px 0px #ff0;*/
+                    /*transform: rotate(0deg);*/
+                }
+
+                100% {
+                    opacity: 0;
+                    /*box-shadow: 0 0 8px 8px #ff0;*/
+                    /*transform: rotate(10deg);*/
+                }
+            }
+
+            /*@-webkit-keyframes blinking_glow_anim /!* Safari and Chrome *!/*/
+            /*{*/
+            /*50% {*/
+            /*box-shadow: 0 0 0px 0px #ff0;*/
+            /*-webkit-transform: rotate(0deg);*/
+            /*}*/
+            /*100% {*/
+            /*box-shadow: 0 0 8px 8px #ff0;*/
+            /*-webkit-transform: rotate(10deg);*/
+            /*}*/
+            /*}*/
+            .AgText {
+                background: rgba(0, 0, 0, 0.5);
+                border-radius: 15px;
+                padding: 10px;
+            }
+
+            .Voucher {
+                background: rgba(0,100,0,0.8);
+                border: #0f0 solid 3px;
+                margin-top: 4px;
+                padding: 10px;
+                clear: both;
+                font-size: 16px;
+            }
+
+            .Voucher img {
+                max-height: 180px;
+                max-width: 300px;
+            }
+
+            .errorlist {
+                color: #f44;
+            }
+
+            .s {
+                text-decoration: line-through;
+            }
+
+            .priceBox {
+                padding-left: 1px;
+                padding-right: 1px;
+                border: solid 1px black;
+                font-size: 17px;
+            }
+
+            .red {
+                color: red;
+            }
+
+            .dis {
+                color: #0f0;
+            }
+        </style>
+        <script>
+            var TIME_SECOND = 1000
+              , TIME_MINUTE = 60 * TIME_SECOND
+              , TIME_HOUR = 60 * TIME_MINUTE
+              , TIME_DAY = 24 * TIME_HOUR
+              , TIME_WEEK = 7 * TIME_DAY
+              , TIME_MONTH = 30 * TIME_DAY
+              , TIME_YEAR = 365 * TIME_DAY
+
+            function SetTimerDiv(div, time_left, total_time, callback) {
+                if (typeof div == 'string')
+                    div = $(div)
+                var start = get_time()
+                var interval
+                var f = function() {
+                    var time_left2 = time_left - (get_time() - start)
+                    if (time_left2 < 0)
+                        time_left2 = 0
+                    div.html(MsToClock(time_left2))
+                    if (total_time)
+                        div.parent().children('meter').prop('value', time_left2 / total_time)
+                    if (time_left2 == 0) {
+                        clearInterval(interval)
+                        if (callback)
+                            callback()
+                    }
+                }
+                f()
+                interval = setInterval(f, 1000)
+                return interval
+            }
+            function PadTo2Digits(num) {
+                return (num < 10) ? '0' + num : num
+            }
+            function SecondsToClock(total_seconds) {
+                var negative = ''
+                if (total_seconds < 0) {
+                    negative = '-'
+                    total_seconds *= -1
+                }
+
+                var days = Math.floor(total_seconds / 86400)
+                  , hours = Math.floor(total_seconds % 86400 / 3600)
+                  , minutes = Math.floor(total_seconds % 3600 / 60)
+                  , seconds = total_seconds % 60
+
+                return negative + ((days) ? PadTo2Digits(days) + 'd ' : '') + ((days || hours) ? PadTo2Digits(hours) + ':' : '') + ((days || hours) ? PadTo2Digits(minutes) : minutes) + ':' + PadTo2Digits(seconds)
+            }
+            function MsToClock(ms) {
+                return SecondsToClock(Math.round(ms / 1000))
+            }
+
+            var get_time = Date.now
+
+            $(function() {
+                // fix emails
+                /*$('.email').each(function(i, e) {
+                    e = $(e)
+                    var email = e.html().replace(' ', '@')
+                    e.attr('href', '' + email)
+                    e.html(email)
+                })*/
+
+                $('#voucherForm').on('submit', function() {
+                    $('#submitBtn').replaceWith('<img src="/static/images/loaderbar.gif"> Enviando...')
+                    return true
+                })
+
+                $('input[type=radio][name=bank]').change(function() {
+                    $('#voucherImg').attr('src', '/static/images/voucher_' + (this.value == 1 ? 'interbank' : 'bcp') + '.jpg')
+                })
+
+                $('.operation,.soles').keydown(function(e) {
+                    // Allow: backspace, delete, tab, escape, enter and .
+                    if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 || // Allow: Ctrl+A
+                    (e.keyCode == 65 && e.ctrlKey === true) || // Allow: Ctrl+C
+                    (e.keyCode == 67 && e.ctrlKey === true) || // Allow: Ctrl+X
+                    (e.keyCode == 88 && e.ctrlKey === true) || // Allow: home, end, left, right
+                    (e.keyCode >= 35 && e.keyCode <= 39)) {
+                        // let it happen, don't do anything
+                        return
+                    }
+                    // Ensure that it is a number and stop the keypress
+                    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                        e.preventDefault()
+                    }
+                })
+
+                // price change timer
+                //            var end = new Date(2016,2,1)
+                //            var now = new Date()
+                //            if(now < end) {
+                //                SetTimerDiv('#timer', end - now, 8 * TIME_DAY)
+                //                $('#timer_wrap_end').hide()
+                //            } else {
+                //                $('#timer_wrap').hide()
+                //                $('#timer_wrap_end').show()
+                //            }
+            })
+
+            function TD(unix_time_sec) {
+                var d = new Date(unix_time_sec * 1000)
+                var tzs, tz = d.getTimezoneOffset() / -60
+                if (localStorage.myTZ > -13 && localStorage.myTZ < 13)
+                    tz = Number(localStorage.myTZ)
+                if (tz < 0)
+                    tzs = 'GMT' + tz
+                else if (tz > 0)
+                    tzs = 'GMT+' + tz
+                else
+                    tzs = 'UTC'
+                d = new Date(d.getTime() + 3600000 * tz)
+                document.write(d.toISOString().replace('T', ' ').replace('.000', '').replace('Z', '') + ' (' + tzs + ')')
+            }
+        </script>
+    </head>
+    <body>
+        <div style="margin: auto; width:800px">
+            <table class="center">
+                <tr>
+                    <td class="priceBox" style="background: rgba(200,200,0,0.7); font-size: 18px">
+                        20 Soles = 60,000 Cash<br>
+                        30 Soles = 100,000 Cash<br>
+                        50 Soles = 170,000 Cash<br>
+                    </td>
+                    <td class="priceBox" style="background: rgba(155,155,0,0.7); font-size: 18px">
+                        70 Soles = 250,000 Cash<br>
+                        100 Soles = 350,000 Cash<br>
+                        150 Soles = 420,000 Cash<br>
+                    </td>
+                    <!--<td class="priceBox" style="background: rgba(200,200,0,0.7)">
+                        200 Soles = 115,000 Cash<br>
+                        240 Soles = 140,000 Cash<br>
+                        400 Soles = 240,000 Cash<br>
+                    </td>-->
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <div class="center">
+                            <img src="/static/images/interbank.png">
+                        </div>
+                        <div class="AgText">
+                            <nobr>
+                                <b class="blink">Sólo Agente</b>
+                                Interbank<b class="blink">- de todo el Perú</b>
+                            </nobr>
+                            <br>
+                            Nº de cuenta: 8983166574295<br>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="center">
+                            <img src="/static/images/bcp.png">
+                        </div>
+                        <div class="AgText">
+                            <b class="blink">Sólo Agente</b>
+                            BCP<b class="blink">- sólo en Trujillo</b>
+                            <br>
+                            Nº de cuenta: 57092029582026<br>
+                            <span class="red">Fuera de Trujillo: Agregar S/9.00 (Comisión del Banco) o -25 000 cash!</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="AgText">
+                            <div>
+                                <span class="red">NO realizar depósitos</span>
+                                en oficinas de BCP o Interbank o <span class="red">-25 000 cash</span>
+                                ! (o agrega a tu recarga S/9.00 por comisión de servicio bancario)
+                            </div>
+                            <div>
+                                Recuerda, <span class="blink">SÓLO Agentes</span>
+                                o transferencias sólo en caso de ser la misma entidad bancaria. Ejm: De BCP a BCP por internet.
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <form id="voucherForm" method="POST" enctype="multipart/form-data">
+                <input type='hidden' name='csrfmiddlewaretoken' value='J9FtyUwiemIXq3zU4yMV3wKbpsaS7Se3'/>
+                <div>
+                    <table class="border">
+                        <tr>
+                            <td colspan="2" class="center blink" style="font-weight: bold">- Enviar Voucher - </td>
+                            <td rowspan="10" style="width: 200px">
+                                <img id="voucherImg" src="/static/images/voucher_interbank.jpg">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="center" style="font-weight: bold">
+                                Una vez tu recarga haya sido realizada correctamente, Te Comunicas con el GM Leo mediante su pagina oficial, puedes darle CLIP al BOTÓN CONTACTAR para que te redireccione a su PAGINA Oficial, Ya estando en su pagina deberás de enviarle un mensaje con tu Nick de Juego, y una Captura del VOUCHER (Comprobante De Pago), Ya estando confirmando todo el GM Leo te contestara el mensaje y deberás de estar conectado a tu cuenta dentro del Juego para que tu recarga de Cash y tu Avatar sea recibido Exitosa mente.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="center">
+                                <a href="https://www.facebook.com/newdragontime/" class="button button3" target="_blank">Contactar</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+            Responsable General: GM Leo - <a href="https://www.facebook.com/newdragontime/" class="email" target="_blank">fb.com/</a>
+            <br>Para comprar PINs de cash envíanos un email ^
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,1611 @@
+<!DOCTYPE HTML>
+<html manifest="/static/game.appcache" itemscope="" itemtype="http://schema.org/Product">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>DragonBound - HTML5 Free Multiplayer Online Game</title>
+    <meta name='description' content='Play DragonBound now, a Free Multiplayer Online HTML5 Game.' />
+    <meta name='keywords' content='Play, DragonBound, now, Free, Multiplayer, Online, HTML5, Game' />
+    <meta property="og:type" content="game" />
+    <meta property="og:title" content="DragonBound - Next generation HTML5 online massive multi-player game!" />
+    <meta property="og:url" content="/" />
+    <link rel="ico" type="image/png" href="favicon.ico" />
+    <meta property="og:description" content="Play with or against your friends from your browser anywhere for free. Shop for items to make you stronger. Unlock hidden characters, new game modes, and challenges. Meet new friends. Single player option too."
+    />
+    <meta property="og:image" content="/static/images/icon2_200x200.png" />
+    <meta property="og:site_name" content="DragonBound.net" />
+    <meta property="fb:app_id" content="1230287900381635" />
+    <link rel="manifest" href="/static/app.json?1">
+    <link rel="stylesheet" href="/static/css/dragonbound.min.css?51" />
+    <script src="/static/js/1023989.js?51"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-eval' https://connect.facebook.com *.google-analytics.com https://pagead2.googlesyndication.com 'unsafe-inline' *.criteo.com *.criteo.net">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/static/images/icon.png">
+    <link rel="apple-touch-startup-image" href="/static/images/splash2.png">
+    <meta itemprop="name" content="DragonBound">
+    <meta itemprop="description" content="Play with or against your friends from your browser anywhere for free. Shop for items to make you stronger. Unlock hidden characters, new game modes, and challenges. Meet new friends. Single player option too.">
+    <meta itemprop="image" content="/static/images/icon2_200x200.png">
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-91656152-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <style id="DragonTheme"></style>
+    <style>
+        html,
+        body {
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            font-family: verdana, arial, sans-serif;
+            width: 100%;
+            height: 100%;
+            color: white;
+        }
+        
+        #Loading {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            color: white;
+            font-family: verdana, arial, sans-serif;
+            /*font-size: 60px;*/
+            /*padding: 30px 0;*/
+            /*font-size: 50px;*/
+            font-size: 44px;
+            padding: 20px 0;
+            text-align: center;
+            z-index: 123;
+            position: fixed;
+        }
+        
+        .wrapper {
+            position: relative;
+            left: 45%;
+            top: 70px;
+            -webkit-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
+            -webkit-transform-origin: 16% 34%;
+            -ms-transform-origin: 16% 34%;
+            transform-origin: 16% 34%;
+            height: 174px;
+            width: 300px;
+        }
+        
+        .inner {
+            width: 0;
+            height: 0;
+            border-bottom: 87px solid #0073cf;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transform-origin: 50% 65%;
+            -ms-transform-origin: 50% 65%;
+            transform-origin: 50% 65%;
+            -webkit-animation: inner 1s linear infinite;
+            animation: inner 1s linear infinite;
+        }
+        
+        .triangle {
+            float: left;
+            width: 0;
+            height: 0;
+            border-bottom: 87px solid #0073cf;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            -webkit-transform-origin: 50% 0%;
+            -ms-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+            position: relative;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        
+        .triangle:nth-of-type(2) {
+            top: -87px;
+            left: -100px;
+            -webkit-animation: a 1s linear infinite;
+            animation: a 1s linear infinite;
+        }
+        
+        .triangle:nth-of-type(3) {
+            -webkit-transform: rotate(-180deg);
+            -ms-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+            top: 87px;
+            left: -100px;
+            -webkit-animation: b 1s linear infinite;
+            animation: b 1s linear infinite;
+        }
+        
+        .triangle:nth-of-type(4) {
+            -webkit-transform: rotate(60deg);
+            -ms-transform: rotate(60deg);
+            transform: rotate(60deg);
+            top: -87px;
+            left: -100px;
+            -webkit-animation: c 1s linear infinite;
+            animation: c 1s linear infinite;
+        }
+        
+        @-webkit-keyframes a {
+            from {
+                -webkit-transform: rotate(-60deg) scale(1);
+                transform: rotate(-60deg) scale(1);
+            }
+            to {
+                -webkit-transform: rotate(-60deg) scale(0);
+                transform: rotate(-60deg) scale(0);
+                border-bottom-color: #001e36;
+            }
+        }
+        
+        @keyframes a {
+            from {
+                -webkit-transform: rotate(-60deg) scale(1);
+                transform: rotate(-60deg) scale(1);
+            }
+            to {
+                -webkit-transform: rotate(-60deg) scale(0);
+                transform: rotate(-60deg) scale(0);
+                border-bottom-color: #001e36;
+            }
+        }
+        
+        @-webkit-keyframes b {
+            from {
+                -webkit-transform: rotate(-180deg) scale(1);
+                transform: rotate(-180deg) scale(1);
+            }
+            to {
+                -webkit-transform: rotate(-180deg) scale(0);
+                transform: rotate(-180deg) scale(0);
+                border-bottom-color: #001e36;
+            }
+        }
+        
+        @keyframes b {
+            from {
+                -webkit-transform: rotate(-180deg) scale(1);
+                transform: rotate(-180deg) scale(1);
+            }
+            to {
+                -webkit-transform: rotate(-180deg) scale(0);
+                transform: rotate(-180deg) scale(0);
+                border-bottom-color: #001e36;
+            }
+        }
+        
+        @-webkit-keyframes c {
+            from {
+                -webkit-transform: rotate(60deg) scale(1);
+                transform: rotate(60deg) scale(1);
+            }
+            to {
+                -webkit-transform: rotate(60deg) scale(0);
+                transform: rotate(60deg) scale(0);
+                border-bottom-color: #001e36;
+            }
+        }
+        
+        @keyframes c {
+            from {
+                -webkit-transform: rotate(60deg) scale(1);
+                transform: rotate(60deg) scale(1);
+            }
+            to {
+                -webkit-transform: rotate(60deg) scale(0);
+                transform: rotate(60deg) scale(0);
+                border-bottom-color: #001e36;
+            }
+        }
+        
+        @-webkit-keyframes inner {
+            from {
+                -webkit-transform: rotate(0deg) scale(1);
+                transform: rotate(0deg) scale(1);
+            }
+            to {
+                -webkit-transform: rotate(60deg) scale(2);
+                transform: rotate(60deg) scale(2);
+            }
+        }
+        
+        @keyframes inner {
+            from {
+                -webkit-transform: rotate(0deg) scale(1);
+                transform: rotate(0deg) scale(1);
+            }
+            to {
+                -webkit-transform: rotate(60deg) scale(2);
+                transform: rotate(60deg) scale(2);
+            }
+        }
+        
+        @-webkit-keyframes spin {
+            from {
+                -webkit-transform: rotate(-60deg);
+                transform: rotate(-60deg);
+            }
+            to {
+                -webkit-transform: rotate(60deg);
+                transform: rotate(60deg);
+            }
+        }
+        
+        @keyframes spin {
+            from {
+                -webkit-transform: rotate(-60deg);
+                transform: rotate(-60deg);
+            }
+            to {
+                -webkit-transform: rotate(60deg);
+                transform: rotate(60deg);
+            }
+        }
+        
+        .hhh {
+            position: absolute;
+            left: -999px;
+            max-width: 888px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="hhh">
+        <b>
+DragonBound - Next generation HTML5 online massive multi-player game!<br>
+Play DragonBound now, a Free Multiplayer Online HTML5 Game. Play with or meet new friends anywhere, no downloads. Collect items, new game modes, and challenges.<br>
+</b>
+    </h1>
+    <div id="updater"></div>
+    <div id="FullScreenButton">
+        <div class="Alt Alt2">F11</div>
+    </div>
+    <div id="fb-root"></div>
+    <div id="Loading">
+        Loading DragonBound...
+        <div class="wrapper">
+            <div class="inner"></div>
+            <div class="triangle"></div>
+            <div class="triangle"></div>
+            <div class="triangle"></div>
+        </div>
+    </div>
+    <div id="ranking_panel_open" class="opacity_button NoSelect">Rankings
+        <div class="Alt">Z</div>
+    </div>
+    <div id="ranking_panel">
+        <div id="ranking_title" class="blackShadow NoSelect">DragonBound Rankings</div>
+        <div id="ranking_btns">
+            <div id="ranking_btn_guilds" class="ranking_btn NoSelect blackShadow">Guilds</div>
+            <div id="ranking_btn_weekly" class="ranking_btn NoSelect blackShadow"></div>
+            <div id="ranking_btn_type1" class="ranking_btn NoSelect blackShadow"></div>
+            <div id="ranking_btn_type2" class="ranking_btn NoSelect blackShadow"></div>
+            <div id="ranking_btn_indprix" class="ranking_btn NoSelect blackShadow"></div>
+            <div id="ranking_btn_ranks" class="ranking_btn NoSelect blackShadow"></div>
+            <div id="ranking_btn_guild" class="ranking_btn NoSelect blackShadow"></div>
+            <div id="ranking_btn_friends" class="ranking_btn NoSelect blackShadow"></div>
+            <div id="ranking_btn_contact" class="ranking_btn NoSelect blackShadow"></div>
+        </div>
+       <div id="ranking_data2" class="flexcroll blackShadow">
+<div id="ranking_data">
+<br>
+<div id="cto_async" class="hide"></div>
+<div id="ad3"></div>
+<div id="ad2"></div>
+<div id="ad1"></div>
+<div class="fb-page" data-href="http://www.facebook.com/dragonbound.net.game" data-width="300" data-height="72" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"></div>
+<br><br><a id="toslink2" class="blackShadow" href="/static/termsofservice.txt" target="_blank">Terms of Service</a>
+</div>
+</div>
+</div>
+    <div id="ShareWindow">
+        <div id="ShareToTwitter" class="ShareButton glow_button" title="Share to Twitter"></div>
+        <div id="ShareToGoogle" class="ShareButton glow_button" title="Share to Google+"></div>
+        <div id="ShareToEmail" class="ShareButton glow_button" title="Share by Email"></div>
+        <div id="ShareToClipboard" class="ShareButton glow_button" title="Press Ctrl+C to Copy to Clipboard"></div>
+        <div id="ShareToNewTab" class="ShareButton glow_button" title="Open Link"></div>
+        <input id="ShareURL" dir="ltr" value="" readonly />
+        <div id="CopyToClipboardText">Ctrl+C to Copy</div>
+        <div id="ShareWindowClose" class="buttonClose opacity_button"></div>
+    </div>
+    <div id="chargeWindow">
+        <div id="reseller1_btn" class="seller_button opacity_button"></div>
+        <div id="reseller2_btn" class="seller_button opacity_button"></div>
+        <div id="charge_myinfo_btn" class="seller_button opacity_button"></div>
+        <div id="charge_pin_btn" class="seller_button opacity_button"></div>
+        <div id="charge_bitcoin_btn" class="seller_button opacity_button"></div>
+        <div id="paymentwall_btn" class="seller_button opacity_button"></div>
+        <div id="superrewards_btn" class="seller_button opacity_button"></div>
+        <div id="astropay_btn" class="seller_button opacity_button"></div>
+        <div id="charge_dn_btn" class="seller_button opacity_button"></div>
+        <div id="chargeWindowPayment"></div>
+        <div id="chargeWindowClose" class="buttonClose opacity_button"></div>
+    </div>
+    <div id="DragonVideo">
+        <video id="localVideo"></video>
+        <div id="remotesVideos"></div>
+    </div>
+    <div id="OptionsDialog" class="ui-widget-content NoSelect AnimEnterScaleIn">
+        <div class="OptionsDialogTitle"></div>
+        <div class="opacity_button" id="OptionsLeave">
+            <div class="Alt">Q</div>
+        </div>
+        <div class="opacity_button" id="OptionsOK">
+            <div class="Alt">Enter</div>
+        </div>
+        <div class="opacity_button RadioOff" id="OptionsShootingModeDrag"></div>
+        <div class="opacity_button RadioOn" id="OptionsShootingModeSlice"></div>
+        <div id="OptionsText1" class="OptionTitle1 blackShadow">Shooting Mode</div>
+        <div id="OptionsText2" class="OptionTitle2 blackShadow opacity_button">Drag</div>
+        <div id="OptionsText3" class="OptionTitle2 blackShadow opacity_button">Slice</div>
+        <div id="OptionsText4" class="OptionTitle2 blackShadow opacity_button">(Mouse Click & Drag)</div>
+        <div id="OptionsText5" class="OptionTitle2 blackShadow opacity_button">(Space Key)</div>
+        <div id="OptionsBG">
+            <span id="OptionsText6" class="GOption2 OptionTitle1 blackShadow">Sounds</span>
+            <div id="slidersection1">
+                <span class="tooltip"></span>
+                <div class="slider"></div>
+                <span class="volume glow_button_anim"></span>
+            </div>
+            <br>
+            <br>
+            <br>
+            <span id="OptionsText7" class="GOption2 OptionTitle1 blackShadow">Music</span>
+            <div id="slidersection2">
+                <span class="tooltip"></span>
+                <div class="slider"></div>
+                <span class="volume glow_button_anim"></span>
+            </div>
+            <br>
+            <br>
+            <br>
+            <span id="OptionsText8" class="GOption2 OptionTitle1 blackShadow">Language</span>
+            <br>
+            <br>
+            <br>
+            <span id="OptionsText9" class="GOption2 OptionTitle1 blackShadow">Theme</span>
+            <select id="theme_select">
+			<option value="auto">Auto (Default)</option>
+			<!--option value="classic">Classic</option>
+			<option value="GameDemo">GameDemo</option>
+			<option value="halloween2015">Halloween</option>
+			<option value="xmas2015">Christmas</option>
+			<option value="val2016">Valentines</option>
+			<option value="april2016">April Fools Day</option>
+			<option value="custom">Custom</option-->
+			</select>
+            <button id="OptionsTheme">Custom</button>
+            <br>
+            <br>
+            <span id="OptionsText10" class="GOption2 OptionTitle1 blackShadow">Graphics</span>
+            <span class="GOption"><label><input type="checkbox" id="OptionBackground"><span class="blackShadow" id="OptionBackgroundText">Background</span></label>
+            </span>
+            <span class="GOption"><label><input type="checkbox" id="OptionAnimations"><span class="blackShadow" id="OptionAnimationsText">Animations</span></label>
+            </span>
+        </div>
+        <div class="opacity_button RadioOn" id="OptionsLangEN"></div>
+        <div id="OptionsTextEN" class="opacity_button OptionTitle1 blackShadow">English</div>
+        <div class="opacity_button RadioOff" id="OptionsLangES"></div>
+        <div id="OptionsTextES" class="opacity_button OptionTitle1 blackShadow">Español</div>
+    </div>
+    <div id="DragonThemeDialog" title="Custom Graphics">
+        <button id="ClearTheme" class="blueBtn">Clear</button>
+        <a href="http://GameDemo-forums.com/forumdisplay.php?fid=60" target="_blank" class="blueBtn" id="GetMoreThemes">Get More Themes...</a>
+        <table>
+            <tr>
+                <td>Lobby BG</td>
+                <td><input id="theme_lobby_bg"></td>
+            </tr>
+            <tr>
+                <td>Room BG</td>
+                <td><input id="theme_room_bg"></td>
+            </tr>
+            <tr>
+                <td>Shop BG</td>
+                <td><input id="theme_shop_bg"></td>
+            </tr>
+            <tr>
+                <td>Ranks</td>
+                <td><input id="theme_ranks"></td>
+            </tr>
+            <tr>
+                <td>BG Full</td>
+                <td><input id="theme_bg_full"></td>
+            </tr>
+            <tr>
+                <td>Lobby Stuff</td>
+                <td><input id="theme_lobby_stuff"></td>
+            </tr>
+            <tr>
+                <td>Room Stuff</td>
+                <td><input id="theme_room_stuff"></td>
+            </tr>
+            <tr>
+                <td>Game Stuff</td>
+                <td><input id="theme_game_stuff"></td>
+            </tr>
+            <tr>
+                <td>
+                    <nobr>Scores Stuff&nbsp;</nobr>
+                </td>
+                <td><input id="theme_scores_stuff"></td>
+            </tr>
+            <tr>
+                <td>Shop Stuff</td>
+                <td><input id="theme_shop_stuff"></td>
+            </tr>
+            <tr>
+                <td>Map BG</td>
+                <td><input id="theme_map_bg"></td>
+            </tr>
+        </table>
+        <br><span id="CustomThemeFullText">Theme Code (copy+paste):</span><br>
+        <textarea id="themeFull"></textarea>
+    </div>
+    <div id="dialogCreateRoom" class="AnimEnterScaleIn NoSelect">
+        <input type="text" id="createRoomTitle" value="Hello World" maxlength="30">
+        <div id="CreateRoomPrivateCheckbox" class="checkboxOff opacity_button"></div>
+        <div id="CreateRoomPassword" class="hide">
+            <input type="text" id="createRoomPasswordInput" value="" maxlength="10">
+        </div>
+        <div id="CreateRoomNumPlayersPrev" class="buttonPrev opacity_button"></div>
+        <div id="CreateRoomNumPlayersNext" class="buttonNext opacity_button"></div>
+        <div id="CreateRoomPlayers" class="players4vB"></div>
+        <div id="CreateRoomModePrev" class="buttonPrev opacity_button"></div>
+        <div id="CreateRoomModeNext" class="buttonNext opacity_button"></div>
+        <div id="CreateRoomMode" class="gameModeBoss blackShadow2"></div>
+        <div id="CreateRoomModeIcon" class="iconMode1"></div>
+        <div id="CreateRoomModeText"></div>
+        <div id="dialogCreateRoomButtonCancel" class="buttonCancel"></div>
+        <div id="dialogCreateRoomButtonOK" class="buttonOK"></div>
+        <div id="dialogCreateLocked"></div>
+        <div id="dialogCreateMessage"></div>
+    </div>
+    <div id="chat_divs"></div>
+    <a href="/me" target="_blank" class="hide">
+        <div id="notificationBtn" class="opacity_button">
+            <div class="TotalUnread">1</div>
+        </div>
+    </a>
+    <div id="Dragon2D"></div>
+    <div id="container">
+        <div class="DialogLayer hide">
+            <div id="myDialog">
+                <div class="AlertBoxBackground"></div>
+                <div class="AlertBox AnimEnterFadeIn">
+                    <div class="AlertBoxTitle"></div>
+                    <div class="AlertBoxContent blackShadow"></div>
+                    <div class="AlertBoxOK buttonOK" id="DragonDialogOK"></div>
+                    <div class="AlertBoxCancel buttonCancel" id="DragonDialogCancel"></div>
+                    <div id="dialog_graphic"></div>
+                </div>
+            </div>
+        </div>
+        <div id="BrokerScreen">
+            <div class="AlertBoxBackground"></div>
+            <div id="BrokerWindow">
+                <div id="BrokerTitle" class="blackShadow"></div>
+                <div id="BrokerChannels"></div>
+                <div class="BrokerChannel" id="BrokerChannel0"></div>
+                <div class="BrokerChannel" id="BrokerChannel1"></div>
+                <div class="BrokerChannel" id="BrokerChannel2"></div>
+                <div class="BrokerChannel" id="BrokerChannel3"></div>
+                <div class="BrokerChannel" id="BrokerChannel4"></div>
+                <div class="BrokerChannel" id="BrokerChannel5"></div>
+                <div class="BrokerChannel" id="BrokerChannel6"></div>
+                <div class="BrokerChannel" id="BrokerChannel7"></div>
+                <div class="BrokerChannel" id="BrokerChannel8"></div>
+                <div class="BrokerChannel" id="BrokerChannel9"></div>
+                <div class="BrokerChannel" id="BrokerChannel10"></div>
+                <div class="BrokerChannel" id="BrokerChannel11"></div>
+                <div id="BrokerTotalPlayers" class="blackShadow"></div>
+                <div class="NoSelect opacity_button" id="BrokerLogout">
+                    <div class="Alt">Q</div>
+                </div>
+                <div id="BrokerRefresh" class="opacity_button NoSelect">
+                    <div class="Alt">R</div>
+                </div>
+                <div id="BrokerHelp" class="NoSelect"></div>
+            </div>
+        </div>
+        <div id="itemsSelection" class="NoSelect hide">
+            <div id="itemSlot0" class="ItemBtn itemDual"></div>
+            <div id="itemSlot1"></div>
+            <div id="itemSlot2" class="ItemBtn itemDualP"></div>
+            <div id="itemSlot3"></div>
+            <div id="itemSlot4" class="ItemBtn itemTeleport"></div>
+            <div id="itemSlot5"></div>
+            <div id="itemDual" class="ItemBtn itemDual"></div>
+            <div id="itemDualP" class="ItemBtn itemDualP"></div>
+            <div id="itemTeleport" class="ItemBtn itemTeleport"></div>
+            <div id="itemsSelectText" class="blackShadow"></div>
+        </div>
+        <div id="friendsList" class="NoSelect hide">
+            <div class="scrollbar">
+                <div class="track">
+                    <div class="thumb">
+                        <div class="end"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="viewport">
+                <div class="overview" id="friendsListHtml"></div>
+            </div>
+        </div>
+        <div id="guildMembersList" class="NoSelect hide">
+            <div class="scrollbar">
+                <div class="track">
+                    <div class="thumb">
+                        <div class="end"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="viewport">
+                <div class="overview" id="guildMembersListHtml"></div>
+            </div>
+        </div>
+        <div class="screen AnimEnterFadeIn4" id="channelScreen">
+            <div id="tournament_waiting" class="anim_ease"></div>
+            <div id="dialog_change_name_div">
+                <div class="AlertBoxBackground"></div>
+                <div class="AlertBox">
+                    <div class="AlertBoxTitle"></div>
+                    <div class="AlertBoxContent blackShadow">
+                        <label for="display_name" id="display_name_label"></label>
+                        <input type="text" value="" id="display_name" maxlength="15" /><br>
+                        <div id="NameChangeLittle"></div>
+                        <input type="checkbox" checked id="can_show_photo" />
+                        <label for="can_show_photo" id="can_show_photo_label"></label>
+                        <a href="/settings" target="_blank" id="changePassLink" class="yellowBtn"></a>
+                        <a href="/me" target="_blank" id="myInfoProfile" class="blueBtn"></a>
+                        <div id="dialog_change_name_ok" class="buttonOK"></div>
+                        <div id="dialog_change_name_cancel" class="buttonCancel"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="dialog_join_room_div">
+                <div class="AlertBoxBackground"></div>
+                <div class="AlertBox">
+                    <div class="AlertBoxTitle"></div>
+                    <div class="AlertBoxContent blackShadow">
+                        <p>
+                            <label for="join_room_input" id="join_room1"></label>
+                            <input type="text" value="" id="join_room_input" maxlength="10" class="input_field" />
+                        </p>
+                        <br>
+                        <p>
+                            <label for="join_password_input" id="join_room2"></label>
+                            <input type="text" value="" id="join_password_input" maxlength="10" class="input_field" />
+                        </p>
+                        <div id="dialog_join_room_ok" class="buttonOK"></div>
+                        <div id="dialog_join_room_cancel" class="buttonCancel"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="channel">
+                <div class="scrollbar">
+                    <div class="track">
+                        <div class="thumb">
+                            <div class="end"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="viewport">
+                    <div class="CanSelect overview" id="channelTextHtml"></div>
+                </div>
+            </div>
+            <input type="text" id="channelInput" value="" maxlength="150">
+            <select id="lobby_channel" class="NoSelect">
+<option value="1">Español</option>
+<option value="0">English</option>
+<option value="7">Broadcasts</option>
+<option value="6">Events</option>
+<option value="2">Ch.1</option>
+<option value="3">Ch.2</option>
+<option value="4">Ch.3</option>
+<option value="5">Ch.4</option>
+</select>
+            <div id="playersList" class="NoSelect">
+                <div class="scrollbar">
+                    <div class="track">
+                        <div class="thumb">
+                            <div class="end"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="viewport">
+                    <div class="overview" id="channelPlayersListHtml"></div>
+                    <div class="overview hide" id="channelFriendsListHtml"></div>
+                </div>
+            </div>
+            <div id="Face8ookLike" class="NoSelect fb-like" data-href="https://DragonBound.net" data-send="true" data-layout="button_count" data-width="360" data-show-faces="false" data-font="verdana" data-colorscheme="dark"></div>
+            <div id="myInfoBox"></div>
+            <div id="myRank2" class="rank rank0 hide"></div>
+            <div id="myGP2" class="blackShadow NoSelect"></div>
+            <div id="myName2" class="blackShadow NoSelect"></div>
+            <div id="myName3" class="blackShadow NoSelect"></div>
+            <div id="myGold2" class="blackShadow NoSelect"></div>
+            <div id="myCash2" class="blackShadow NoSelect"></div>
+            <div id="myPUGP" class="blackShadow NoSelect">+10%</div>
+            <div id="myPUG" class="blackShadow NoSelect">+10%</div>
+            <div id="myPlusGP" class="blackShadow NoSelect">+10%</div>
+            <div id="myPhotoDiv"></div>
+            <div id="myGFPhotoDiv" class="NoSelect"></div>
+            <div id="myGFStatus" class="NoSelect myInfoRelText blackShadow myInfoRelText1"></div>
+            <div id="myGFName" class="NoSelect myInfoRelText blackShadow myInfoRelText2"></div>
+            <div id="channel_player"></div>
+            <div id="channelName" class="blackShadow NoSelect"></div>
+            <div id="tournament_info" class="blackShadow NoSelect"></div>
+            <div id="tournament_info2" class="blackShadow NoSelect"></div>
+            <div id="tournament_timer_header" class="blackShadow NoSelect"></div>
+            <div id="tournament_timer" class="blackShadow NoSelect"></div>
+            <div id="roomsList">
+                <div class="room" id="room0">
+                    <div class="roomNumber blackShadow"></div>
+                    <div class="roomTitle blackShadow"></div>
+                    <div class="numPlayers whiteShadow"></div>
+                    <div class="maxPlayers whiteShadow"></div>
+                    <div class="status"></div>
+                    <div class="roomMap"></div>
+                    <div class="gameMode"></div>
+                    <div class="roomLock"></div>
+                    <div class="roomGuildMember"></div>
+                    <div class="roomBuddy"></div>
+                    <div class="Alt">1</div>
+                </div>
+                <div class="room" id="room1">
+                    <div class="roomNumber blackShadow"></div>
+                    <div class="roomTitle blackShadow"></div>
+                    <div class="numPlayers whiteShadow"></div>
+                    <div class="maxPlayers whiteShadow"></div>
+                    <div class="status"></div>
+                    <div class="roomMap"></div>
+                    <div class="gameMode"></div>
+                    <div class="roomLock"></div>
+                    <div class="roomGuildMember"></div>
+                    <div class="roomBuddy"></div>
+                    <div class="Alt">2</div>
+                </div>
+                <div class="room" id="room2">
+                    <div class="roomNumber blackShadow"></div>
+                    <div class="roomTitle blackShadow"></div>
+                    <div class="numPlayers whiteShadow"></div>
+                    <div class="maxPlayers whiteShadow"></div>
+                    <div class="status"></div>
+                    <div class="roomMap"></div>
+                    <div class="gameMode"></div>
+                    <div class="roomLock"></div>
+                    <div class="roomGuildMember"></div>
+                    <div class="roomBuddy"></div>
+                    <div class="Alt">3</div>
+                </div>
+                <div class="room" id="room3">
+                    <div class="roomNumber blackShadow"></div>
+                    <div class="roomTitle blackShadow"></div>
+                    <div class="numPlayers whiteShadow"></div>
+                    <div class="maxPlayers whiteShadow"></div>
+                    <div class="status"></div>
+                    <div class="roomMap"></div>
+                    <div class="gameMode"></div>
+                    <div class="roomLock"></div>
+                    <div class="roomGuildMember"></div>
+                    <div class="roomBuddy"></div>
+                    <div class="Alt">4</div>
+                </div>
+                <div class="room" id="room4">
+                    <div class="roomNumber blackShadow"></div>
+                    <div class="roomTitle blackShadow"></div>
+                    <div class="numPlayers whiteShadow"></div>
+                    <div class="maxPlayers whiteShadow"></div>
+                    <div class="status"></div>
+                    <div class="roomMap"></div>
+                    <div class="gameMode"></div>
+                    <div class="roomLock"></div>
+                    <div class="roomGuildMember"></div>
+                    <div class="roomBuddy"></div>
+                    <div class="Alt">5</div>
+                </div>
+                <div class="room" id="room5">
+                    <div class="roomNumber blackShadow"></div>
+                    <div class="roomTitle blackShadow"></div>
+                    <div class="numPlayers whiteShadow"></div>
+                    <div class="maxPlayers whiteShadow"></div>
+                    <div class="status"></div>
+                    <div class="roomMap"></div>
+                    <div class="gameMode"></div>
+                    <div class="roomLock"></div>
+                    <div class="roomGuildMember"></div>
+                    <div class="roomBuddy"></div>
+                    <div class="Alt">6</div>
+                </div>
+            </div>
+            <div class="NoSelect opacity_button LobbyButton TipN" id="buttonCreateRoom">
+                <div class="Alt">C</div>
+            </div>
+            <div class="NoSelect opacity_button LobbyButton TipN" id="buttonMyInfo">
+                <div class="Alt">I</div>
+            </div>
+            <div class="NoSelect opacity_button LobbyButton TipN" id="buttonShop">
+                <div class="Alt">H</div>
+            </div>
+            <div class="NoSelect opacity_button LobbyButton TipN" id="buttonCharge2">
+                <div class="Alt">R</div>
+            </div>
+            <div class="NoSelect opacity_button LobbyButton TipN" id="buttonJoin">
+                <div class="Alt">J</div>
+            </div>
+            <div class="NoSelect opacity_button LobbyButton Tip" id="buttonQuickJoin">
+                <div class="Alt">S</div>
+            </div>
+            <div class="NoSelect opacity_button LobbyButton" id="buttonRoomsListUp">
+                <div class="Alt">?</div>
+            </div>
+            <div class="NoSelect opacity_button LobbyButton" id="buttonRoomsListDown">
+                <div class="Alt">?</div>
+            </div>
+            <div class="NoSelect opacity_button LobbyButton blackShadow TipN" id="facebook_post">
+                <div class="event_button_text"></div>
+                <div class="Alt">B</div>
+            </div>
+            <div class="NoSelect opacity_button LobbyButton blackShadow TipN" id="event_button">
+                <div class="event_button_text"></div>
+                <div class="Alt">E</div>
+            </div>
+            <div class="NoSelect opacity_button LobbyButton Tip" id="buttonOptions">
+                <div class="Alt">O</div>
+            </div>
+            <div class="NoSelect opacity_button LobbyButton Tip" id="buttonChannels">
+                <div class="Alt">Q</div>
+            </div>
+            <div class="NoSelect opacity_button buttonAllBuddyList1" id="buttonAllBuddyList1">
+                <div class="Alt">A</div>
+            </div>
+            <div class="NoSelect opacity_button buttonAllBuddyList2" id="buttonAllBuddyList2">
+                <div class="Alt">F</div>
+            </div>
+            <div class="NoSelect opacity_button buttonAllBuddyList3" id="buttonAllBuddyList3">
+                <div class="Alt">G</div>
+            </div>
+            <div class="NoSelect opacity_button LobbyButton Tip" id="filter_all">
+                <div class="Alt">L</div>
+            </div>
+            <div class="NoSelect opacity_button LobbyButton Tip" id="filter_waiting">
+                <div class="Alt">T</div>
+            </div>
+            <div class="NoSelect opacity_button iconMode0 Tip" id="filter_normal"></div>
+            <div class="NoSelect opacity_button iconMode1 Tip" id="filter_boss"></div>
+            <div class="NoSelect opacity_button iconMode2 Tip" id="filter_same"></div>
+            <div class="NoSelect opacity_button iconMode3 Tip" id="filter_score"></div>
+            <div class="NoSelect opacity_button LobbyButton Tip" id="filter_friends"></div>
+            <div class="NoSelect opacity_button LobbyButton Tip" id="filter_guild"></div>
+            <div class="NoSelect glow_button hide StartGame" id="buttonStart1v1">
+                <div class="Text"></div>
+                <div class="Alt">S</div>
+            </div>
+            <div class="NoSelect glow_button hide StartGame" id="buttonCreateTeam">
+                <div class="Text"></div>
+                <div class="Alt">C</div>
+            </div>
+            <div class="NoSelect glow_button hide StartGame" id="buttonJoinTeam">
+                <div class="Text"></div>
+                <div class="Alt">J</div>
+            </div>
+            <div id="lobbyButtonMobile" class="NoSelect buttonMobile hide glow_button">
+                <div class="Alt">M</div>
+            </div>
+            <div class="NoSelect glow_button BtnBcm" id="lobbyBcm"></div>
+            <div id="freecashWindow" class="DragonWindow blackShadow AnimEnterFadeIn">
+                <div class="DragonWindowTitleBar"><span class="DragonWindowTitle">Daily Free Cash</span>
+                    <div class="DragonWindowClose opacity_button"></div>
+                </div>
+                <div class="DragonWindowBody">
+                </div>
+            </div>
+        </div>
+        <div class="screen AnimEnterFadeIn4" id="roomScreen">
+            <div id="team_search" class="blackShadow"></div>
+            <div id="roomOverly">
+                <div id="roomInfoBG"></div>
+                <div id="roomItemsBG" class="TBG"></div>
+                <div id="roomInfo1" class="blackShadow">Game Mode:</div>
+                <div id="roomInfo2" class="blackShadow">Players:</div>
+                <div id="roomInfo3" class="blackShadow">Avatars:</div>
+                <div id="roomInfo4" class="blackShadow">Max Wind:</div>
+            </div>
+            <div id="roomNumber" class="blackShadow"></div>
+            <div id="roomTitle" class="blackShadow"></div>
+            <div id="roomButtonBack">
+                <div class="Alt">Q</div>
+            </div>
+            <div id="roomButtonReady" class="opacity_button">
+                <div class="Alt">R</div>
+            </div>
+            <div id="roomButtonStart" class="opacity_button">
+                <div class="Alt">S</div>
+            </div>
+            <div id="roomButtonChangeTeam">
+                <div class="Alt">T</div>
+            </div>
+            <div id="roomButtonMobile" class="buttonMobile">
+                <div class="Alt">M</div>
+            </div>
+            <div id="DragonVideoControls">
+                <div id="roomButtonVideoChat" class="opacity_button">VideoChat
+                    <div class="Alt">V</div>
+                </div>
+                <div id="videoChannelDiv" class="blackShadow">
+                    <nobr>CH:<input id="VideoChannelInput"></nobr>
+                </div>
+                <div id="DrgaonVideoBeta" class="blackShadow">BETA</div>
+            </div>
+            <div id="roomMobileSelect">
+                <div id="roomMobileSelectCancel" class="buttonCancel"></div>
+            </div>
+            <div class="playerInRoom SideA" id="playerInRoom0">
+                <div class="roomPlayerName blackShadow"></div>
+                <div class="roomPlayerInfo opacity_button"></div>
+                <div class="roomPlayerReady"></div>
+                <div class="roomPlayerNotReady"></div>
+                <div class="roomPlayerMaster"></div>
+                <div class="roomPlayerMobile"></div>
+                <div class="roomPlayerMyself"></div>
+                <div class="roomPlayerShadow"></div>
+                <div class="roomPlayerPhoto"></div>
+                <div class="roomPlayerBalloon"></div>
+                <div class="roomPlayerBalloonTip"></div>
+            </div>
+            <div class="playerInRoom SideA" id="playerInRoom2">
+                <div class="roomPlayerName blackShadow"></div>
+                <div class="roomPlayerInfo opacity_button"></div>
+                <div class="roomPlayerReady"></div>
+                <div class="roomPlayerNotReady"></div>
+                <div class="roomPlayerMaster"></div>
+                <div class="roomPlayerMobile"></div>
+                <div class="roomPlayerMyself"></div>
+                <div class="roomPlayerShadow"></div>
+                <div class="roomPlayerPhoto"></div>
+                <div class="roomPlayerBalloon"></div>
+                <div class="roomPlayerBalloonTip"></div>
+            </div>
+            <div class="playerInRoom SideA" id="playerInRoom4">
+                <div class="roomPlayerName blackShadow"></div>
+                <div class="roomPlayerInfo opacity_button"></div>
+                <div class="roomPlayerReady"></div>
+                <div class="roomPlayerNotReady"></div>
+                <div class="roomPlayerMaster"></div>
+                <div class="roomPlayerMobile"></div>
+                <div class="roomPlayerMyself"></div>
+                <div class="roomPlayerShadow"></div>
+                <div class="roomPlayerBalloon"></div>
+                <div class="roomPlayerBalloonTip"></div>
+            </div>
+            <div class="playerInRoom SideA" id="playerInRoom6">
+                <div class="roomPlayerName blackShadow"></div>
+                <div class="roomPlayerInfo opacity_button"></div>
+                <div class="roomPlayerReady"></div>
+                <div class="roomPlayerNotReady"></div>
+                <div class="roomPlayerMaster"></div>
+                <div class="roomPlayerMobile"></div>
+                <div class="roomPlayerMyself"></div>
+                <div class="roomPlayerShadow"></div>
+                <div class="roomPlayerBalloon"></div>
+                <div class="roomPlayerBalloonTip"></div>
+            </div>
+            <div class="playerInRoom SideB" id="playerInRoom1">
+                <div class="roomPlayerName blackShadow"></div>
+                <div class="roomPlayerInfo opacity_button"></div>
+                <div class="roomBotRemove opacity_button"></div>
+                <div class="roomBotSelect opacity_button"></div>
+                <div class="roomPlayerReady"></div>
+                <div class="roomPlayerNotReady"></div>
+                <div class="roomPlayerMaster"></div>
+                <div class="roomPlayerMobile"></div>
+                <div class="roomPlayerMyself"></div>
+                <div class="roomPlayerShadow"></div>
+                <div class="roomPlayerBalloon"></div>
+                <div class="roomPlayerBalloonTip"></div>
+            </div>
+            <div class="playerInRoom SideB" id="playerInRoom3">
+                <div class="roomPlayerName blackShadow"></div>
+                <div class="roomPlayerInfo opacity_button"></div>
+                <div class="roomBotRemove opacity_button"></div>
+                <div class="roomBotSelect opacity_button"></div>
+                <div class="roomPlayerReady"></div>
+                <div class="roomPlayerNotReady"></div>
+                <div class="roomPlayerMaster"></div>
+                <div class="roomPlayerMobile"></div>
+                <div class="roomPlayerMyself"></div>
+                <div class="roomPlayerShadow"></div>
+                <div class="roomPlayerBalloon"></div>
+                <div class="roomPlayerBalloonTip"></div>
+            </div>
+            <div class="playerInRoom SideB" id="playerInRoom5">
+                <div class="roomPlayerName blackShadow"></div>
+                <div class="roomPlayerInfo opacity_button"></div>
+                <div class="roomBotRemove opacity_button"></div>
+                <div class="roomBotSelect opacity_button"></div>
+                <div class="roomPlayerReady"></div>
+                <div class="roomPlayerNotReady"></div>
+                <div class="roomPlayerMaster"></div>
+                <div class="roomPlayerMobile"></div>
+                <div class="roomPlayerMyself"></div>
+                <div class="roomPlayerShadow"></div>
+                <div class="roomPlayerBalloon"></div>
+                <div class="roomPlayerBalloonTip"></div>
+            </div>
+            <div class="playerInRoom SideB" id="playerInRoom7">
+                <div class="roomPlayerName blackShadow"></div>
+                <div class="roomPlayerInfo opacity_button"></div>
+                <div class="roomBotRemove opacity_button"></div>
+                <div class="roomBotSelect opacity_button"></div>
+                <div class="roomPlayerReady"></div>
+                <div class="roomPlayerNotReady"></div>
+                <div class="roomPlayerMaster"></div>
+                <div class="roomPlayerMobile"></div>
+                <div class="roomPlayerMyself"></div>
+                <div class="roomPlayerShadow"></div>
+                <div class="roomPlayerBalloon"></div>
+                <div class="roomPlayerBalloonTip"></div>
+            </div>
+            <div id="vortex0" class="vortex"></div>
+            <div id="vortex1" class="vortex"></div>
+            <div id="vortex2" class="vortex"></div>
+            <div id="vortex3" class="vortex"></div>
+            <div id="vortex4" class="vortex"></div>
+            <div id="vortex5" class="vortex"></div>
+            <div id="vortex6" class="vortex"></div>
+            <div id="vortex7" class="vortex"></div>
+            <div id="add_bot_button" class="opacity_button"></div>
+            <div id="room_timer">
+                <div id="room_timer_text"></div>
+            </div>
+            <div id="room_game_mode" class="blackShadow"></div>
+            <div id="room_players"></div>
+            <div id="room_avatars" class="blackShadow"></div>
+            <div id="room_wind" class="blackShadow"></div>
+            <div id="room_change_title_button" class="opacity_button">
+                <div class="Alt">L</div>
+            </div>
+            <div id="room_item_buddy_tab1" class="opacity_button room_item_buddy_tab1">
+                <div class="Alt">A</div>
+            </div>
+            <div id="room_item_buddy_tab2" class="opacity_button room_item_buddy_tab2">
+                <div class="Alt">F</div>
+            </div>
+            <div id="room_item_buddy_tab3" class="opacity_button room_item_buddy_tab3">
+                <div class="Alt">G</div>
+            </div>
+            <div id="friendsListExtra"></div>
+            <div id="guildRoomTabExtra"></div>
+            <div id="room_options_button" class="opacity_button">
+                <div class="Alt">O</div>
+            </div>
+            <div id="room_map"></div>
+            <div id="gp_team_a" class="blackShadow"></div>
+            <div id="gp_team_b" class="blackShadow"></div>
+            <div id="gp_rate" class="blackShadow"></div>
+            <div id="no_win_bonus" class="blackShadow"></div>
+            <div id="RoomS1Disabled" class="NoSelect imgS1 grayscale"></div>
+            <div id="RoomRandomTeams" class="NoSelect blackShadow">Random Teams</div>
+            <div class="NoSelect opacity_button LobbyButton" id="buttonShopFromRoom">
+                <div class="Alt">H</div>
+            </div>
+            <div class="NoSelect opacity_button LobbyButton Tip" id="buttonOptionsRoom"></div>
+            <div id="room_auto_match_btn" class="NoSelect glow_button hide StartGame">
+                <div class="Text">Meet a new person! (Dragon-Dating)</div>
+                <div class="Alt"></div>
+            </div>
+            <div id="room_auto_match_btn2" class="NoSelect glow_button hide StartGame">
+                <div class="Text"><img src="/static/images/heart_search.png"></div>
+                <div class="Alt"></div>
+            </div>
+            <input type="text" id="roomInput" value="" maxlength="150">
+            <div id="roomChat">
+                <div class="scrollbar">
+                    <div class="track">
+                        <div class="thumb">
+                            <div class="end"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="viewport">
+                    <div class="CanSelect overview" id="roomChatHtml"></div>
+                </div>
+            </div>
+            <div class="NoSelect glow_button BtnBcm" id="roomBcm"></div>
+            <div id="dialog_change_title_div" class="hide">
+                <div class="AlertBoxBackground"></div>
+                <div class="AlertBox">
+                    <div class="AlertBoxTitle"></div>
+                    <div class="AlertBoxContent blackShadow">
+                        <br>
+                        <p>
+                            <label for="room_change_title_input"></label>
+                            <input type="text" value="" id="room_change_title_input" maxlength="30" class="input_field" />
+                        </p>
+                        <div id="dialog_change_title_ok" class="buttonOK"></div>
+                        <div id="dialog_change_title_cancel" class="buttonCancel"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="playerInfoDialog">
+                <div id="infoLoading" class="blackShadow"></div>
+                <div id="infoKey1" class="blackShadow"></div>
+                <div id="infoKey2" class="blackShadow"></div>
+                <div id="infoKey3" class="blackShadow">GP</div>
+                <div id="infoKey4" class="blackShadow"></div>
+                <div id="infoKey5" class="blackShadow"></div>
+                <div id="infoKey6" class="blackShadow"></div>
+                <div id="infoKey7" class="blackShadow"></div>
+                <div id="infoKey8" class="blackShadow"></div>
+                <div id="infoKey9" class="blackShadow"></div>
+                <div id="infoName" class="blackShadow"></div>
+                <div id="infoRanking" class="blackShadow"></div>
+                <div id="infoGender" class="blackShadow"></div>
+                <div id="infoGP" class="blackShadow"></div>
+                <div id="infoWinRate" class="blackShadow"></div>
+                <div id="infoDamage" class="blackShadow"></div>
+                <div id="infoWin" class="blackShadow"></div>
+                <div id="infoLose" class="blackShadow"></div>
+                <div id="infoGuild" class="blackShadow"></div>
+                <div id="infoGuildJob" class="blackShadow"></div>
+                <div id="infoRank" class="rank rank0"></div>
+                <div id="infoImageDiv"></div>
+                <div id="infoAddBuddy" class="opacity_button"></div>
+                <div id="infoGuildInvite" class="opacity_button"></div>
+                <div id="infoChat" class="opacity_button"></div>
+                <div id="infoClose" class="opacity_button"></div>
+                <div id="infoGFPhotoDiv"></div>
+                <div id="infoGFStatus" class="myInfoRelText blackShadow myInfoRelText1"></div>
+                <div id="infoGFName" class="myInfoRelText blackShadow myInfoRelText2"></div>
+                <div id="infoRelationBtn" class="blueBtn"></div>
+                <div id="infoRelationBonus" class="blackShadow"></div>
+            </div>
+            <div id="dialog_room_options" class="hide NoSelect">
+                <div id="RoomOptionsNumPlayersPrev" class="NoSelect buttonPrev opacity_button"></div>
+                <div id="RoomOptionsNumPlayersNext" class="NoSelect buttonNext opacity_button"></div>
+                <div id="RoomOptionsPlayers" class="NoSelect"></div>
+                <div id="RoomOptionsModePrev" class="NoSelect buttonPrev opacity_button"></div>
+                <div id="RoomOptionsModeNext" class="NoSelect buttonNext opacity_button"></div>
+                <div id="RoomOptionsMode" class="NoSelect blackShadow"></div>
+                <div id="RoomOptionsModeIcon" class="NoSelect iconMode1"></div>
+                <div id="RoomOptionsModeLocked" class="NoSelect imgLock"></div>
+                <div id="RoomOptionsMessage" class="NoSelect"></div>
+                <div id="RoomOptionsMapPrev" class="NoSelect buttonPrev opacity_button"></div>
+                <div id="RoomOptionsMapNext" class="NoSelect buttonNext opacity_button"></div>
+                <div id="RoomOptionsMapName" class="NoSelect"></div>
+                <div id="RoomOptionsMapImage" class="NoSelect"></div>
+                <div id="RoomOptionsMapLock" class="NoSelect">
+                    <div id="RoomOptionsMapLockBtn" class="NoSelect blueBtn">Get More Maps</div>
+                    <div id="RoomOptionsMapLockImg" class="NoSelect imgLock"></div>
+                </div>
+                <div id="RoomOptionsAvatars" class="NoSelect blackShadow"></div>
+                <div id="RoomOptionsAvatarsPrev" class="NoSelect buttonPrev opacity_button"></div>
+                <div id="RoomOptionsAvatarsNext" class="NoSelect buttonNext opacity_button"></div>
+                <div id="RoomOptionsAvatarsGP" class="NoSelect blackShadow"></div>
+                <div id="RoomOptionsWind" class="NoSelect blackShadow"></div>
+                <div id="RoomOptionsWindPrev" class="NoSelect buttonPrev opacity_button"></div>
+                <div id="RoomOptionsWindNext" class="NoSelect buttonNext opacity_button"></div>
+                <div id="RoomOptionsWindGP" class="NoSelect blackShadow"></div>
+                <div id="RoomOptionsRandomTeams" class="NoSelect grayscale blackShadow glow_button">[ ] Random Teams</div>
+                <div id="RoomOptionsRandomTeamsRank" class="NoSelect rank rank7"></div>
+                <div id="RoomOptionsRandomTeamsLock" class="NoSelect imgLock"></div>
+                <div id="RoomOptionsTele" class="NoSelect ItemBtn itemTeleport glow_button"></div>
+                <div id="RoomOptionsTeleRank" class="NoSelect rank rank11"></div>
+                <div id="RoomOptionsTeleLock" class="NoSelect imgLock"></div>
+                <div id="RoomOptionsS1" class="NoSelect imgS1 glow_button"></div>
+                <div id="RoomOptionsS1Rank" class="NoSelect rank rank9"></div>
+                <div id="RoomOptionsS1Lock" class="NoSelect imgLock"></div>
+                <div id="RoomOptionsDualP" class="NoSelect ItemBtn itemDualP glow_button"></div>
+                <div id="RoomOptionsDualPRank" class="NoSelect rank rank10"></div>
+                <div id="RoomOptionsDualPLock" class="NoSelect imgLock"></div>
+                <a id="PlayCustomMap" href="/static/images/custom_maps.png" target=_blank class="blueBtn">Play Custom Map</a>
+                <a id="GetCustomMaps" href="http://GameDemo-forums.com/forumdisplay.php?fid=62" target="_blank" class="blueBtn">Get Custom Maps</a>
+                <div id="RoomOptionsCancel" class="NoSelect buttonCancel"></div>
+                <div id="RoomOptionsOK" class="NoSelect buttonOK"></div>
+            </div>
+            <div id="select_bot_div"></div>
+        </div>
+        <div class="screen AnimEnterFadeIn4" id="gameScreen">
+            <div id="game_back"></div>
+            <div id="game_front">
+                <div id="turn_timer"></div>
+                <div id="gameui" class="NoSelect">
+                    <canvas id="MyAngle" width="43" height="15"></canvas>
+                    <div class="UIGoldDigit" id="UIGoldDigit0"></div>
+                    <div class="UIGoldDigit" id="UIGoldDigit1"></div>
+                    <div class="UIGoldDigit" id="UIGoldDigit2"></div>
+                    <div class="UIGoldDigit" id="UIGoldDigit3"></div>
+                    <div class="UIGoldDigit" id="UIGoldDigit4"></div>
+                    <div id="btnShot1" class="Pressed">
+                        <div class="Alt">1</div>
+                    </div>
+                    <div id="btnShot2">
+                        <div class="Alt">2</div>
+                    </div>
+                    <div id="btnShotSS">
+                        <div class="Alt">3</div>
+                    </div>
+                    <div id="btnPass" class="opacity_button">
+                        <div class="Alt Alt2">F8</div>
+                    </div>
+                    <div id="btnEsc" class="opacity_button"></div>
+                    <div id="btnFriends" class="blueBtn">F10 Friends
+                        <div class="Alt Alt2">F10</div>
+                    </div>
+                    <a id="btnDownloadMap" class="blueBtn">Save Map</a>
+                    <div id="gameItemSlot0">
+                        <div class="Alt Alt2">F1</div>
+                    </div>
+                    <div id="gameItemSlot1">
+                        <div class="Alt Alt2">F2</div>
+                    </div>
+                    <div id="gameItemSlot2">
+                        <div class="Alt Alt2">F3</div>
+                    </div>
+                    <div id="gameItemSlot3">
+                        <div class="Alt Alt2">F4</div>
+                    </div>
+                    <div id="gameItemSlot4">
+                        <div class="Alt Alt2">F5</div>
+                    </div>
+                    <div id="gameItemSlot5">
+                        <div class="Alt Alt2">F6</div>
+                    </div>
+                    <div id="last_power_mark"></div>
+                    <div id="weatherSlot0"></div>
+                    <div id="weatherSlot1"></div>
+                    <div id="weatherSlot2"></div>
+                    <div id="weatherSlot3"></div>
+                    <div id="weatherSlot3"></div>
+                    <div id="weatherSlot4"></div>
+                    <div id="slice_drag_button">
+                        <div class="Alt">M</div>
+                    </div>
+                    <div id="LastAngleDigit-" class="LastAngleDigit LastAngleDigit-"></div>
+                    <div id="LastAngleDigit1"></div>
+                    <div id="LastAngleDigit2"></div>
+                    <div id="message_over_items"></div>
+                    <div id="powerBar"></div>
+                    <div id="walkBar"></div>
+                    <div id="powerMarkArea">
+                        <div id="powerMark"></div>
+                    </div>
+                    <div id="all_chat"></div>
+                    <div id="team_chat"></div>
+                    <div id="help_btn">?</div>
+                    <div id="game_dnd_btn" class="dnd_btn">PM</div>
+                    <div id="score_panel">
+                        <div id="score_panel_a" class="whiteShadow"></div>
+                        <div id="score_panel_b" class="whiteShadow"></div>
+                    </div>
+                </div>
+                <div id="turns_list" class="ForceHW NoSelect">
+                    <div class="turn_list_title blackShadow"></div>
+                    <div class="turn_line" id="turn_line0">
+                        <div class="turn_line_number turn_line_number0"></div>
+                        <div class="turn_line_rank"></div>
+                        <div class="turn_line_name blackShadow"></div>
+                        <div class="turn_line_delay blackShadow"></div>
+                    </div>
+                    <div class="turn_line" id="turn_line1">
+                        <div class="turn_line_number turn_line_number1"></div>
+                        <div class="turn_line_rank"></div>
+                        <div class="turn_line_name blackShadow"></div>
+                        <div class="turn_line_delay blackShadow"></div>
+                    </div>
+                    <div class="turn_line" id="turn_line2">
+                        <div class="turn_line_number turn_line_number2"></div>
+                        <div class="turn_line_rank"></div>
+                        <div class="turn_line_name blackShadow"></div>
+                        <div class="turn_line_delay blackShadow"></div>
+                    </div>
+                    <div class="turn_line" id="turn_line3">
+                        <div class="turn_line_number turn_line_number3"></div>
+                        <div class="turn_line_rank"></div>
+                        <div class="turn_line_name blackShadow"></div>
+                        <div class="turn_line_delay blackShadow"></div>
+                    </div>
+                    <div class="turn_line" id="turn_line4">
+                        <div class="turn_line_number turn_line_number4"></div>
+                        <div class="turn_line_rank"></div>
+                        <div class="turn_line_name blackShadow"></div>
+                        <div class="turn_line_delay blackShadow"></div>
+                    </div>
+                    <div class="turn_line" id="turn_line5">
+                        <div class="turn_line_number turn_line_number5"></div>
+                        <div class="turn_line_rank"></div>
+                        <div class="turn_line_name blackShadow"></div>
+                        <div class="turn_line_delay blackShadow"></div>
+                    </div>
+                    <div class="turn_line" id="turn_line6">
+                        <div class="turn_line_number turn_line_number6"></div>
+                        <div class="turn_line_rank"></div>
+                        <div class="turn_line_name blackShadow"></div>
+                        <div class="turn_line_delay blackShadow"></div>
+                    </div>
+                    <div class="turn_line" id="turn_line7">
+                        <div class="turn_line_number turn_line_number7"></div>
+                        <div class="turn_line_rank"></div>
+                        <div class="turn_line_name blackShadow"></div>
+                        <div class="turn_line_delay blackShadow"></div>
+                    </div>
+                </div>
+                <input type="text" id="gameInput" value="" maxlength="150">
+                <div id="gameChat">
+                    <div class="scrollbar">
+                        <div class="track">
+                            <div class="thumb">
+                                <div class="end"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="viewport">
+                        <div class="CanSelect overview" id="gameChatHtml"></div>
+                    </div>
+                </div>
+                <div class="NoSelect glow_button BtnBcm" id="gameBcm"></div>
+                <canvas id="wind_meter2" width="66" height="60"></canvas>
+                <div id="game_replay"></div>
+                <div id="game_click_to_revive"></div>
+                <div id="howtoplay">
+                    <div id="howtoplayClose" class="buttonClose glow_button"></div>
+                </div>
+                <div id="game_over">
+                    <div id="scores_lose_a"></div>
+                    <div id="scores_lose_b"></div>
+                    <div class="score" id="score0">
+                        <div class="score_me"></div>
+                        <div class="score_rank"></div>
+                        <div class="score_name blackShadow"></div>
+                        <div class="score_gp blackShadow"></div>
+                        <div class="score_gold blackShadow"></div>
+                        <div class="score_bonus_gp blackShadow"></div>
+                        <div class="score_bonus_gold blackShadow"></div>
+                        <div class="score_state"></div>
+                    </div>
+                    <div class="score" id="score1">
+                        <div class="score_me"></div>
+                        <div class="score_rank"></div>
+                        <div class="score_name blackShadow"></div>
+                        <div class="score_gp blackShadow"></div>
+                        <div class="score_gold blackShadow"></div>
+                        <div class="score_bonus_gp blackShadow"></div>
+                        <div class="score_bonus_gold blackShadow"></div>
+                        <div class="score_state"></div>
+                    </div>
+                    <div class="score" id="score2">
+                        <div class="score_me"></div>
+                        <div class="score_rank"></div>
+                        <div class="score_name blackShadow"></div>
+                        <div class="score_gp blackShadow"></div>
+                        <div class="score_gold blackShadow"></div>
+                        <div class="score_bonus_gp blackShadow"></div>
+                        <div class="score_bonus_gold blackShadow"></div>
+                        <div class="score_state"></div>
+                    </div>
+                    <div class="score" id="score3">
+                        <div class="score_me"></div>
+                        <div class="score_rank"></div>
+                        <div class="score_name blackShadow"></div>
+                        <div class="score_gp blackShadow"></div>
+                        <div class="score_gold blackShadow"></div>
+                        <div class="score_bonus_gp blackShadow"></div>
+                        <div class="score_bonus_gold blackShadow"></div>
+                        <div class="score_state"></div>
+                    </div>
+                    <div class="score" id="score4">
+                        <div class="score_me"></div>
+                        <div class="score_rank"></div>
+                        <div class="score_name blackShadow"></div>
+                        <div class="score_gp blackShadow"></div>
+                        <div class="score_gold blackShadow"></div>
+                        <div class="score_bonus_gp blackShadow"></div>
+                        <div class="score_bonus_gold blackShadow"></div>
+                        <div class="score_state"></div>
+                    </div>
+                    <div class="score" id="score5">
+                        <div class="score_me"></div>
+                        <div class="score_rank"></div>
+                        <div class="score_name blackShadow"></div>
+                        <div class="score_gp blackShadow"></div>
+                        <div class="score_gold blackShadow"></div>
+                        <div class="score_bonus_gp blackShadow"></div>
+                        <div class="score_bonus_gold blackShadow"></div>
+                        <div class="score_state"></div>
+                    </div>
+                    <div class="score" id="score6">
+                        <div class="score_me"></div>
+                        <div class="score_rank"></div>
+                        <div class="score_name blackShadow"></div>
+                        <div class="score_gp blackShadow"></div>
+                        <div class="score_gold blackShadow"></div>
+                        <div class="score_bonus_gp blackShadow"></div>
+                        <div class="score_bonus_gold blackShadow"></div>
+                        <div class="score_state"></div>
+                    </div>
+                    <div class="score" id="score7">
+                        <div class="score_me"></div>
+                        <div class="score_rank"></div>
+                        <div class="score_name blackShadow"></div>
+                        <div class="score_gp blackShadow"></div>
+                        <div class="score_gold blackShadow"></div>
+                        <div class="score_bonus_gp blackShadow"></div>
+                        <div class="score_bonus_gold blackShadow"></div>
+                        <div class="score_state"></div>
+                    </div>
+                    <div id="GameShare" class="glow_button">Share</div>
+                    <div id="GameOverMyGPGot" class="blackShadow"></div>
+                    <div id="GameOverMyGP" class="blackShadow"></div>
+                    <div id="GameOverMyGPNext" class="blackShadow"></div>
+                    <div id="GameOverMyGoldGot" class="blackShadow"></div>
+                    <div id="GameOverMyGold" class="blackShadow"></div>
+                </div>
+            </div>
+            <div id="touch_ui">
+                <div id="btnRight"></div>
+                <div id="btnLeft"></div>
+                <div id="btnUp"></div>
+                <div id="btnDown"></div>
+            </div>
+        </div>
+        <div class="screen NoSelect AnimEnterFadeIn4" id="shopScreen">
+            <div id="shopOverly">
+                <div id="shopTitle" class="blackShadow NoSelect"></div>
+                <div id="shopMyBox"></div>
+                <div id="shopInvBox" class="TBGnBorder"></div>
+                <div id="shopInvTitle" class="blackShadow NoSelect"></div>
+            </div>
+            <div id="buttonShopExit" class="opacity_button NoSelect shopButton">
+                <div class="Alt">Q</div>
+            </div>
+            <div class="NoSelect opacity_button LobbyButton" id="buttonChargeShop1">
+                <div class="Alt">R</div>
+            </div>
+            <div id="buttonShopBuy" class="opacity_button NoSelect shopButton"></div>
+            <div id="buttonShopHead" class="opacity_button NoSelect shopButton">
+                <div class="Alt">H</div>
+            </div>
+            <div id="buttonShopBody" class="opacity_button NoSelect shopButton">
+                <div class="Alt">B</div>
+            </div>
+            <div id="buttonShopEyes" class="opacity_button NoSelect shopButton">
+                <div class="Alt">G</div>
+            </div>
+            <div id="buttonShopFlag" class="opacity_button NoSelect shopButton">
+                <div class="Alt">F</div>
+            </div>
+            <div id="buttonShopBackground" class="opacity_button NoSelect shopButton">
+                <div class="Alt">C</div>
+            </div>
+            <div id="buttonShopForeground" class="opacity_button NoSelect shopButton">
+                <div class="Alt">E</div>
+            </div>
+            <div id="buttonShopExItem" class="opacity_button NoSelect shopButton">
+                <div class="Alt">X</div>
+            </div>
+            <div id="shopPages" class="whiteShadow"></div>
+            <div id="buttonShopPrev" class="opacity_button NoSelect shopButton">
+                <div class="Alt">? / ?</div>
+            </div>
+            <div id="buttonShopNext" class="opacity_button NoSelect shopButton">
+                <div class="Alt">? / ?</div>
+            </div>
+            <div id="shop_player"></div>
+            <div id="shop_my_cash" class="cashShadow"></div>
+            <div id="shop_my_gold" class="goldShadow"></div>
+            <div id="shop_my_stats">
+                <div class="shop_item_stat shop_item_stat0">
+                    <div class="stat_icon"></div>
+                    <div class="stat_digit1 stat_font"></div>
+                    <div class="stat_digit2 stat_font"></div>
+                </div>
+                <div class="shop_item_stat shop_item_stat1">
+                    <div class="stat_icon"></div>
+                    <div class="stat_digit1 stat_font"></div>
+                    <div class="stat_digit2 stat_font"></div>
+                </div>
+                <div class="shop_item_stat shop_item_stat2">
+                    <div class="stat_icon"></div>
+                    <div class="stat_digit1 stat_font"></div>
+                    <div class="stat_digit2 stat_font"></div>
+                </div>
+                <div class="shop_item_stat shop_item_stat3">
+                    <div class="stat_icon"></div>
+                    <div class="stat_digit1 stat_font"></div>
+                    <div class="stat_digit2 stat_font"></div>
+                </div>
+                <div class="shop_item_stat shop_item_stat4">
+                    <div class="stat_icon"></div>
+                    <div class="stat_digit1 stat_font"></div>
+                    <div class="stat_digit2 stat_font"></div>
+                </div>
+                <div class="shop_item_stat shop_item_stat5">
+                    <div class="stat_icon"></div>
+                    <div class="stat_digit1 stat_font"></div>
+                    <div class="stat_digit2 stat_font"></div>
+                </div>
+                <div class="shop_item_stat shop_item_stat6">
+                    <div class="stat_icon"></div>
+                    <div class="stat_digit1 stat_font"></div>
+                    <div class="stat_digit2 stat_font"></div>
+                </div>
+                <div class="shop_item_stat shop_item_stat7">
+                    <div class="stat_icon"></div>
+                    <div class="stat_digit1 stat_font"></div>
+                    <div class="stat_digit2 stat_font"></div>
+                </div>
+            </div>
+            <div id="shop_my_items_container">
+                <div class="scrollbar">
+                    <div class="track">
+                        <div class="thumb">
+                            <div class="end"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="viewport">
+                    <div class="overview NoSelect" id="shop_my_items"></div>
+                </div>
+            </div>
+            <div id="shop_my_items_number">
+                <div class="digit0 stat_font stat_font9"></div>
+                <div class="digit1 stat_font stat_font8"></div>
+                <div class="digit2 stat_font stat_font7"></div>
+                <div class="digit3 stat_font stat_font6"></div>
+            </div>
+            <div id="shop_my_items_stats" class="blackShadow"></div>
+            <div id="shop_delete_avatar" class="opacity_button Tip"></div>
+            <div id="shop_sort">
+                <span id="SortLabel" class="blackShadow"></span>
+                <select id="shop_sort_select">
+                    <option value="Purchase Time">Purchase Time</option>
+                    <option value="Type">Type</option>
+                    <option value="Name">Name</option>
+                    <option value="Gift,Cash,Gold">Gift, Cash, Gold</option>
+                    <option value="Stat: Life">Stat: Life</option>
+                    <option value="Stat: Dig">Stat: Dig</option>
+                    <option value="Stat: Defense">Stat: Defense</option>
+                    <option value="Stat: Attack">Stat: Attack</option>
+                    <option value="Stat: Shield">Stat: Shield</option>
+                    <option value="Stat: Speed">Stat: Speed</option>
+                    <option value="Stat: Item">Stat: Item</option>
+                    <option value="Stat: Gold">Stat: Gold</option>
+                </select>
+            </div>
+            <div id="shop_items"></div>
+            <div id="next_avatar" class="hide blackShadow AnimEnterFromBottom">
+                <div id="next_avatar_title"></div>
+                <div id="next_avatar_name"></div>
+                <div id="next_avatar_timer"></div>
+                <meter id="next_avatar_line"></meter>
+            </div>
+            <div id="next_avatar_particles"></div>
+            <div id="shop_buy_dialog" class="ui-widget-content AnimEnterFadeIn">
+                <div id="buy_panel1" class="blackShadow"></div>
+                <div id="buy_panel2" class="blackShadow"></div>
+                <div id="buy_option1" class="blackShadow"></div>
+                <div id="buy_option2" class="blackShadow"></div>
+                <div id="buy_option3" class="blackShadow"></div>
+                <div class="shop_item_name blackShadow"></div>
+                <div class="shop_item_image NoSelect"></div>
+                <div id="buy_gold_week" class="buy_option goldShadow">
+                    <div class="Text"></div>
+                    <div class="Alt">4</div>
+                </div>
+                <div id="buy_gold_month" class="buy_option goldShadow">
+                    <div class="Text"></div>
+                    <div class="Alt">5</div>
+                </div>
+                <div id="buy_gold_perm" class="buy_option goldShadow">
+                    <div class="Text"></div>
+                    <div class="Alt">6</div>
+                </div>
+                <div id="buy_cash_week" class="buy_option cashShadow">
+                    <div class="Text"></div>
+                    <div class="Alt">1</div>
+                </div>
+                <div id="buy_cash_month" class="buy_option cashShadow">
+                    <div class="Text"></div>
+                    <div class="Alt">2</div>
+                </div>
+                <div id="buy_cash_perm" class="buy_option cashShadow">
+                    <div class="Text"></div>
+                    <div class="Alt">3</div>
+                </div>
+                <div id="buy_period" class="hide"></div>
+                <div id="buy_period_next_btn" class="opacity_button shopButton hide"></div>
+                <div id="buy_period_prev_btn" class="opacity_button shopButton hide"></div>
+                <div id="buy_gold_btn" class="opacity_button shopButton hide"></div>
+                <div id="buy_cash_btn" class="opacity_button shopButton hide"></div>
+                <div id="buy_cancel_btn" class="opacity_button shopButton"></div>
+                <div id="buy_gift_btn" class="blackShadow"></div>
+                <div class="NoSelect opacity_button LobbyButton" id="buttonChargeShop">
+                    <div class="Alt">R</div>
+                </div>
+                <div id="buy_ui"><label><input type="checkbox" id="buy_ui_chk">Old UI</label></div>
+            </div>
+        </div>
+    </div>
+    <div id="LoginWindowBG">
+        <div id="LoginWindow">
+            <div id="LoginHelp" class="blackShadow hide">
+                <img src="/static/images/information_icon.svg" style="float:right" width="40" height="40">
+                <div id="LoginHelpEN">
+                    <span class="LoginHelpTitle">Can't Login with Facebook?</span><br><br> 1. Click "<a href="/accounts/password/reset" class="LoginHelpLink">Reset Password</a>"<br> 2. Put your Facebook email address (the email that you had on your Facebook
+                    at the last time you were able to log in with Facebook to DragonBound).<br> 3. Go to your email, click the link, and choose a new password.<br> 4. Come back here and login with nickname(or email) and the new password.<br>
+                </div>
+                <div id="LoginHelpES" class="hide">
+                    <span class="LoginHelpTitle">No puedes ingresar por Facebook?</span><br><br> 1. Click "<a href="/accounts/password/reset" class="LoginHelpLink">Restablecer contraseña</a>"<br> 2. Coloca tu correo electronico de Facebook (El correo
+                    que tenias en tu Facebook la ultima vez que fuiste capaz de ingresar desde Facebook a DragonBound).<br> 3. Ingresa a tu correo electronico, le das click al link y escoge una nueva contraseña.<br> 4. Regresa aqua e ingresa con tu nickname
+                    (o correo electrinico) y la nueva contraseña.<br>
+                </div>
+                <svg id="LoginHelpArrow" width="80" height="300" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <title>Layer 1</title>
+                        <path d="m67,4c-1,1 -1.61731,1.07612 -2,2c-0.5412,1.30656 -2.85274,3.1731 -4,4c-1.814,1.30745 -3,2 -6,5c-1,1 -3,3 -4,4c-3,3 -4,4 -5,5c-2,2 -5.186,4.69255 -7,6c-1.14726,0.8269 -1.71413,2.21168 -4,5c-0.89659,1.09367 -1.1731,1.85273 -2,3c-1.30745,1.814 -2.4588,3.69344 -3,5c-0.38269,0.92387 -1.61731,4.07613 -2,5c-0.5412,1.30656 -2.2565,2.797 -3,4c-1.66251,2.68999 -2.4588,4.69344 -3,6c-0.38269,0.92387 -0.33749,4.31001 -2,7c-0.7435,1.203 -0.78986,2.07843 -2,5c-0.85571,2.06586 -1.30322,2.76935 -2,4c-2.03145,3.58792 -1.48625,4.82375 -2,7c-0.22975,0.97325 -2.48625,4.82375 -3,7c-0.22975,0.97325 1.40601,2.50432 -1,7c-0.66731,1.24687 -0.90146,3.00487 -1,4c-0.50244,5.0742 -2,6 -2,9c0,1 -1,6 -1,8c0,3 0,6 0,11c0,2 0,4 0,6c0,5 0,7 0,9c0,3 1.49345,9.87856 2,13c0.48055,2.96126 0.76268,6.05042 3,16c0.90456,4.02264 1.45514,8.14063 3,13c2.98393,9.38596 4.79393,14.08743 7,19c1.83203,4.07965 3.04869,7.28912 5,12c1.37979,3.33109 3.37257,8.30359 7,15c1.71735,3.17029 3.66446,7.45807 6,11c2.96448,4.49576 4.3851,9.37201 7,13c1.65381,2.29453 3,4 4,6c1,2 2.1731,2.85272 3,4c1.30745,1.814 1.61731,3.07611 2,4c0.5412,1.30655 2.69255,2.186 4,4c0.8269,1.14728 1.69255,2.186 3,4c0.8269,1.14728 2.82443,1.0979 4,3c0.52573,0.85065 0.69344,2.4588 2,3c0.92387,0.38269 3,1 3,2l1,0"
+                            id="svg_1" stroke-width="5" stroke="#ff0000" fill="none" />
+                        <line id="svg_2" y2="281" x2="69" y1="218" x1="48" stroke-width="5" stroke="#ff0000" fill="none" />
+                        <line id="svg_3" y2="283" x2="67" y1="257" x1="14" stroke-width="5" stroke="#ff0000" fill="none" />
+                    </g>
+                </svg>
+                <a class="LoginHelpLink" href="https://www.youtube.com/watch?v=DVzVqY_lZ_M" target="_blank">Video: youtube.com/watch?v=DVzVqY_lZ_M</a>
+            </div>
+            <div id="loginTitle">Login to DragonBound</div>
+            <span id="LoginFBStatus" class="blackShadow">Existing FB users only</span>
+            <div id="ConnectWithFacebook" class="grayscale"></div>
+            <div id="LoginMute" class="volume glow_button_anim"></div>
+            <div id="LoginLang" class="glow_button_anim blackShadow NoSelect">EN</div>
+            <div id="LoginOR1" class="blackShadow">- OR -</div>
+            <div id="LoginSap"></div>
+            <div id="LoginPart">
+                <input class="inputField" id="LoginUsername" name="username" placeholder="Name / Email / UserID" maxlength="100"><br>
+                <input class="inputField" type="password" id="LoginPass" name="pass" placeholder="Password" maxlength="100"> <input type="submit" value="Login" id="LoginSubmit" class="blueBtn"><br>
+                <span class="resetPass blackShadow"><a href="/accounts/password/reset" id="LoginResetA">Reset password?</a></span>
+            </div>
+            <div id="registerTitle">Or Create Account</div>
+            <div id="RegisterPart">
+                <br>
+                <div class="formLine">
+                    <input class="inputField" id="name" name="name" placeholder="Name" maxlength="15" value="">
+                </div>
+                <div class="formLine">
+                    <input class="inputField" type="password" id="password" name="password" placeholder="New Password" maxlength="100">
+                </div>
+                <div class="formLine" style="margin: 5px">
+                    <input type="radio" name="gender" id="male" value="m"><label for="male">Male</label>
+                    <input type="radio" name="gender" id="female" value="f"><label for="female">Female</label>
+                </div>
+                <div class="formLine" style="margin: 15px; text-align: center">
+                    <button type="submit" id="RegisterSubmit" class="registerButton"></button>
+                </div>
+                <div id="registerErrors" class="errorlist"></div>
+            </div>
+            <a id="toslink" class="blackShadow" href="/static/termsofservice.txt" target="_blank">Terms of Service</a>
+            <a id="pplink" class="blackShadow" href="/static/privacypolicy.txt" target="_blank">Privacy Policy</a>
+        </div>
+    </div>
+</body>
+
+</html>

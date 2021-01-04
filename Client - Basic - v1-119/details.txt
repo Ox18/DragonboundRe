@@ -1,0 +1,19 @@
+Donwload Software used:
+
+XAMPP:
+https://www.apachefriends.org/es/index.html
+
+NODEJS (before version):
+hey! type ".msi"
+https://nodejs.org/download/release/v6.4.0/
+
+accounts:
+
+lnferno
+123456
+
+joji
+123456
+
+Thanks user!
+develop by: lnferno 2013-2020

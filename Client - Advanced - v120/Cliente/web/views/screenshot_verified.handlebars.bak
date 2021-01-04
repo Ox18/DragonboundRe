@@ -1,0 +1,284 @@
+<!doctype html>
+<html>
+<head>
+<title>DragonBound ScreenShot</title>
+<meta property="og:type" content="website" />
+<meta property="og:title" content="DragonBound ScreenShot" />
+<meta property="og:description" content="DragonBound ScreenShot" />
+<meta property="og:image" content="https://DragonBound.net/static/images/icon_endgame4v4.png" />
+<meta property="og:url" content="https://DragonBound.net/screenshot" />
+<script src="/static/js/jquery-2.0.3.min.js"></script>
+<link rel="stylesheet" href="/static/css/RicardoStars.min.css?1178" />
+<style>
+        h1 {
+            font-size: 26px;
+        }
+
+        .glow_button {
+            -webkit-transition: all 0.15s ease-in-out;
+            transition: all 0.15s ease-in-out;
+        }
+        .glow_button:hover {
+            box-shadow: 0 0 10px 10px #ff0;
+        }
+        .glow_button:active {
+            box-shadow: 0 0 10px 10px #9f9;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        #info {
+            text-align: center;
+            background: rgba(0,0,0,0.5);
+        }
+
+        #bg {
+            background: black no-repeat center center fixed;
+            background-size: 100% 100%;
+        }
+
+        /* Fixing Stuff */
+        #game_over {
+            position: relative;
+            margin: auto;
+        }
+        #game_over,.score,#scores_lose_a,#scores_lose_b {
+            background-image: url(/static/images/scores_stuff2.png);
+            background-repeat:no-repeat;
+        }
+        .rank {
+            background-image: url(/static/images/themes/classic/ranks2.png);
+            background-repeat:no-repeat;
+        }
+        .rank21,.rank27,.rank28,.rank29,.rank30,.rank31 {
+            background-image: url(/static/images/ranks2.png?2) !important
+        }
+
+    </style>
+    {{#if check_screen}}
+<script>
+        var MAP = { // TODO: add here new future maps
+            CUSTOM:-2,
+            RANDOM:-1,
+            MIRAMO:0,
+            NIRVANA:1,
+            METRO:2,
+            SEA:3,
+            ADIUM:4,
+            DRAGON:5,
+            COZY:6,
+            DUMMY:7,
+            STAR:8,
+            METAMINE:9,
+            CAVE:10,
+            SECRET:11,
+            ICECAVE:12,
+            TREEOFLIFE:13,
+            ICEFISH:14,
+            SOCCER:15,
+            CANDY:16,
+            MONSTER:17,
+            MIRAMO2:18,
+            NIRVANA2:19,
+            METRO2:20,
+            SEA2:21,
+            AUDIM2:22,
+            DRAGON2:23,
+            COZY2:24,
+            DUMMY2:25,
+            STAR2:26,
+            METAMINE2:27,
+            LOVEYOU:28,
+            LOVEYOU2:29,
+            LOND:30,
+            LOND2:31,
+            DESERT:32,
+            DESERT2:33,
+            GRAY:34,
+            GRAY2:35,
+            JUNGLE:36,
+            JUNGLE2:37,
+            MYROOM:38,
+            MYROOM2:39,
+            DUMMY3:40,
+            ADIUM3:41,
+            MEGAMINE:42,
+            MINIMINE:43,
+            CULTURE:44,
+            PURPLEMINE:45,
+            HALLOWEEN:46,
+            CLOCKTOWER:47,
+            CLOCKTOWER2:48,
+            XMASCAKE:49,
+            NUMBER_OF_MAPS:50
+        }
+        var MAPS = []
+        MAPS[MAP.CUSTOM]     = {name:'Custom',        bg:'metamine_bg.jpg'}
+        MAPS[MAP.MIRAMO]     = {name:'Miramo Town',   bg:'miramo_bg.jpg'}
+        MAPS[MAP.NIRVANA]    = {name:'Nirvana',       bg:'nirvana_bg.jpg'}
+        MAPS[MAP.METRO]      = {name:'Metropolis',    bg:'metro_bg.jpg'}
+        MAPS[MAP.SEA]        = {name:'Sea of Hero',   bg:'sea_bg.jpg'}
+        MAPS[MAP.ADIUM]      = {name:'Aduim Root',    bg:'adium_bg2.jpg'}
+        MAPS[MAP.DRAGON]     = {name:'Dragon',        bg:'dragon_bg.jpg'}
+        MAPS[MAP.COZY]       = {name:'Cozy Tower',    bg:'cozy_bg.jpg'}
+        MAPS[MAP.DUMMY]      = {name:'Dummy Slope',   bg:'dummy_bg2.jpg'}
+        MAPS[MAP.STAR]       = {name:'Star Dust',     bg:'star_bg.jpg'}
+        MAPS[MAP.METAMINE]   = {name:'Meta Mine',     bg:'metamine_bg.jpg'}
+        MAPS[MAP.CAVE]       = {name:'Cave',          bg:'cave_bg.jpg'}
+        MAPS[MAP.SECRET]     = {name:'Prix',          bg:'secret_bg.jpg'}
+        MAPS[MAP.ICECAVE]    = {name:'Ice Cave',      bg:'icecave_bg.jpg'}
+        MAPS[MAP.TREEOFLIFE] = {name:'Tree of Life',  bg:'treeoflife_bg.jpg'}
+        MAPS[MAP.ICEFISH]    = {name:'Ice Fish',      bg:'icefish_bg.jpg'}
+        MAPS[MAP.SOCCER]     = {name:'Mundial',       bg:'soccer_bg.jpg'}
+        MAPS[MAP.CANDY]      = {name:'Candy',         bg:'candy_bg.jpg'}
+        MAPS[MAP.MONSTER]    = {name:'Monster',       bg:'monster_bg.jpg'}
+        MAPS[MAP.MIRAMO2]    = {name:'Miramo Town B', bg:'miramo_bg.jpg'}
+        MAPS[MAP.NIRVANA2]   = {name:'Nirvana B',     bg:'nirvana_bg.jpg'}
+        MAPS[MAP.METRO2]     = {name:'Metropolis B',  bg:'metro_bg.jpg'}
+        MAPS[MAP.SEA2]       = {name:'Sea of Hero B', bg:'sea_bg.jpg'}
+        MAPS[MAP.AUDIM2]     = {name:'Adium Root B',  bg:'adium_bg2.jpg'}
+        MAPS[MAP.DRAGON2]    = {name:'Dragon B',      bg:'dragon_bg.jpg'}
+        MAPS[MAP.COZY2]      = {name:'Cozy Tower B',  bg:'cozy_bg.jpg'}
+        MAPS[MAP.DUMMY2]     = {name:'Dummy Slope B', bg:'dummy_bg2.jpg'}
+        MAPS[MAP.STAR2]      = {name:'Start Dust B',  bg:'star_bg.jpg'}
+        MAPS[MAP.METAMINE2]  = {name:'Meta Mine B',   bg:'metamine_bg.jpg'}
+        MAPS[MAP.LOVEYOU]    = {name:'Love You',      bg:'loveu_bg.jpg'}
+        MAPS[MAP.LOVEYOU2]   = {name:'Love You B',    bg:'loveu_bg.jpg'}
+        MAPS[MAP.LOND]       = {name:'Lond',          bg:'lond_bg.jpg'}
+        MAPS[MAP.LOND2]      = {name:'Lond B',        bg:'lond_bg.jpg'}
+        MAPS[MAP.DESERT]     = {name:'Desert',        bg:'desert_bg.jpg'}
+        MAPS[MAP.DESERT2]    = {name:'Desert B',      bg:'desert_bg.jpg'}
+        MAPS[MAP.GRAY]       = {name:'Gray City',     bg:'gray_bg.jpg'}
+        MAPS[MAP.GRAY2]      = {name:'Gray City B',   bg:'gray_bg.jpg'}
+        MAPS[MAP.JUNGLE]     = {name:'Jungle',        bg:'jungle_bg.jpg'}
+        MAPS[MAP.JUNGLE2]    = {name:'Jungle B',      bg:'jungle_bg.jpg'}
+        MAPS[MAP.MYROOM]     = {name:'My Room',       bg:'myroom_bg.jpg'}
+        MAPS[MAP.MYROOM2]    = {name:'My Room B',     bg:'myroom_bg.jpg'}
+        MAPS[MAP.DUMMY3]     = {name:'Dummy Slope C', bg:'dummy_bg2.jpg'}
+        MAPS[MAP.ADIUM3]     = {name:'Audim Root C',  bg:'adium_bg2.jpg'}
+        MAPS[MAP.MEGAMINE]   = {name:'MegaMine',      bg:'balloon_bg.jpg'}
+        MAPS[MAP.MINIMINE]   = {name:'MiniMine',      bg:'balloon_bg.jpg'}
+        MAPS[MAP.CULTURE]    = {name:'Culture',       bg:'jungle_bg.jpg'}
+        MAPS[MAP.PURPLEMINE] = {name:'Purple Mine',   bg:'xmas_bg2.jpg'}
+        MAPS[MAP.HALLOWEEN]  = {name:'Halloween',     bg:'halloween_bg.jpg'}
+        MAPS[MAP.CLOCKTOWER] = {name:'Clock Tower',   bg:'clocktower_bg.jpg'}
+        MAPS[MAP.CLOCKTOWER2]= {name:'Clock Tower B', bg:'clocktower_bg.jpg'}
+        MAPS[MAP.XMASCAKE]   = {name:'XMAS Cake',     bg:'xmas_bg3.jpg'}
+
+        $(function() {
+            var a = JSON.parse({{{DATE}}})
+            var version = a[0],
+                time = a[1],
+                server = a[2],
+                room = a[3],
+                game_mode = a[4],
+                max_players = a[5],
+                map = a[6],
+                avatar = a[7],
+                wind = a[8],
+                won = a[9],
+                turns = a[10],
+                players = a[11],
+                winners = [],
+                losers = []
+
+            var game_over = {
+                won:won,
+                scores:players
+            }
+
+            var TEAM_A=0, TEAM_B=1
+            $('#scores_lose_a,#scores_lose_b').removeClass()
+            if(game_over.won == TEAM_A || game_over.won == 'A') {
+                $('#scores_lose_a').addClass('win')
+                $('#scores_lose_b').removeClass()
+            } else if(game_over.won == TEAM_B || game_over.won == 'B') {
+                $('#scores_lose_a').removeClass()
+                $('#scores_lose_b').addClass('win')
+            }
+
+            var states = ['','Computer','Left','Rank Up!'],
+                state_class = ['','score_state_computer','score_state_left','score_state_rankup']
+
+            $('.score').hide()
+            $('.score_me').hide()
+            for(var i=0; i<game_over.scores.length; i++) {
+                var score = game_over.scores[i]
+                var player_number = score[0]
+                var user_id = score[1]
+                var game_id = score[2]
+                var rank = score[3]
+                var gp_this_game = score[4]
+                var gold_this_game = score[5]
+                var state = score[6]
+                var gp_bonus = score[7]
+                var gold_bonus = score[8]
+                $('#score'+player_number+' .score_name').html(game_id)
+                $('#score'+player_number+' .score_rank').removeClass().addClass('score_rank rank rank'+rank)
+                $('#score'+player_number+' .score_gp').html(gp_this_game+' GP')
+                $('#score'+player_number+' .score_gold').html(gold_this_game+' GOLD')
+                $('#score'+player_number+' .score_bonus_gp').html((gp_bonus)?'+'+gp_bonus+' GP':'')
+                $('#score'+player_number+' .score_bonus_gold').html((gold_bonus)?'+'+gold_bonus+' GOLD':'')
+                $('#score'+player_number+' .score_state').html(states[state]).removeClass().addClass('score_state blackShadow '+state_class[state])
+                $('#score'+player_number+' .score_me').hide()
+                $('#score'+player_number).show()
+            }
+
+            $('#game_over').show()
+
+//            $('body').css({backgroundImage: 'url(/static/images/maps/'+maps['map'+map+'_bg']+')'})
+            var map_bg = (MAPS[map])? MAPS[map].bg : MAPS[MAP.ADIUM].bg
+            $('body').css({backgroundImage: 'url(/static/images/maps/'+map_bg+')'})
+
+            var players_str = Math.floor(max_players/2)+'v'+Math.floor(max_players/2)
+            var game_mode_str = ['Normal', 'Boss', 'Same-Same', 'Score']
+
+            $('#server').html(server)
+            $('#room').html(room)
+            $('#time').html(new Date(time))
+            $('#players').html(players_str)
+            $('#game_mode').html(game_mode_str[game_mode])
+            $('#avatars').html(avatar?'On':'Off')
+            $('#wind').html(wind)
+            $('#turns').html(turns)
+//            $('#map').html(maps['map'+map+'_name'])
+            var map_name = MAPS[map]? MAPS[map].name : 'Unknown'
+            $('#map').html(map_name)
+        })
+
+    </script>
+    {{/if}}
+</head>
+<body>
+    {{#if check_screen}}
+<div id="cont">
+<div id="info" class="blackShadow">
+<h1>DragonBound (Verified) ScreenShot</h1>
+Server <span id="server"></span> - Room <span id="room"></span><br>
+<span id="players"></span> <span id="game_mode"></span>, Avatar <span id="avatars"></span>, Wind <span id="wind"></span>, Map <span id="map"></span>, Played <span id="turns"></span> Turns<br>
+<span id="time"></span><br>
+<span id="views">Views: 3</span><br>
+    {{else}}
+    Screenshot does not exist. Please check your link.<br>
+    {{/if}}
+<a href="/" class="glow_button">Play DragonBound</a>
+    {{#if check_screen}}
+</div>
+<div id="game_over">
+<div id="scores_lose_a"></div>
+<div id="scores_lose_b"></div>
+<div class="score" id="score0"> <div class="score_me"></div> <div class="score_rank"></div> <div class="score_name blackShadow"></div> <div class="score_gp blackShadow"></div> <div class="score_gold blackShadow"></div> <div class="score_bonus_gp blackShadow"></div> <div class="score_bonus_gold blackShadow"></div> <div class="score_state"></div> </div>
+<div class="score" id="score1"> <div class="score_me"></div> <div class="score_rank"></div> <div class="score_name blackShadow"></div> <div class="score_gp blackShadow"></div> <div class="score_gold blackShadow"></div> <div class="score_bonus_gp blackShadow"></div> <div class="score_bonus_gold blackShadow"></div> <div class="score_state"></div> </div>
+<div class="score" id="score2"> <div class="score_me"></div> <div class="score_rank"></div> <div class="score_name blackShadow"></div> <div class="score_gp blackShadow"></div> <div class="score_gold blackShadow"></div> <div class="score_bonus_gp blackShadow"></div> <div class="score_bonus_gold blackShadow"></div> <div class="score_state"></div> </div>
+<div class="score" id="score3"> <div class="score_me"></div> <div class="score_rank"></div> <div class="score_name blackShadow"></div> <div class="score_gp blackShadow"></div> <div class="score_gold blackShadow"></div> <div class="score_bonus_gp blackShadow"></div> <div class="score_bonus_gold blackShadow"></div> <div class="score_state"></div> </div>
+<div class="score" id="score4"> <div class="score_me"></div> <div class="score_rank"></div> <div class="score_name blackShadow"></div> <div class="score_gp blackShadow"></div> <div class="score_gold blackShadow"></div> <div class="score_bonus_gp blackShadow"></div> <div class="score_bonus_gold blackShadow"></div> <div class="score_state"></div> </div>
+<div class="score" id="score5"> <div class="score_me"></div> <div class="score_rank"></div> <div class="score_name blackShadow"></div> <div class="score_gp blackShadow"></div> <div class="score_gold blackShadow"></div> <div class="score_bonus_gp blackShadow"></div> <div class="score_bonus_gold blackShadow"></div> <div class="score_state"></div> </div>
+<div class="score" id="score6"> <div class="score_me"></div> <div class="score_rank"></div> <div class="score_name blackShadow"></div> <div class="score_gp blackShadow"></div> <div class="score_gold blackShadow"></div> <div class="score_bonus_gp blackShadow"></div> <div class="score_bonus_gold blackShadow"></div> <div class="score_state"></div> </div>
+<div class="score" id="score7"> <div class="score_me"></div> <div class="score_rank"></div> <div class="score_name blackShadow"></div> <div class="score_gp blackShadow"></div> <div class="score_gold blackShadow"></div> <div class="score_bonus_gp blackShadow"></div> <div class="score_bonus_gold blackShadow"></div> <div class="score_state"></div> </div>
+</div>
+</div>
+     {{/if}}
+</body>
+</html>

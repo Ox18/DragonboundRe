@@ -1,0 +1,254 @@
+<!doctype html>
+<html>
+    <head>
+        <title>DragonBound PIN Code -> Cash Redeem</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <style>
+            html {
+                min-height: 100%;
+            }
+
+            body {
+                background: black url(/static/images/bg_black2.jpg) no-repeat center center fixed;
+                background-size: cover;
+                font-family: arial;
+                color: #ffffff;
+                -webkit-text-size-adjust: 100%;
+            }
+
+            textarea {
+                background-color: transparent;
+                width: 100%;
+                height: 100px;
+            }
+
+            output {
+                color: red;
+            }
+
+            table {
+                color: white;
+                background: rgba(50,50,50,0.85);
+            }
+
+            td {
+                padding: 3px;
+            }
+
+            a {
+                color: yellow;
+            }
+
+            #pin {
+                width: 300px;
+            }
+
+            .red {
+                color: red;
+            }
+
+            .yellow {
+                color: yellow;
+            }
+
+            .green {
+                color: #0f0;
+            }
+
+            #pin_box {
+                position: relative;
+                width: 300px;
+                height: 193px;
+                background: url(/static/images/dragonpin.jpg);
+                border-radius: 20px;
+                box-shadow: 7px 7px 5px #000;
+            }
+
+            #pin_code {
+                position: absolute;
+                top: 132px;
+                width: 100%;
+                font-size: 20px;
+                font-family: verdana;
+                text-align: center;
+                text-shadow: 0 0 7px #900,0 0 6px #090,0 0 4px #009;
+            }
+
+            #pin_cash {
+                position: absolute;
+                top: 98px;
+                left: 26px;
+                font-size: 23px;
+                font-family: verdana;
+                text-shadow: 0 0 7px #900,0 0 6px #090,0 0 4px #009;
+                color: #ee4;
+            }
+
+            #pin_reseller {
+                position: absolute;
+                top: 41px;
+                left: 26px;
+                font-size: 17px;
+                font-family: verdana;
+                text-shadow: 0 0 7px #900,0 0 6px #090,0 0 4px #009;
+                font-style: italic;
+                color: #99f;
+            }
+
+            #pin_title {
+                position: absolute;
+                top: 12px;
+                left: 26px;
+                font-size: 20px;
+                font-family: verdana;
+                text-shadow: 0 0 7px #900,0 0 6px #090,0 0 4px #009;
+                color: #cc9;
+            }
+
+            #pin_use {
+                position: absolute;
+                top: 166px;
+                left: 28px;
+                font-size: 18px;
+                font-family: verdana;
+                text-shadow: 0 0 7px #900,0 0 6px #090,0 0 4px #009;
+            }
+
+            #pin_used {
+                position: absolute;
+                top: 166px;
+                left: 26px;
+                font-size: 18px;
+                font-family: verdana;
+                text-shadow: 0 0 7px #000,0 0 6px #000,0 0 4px #000;
+                color: #f33;
+            }
+
+            h3 {
+                margin: 0;
+                padding: 0;
+                color: #fb5;
+            }
+
+            h2 {
+                color: #f93;
+            }
+
+            #toUserID {
+                width: 100px;
+            }
+
+            .buyroom {
+                background: #400;
+                display: inline-block;
+                border: solid 3px brown;
+                padding: 5px;
+            }
+
+            .ES {
+                display: none
+            }
+        </style>
+        <script>
+            function TD(unix_time_sec) {
+                var d = new Date(unix_time_sec * 1000)
+                var tzs, tz = d.getTimezoneOffset() / -60
+                if (localStorage.myTZ > -13 && localStorage.myTZ < 13)
+                    tz = Number(localStorage.myTZ)
+                if (tz < 0)
+                    tzs = 'GMT' + tz
+                else if (tz > 0)
+                    tzs = 'GMT+' + tz
+                else
+                    tzs = 'UTC'
+                d = new Date(d.getTime() + 3600000 * tz)
+                document.write(d.toISOString().replace('T', ' ').replace('.000', '').replace('Z', '') + ' (' + tzs + ')')
+            }
+
+            function GetLanguage() {
+                if (localStorage.myLang == 'es')
+                    return localStorage.myLang
+                var l = navigator.language || navigator.userLanguage
+                if (l.indexOf('es') == 0)
+                    return 'es'
+                else
+                    return 'en'
+            }
+            var lang = GetLanguage()
+
+            $(function() {
+                // translate
+                if (lang == 'es') {
+                    $('.EN').hide()
+                    $('.ES').show()
+                    $('#submit').val('Revisar PIN')
+                    // $('#reportCancel').html('Cancelar')
+                }
+            })
+        </script>
+    </head>
+    <body>
+        <h2 class="EN">DragonBound PIN Code -> Cash Redeem</h2>
+        <h2 class="ES">DragonBound PIN -> Canjea Cash</h2>
+        Username: {{{user_name}}}<br>
+        UserID: {{{user_id}}}<br>
+        <br>
+        <a href="my_payments" target="_blank">Cash: {{{user_cash}}}</a>
+        <br>
+        <br>
+        <form method="POST">
+            <input type='hidden' name='csrfmiddlewaretoken' value='2ORUn2o6UhWdH98mjXZV1Cl8YjtxIaPUYrZoX41N5LA4qIcUT7Ps8sWNPwNqcvlI'/>
+            <div>
+                <label for="pin">PIN:</label>
+                <input id="pin" name="pin" value="" maxlength="19">
+            </div>
+            <br>
+            <input type="submit" value="Check PIN" id="submit">
+        </form>
+        <br>
+        {{{user_by}}}
+        <output id="output">{{{error_pin}}}</output>
+        {{{pin_code}}}
+        <br>
+        <br>
+        <div class="EN">
+            <h3>How does it work?</h3>
+            1. Buy a PIN Code. (From a <b>trusted</b>
+            seller only!).<br>
+            2. Input it here.<br>
+            3. Press [Check PIN].<br>
+            4. You get cash to your account immediately.<br>
+            <br>
+            <h3>Try?</h3>
+            Input this used PIN Code: BP10-2345-UVWX-3456<br>
+            <br>
+            <h3>Merchant? Want to sell DragonBound PIN Codes in your local business?</h3>
+            All official DragonBound Resellers can generate PIN Codes.<br>
+            Make a deal with one of them to supply you with PIN Codes.<br>
+            Prove to your customers that they can trust you.<br>
+            <br>
+            <h3>Warning:</h3>
+            Be careful about scammers and ask your friends to recommend you a reseller before you pay.<br>
+            Remember in the charge button you can see the list of official Resellers.<br>
+        </div>
+        <div class="ES">
+            <h3>¿Cómo funciona?</h3>
+            1. Compra un PIN Code. (Sólo de un vendedor confiable!)<br>
+            2. Colocarlo aquí.<br>
+            3. Presiona [Revisar PIN].<br>
+            4. Recibirás cash a tu cuenta inmediatamente.<br>
+            <br>
+            <h3>Por ejemplo:</h3>
+            Coloca este PIN Code usado: BP10-2345-UVWX-3456<br>
+            <br>
+            <h3>¿Eres comerciante? ¿Quieres vender PIN Codes de DragonBound en tu negocio local?</h3>
+            Todos los Resellers oficiales de DragonBound pueden generar PIN Codes.<br>
+            Puedes hacer un trato con uno de ellos para que sea tu proveedor de PIN Codes.<br>
+            Prueba a tus clientes que pueden confiar en ti.<br>
+            <br>
+            <h3>Advertencia:</h3>
+            Ten cuidado de no caer en estafas y consulta a tus amigos para que te recomienden un reseller antes de hacer el pago.<br>
+            Recuerda que en la opción de Recargas o el botón Charge tienes la lista de resellers oficiales.<br>
+        </div>
+    </body>
+</html>

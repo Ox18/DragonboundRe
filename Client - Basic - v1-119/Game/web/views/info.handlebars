@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{{game_id}} - DragonBound User</title>
+    <script src="/static/js/jquery-2.1.4.min.js"></script>
+    <script src="/static/js/QTransform.js"></script>
+    <link rel="stylesheet" href="/static/DragonBook/DragonBook.min.css?14" />
+    <script src="/static/DragonBook/DragonBook.min.js?14"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{game_id}} - DragonBound User" />
+    <meta property="og:description" content="{{game_id}} DragonBound User Page. See my player info and chat with me." />
+    <meta property="og:url" content="https://DragonBound.net/user/{{game_id}}" />
+    <meta property="fb:app_id" content="1230287900381635" />
+    <script async src="//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1230287900381635&version=v2.3"></script>
+    <script src="/static/DragonBook/moment.min.js"></script>
+    <script src="/static/DragonBook/Chart.min.js"></script>
+    <style>
+        #reportBtn {
+            position: absolute;
+            right: 7px;
+            bottom: 7px;
+        }
+        
+        #reportMenu {
+            position: absolute;
+            right: 7px;
+            bottom: 7px;
+            padding: 7px;
+            background: #635782;
+            border-radius: 4px;
+            z-index: 9;
+        }
+        
+        .hide {
+            display: none;
+        }
+        
+        .PostTextArea {
+            width: 492px;
+            border: none;
+            padding: 8px;
+            height: 30px;
+            transition: all 0.4s;
+        }
+        
+        .PostTextArea.Focus {
+            height: 80px;
+        }
+        
+        .PostTime {
+            font-size: 11px;
+            white-space: nowrap;
+            margin-left: 10px;
+        }
+        
+        .DeletePost {
+            float: right;
+            margin: 10px;
+        }
+        
+        .BlockPost {
+            float: right;
+        }
+        
+        .boxBodyPost {
+            word-wrap: break-word;
+        }
+        
+        #PostBtn {
+            cursor: pointer;
+        }
+        
+        .Comment {
+            position: relative;
+        }
+        
+        .CommentT {
+            width: 91%;
+            margin: auto;
+            word-wrap: break-word;
+        }
+        
+        .Comment:hover {}
+        
+        .CommentName {
+            font-weight: bold;
+        }
+        
+        .ShowOnHover {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        
+        .CommentText {
+            width: 90%;
+            padding: 2px;
+        }
+        
+        .Center {
+            text-align: center;
+        }
+        
+        .ShowOnHover {
+            display: none
+        }
+        
+        .Comment:hover>.ShowOnHover {
+            display: block
+        }
+        
+        #MyPlayer {
+            position: absolute;
+            top: 150px;
+            right: 160px;
+            transform: scale(1.5);
+            pointer-events: none;
+        }
+        
+        .new {
+            background: #ff7;
+        }
+        
+        .PostTitleEmo .emo {
+            vertical-align: baseline
+        }
+        
+        #statsText {
+            padding: 10px;
+            font-size: 14px;
+        }
+    </style>
+    <script>
+        var user_id = {{user_id}};
+
+        function GetLanguage() {
+            if (localStorage.myLang == 'es') return localStorage.myLang
+            var l = navigator.language || navigator.userLanguage
+            if (l.indexOf('es') == 0) return 'es'
+            else return 'en'
+        }
+        var lang = GetLanguage()
+
+
+        $(function () {
+            $('#reportBtn').click(function () {
+                $('#reportMenu').show('fast')
+            })
+            $('#reportCancel').click(function () {
+                $('#reportMenu').hide('fast')
+            })
+            $('#reportPrn').click(function () {
+                $.post('/report', {
+                    t: 1,
+                    u: user_id
+                }, function (res) {
+                    //                alert(res)
+                    $('#reportPrn').replaceWith('' + res)
+                })
+            })
+
+            // translate
+            if (lang == 'es') {
+                //            console.log('Spanish')
+                $('#reportBtn').html('Reportar')
+                $('#reportPrn').html('Reportar imagen pornográfica o inapropiada')
+                $('#reportCancel').html('Cancelar')
+            }
+
+            // postTextArea
+            $('#postTextArea').focus(function () {
+                $(this).addClass('Focus')
+            }).blur(function () {
+                var div = $(this)
+                setTimeout(function () {
+                    div.removeClass('Focus')
+                }, 100)
+
+            })
+
+            $('#FormPost').on('submit', function () {
+                return $('#postTextArea').val() != ''
+            })
+            $('.PostCommentForm').on('submit', function () {
+                return $(this).find('.CommentText').val() != ''
+            })
+
+            // disallow sending all forms after the first one was sent     TODO: show something to the user
+            // (to avoid sending the same form twice or 2 different forms if clicked fast and slow internet)
+            $('form').on('submit', function (e) {
+                if (e.isPropagationStopped()) return // we stopped it already on other handler. ex: not valid form
+                $('form').unbind('submit').on('submit', function () {
+                    return false
+                })
+            })
+
+            var s = $(atob('c2NyaXB0'))
+            for (var i = 0; i < s.length; i++) {
+                var $tag = s.eq(i),
+                    tag = $tag[0]
+                if (!tag.async) $tag.remove()
+            }
+
+            var str_confirm_block =
+                'All posts and comments of this user will be deleted, and he will not be able to post on your page. Are you sure?'
+            $('.BlockPost,.BlockComment').click(function () {
+                return confirm(str_confirm_block)
+            })
+
+            // translate
+            if (lang == 'es') {
+                str_confirm_block =
+                    'Todas las publicaciones y comentarios de este usuario serán eliminados; y no será capaz de publicar en tu página. ¿Estás seguro?'
+                $('#postTextArea').attr('placeholder', '¿Qué estás pensando?')
+                $('.CommentText').attr('placeholder', 'Escribe un comentario...')
+                $('#PostBtn').val('Publicar')
+            }
+
+            // GP graph
+            DrawGraph()
+        })
+
+        var TIME_SECOND = 1000,
+            TIME_MINUTE = 60 * TIME_SECOND,
+            TIME_HOUR = 60 * TIME_MINUTE,
+            TIME_DAY = 24 * TIME_HOUR
+
+        var tzs = ''
+        var tz
+
+        function MsToDate(ms) {
+            var d = new Date(ms)
+            if (tz == undefined) {
+                tz = d.getTimezoneOffset() / -60
+                if (localStorage.myTZ > -13 && localStorage.myTZ < 13) tz = Number(localStorage.myTZ)
+                tzs = '(' + (tz < 0 ? 'GMT' + tz : (tz > 0 ? 'GMT+' + tz : 'UTC')) + ')'
+            }
+            return new Date(d.getTime() + 3600000 * tz)
+        }
+
+        function HourLabel(ms) {
+            var d = MsToDate(ms)
+            return d.getUTCHours() + ':00 ' + d.getUTCDate() + '/' + (d.getUTCMonth() + 1)
+        }
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+        function DayLabel(ms) {
+            var d = MsToDate(ms)
+            return months[d.getUTCMonth()] + ' ' + d.getUTCDate()
+        }
+
+        function DrawGraph() {
+            var gp_graph = JSON.parse('[]')
+            var from_hour = Number('8055')
+            var hour_now = Number('8391')
+            //        console.log('from_hour:',from_hour,'hour_now:',hour_now,'gp_graph:', gp_graph)
+            if (!gp_graph || !gp_graph.length) return
+
+            $('#GPStats').removeClass('hide')
+
+            var from_hour1 = hour_now - 24 * 2 // hourly shows last 2 days
+
+            gp_graph.sort(function (a, b) {
+                return a[0] - b[0]
+            }) // sort by time
+
+            var baseDate = Date.UTC(2016, 1, 1)
+            var i, day, start_day = 0
+            var labels = [],
+                labelsDaily = [],
+                valuesHourlyWin = [],
+                valuesHourlyLose = []
+            var valuesHourlyGP = [],
+                valuesDailyGP = [],
+                valuesDailyWin = [],
+                valuesDailyLose = []
+            var numOfGames = 0,
+                sumOfGP = 0,
+                numOfWins = 0
+            var hours = 0
+            var days = 0
+
+            // zero all - hourly
+            for (i = from_hour1; i <= hour_now; i++) {
+                labels[i - from_hour1] = HourLabel(baseDate + i * TIME_HOUR)
+                valuesHourlyGP[i - from_hour1] = valuesHourlyWin[i - from_hour1] = valuesHourlyLose[i - from_hour1] = 0
+            }
+            // zero all - daily
+            for (i = from_hour; i <= hour_now; i++) {
+                hours++
+                //            if((i-from_hour) % 24 == 0) {
+                if ((i + tz + 240) % 24 == 0) {
+                    day = Math.floor((i + tz) / 24)
+                    if (!start_day) start_day = day
+                    labelsDaily[day - start_day] = DayLabel(baseDate + day * TIME_DAY - tz * TIME_HOUR)
+                    valuesDailyGP[day - start_day] = valuesDailyWin[day - start_day] = valuesDailyLose[day - start_day] =
+                        0
+                    days++
+                }
+                //            console.log('i:',i,'from_hour:', from_hour,'i-from_hour:',i-from_hour,'i+tz % 24:', (i+tz+240) % 24, 'hour_now:', hour_now)
+            }
+            // sum data (skipping zero points)
+            for (i = 0; i < gp_graph.length; i++) {
+                // index
+                var hour = gp_graph[i][0]
+                day = Math.floor((hour + tz) / 24)
+                // sum
+                sumOfGP += gp_graph[i][1]
+                numOfGames += gp_graph[i][2] + gp_graph[i][3]
+                numOfWins += gp_graph[i][2]
+                // hourly
+                if (valuesHourlyGP[hour - from_hour1] != undefined) {
+                    valuesHourlyGP[hour - from_hour1] += gp_graph[i][1]
+                    valuesHourlyWin[hour - from_hour1] += gp_graph[i][2]
+                    valuesHourlyLose[hour - from_hour1] += gp_graph[i][3]
+                }
+                // daily
+                if (valuesDailyGP[day - start_day] != undefined) {
+                    valuesDailyGP[day - start_day] += gp_graph[i][1]
+                    valuesDailyWin[day - start_day] += gp_graph[i][2]
+                    valuesDailyLose[day - start_day] += gp_graph[i][3]
+                }
+            }
+
+            var avgGpPerGame = numOfGames ? Math.round(sumOfGP / numOfGames * 10) / 10 : 0
+            var avgGpPerHour = hours ? Math.round(sumOfGP / hours * 10) / 10 : 0
+            var avgGpPerDay = days ? Math.round(sumOfGP / days * 10) / 10 : 0
+            var winRate = numOfGames ? Math.round(numOfWins * 100 / numOfGames) : 50
+            $('#statsText').html(
+                'Average GP per game: <b>' + avgGpPerGame + '</b> (last ' + numOfGames + ' games)<br>' +
+                'Average GP per hour: <b>' + avgGpPerHour + '</b> (last ' + hours + ' hours)<br>' +
+                'Average GP per day: <b>' + avgGpPerDay + '</b> (last ' + days + ' days)<br>' +
+                'Win rate: <b>' + winRate + '%</b> (last ' + days + ' days)<br>'
+            )
+            console.log('hours:', hours)
+            console.log('days:', days)
+            console.log('numOfGames:', numOfGames)
+            console.log('sumOfGP:', sumOfGP)
+
+            // Daily
+            new Chart(document.getElementById('gpChart2'), {
+                type: 'line',
+                data: {
+                    labels: labelsDaily,
+                    datasets: [{
+                        label: 'Lose',
+                        backgroundColor: "rgba(255,0,0,0)",
+                        borderColor: "rgba(255,0,0,1)",
+                        borderWidth: 2,
+                        hoverBackgroundColor: "rgba(120,120,220,0.6)",
+                        hoverBorderColor: "rgba(220,220,220,1)",
+                        data: valuesDailyLose
+                    }, {
+                        label: 'Win',
+                        backgroundColor: "rgba(0,255,0,0)",
+                        borderColor: "rgba(0,255,0,1)",
+                        borderWidth: 2,
+                        hoverBackgroundColor: "rgba(120,120,220,0.6)",
+                        hoverBorderColor: "rgba(220,220,220,1)",
+                        data: valuesDailyWin
+                    }, {
+                        label: 'GP',
+                        backgroundColor: "rgba(255,255,0,0.2)",
+                        borderColor: "rgba(255,255,0,1)",
+                        borderWidth: 2,
+                        hoverBackgroundColor: "rgba(120,120,220,0.6)",
+                        hoverBorderColor: "rgba(220,220,220,1)",
+                        data: valuesDailyGP
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Daily ' + tzs
+                    }
+                }
+            })
+
+            // Hourly
+            new Chart(document.getElementById('gpChart'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Lose',
+                        backgroundColor: "rgba(255,0,0,0)",
+                        borderColor: "rgba(255,0,0,1)",
+                        borderWidth: 2,
+                        hoverBackgroundColor: "rgba(120,120,220,0.6)",
+                        hoverBorderColor: "rgba(220,220,220,1)",
+                        data: valuesHourlyLose
+                    }, {
+                        label: 'Win',
+                        backgroundColor: "rgba(0,255,0,0)",
+                        borderColor: "rgba(0,255,0,1)",
+                        borderWidth: 2,
+                        hoverBackgroundColor: "rgba(120,120,220,0.6)",
+                        hoverBorderColor: "rgba(220,220,220,1)",
+                        data: valuesHourlyWin
+                    }, {
+                        label: 'GP',
+                        backgroundColor: "rgba(255,255,0,0.2)",
+                        borderColor: "rgba(255,255,0,1)",
+                        borderWidth: 2,
+                        hoverBackgroundColor: "rgba(120,120,220,0.6)",
+                        hoverBorderColor: "rgba(220,220,220,1)",
+                        data: valuesHourlyGP
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Hourly ' + tzs
+                    }
+                }
+            })
+        }
+    </script>
+    <style>
+        body {
+            background: #3364a6 url({{background}}) no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <div id="titleTable">
+        <div id="titleTableLeft" class="cell">
+            <span id="icon"></span> <span id="titleText"><a href="/">DragonBound</a> > <a href="/user">User</a> > <a href="/user/{{game_id}}">{{game_id}}</a></span>
+        </div>
+        <div id="titleTableRight" class="cell right">
+            {{#if login}}
+            <a href="/user/{{login_id}}">{{login_id}}</a> | 
+            <a href="/settings">Settings</a> | 
+            <a href="/logout?next=/user/{{login_id}}">Logout</a>
+            {{else}}
+            <a href="/login?next=/user/{{game_id}}">Login</a>
+            {{/if}}
+        </div>
+    </div>
+    <div id="body">
+        <div id="mainBox">
+            <div id="topBar">
+                <div id="photoDiv" class="PhotoDiv"></div>
+                <script>
+                    Img2Div2($('#photoDiv'), atob('{{{user_img}}}'))
+                </script>
+                <div class="pageCoverTitle">
+                    <span id="profileName"><a class="noUnderline" href="/user/{{game_id}}">{{game_id}}</a> <span class="span_rank rank rank{{rank}}"></span></span>
+                </div>
+                <div id="MyPlayer"></div>
+                <script>
+                    PlayerAnim($('#MyPlayer'), [{
+                        file: 'mb00632.png',
+                        type: 'b',
+                        graphics: [
+                            [38, 29, 8, 11],
+                            [38, 29, 8, 11],
+                            [38, 29, 8, 11],
+                            [38, 30, 8, 12],
+                            [39, 31, 8, 13],
+                            [38, 30, 8, 12],
+                            [38, 29, 8, 11],
+                            [37, 30, 8, 12],
+                            [37, 30, 8, 12],
+                            [37, 30, 8, 12],
+                            [37, 30, 8, 12]
+                        ]
+                    }, {
+                        file: 'mh00632.png',
+                        type: 'h',
+                        graphics: [
+                            [44, 34, 6, 35],
+                            [28, 35, 2, 35],
+                            [31, 36, 3, 35],
+                            [36, 35, 3, 35],
+                            [38, 33, 3, 35],
+                            [37, 34, 3, 35],
+                            [36, 34, 4, 35],
+                            [35, 34, 4, 35],
+                            [36, 34, 4, 35],
+                            [37, 34, 4, 35],
+                            [37, 34, 4, 35],
+                            [48, 34, 8, 36],
+                            [48, 34, 8, 36],
+                            [48, 34, 8, 36],
+                            [48, 34, 8, 36],
+                            [48, 35, 8, 36],
+                            [49, 35, 9, 36],
+                            [49, 35, 9, 36],
+                            [49, 35, 9, 36],
+                            [48, 37, 9, 37],
+                            [48, 37, 9, 37],
+                            [48, 37, 9, 37]
+                        ]
+                    }, {
+                        file: 'b204006.png',
+                        type: '1',
+                        graphics: [
+                            [177, 77, -6, -2],
+                            [177, 77, -6, -2],
+                            [177, 77, -6, -2],
+                            [177, 77, -6, -2],
+                            [177, 77, -6, -2],
+                            [177, 77, -6, -2],
+                            [177, 77, -6, -2],
+                            [177, 77, -6, -2],
+                            [177, 77, -6, -2],
+                            [177, 77, -6, -2],
+                            [177, 77, -6, -2],
+                            [177, 77, -6, -2],
+                            [177, 77, -6, -2],
+                            [177, 77, -6, -2],
+                            [177, 77, -6, -2],
+                            [177, 77, -6, -2],
+                            [177, 77, -6, -2],
+                            [177, 77, -6, -2]
+                        ]
+                    }, {
+                        file: 'mg03691.png',
+                        type: 'g',
+                        graphics: [
+                            [44, 34, -13, 14],
+                            [45, 34, -13, 14],
+                            [46, 32, -13, 13],
+                            [45, 30, -13, 13],
+                            [43, 29, -13, 12],
+                            [39, 31, -14, 12],
+                            [33, 33, -13, 11],
+                            [25, 34, -12, 10],
+                            [24, 33, -8, 9],
+                            [24, 31, -5, 8],
+                            [24, 31, -5, 8],
+                            [23, 32, -6, 9],
+                            [23, 31, -8, 9],
+                            [23, 30, -10, 10],
+                            [25, 30, -10, 11],
+                            [28, 32, -11, 13],
+                            [32, 33, -11, 14],
+                            [37, 33, -12, 14],
+                            [42, 34, -13, 15],
+                            [45, 34, -13, 15],
+                            [45, 35, -13, 15],
+                            [44, 34, -13, 14],
+                            [44, 34, -13, 14],
+                            [45, 34, -13, 14],
+                            [46, 32, -13, 13],
+                            [45, 30, -13, 13],
+                            [43, 29, -13, 12],
+                            [39, 31, -14, 12],
+                            [33, 33, -13, 11],
+                            [25, 34, -12, 10],
+                            [24, 33, -8, 9],
+                            [24, 31, -5, 8],
+                            [24, 31, -5, 8],
+                            [23, 32, -6, 9],
+                            [23, 31, -8, 9],
+                            [23, 30, -10, 10],
+                            [25, 30, -10, 11],
+                            [28, 32, -11, 13],
+                            [32, 33, -11, 14],
+                            [37, 33, -12, 14],
+                            [42, 34, -13, 15],
+                            [45, 34, -13, 15],
+                            [45, 35, -13, 15],
+                            [44, 34, -13, 14]
+                        ]
+                    }, {
+                        file: 'f204021.png',
+                        type: '2',
+                        graphics: [
+                            [55, 52, -110, -25], 15
+                        ]
+                    }, {
+                        file: 'mf04086.png',
+                        type: 'f',
+                        graphics: [
+                            [50, 50, -6, 35], 5
+                        ]
+                    }, ])
+                </script>
+            </div>
+            <div id="leftBar">
+                <div class="Box">
+                    <div class="boxTitle">About</div>
+                    <div class="boxBody">
+                        <div class="infoLine"> <span class="infoLineField">GP</span> <span class="infoLineData">{{gp}}</span> </div>
+                        <div class="infoLine"> <span class="infoLineField">Guild</span> <span class="infoLineData"><a href="/guild/{{game_id}}">{{game_id}}</a></span>                            </div>
+                        <div class="infoLine"> <span class="infoLineField">Country</span> <span class="infoLineData">{{country}}</span> </div>
+                        <div class="infoLine"> <span class="infoLineField">Gender</span> <span class="infoLineData">{{gender}}</span> </div>
+                        <div class="infoLine"> <span class="infoLineField">Relationship</span> <span class="infoLineData">Single</span></div>
+                        <div class="infoLine"> <span class="infoLineField">Avatars</span> <span class="infoLineData rightAlign">0</span> </div>
+                        <div class="infoLine"> <span class="infoLineField">Win Rate</span> <span class="infoLineData">{{rate}} % (W:{{win}} / L:{{loss}})</span> </div>
+                        <div class="infoLine"> <span class="infoLineField">Joined DB</span> <span class="infoLineData">Feb. 01, 2017, 0:00 p.m.</span>                            </div>
+                    </div>
+                </div>
+                <div class="Box hide" id="GPStats">
+                    <div class="boxTitle">GP Stats</div>
+                    <div class="boxBody" style="padding: 0;">
+                        <div id="statsText"></div>
+                        <canvas id="gpChart2" width="400" height="400"></canvas>
+                        <canvas id="gpChart" width="400" height="400"></canvas>
+                    </div>
+                </div>
+                <div class="Box">
+                    <div class="boxTitle">Reputation</div>
+                    <div class="boxBody">
+                        Views: 1
+                        <br><br> Likes:
+                        <div class="fb-like" data-href="https://DragonBound.net/u/{{user_id}}" data-send="true" data-width="293" data-show-faces="true"
+                            data-colorscheme="dark"></div>
+                </div>
+            </div>
+            <div class="Box">
+                <div class="boxTitle">Friends</div>
+                <div class="boxBody">
+                    Private
+                </div>
+            </div>
+        </div>
+        <div id="rightBar">
+            <div class="Box">
+                <div class="boxTitle">Facebook Wall</div>
+                <div class="boxBody">
+                    <div class="fb-comments" data-href="https://DragonBound.net/u/{{user_id}}" data-width="470" data-num-posts="20" data-colorscheme="light"></div>
+                </div>
+            </div>
+        </div>
+        <div class="clearFloat"></div>
+    </div>
+    </div>
+</body>
+
+</html>

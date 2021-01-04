@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DragonBound User Search</title>
+<script src="/static/js/QTransform.js"></script>
+<link rel="stylesheet" href="/static/DragonBook/DragonBook.min.css?22" />
+<script src="/static/js/Filter.js?7"></script>
+<script src="/static/DragonBook/DragonBook.min.js?50"></script>
+
+
+<style>
+        html {
+            height: 100%;
+        }
+        body {
+            background: #3364a6 url('/static/images/aqua_bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            -webkit-text-size-adjust: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="fb-root"></div>
+<div id="titleTable" class="blackShadow">
+<div id="titleTableLeft" class="cell">
+<span id="icon"></span> <span id="titleText"><a href="/">DragonBound</a> > <a href="/user">User</a></span>
+</div>
+<div id="titleTableRight" class="cell right">
+{{#if login}}
+<a href="/user/{{login_id}}">{{login_id}}</a> | <a href="/settings">Settings</a> | <a href="/logout?next=/user">Logout</a>
+{{else}}
+<a href="/login?next=/user">Login</a>
+{{/if}}
+</div>
+</div>
+<div id="body">
+<div id="mainBox">
+<center>
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-8879206577023168" data-ad-slot="8676884932"></ins>
+</center><br>
+<div class="Box">
+<div class="boxTitle">Search User</div>
+<div class="boxBody">
+    
+    
+<form method="POST">
+<input type='hidden' name='csrfmiddlewaretoken' value='' />
+<div>
+<label for="name">User Name:</label>
+<input id="name" name="name" value="">
+</div>
+- OR -
+<br>
+<div>
+<label for="id">UserID:</label>
+<input id="id" name="id" value="">
+</div>
+<br>
+<input type="submit" value="Search User" id="submit">
+</form>
+    
+    
+<output style="color:red">{{{error}}}</output>
+</div>
+</div>
+{{#if login}}
+<div class="Box">
+<div class="boxTitle">My Page</div>
+<div class="boxBody">
+<a href="/user/{{login_id}}">{{login_id}}</a>
+</div>
+</div>
+{{/if}}
+</div>
+</div>
+</body>
+</html>

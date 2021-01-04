@@ -1,0 +1,11 @@
+{
+  "short_name": "DragonBoundNode",
+  "name": "DragonBoundNode",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "start_url": "/index.html?app=1",
+  "icons": [{
+    "src": "/static/images/icon192b.png",
+    "sizes": "192x192"
+  }]
+}

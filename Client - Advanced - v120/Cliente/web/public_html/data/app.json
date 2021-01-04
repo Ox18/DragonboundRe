@@ -1,0 +1,11 @@
+{
+  "short_name": "DragonBound",
+  "name": "DragonBound",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "start_url": "/index.html?app=3",
+  "icons": [{
+    "src": "/static/images/icon192b.png",
+    "sizes": "192x192"
+  }]
+}

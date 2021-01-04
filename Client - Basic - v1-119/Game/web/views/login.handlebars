@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>SBSFortress Login</title>
+    <script src="/static/js/jquery-2.1.4.min.js"></script>
+    <script src="/static/js/QTransform.js"></script>
+    <link rel="stylesheet" href="/static/DragonBook/DragonBook.min.css?15" />
+    <script src="/static/DragonBook/DragonBook.min.js?14"></script>
+
+
+    <style>
+        body {
+            background: #3364a6 url('/static/images/aqua_bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <div id="titleTable">
+        <div id="titleTableLeft" class="cell">
+            <span id="icon"></span> <span id="titleText"><a href="/">SBSFortress</a> > <a href="/login">Login</a></span>
+        </div>
+        <div id="titleTableRight" class="cell right">
+            <a href="/login?next=">Login</a>
+        </div>
+    </div>
+    <div id="body">
+        <style>
+            .loginBox {
+                width: 290px;
+                margin: auto;
+            }
+            
+            .inputField {
+                font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+                font-size: 18px;
+                padding: 8px 10px;
+                border-color: #bdc7d8;
+                border-radius: 5px;
+                margin: 5px;
+            }
+            
+            #username {
+                width: 250px;
+            }
+            
+            #pass {
+                width: 175px;
+            }
+            
+            .blueBtn {
+                display: inline-block;
+                padding: 5px 10px;
+                font-size: 13px;
+                font-weight: bold;
+                line-height: 18px;
+                color: #333;
+                text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+                background-color: #ccc;
+                background-repeat: no-repeat;
+                border: 1px solid #ccc;
+                cursor: pointer;
+                border-radius: 4px;
+                -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+                box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+                font-family: Arial, sans-serif;
+                color: #fff;
+                text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+                background-color: #019ad2;
+                background-repeat: repeat-x;
+                background-image: -webkit-linear-gradient(#33bcef, #019ad2);
+                background-image: linear-gradient(#33bcef, #019ad2);
+                filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#33bcef', endColorstr='#019ad2', GradientType=0);
+                border-color: #057ed0;
+                -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+                height: 30px;
+            }
+            
+            .blueBtn:hover {
+                background-color: #0271bf;
+                background-repeat: repeat-x;
+                background-image: -webkit-linear-gradient(#2daddc, #0271bf);
+                background-image: linear-gradient(#2daddc, #0271bf);
+                filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#2daddc', endColorstr='#0271bf', GradientType=0);
+                border-color: #096eb3;
+            }
+            
+            .yellowBtn {
+                display: inline-block;
+                padding: 5px 10px;
+                font-size: 13px;
+                font-weight: bold;
+                line-height: 18px;
+                text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+                cursor: pointer;
+                border-radius: 4px;
+                background-color: #fd9a0f;
+                background-repeat: repeat-x;
+                background-image: -webkit-linear-gradient(top, #fee94f, #fd9a0f);
+                background-image: linear-gradient(top, #fee94f, #fd9a0f);
+                filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#fee94f', endColorstr='#fd9a0f', GradientType=0);
+                border-color: #fa2;
+                font-family: Arial, sans-serif;
+                text-decoration: none;
+                color: #333;
+            }
+            
+            .yellowBtn:hover {
+                background-color: #fd9512;
+                background-repeat: repeat-x;
+                background-image: -webkit-linear-gradient(top, #fedc4d, #d80);
+                background-image: linear-gradient(top, #fedc4d, #d80);
+                filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#fedc4d', endColorstr='#d80', GradientType=0);
+                border-color: #ec8b11;
+            }
+            
+            .remember {
+                font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+                font-size: 11px;
+                color: #98a9ca;
+                margin-left: 2px;
+            }
+            
+            .resetPass a {
+                font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+                font-size: 11px;
+                color: #0cf;
+            }
+        </style>
+        <script>
+            if (location.protocol == 'http:' && location.host == 'sbsfortress.com')
+                location.replace(location.href.replace('http:', 'https:'))
+
+        </script>
+        <form method="POST">
+            <input type='hidden' name='csrfmiddlewaretoken' value='0' />
+            <div class="box loginBox">
+                <div class="boxtitle">Login</div>
+                <div style="color:red"></div>
+                <input class="inputField" id="username" name="username" placeholder="Email / UserID / Username" maxlength="100"><br>
+                <input class="inputField" type="password" id="pass" name="pass" placeholder="Password" maxlength="100"> <input
+                    type="submit" value="Login" id="submit" class="blueBtn">
+                <label class="remember"> <span class="resetPass"><a href="/accounts/password/reset">Reset password?</a></span>
+                <br>
+                <br>
+                </div>
+        </form>
+        <div class="center">
+                    <br>- or -<br><br>
+                    <a href="/" class="yellowBtn">Register / Create New Account</a>
+                    <br><br>- or -<br><br>
+                    <a href="/"><img src="/static/images/connect_with_fb.png"></a>
+                    </div>
+                    <script>document.getElementById("username").focus()</script>
+        </div>
+</body>
+</html>

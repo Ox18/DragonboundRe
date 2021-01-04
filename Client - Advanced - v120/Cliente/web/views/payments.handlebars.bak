@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+    <head>
+        <title>DragonBound Payments Viewer</title>
+        <script src="/static/js/jquery-2.0.3.min.js"></script>
+        <style>
+            html {
+                min-height: 100%;
+            }
+
+            body {
+                background: black url(/static/images/bg_gifter.jpg) no-repeat center center fixed;
+                background-size: cover;
+                font-family: arial;
+                color: #ffffff;
+                -webkit-text-size-adjust: 100%;
+            }
+
+            textarea {
+                background-color: transparent;
+                width: 100%;
+                height: 100px;
+            }
+
+            output {
+                color: #ffff00;
+            }
+
+            table {
+                color: white;
+                background: rgba(50,50,50,0.85);
+            }
+
+            td {
+                padding: 3px;
+                white-space: nowrap;
+            }
+
+            a {
+                color: red;
+            }
+
+            .yes {
+                background: url(/static/images/lobby_stuff.png) -102px -695px;
+                width: 14px;
+                height: 14px;
+                display: inline-block;
+            }
+
+            .center {
+                text-align: center;
+            }
+
+            .right {
+                text-align: right;
+            }
+
+            .red {
+                color: #f00;
+                background: black;
+            }
+
+            .green {
+                color: lightgreen;
+            }
+
+            .info {
+                white-space: normal;
+            }
+        </style>
+        <script>
+            $(function() {
+                $('#theForm').submit(function() {
+                    var id = $('#id').val()
+                    if (id) {
+                        location.href = '?u=' + id
+                        return false
+                    }
+                })
+            })
+
+            function TD(unix_time_sec) {
+                var d = new Date(unix_time_sec * 1000)
+                var tzs, tz = d.getTimezoneOffset() / -60
+                if (localStorage.myTZ > -13 && localStorage.myTZ < 13)
+                    tz = Number(localStorage.myTZ)
+                if (tz < 0)
+                    tzs = 'GMT' + tz
+                else if (tz > 0)
+                    tzs = 'GMT+' + tz
+                else
+                    tzs = 'UTC'
+                d = new Date(d.getTime() + 3600000 * tz)
+                document.write(d.toISOString().replace('T', ' ').replace('.000', '').replace('Z', '') + ' (' + tzs + ')')
+            }
+        </script>
+    </head>
+    <body>
+        <p>
+            <a href="/avatars" target="_blank">My Avatars</a>
+            | <a href="/avatars" target="_blank">Guild Coins</a>
+            | <a href="/avatars" target="_blank">Gifts Sent</a>
+            | <a href="/avatars" target="_blank">Gifts Received</a>
+        </p>
+        <h2>My Payments</h2>
+        <output>You made {{{you_made_payments}}} Payments</output>
+        <br>
+        <br>
+        UserName: {{{user_name}}}<br>
+        UserID: {{{id_user}}}<br>
+        <br>
+        GP: {{{gp_user}}}<br>
+        <br>
+        Gold Left: {{{gold_left}}}<br>
+        Gold Spent: 0<br>
+        Gold Total: 0<br>
+        <br>
+        Cash Left: {{{cash_left}}}<br>
+        Cash Spent: 0<br>
+        Name Changes: {{{name_changes}}} (1st free, others 4k cash each)<br>
+        Cash Total: 0<br>
+        <br>
+        Cash Charged: 20,060<br>
+        <br>
+        - Payments -
+
+        <table border=1>
+            <tr>
+                <td>Name</td>
+                <td>Date</td>
+                <td>Cash</td>
+                <td>Info</td>
+                <td>Reseller</td>
+                <td>Sale ID</td>
+            </tr>
+            {{{Payments}}}
+        </table>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </body>
+</html>

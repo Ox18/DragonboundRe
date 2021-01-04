@@ -1,0 +1,11 @@
+[ LOG    ]: 'lnferno' 0
+[ LOG    ]: Login: lnferno
+[ LOG    ]: 'lnferno' 0
+[ LOG    ]: Login: lnferno
+[ LOG    ]: 'Joji' 0
+[ LOG    ]: Login: Joji
+[ LOG    ]: 'Joji' 0
+[ LOG    ]: Login: Joji
+[ LOG    ]: 'ricardo' m
+[ LOG    ]: 'ricardo' 0
+[ LOG    ]: Login: ricardo

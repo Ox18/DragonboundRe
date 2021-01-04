@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{{guild}} - DragonBound Guild</title>
+    <script src="/static/js/jquery-2.1.4.min.js"></script>
+    <script src="/static/js/QTransform.js"></script>
+    <link rel="stylesheet" href="/static/DragonBook/DragonBook.min.css?14" />
+    <script src="/static/DragonBook/DragonBook.min.js?14"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{guild}} - DragonBound Guild" />
+    <meta property="og:description" content="This is the guild page for {{guild}}. You can see the guild members and info here."/>
+    <meta property="og:image" content="{{img}}" />
+    <meta property="og:url" content="https://DragonBound.net/guild/{{guild}}" />
+    <meta property="fb:app_id" content="2190495241067486" />
+    <script async src="//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=2190495241067486&version=v2.3"></script>
+    <script>
+        $(function () {
+            $('#profileName').html(ReplaceNonPrintableUnicodeChars($('#profileName').html(), 'ࡠ'))
+        })
+    </script>
+    <style>
+        .title1 {
+            font-size: 88px!important;
+            color: #bbf;
+            text-shadow: 2px 2px 2px #d0f, -2px -2px 2px #d0f;
+            margin: 10px 0 10px 0;
+        }
+        
+        #guildSettingsForm textarea {
+            width: 100%;
+            height: 130px;
+        }
+        
+        #guildSettingsForm input {
+            width: 100%;
+        }
+        
+        #guildSettingsForm label {
+            font-weight: bold;
+        }
+        
+        .nowarp {
+            white-space: nowrap;
+        }
+        
+        .LeaderLine {
+            background-color: rgba(255, 255, 0, 0.4);
+        }
+        
+        .SubLeaderLine {
+            background-color: rgba(0, 255, 255, 0.1);
+        }
+        
+        .male {
+            color: #0000ff;
+        }
+        
+        .female {
+            color: deeppink;
+        }
+        
+        .nowarp {
+            white-space: nowarp;
+        }
+    </style>
+    {{#if fondo}}
+    <style>
+        body {
+            background: #3364a6 url({{fondo}}) no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
+    {{/if}}
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <div id="titleTable">
+        <div id="titleTableLeft" class="cell">
+            <span id="icon"></span> <span id="titleText"><a href="/">DragonBound</a> > <a href="/guild">Guild</a> > <a href="/guild/{{guild}}">{{guild}}</a></span>
+        </div>
+        <div id="titleTableRight" class="cell right">
+            {{#if login}}
+            <a href="/user/{{login_id}}">{{login_id}}</a> | 
+            <a href="/settings">Settings</a> | 
+            <a href="/logout?next=/{{guild}}/{{guild}}">Logout</a>
+            {{else}}
+            <a href="/login?next=/guild/{{{guild}}}/shop">Login</a>
+            {{/if}}
+        </div>
+    </div>
+    <div id="body">
+        <div id="mainBox">
+            <div id="topBar">
+                <div id="photoDiv" class="PhotoDiv"></div>
+                <script>
+                    Img2Div2($('#photoDiv'), '{{img}}')
+                </script>
+                <div class="pageCoverTitle">
+                    <span id="profileName" class="title1"><a class="noUnderline" href="/guild/{{guild}}">{{guild}}</a>  </span>
+                </div>
+            </div>
+            <div id="leftBar">
+                <div class="Box">
+                    <div class="boxTitle">Info</div>
+                    <div class="boxBody">
+                        <table class="boxTable">
+                            <tr>
+                                <td>Name</td>
+                                <td>{{guild}}</td>
+                            </tr>
+                            <tr>
+                                <td>GuildID</td>
+                                <td>{{GuildId}}</td>
+                            </tr>
+                            <tr>
+                                <td>Created</td>
+                                <td>Ener. 26, 2018</td>
+                            </tr>
+                            <tr>
+                                <td>Created By</td>
+                                <td><a href="/user/{{guild_lider}}">{{guild_lider}}</a></td>
+                            </tr>
+                            <tr>
+                                <td>Website</td>
+                                <td style="word-break:break-word"><a href="{{website}}" target="_blank">{{website}}</a></td>
+                            </tr>
+                            <tr>
+                                <td>Tournament Points</td>
+                                <td>{{{points}}}</td>
+                            </tr>
+                            <tr>
+                                <td>Guild Coins</td>
+                                <td><a href="/guild/{{guild}}/shop">{{{guild_coins}}}<button style="margin-left: 10px">Guild Shop</button></a></td>
+                            </tr>
+                        </table>
+                        {{{coins_images}}}
+                    </div>
+                </div>
+                <div class="Box">
+                    <div class="boxTitle">Guild Likes</div>
+                    <div class="boxBody">
+                        <script>
+                            document.write(
+                                '<div class="fb-like" data-href="https://DragonBound.net/g/{{guild}}" data-send="true" data-width="293" data-show-faces="true" data-colorscheme="dark"></div>'
+                            )
+                        </script>
+                    </div>
+                </div>
+                <div class="Box">
+                    <div class="boxTitle">About</div>
+                    <div class="boxBody" style="word-break:break-word">{{{about}}}</div>
+                </div>
+                <div class="Box">
+                    <div class="boxTitle">Members / Guild Ranking</div>
+                    <div class="boxBody" style="padding:0; font-size: 13px;">
+                        <table class="boxTable" width="100%">
+                            <tr class="center">
+                                <td></td>
+                                <td>Name</td>
+                                <td>S</td>
+                                <td>GP</td>
+                                <td>L</td>
+                            </tr>
+                            {{{guild_menbers}}}
+                        </table>
+                    </div>
+                </div>
+                {{#if edit_state}}
+                <div class="Box BoxSecret">
+                    <div class="boxTitle">Edit Guild Settings (Leader Only)</div>
+                    <div class="boxBody">
+                        <form method="post" id="guildSettingsForm">
+                            <input type='hidden' name='csrfmiddlewaretoken' value='sQTr7DAK4WgJStF9jydizISlCGKK6jvnTx3V3KuBP5qEpp2ujgP0PRsSgJRY47vP'/>
+                            <p>
+                                <label for="id_website_url">Website / FB Group / Forums URL:</label>
+                                <input type="url" name="website_url" value="{{website}}" id="id_website_url" maxlength="255"/>
+                            </p>
+                            <p>
+                                <label for="id_photo_url">Logo Image URL:</label>
+                                <input type="url" name="photo_url" value="{{img}}" id="id_photo_url" maxlength="255"/>
+                                <span class="helptext">160x160, Upload to http://prntscr.com</span>
+                            </p>
+                            <p>
+                                <label for="id_page_bg_url">Background Image URL:</label>
+                                <input type="url" name="page_bg_url" value="{{fondo}}" id="id_page_bg_url" maxlength="255"/>
+                                <span class="helptext">Upload to prntscr.com &copy image url</span>
+                            </p>
+                            <p>
+                                <label for="id_description">About:</label>
+                                <textarea name="description" id="id_description" rows="10" cols="40" maxlength="1000">{{about}}</textarea>
+                            </p>
+                            <input type="submit" name="EDIT_SETTINGS" value="Save" style="padding: 10px 80px"/>
+                        </form>
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+            <div id="rightBar">
+                <div class="Box">
+                    <div class="boxTitle">Guild Chat</div>
+                    <div class="boxBody">
+                        <div class="fb-comments" data-href="https://DragonBound.net/guild/{{guild}}" data-width="470" data-num-posts="20" data-colorscheme="light"></div>
+                    </div>
+                </div>
+                <div class="clearFloat"></div>
+            </div>
+        </div>
+</body>
+
+</html>
