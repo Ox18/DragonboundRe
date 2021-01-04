@@ -1,4 +1,22 @@
 # OpenBound 
+> is a game engine based on the Dragonbound game
+
+### What is the difference between basic and advanced?
+
+
+||Basic|Adanced|
+|--|--|--|
+| Weather Effect |✖ | ✔ |
+| Animation Mobile |✖  | ✔ |
+| Ranking Search |✔ | ✔ |
+| Multiple servers |✖  | ✔ |
+| Use session | ✖ | ✔ |
+| Buy Avatar | ✔ | ✔ |
+| Avatar Rares| ✔ | ✔ |
+| Bunge | ✖ | ✔ |
+| Send a gift | ✖ | ✔ |
+| Build % | 65% | 92% |
+
 
 ## 1. Server Basic
 
