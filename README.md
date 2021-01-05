@@ -2,7 +2,7 @@
 # OpenBound 
 > is a game engine based on the Dragonbound game
 
-**Discord Group** :speech_balloon: discord.gg/TXedzyxE
+**Discord Group** :speech_balloon: www.discord.gg/TXedzyxE
 
 <br>
 
