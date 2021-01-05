@@ -67,7 +67,8 @@ node game.js
 ### Developers
 
 -   [AlexWathever](https://github.com/WickedPeanuts/)  (Wilmer Delgado)
-
+-   [rayjencode](https://github.com/rayjencode/) (Melon Shake)
+-   [rksmw](https://github.com/rayjencode/) (AndrewC)
 
 ### Bug Reports/Testers
 
