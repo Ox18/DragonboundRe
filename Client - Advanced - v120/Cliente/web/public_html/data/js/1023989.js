@@ -23073,10 +23073,10 @@
                 AudioPlay(AUDIO_BUTTON_SELECT2)
             }
         });
-        ___xxh = {
-            pixi: "dmFyIF89J2diZHJhZ29uJztpZihsb2NhdGlvbi5ob3N0bmFtZS5pbmRleE9mKF8pPT0tMSlsb2NhdGlvbi5ocmVmPSdodHRwczovL3d3dy55b3V0dWJlLmNvbS9jaGFubmVsL1VDckpsUk5ESnV0bGlvXzJHT3Nvd0RfZz92aWV3X2FzPXN1YnNjcmliZXIn=",
-            animation: Math.random()
-        };
+        //___xxh = {
+          //  pixi: "dmFyIF89J2diZHJhZ29uJztpZihsb2NhdGlvbi5ob3N0bmFtZS5pbmRleE9mKF8pPT0tMSlsb2NhdGlvbi5ocmVmPSdodHRwczovL3d3dy55b3V0dWJlLmNvbS9jaGFubmVsL1VDckpsUk5ESnV0bGlvXzJHT3Nvd0RfZz92aWV3X2FzPXN1YnNjcmliZXIn=",
+           // animation: Math.random()
+        //};
         d.slider({
             range: "min",
             min: 0,
@@ -23098,8 +23098,8 @@
                 a.stopPropagation();
                 f.fadeOut("fast")
             }
-        });
-        setTimeout(atob(___xxh.pixi),___xxh.animation);
+        }); 
+        //setTimeout(atob(___xxh.pixi),___xxh.animation);
      
         h.on("click touchstart", function(a) {
             a.stopPropagation();
