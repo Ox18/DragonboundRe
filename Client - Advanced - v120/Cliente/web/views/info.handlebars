@@ -17,121 +17,160 @@
     <script src="/static/DragonBook/moment.min.js?19"></script>
     <script src="/static/DragonBook/Chart.min.js?19"></script>
     <style>
-        #reportBtn {
-            position: absolute;
-            right: 7px;
-            bottom: 7px;
-        }
-        
-        #reportMenu {
-            position: absolute;
-            right: 7px;
-            bottom: 7px;
-            padding: 7px;
-            background: #635782;
-            border-radius: 4px;
-            z-index: 9;
-        }
-        
-        .hide {
-            display: none;
-        }
-        
-        .PostTextArea {
-            width: 492px;
-            border: none;
-            padding: 8px;
-            height: 30px;
-            transition: all 0.4s;
-        }
-        
-        .PostTextArea.Focus {
-            height: 80px;
-        }
-        
-        .PostTime {
-            font-size: 11px;
-            white-space: nowrap;
-            margin-left: 10px;
-        }
-        
-        .DeletePost {
-            float: right;
-            margin: 10px;
-        }
-        
-        .BlockPost {
-            float: right;
-        }
-        
-        .boxBodyPost {
-            word-wrap: break-word;
-        }
-        
-        #PostBtn {
-            cursor: pointer;
-        }
-        
-        .Comment {
-            position: relative;
-        }
-        
-        .CommentT {
-            width: 91%;
-            margin: auto;
-            word-wrap: break-word;
-        }
-        
-        .Comment:hover {}
-        
-        .CommentName {
-            font-weight: bold;
-        }
-        
-        .ShowOnHover {
-            position: absolute;
-            right: 0;
-            top: 0;
-        }
-        
-        .CommentText {
-            width: 90%;
-            padding: 2px;
-        }
-        
-        .Center {
-            text-align: center;
-        }
-        
-        .ShowOnHover {
-            display: none
-        }
-        
-        .Comment:hover>.ShowOnHover {
-            display: block
-        }
-        
-        #MyPlayer {
-            position: absolute;
-            top: 150px;
-            right: 160px;
-            transform: scale(1.5);
-            pointer-events: none;
-        }
-        
-        .new {
-            background: #ff7;
-        }
-        
-        .PostTitleEmo .emo {
-            vertical-align: baseline
-        }
-        
-        #statsText {
-            padding: 10px;
-            font-size: 14px;
-        }
-    </style>
+        <style>
+    #reportBtn {
+        position: absolute;
+        right: 7px;
+        bottom: 7px;
+    }
+    #reportMenu {
+        position: absolute;
+        right: 7px;
+        bottom: 7px;
+        padding: 7px;
+        background: #635782;
+        border-radius: 4px;
+        z-index: 9;
+    }
+    .hide {
+        display: none;
+    }
+    .PostTextArea {
+        width: 492px;
+        border: none;
+        padding: 8px;
+        height: 30px;
+        transition: all 0.4s;
+    }
+    .PostTextArea.Focus {
+        height: 80px;
+    }
+    .PostTime {
+        font-size: 10px;
+        white-space: nowrap;
+        margin-left: 10px;
+        vertical-align: bottom;
+    }
+    .DeletePost {
+        float: right;
+        margin: 10px;
+        background: url(/static/images/trash.gif);
+        width: 16px;
+        height: 16px;
+        border: none;
+        color: transparent;
+        cursor: pointer;
+    }
+    .DeleteComment {
+        float: right;
+        margin: 0 10px 10px 10px;
+        background: url(/static/images/trash.gif);
+        width: 16px;
+        height: 16px;
+        border: none;
+        color: transparent;
+        cursor: pointer;
+    }
+    .BlockPost {
+        float: right;
+        background: url(/static/images/block.png);
+        width: 32px;
+        height: 32px;
+        border: none;
+        color: transparent;
+        cursor: pointer;
+    }
+    .BlockComment {
+        float: right;
+        background: url(/static/images/block.png);
+        background-size: contain;
+        width: 16px;
+        height: 16px;
+        border: none;
+        color: transparent;
+        cursor: pointer;
+    }
+    .boxBodyPost {
+        word-wrap: break-word;
+    }
+    #PostBtn {
+        cursor: pointer;
+    }
+    .Comment {
+        position: relative;
+    }
+    .CommentT {
+        width: 91%;
+        margin: auto;
+        word-wrap: break-word;
+    }
+    .Comment:hover {
+
+    }
+    .CommentName {
+        font-weight: bold;
+    }
+    .ShowOnHover {
+        position: absolute;
+        right: 0;
+        top:0;
+    }
+    .CommentText {
+        width:90%;
+        padding: 2px;
+    }
+    .Center {
+        text-align: center;
+    }
+    .ShowOnHover {
+        display: none
+    }
+    .Comment:hover > .ShowOnHover {
+        display: block
+    }
+    #MyPlayer {
+        position: absolute;
+        top: 150px;
+        right: 160px;
+        transform: scale(1.5);
+        pointer-events: none;
+    }
+    .PostTitleEmo .emo {
+         vertical-align: baseline
+    }
+    #statsText {
+        padding: 10px;
+        font-size: 14px;
+    }
+    /*.boxTitle {*/
+        /*position: relative;*/
+    /*}*/
+    /*.PrivateIcon {*/
+        /*background: url(/static/images/private32.png);*/
+        /*width: 32px;*/
+        /*height: 32px;*/
+        /*position: absolute;*/
+        /*right: 0;*/
+        /*top: 0;*/
+    /*}*/
+    .colorchange {
+        animation: colorchange 5s forwards;
+        -webkit-animation: colorchange 5s forwards;
+    }
+    @keyframes colorchange
+    {
+      0%   {background: #0f0;}
+      25%   {background: #0f0;}
+      100% {background: white;}
+    }
+    .GMPost {font-weight: bold}
+    .GMPostTitle {background: #ffd}
+    .new {background: #ff7}
+    .goldShadow {
+        color: #ffd273;
+        text-shadow: -1px 0 2px black, 0 1px 2px black, 1px 0 2px black, 0 -1px 2px black;
+    }
+</style>
     <script>
         var user_id = {{user_id}};
 

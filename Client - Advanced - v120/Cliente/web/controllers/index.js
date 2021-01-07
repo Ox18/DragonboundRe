@@ -725,4 +725,9 @@ router.get('/w2', function (req, res) {
 	});
 });
 
+
+router.get('/checkacc', function(req, res){
+    res.send(1);
+})
+
 module.exports = router;

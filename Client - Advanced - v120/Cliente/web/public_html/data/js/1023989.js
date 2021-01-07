@@ -27767,7 +27767,7 @@
         document.getElementsByTagName("head")[0].appendChild(e),
         $("#LoginSubmit").click(function() {
             if (!$("#LoginSubmit").hasClass("grayspin") && !$("#RegisterSubmit").hasClass("grayspin")) {
-                $.getJSON('https://ipapi.co/json', function(api_info){
+                //$.getJSON('https://ipapi.co/json', function(api_info){
                     var b = $("#LoginUsername").val(),
                         c = $("#LoginPass").val(),
                         d = $("#LoginRemember").is(":checked") ? 1 : 0;
@@ -27779,8 +27779,8 @@
                             u: b,
                             p: c,
                             r: d,
-                            computer_ip: api_info.ip,
-                            my_player_country: api_info.country_code
+                            computer_ip: "127.0.0.1",//api_info.ip,
+                            my_player_country: "EU"//api_info.country_code
                         },
                     success: function(b) {
                         $("#LoginSubmit").removeClass("grayspin");
@@ -27798,7 +27798,7 @@
                     $("#LoginSubmit").removeClass("grayspin");
                     alertify.error("Network Error. Try Again.")
                 })) : alertify.alert(l.t("Please fill password.")) : alertify.alert(l.t("Please fill Email / UserID / Username."))
-                });
+                //});
             }
         }),
         $("#RegisterSubmit").click(function() {
@@ -27810,13 +27810,13 @@
                 if (!b || !c)
                     return alertify.alert(l.t("Please fill all fields"));
                 $("#RegisterSubmit").addClass("grayspin");
-                $.getJSON('https://ipapi.co/json', function(api_info) {
+               // $.getJSON('https://ipapi.co/json', function(api_info) {
                     $.post("/ajaxRegister", {
                         name: b,
                         password: c,
                         gender: d,
-                        computer_ip: api_info.ip,
-                        my_player_country: api_info.country_code
+                        computer_ip: "127.0.0.1",// api_info.ip,
+                        my_player_country: "EU"//api_info.country_code
                 }, function(b) {
                     $("#RegisterSubmit").removeClass("grayspin");
                     "string" == typeof b || "<" == b[0] || "I" == b[0] ? alertify.alert(b) : ($("#LoginWindowBG").hide(),
@@ -27828,7 +27828,7 @@
                     $("#RegisterSubmit").removeClass("grayspin");
                     alertify.error("Network Error. Try Again.")
                 })
-                });
+                //});
             }
         }),
         $("#LoginUsername").keydown(function(a) {

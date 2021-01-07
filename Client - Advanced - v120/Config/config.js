@@ -6,7 +6,7 @@ var config = {
       host: "localhost",
       database: "game",
       user: "root",
-      password: "",
+      password: "wilmerdelgado",
       port: 3306
     },
     autorank: {

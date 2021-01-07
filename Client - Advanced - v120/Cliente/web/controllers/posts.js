@@ -18,19 +18,22 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
+
     var cont = true;
     var id_page = req.body.UserPage;
     var texto = req.body.text;
     var date = Math.round(Date.now() / 1000);
     var acc_id = req.session.account_id;
-    Logger.info(req.body.action);
+   
     if (req.body.action === 'post') {
         req.db.getUserByIdAcc(parseInt(id_page))
             .then(function (resb) {
             var rows = resb[0];
             req.db.putPosts(acc_id, id_page, texto, date)
                 .then(function (resb) {
+                
                 res.redirect(req.header('Referer'));
+
             }).catch(function (err) {
                 res.redirect('/');
             });

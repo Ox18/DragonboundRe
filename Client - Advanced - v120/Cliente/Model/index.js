@@ -1056,7 +1056,7 @@ module.exports = class DataBase {
         var self = this;
         return new Promise(function (resolve, reject) {
             self.connection.getConnection().then(conn => {
-                conn.query('SELECT game_id FROM users WHERE LOWER(`game_id`) = ?', [id])
+                conn.query('SELECT game_id FROM users WHERE `game_id` = binary ?', [id])
                     .then(rows => {
                         conn.release();
                         if (rows[0].length > 0)
@@ -1072,7 +1072,7 @@ module.exports = class DataBase {
         var self = this;
         return new Promise(function (resolve, reject) {
             self.connection.getConnection().then(conn => {
-                conn.query('SELECT Name, Username FROM accounts WHERE LOWER(`Username`) = ?', [username])
+                conn.query('SELECT Name, Username FROM accounts WHERE `Username` = binary ?', [username])
                     .then(rows => {
                         conn.release();
                         if (rows[0].length > 0)
