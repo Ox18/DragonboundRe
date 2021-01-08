@@ -282,51 +282,113 @@ router.get('/:game_id', function(req, res) {
                                             var rows_x4 = rows4[0];
                                             Logger.info('Publications found, sending confirmation message');
 
-                                            conn.query('SELECT up.post_id, up.user_de, up.user_para, up.texto, up.fecha, u.game_id, u.rank, u.IdAcc FROM user_post up INNER JOIN users u ON u.IdAcc = up.user_de WHERE up.user_para = ? ORDER BY up.post_id DESC limit 0, 19', [rows_x4[0].user_para])
+conn.query('SELECT up.post_id, up.user_de, up.user_para, up.texto, up.fecha, u.game_id, u.rank, u.IdAcc, upc.id as CommentID, upc.texto as CommentText, upcu.rank as CommentRank, upcu.game_id as CommentNameUser, upcu.fecha as CommentDate FROM user_post up INNER JOIN users as u ON u.IdAcc = up.user_de LEFT JOIN user_post_comment as upc ON upc.post_id = up.post_id left JOIN users as upcu ON upcu.IdAcc = upc.user_id WHERE up.user_para = ? ORDER BY up.post_id DESC limit 0, 19', [rows_x4[0].user_para])
                                                 .then(rows5 => {
                                                     conn.release();
+
                                                     if (rows5[0].length > 0) {
-                                                        var rows_x5 = rows5[0];
-                                                        Logger.info('Loading posts');
-
+                                                        var post_box = rows5[0];
                                                         var texto_test = "";
-                                                        var i;
-                                                        for (i = 0; i < rows_x5.length; i++) {
+                                                        ///////
+                                                        ///data
+                                                        
+                                                        // Search Post and comment
+var posts = {}
+post_box.map((post)=>{
+   let name_post = 'A' + post.post_id;
+   let verify = name_post in posts;
+  
+   if(verify){
+    // exist
+    posts[name_post].comment.push({
+            id: post.CommentID,
+            text: post.CommentText,
+            rank: post.CommentRank,
+            game_id: post.CommentNameUser
+        })
+    posts[name_post].count += 1;
+   }else{
+    // no exist
+    posts[name_post] = {
+        count: 1,
+        post:{
+            id: post.post_id,
+            of: post.user_de,
+            to: post.user_para,
+            text: post.texto,
+            date: post.fecha,
+            author: {
+                id: post.IdAcc,
+                name: post.game_id,
+                rank: post.rank
+            }
+        },
+        comment: [{
+            id: post.CommentID,
+            text: post.CommentText,
+            rank: post.CommentRank,
+            game_id: post.CommentNameUser
+            date: post.CommentDate
+        }]
+    }
+   }
 
-                                                            // Comment Box
-                                                            let idAcc = rows_x5[i].IdAcc;
-                                                            let post_id = rows_x5[i].post_id;
-                                                            let rank = rows_x5[i].rank;
-                                                            let game_id = rows_x5[i].game_id;
-                                                            let datetime = rows_x5[i].fecha;
-                                                            let text = rows_x5[i].texto.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+})
 
-
-                                                            let comment = `<div class="Box">
-<form action="/post_action" method="POST">
-<input type="hidden" name="csrfmiddlewaretoken" value="VGkfxA7R9izLhVaYzAEOBRubKaatLlBdcuB4pi7tw30XkdKS5qQt2rcRuTL1VDlb">
-<input type="hidden" name="PostID" value="${post_id}">
-<div class="boxTitle  ">
-<span class="PostTitleEmo"><span class="span_rank rank rank${rank}"></span></span> <a class="name" href="/user/${game_id}">${game_id}</a>
-<span class="PostTime"><script>TD(${datetime})</script></span>
-
-${(rows[0].IdAcc === req.session.account_id || rows_x5[i].IdAcc === req.session.account_id) ? '<input type="submit" class="DeletePost glow_button" name="action" value="delete">':''}
-
+for(const post in posts){
+    let post_select = posts[post];
+    let AOP = post_select.post.author; // Author OF Post
+    let DOP = post_select.post; // Data of Post
+    let html_comments = "";
+    if(post_select.count > 1){
+        post_select.comment.map((COU)=>{ // COMMENT OF USER
+            html_comments += `<form action="/post_action" method="POST">
+    <input type="hidden" name="csrfmiddlewaretoken" value="Rf1l2sGNvtktXJXQ6wMixtiELPoz74Mk83iaUaGpSeLF01xKCmYXY30kvyZ7hmwi" />
+    <input type="hidden" name="CommentID" value="${COU.id}" />
+    <div class="Comment${COU.date == Math.round(Date.now() / 1000) ? ' new':''}">
+        <div class="CommentT">
+            <span class="emo"><span class="span_rank rank rank${COU.rank}"></span></span><span class="CommentName"><a class="name" href="/user/${COU.game_id}">${COU.game_id}</a>] </span>
+            <span class="" data-rank="${COU.rank}">${COU.text}</span>
+        </div>
+        <div class="ShowOnHover">
+            ${(rows[0].IdAcc === req.session.account_id || AOP.id === req.session.account_id)?'<input type="submit" class="DeleteComment glow_button" name="action" value="deleteComment" />':''}
+            
+        </div>
+    </div>
+</form>
+`
+        })
+    }
+    let html = `<div class="Box">
+    <form action="/post_action" method="POST">
+        <input type="hidden" name="csrfmiddlewaretoken" value="Rf1l2sGNvtktXJXQ6wMixtiELPoz74Mk83iaUaGpSeLF01xKCmYXY30kvyZ7hmwi" />
+        <input type="hidden" name="PostID" value="${DOP.id}" />
+        <div class="boxTitle${DOP.date == Math.round(Date.now() / 1000) ? ' new':''}">
+            <span class="PostTitleEmo"><span class="span_rank rank rank${AOP.rank}"></span></span> <a class="name" href="/user/${AOP.name}">${AOP.name}</a>
+            <span class="PostTime"><script>TD(${DOP.date})</script></span>
+            ${(rows[0].IdAcc === req.session.account_id || AOP.id === req.session.account_id) ? '<input type="submit" class="DeletePost glow_button" name="action" value="delete">':''}
+        </div>
+        <div class="boxBody boxBodyPost" data-rank="${post_select.post.author.rank}">${DOP.text}</div>
+    </form>
+    ${html_comments}
+    ${(rows[0].IdAcc === req.session.account_id || AOP.id === req.session.account_id) ? `<form action="/post_action" method="POST" class="PostCommentForm">
+        <input type="hidden" name="csrfmiddlewaretoken" value="Rf1l2sGNvtktXJXQ6wMixtiELPoz74Mk83iaUaGpSeLF01xKCmYXY30kvyZ7hmwi" />
+        <input type="hidden" name="PostID" value="${DOP.id}" />
+        <input type="hidden" name="action" value="comment" />
+        <div class="Center">
+            <input name="text" class="CommentText" placeholder="Escribe un comentario..." autocomplete="off" maxlength="150" />
+        </div>
+    </form>`:''}
+    
 </div>
-<div class="boxBody boxBodyPost" data-rank="${rank}">${text}</div>
-</form>
-<form action="/post_action" method="POST" class="PostCommentForm">
-<input type="hidden" name="csrfmiddlewaretoken" value="VGkfxA7R9izLhVaYzAEOBRubKaatLlBdcuB4pi7tw30XkdKS5qQt2rcRuTL1VDlb">
-<input type="hidden" name="PostID" value="${post_id}">
-<input type="hidden" name="action" value="comment">
-${req.session.account_id?`<div class="Center">
-<input name="text" class="CommentText" placeholder="Escribe un comentario..." autocomplete="off" maxlength="150">
-</div>`:''}
-</form>
-</div>`;
-                                                            texto_test += comment;
-                                                            // End Comment Box
-                                                        }
+`
+texto_test += html;
+}
+
+                                                        ///////
+
+
+
                                                         res.render('info', {
                                                             titulo: config.game.name,
                                                             game_id: rows[0].game_id,

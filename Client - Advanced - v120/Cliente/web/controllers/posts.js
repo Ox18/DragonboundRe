@@ -18,7 +18,7 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-
+    console.log("POST!");
     var cont = true;
     var id_page = req.body.UserPage;
     var texto = req.body.text;
@@ -26,6 +26,7 @@ router.post('/', function (req, res) {
     var acc_id = req.session.account_id;
    
     if (req.body.action === 'post') {
+        
         req.db.getUserByIdAcc(parseInt(id_page))
             .then(function (resb) {
             var rows = resb[0];
