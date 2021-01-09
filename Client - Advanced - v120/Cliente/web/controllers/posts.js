@@ -18,7 +18,6 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-    console.log("POST!");
     var cont = true;
     var id_page = req.body.UserPage;
     var texto = req.body.text;
@@ -41,7 +40,23 @@ router.post('/', function (req, res) {
         }).catch(function (err) {
             res.redirect('/');
         });
-    } else if (req.body.action === 'delete') {
+    }
+    /// respuesta de post
+    else if(req.body.action === 'comment'){
+        req.db.connection.getConnection().then(conn => {
+                conn.query('INSERT into user_post_comment SET post_id = ?, user_id = ?, texto = ?, fecha = ?',[req.body.PostID, acc_id, texto, date])
+            .then(()=>{
+                res.redirect(req.header('Referer'));
+            })
+            .catch(()=>{
+                res.redirect(req.header('Referer'));
+            })
+        });
+        
+
+    }
+
+     else if (req.body.action === 'delete') {
         req.db.connection.getConnection().then(conn => {
             var acc_id = req.session.account_id;
             var post_id = parseInt(req.body.PostID);

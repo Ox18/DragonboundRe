@@ -888,3 +888,503 @@
 [ LOG    ]: user: [wilmer]
 [ INFO   ]: It has just added a point of view to the user: wilmer
 [ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ INFO   ]: Post ID: 19 - UserID: 44
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ INFO   ]: Post ID: 21 - UserID: 44
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ INFO   ]: Post ID: 20 - UserID: 44
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ INFO   ]: Post ID: 15 - UserID: 44
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ INFO   ]: Post ID: 24 - UserID: 44
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ INFO   ]: Post ID: 23 - UserID: 44
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ INFO   ]: Post ID: 22 - UserID: 44
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ INFO   ]: Post ID: 25 - UserID: 44
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ INFO   ]: Post ID: 26 - UserID: 44
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ INFO   ]: Post ID: 27 - UserID: 44
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message

@@ -543,6 +543,21 @@ module.exports = class DataBase {
             });
         });
     }
+    putPostsComment(postID, userID, texto) {
+        var self = this;
+        return new Promise(function (resolve, reject) {
+            self.connection.getConnection().then(conn => {
+                conn.query('INSERT into user_post_comment SET post_id = 21, user_id = 44, texto = 123, fecha = 132', [postID, userID, texto])
+                    .then(rows => {
+                        conn.release();
+                        if (rows[0].affectedRows > 0)
+                            return resolve(rows);
+                        else
+                            return reject();
+                    });
+            });
+        });
+    }
     
     deletePostsByID(Id) {
         var self = this;

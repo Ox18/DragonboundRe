@@ -282,17 +282,14 @@ router.get('/:game_id', function(req, res) {
                                             var rows_x4 = rows4[0];
                                             Logger.info('Publications found, sending confirmation message');
 
-conn.query('SELECT up.post_id, up.user_de, up.user_para, up.texto, up.fecha, u.game_id, u.rank, u.IdAcc, upc.id as CommentID, upc.texto as CommentText, upcu.rank as CommentRank, upcu.game_id as CommentNameUser, upcu.fecha as CommentDate FROM user_post up INNER JOIN users as u ON u.IdAcc = up.user_de LEFT JOIN user_post_comment as upc ON upc.post_id = up.post_id left JOIN users as upcu ON upcu.IdAcc = upc.user_id WHERE up.user_para = ? ORDER BY up.post_id DESC limit 0, 19', [rows_x4[0].user_para])
+conn.query('SELECT up.post_id, up.user_de, up.user_para, up.texto, up.fecha, u.game_id, u.rank, u.IdAcc, upc.id as CommentID, upc.texto as CommentText, upcu.rank as CommentRank, upcu.game_id as CommentNameUser, upc.fecha as FetchComment FROM user_post up INNER JOIN users as u ON u.IdAcc = up.user_de LEFT JOIN user_post_comment as upc ON upc.post_id = up.post_id left JOIN users as upcu ON upcu.IdAcc = upc.user_id WHERE up.user_para = ? ORDER BY up.post_id DESC limit 0, 19', [rows_x4[0].user_para])
                                                 .then(rows5 => {
                                                     conn.release();
 
                                                     if (rows5[0].length > 0) {
                                                         var post_box = rows5[0];
                                                         var texto_test = "";
-                                                        ///////
-                                                        ///data
                                                         
-                                                        // Search Post and comment
 var posts = {}
 post_box.map((post)=>{
    let name_post = 'A' + post.post_id;
@@ -304,13 +301,14 @@ post_box.map((post)=>{
             id: post.CommentID,
             text: post.CommentText,
             rank: post.CommentRank,
-            game_id: post.CommentNameUser
+            game_id: post.CommentNameUser,
+            data: post.FetchComment
         })
     posts[name_post].count += 1;
    }else{
     // no exist
     posts[name_post] = {
-        count: 1,
+        count: post.CommentID ? 1:0,
         post:{
             id: post.post_id,
             of: post.user_de,
@@ -327,8 +325,8 @@ post_box.map((post)=>{
             id: post.CommentID,
             text: post.CommentText,
             rank: post.CommentRank,
-            game_id: post.CommentNameUser
-            date: post.CommentDate
+            game_id: post.CommentNameUser,
+            date: post.FetchComment
         }]
     }
    }
@@ -336,11 +334,16 @@ post_box.map((post)=>{
 })
 
 for(const post in posts){
+    let htmlToString = (data)=>{
+        let txt = data.toString();
+        return txt.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
     let post_select = posts[post];
     let AOP = post_select.post.author; // Author OF Post
     let DOP = post_select.post; // Data of Post
     let html_comments = "";
-    if(post_select.count > 1){
+    if(post_select.count >= 1){
+        post_select.comment = post_select.comment.sort((a,b)=>{ return a.id - b.id})
         post_select.comment.map((COU)=>{ // COMMENT OF USER
             html_comments += `<form action="/post_action" method="POST">
     <input type="hidden" name="csrfmiddlewaretoken" value="Rf1l2sGNvtktXJXQ6wMixtiELPoz74Mk83iaUaGpSeLF01xKCmYXY30kvyZ7hmwi" />
@@ -348,7 +351,7 @@ for(const post in posts){
     <div class="Comment${COU.date == Math.round(Date.now() / 1000) ? ' new':''}">
         <div class="CommentT">
             <span class="emo"><span class="span_rank rank rank${COU.rank}"></span></span><span class="CommentName"><a class="name" href="/user/${COU.game_id}">${COU.game_id}</a>] </span>
-            <span class="" data-rank="${COU.rank}">${COU.text}</span>
+            <span class="" data-rank="${COU.rank}">${htmlToString(COU.text)}</span>
         </div>
         <div class="ShowOnHover">
             ${(rows[0].IdAcc === req.session.account_id || AOP.id === req.session.account_id)?'<input type="submit" class="DeleteComment glow_button" name="action" value="deleteComment" />':''}
@@ -368,7 +371,7 @@ for(const post in posts){
             <span class="PostTime"><script>TD(${DOP.date})</script></span>
             ${(rows[0].IdAcc === req.session.account_id || AOP.id === req.session.account_id) ? '<input type="submit" class="DeletePost glow_button" name="action" value="delete">':''}
         </div>
-        <div class="boxBody boxBodyPost" data-rank="${post_select.post.author.rank}">${DOP.text}</div>
+        <div class="boxBody boxBodyPost" data-rank="${post_select.post.author.rank}">${htmlToString(DOP.text)}</div>
     </form>
     ${html_comments}
     ${(rows[0].IdAcc === req.session.account_id || AOP.id === req.session.account_id) ? `<form action="/post_action" method="POST" class="PostCommentForm">
