@@ -574,6 +574,21 @@ module.exports = class DataBase {
             });
         });
     }
+    deletePostsByCommentID(Id) {
+        var self = this;
+        return new Promise(function (resolve, reject) {
+            self.connection.getConnection().then(conn => {
+                conn.query('DELETE FROM user_post_comment WHERE id = ?', [Id])
+                    .then(rows => {
+                        conn.release();
+                        if (rows[0].affectedRows > 0 || rows[0].changedRows > 0)
+                            return resolve(rows);
+                        else
+                            return reject();
+                    });
+            });
+        });
+    }
     
     updateGuildById(img, background, about, website, Id) {
         var self = this;
