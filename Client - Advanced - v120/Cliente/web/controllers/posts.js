@@ -91,7 +91,18 @@ router.post('/', function(req, res)
                         req.db.deletePostsByID(req.body.PostID)
                            .then(function()
                            {
-                              res.redirect(req.header('Referer'));
+                              
+                                 /// delete comments
+                                    conn.query('delete from user_post_comment where post_id = ?',[post_id])
+                                    .then(()=>{
+                                       conn.release();
+                                       res.redirect(req.header('Referer'));
+                                    })
+                                    .catch(function(err){
+                                       console.log("error");
+                                       res.redirect(req.header('Referer'));
+                                    });
+                                 /// delete comments  
                            }).catch(function(err)
                            {
                               res.redirect('/');
