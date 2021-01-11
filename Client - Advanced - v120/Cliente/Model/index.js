@@ -543,11 +543,11 @@ module.exports = class DataBase {
             });
         });
     }
-    putPostsComment(postID, userID, texto) {
+    putComment(PostID, acc_id, texto, date) {
         var self = this;
         return new Promise(function (resolve, reject) {
             self.connection.getConnection().then(conn => {
-                conn.query('INSERT into user_post_comment SET post_id = 21, user_id = 44, texto = 123, fecha = 132', [postID, userID, texto])
+                conn.query('INSERT into user_post_comment SET post_id = ?, user_id = ?, texto = ?, fecha = ?', [PostID, acc_id, texto, date])
                     .then(rows => {
                         conn.release();
                         if (rows[0].affectedRows > 0)
@@ -558,12 +558,11 @@ module.exports = class DataBase {
             });
         });
     }
-    
-    deletePostsByID(Id) {
+    deletePostsByID(Id, acc_id, userProfile) {
         var self = this;
         return new Promise(function (resolve, reject) {
             self.connection.getConnection().then(conn => {
-                conn.query('DELETE FROM user_post WHERE post_id = ?', [Id])
+                conn.query(userProfile ? 'DELETE FROM user_post where post_id = ?':'DELETE FROM user_post WHERE post_id = ? and user_de = ?', [Id, acc_id])
                     .then(rows => {
                         conn.release();
                         if (rows[0].affectedRows > 0 || rows[0].changedRows > 0)
@@ -574,11 +573,11 @@ module.exports = class DataBase {
             });
         });
     }
-    deletePostsByCommentID(Id) {
+    deleteCommentWithPost(Id) {
         var self = this;
         return new Promise(function (resolve, reject) {
             self.connection.getConnection().then(conn => {
-                conn.query('DELETE FROM user_post_comment WHERE id = ?', [Id])
+                conn.query('delete from user_post_comment where post_id = ?', [Id])
                     .then(rows => {
                         conn.release();
                         if (rows[0].affectedRows > 0 || rows[0].changedRows > 0)
@@ -589,7 +588,57 @@ module.exports = class DataBase {
             });
         });
     }
-    
+    deletePostsByCommentID(Id, user_id, userProfile) {
+        var self = this;
+        return new Promise(function (resolve, reject) {
+            self.connection.getConnection().then(conn => {
+                conn.query(userProfile?'DELETE FROM user_post_comment WHERE id = ?':'DELETE FROM user_post_comment WHERE id = ? and user_id = ?', [Id, user_id])
+                    .then(rows => {
+                        conn.release();
+                        if (rows[0].affectedRows > 0 || rows[0].changedRows > 0)
+                            return resolve(rows);
+                        else
+                            return reject();
+                    });
+            });
+        });
+    }
+    //////////
+    searchPostById(id) {
+        let query = 'SELECT * from user_post where post_id = ?';
+        let parameters = [id];
+        var self = this;
+        return new Promise(function (resolve, reject) {
+            self.connection.getConnection().then(conn => {
+                conn.query(query, parameters)
+                    .then(rows => {
+                        conn.release();
+                        if (rows[0].affectedRows > 0 || rows[0].changedRows > 0)
+                            return resolve(rows);
+                        else
+                            return reject();
+                    });
+            });
+        });
+    }
+    searchCommentById(id) {
+        let query = 'SELECT * from user_post_comment where id = ?';
+        let parameters = [id];
+        var self = this;
+        return new Promise(function (resolve, reject) {
+            self.connection.getConnection().then(conn => {
+                conn.query(query, parameters)
+                    .then(rows => {
+                        conn.release();
+                        if (rows[0].affectedRows > 0 || rows[0].changedRows > 0)
+                            return resolve(rows);
+                        else
+                            return reject();
+                    });
+            });
+        });
+    }
+    //////////
     updateGuildById(img, background, about, website, Id) {
         var self = this;
         return new Promise(function (resolve, reject) {

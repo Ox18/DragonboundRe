@@ -282,7 +282,7 @@ router.get('/:game_id', function(req, res) {
                                             var rows_x4 = rows4[0];
                                             Logger.info('Publications found, sending confirmation message');
 
-conn.query('SELECT up.post_id, up.user_de, up.user_para, up.texto, up.fecha, u.game_id, u.rank, u.IdAcc, upc.id as CommentID, upc.texto as CommentText, upcu.rank as CommentRank, upcu.game_id as CommentNameUser, upc.fecha as FetchComment FROM user_post up INNER JOIN users as u ON u.IdAcc = up.user_de LEFT JOIN user_post_comment as upc ON upc.post_id = up.post_id left JOIN users as upcu ON upcu.IdAcc = upc.user_id WHERE up.user_para = ? ORDER BY up.post_id DESC limit 0, 19', [rows_x4[0].user_para])
+conn.query('SELECT up.post_id, up.user_de, up.user_para, up.texto, up.fecha, u.game_id, u.rank, u.IdAcc, upc.id as CommentID, upc.texto as CommentText, upcu.rank as CommentRank, upcu.game_id as CommentNameUser, upc.fecha as FetchComment, upc.user_id as UserIDComment FROM user_post up INNER JOIN users as u ON u.IdAcc = up.user_de LEFT JOIN user_post_comment as upc ON upc.post_id = up.post_id left JOIN users as upcu ON upcu.IdAcc = upc.user_id WHERE up.user_para = ? ORDER BY up.post_id DESC limit 0, 19', [rows_x4[0].user_para])
                                                 .then(rows5 => {
                                                     conn.release();
 
@@ -299,6 +299,7 @@ post_box.map((post)=>{
     // exist
     posts[name_post].comment.push({
             id: post.CommentID,
+            user_id: post.UserIDComment,
             text: post.CommentText,
             rank: post.CommentRank,
             game_id: post.CommentNameUser,
@@ -323,6 +324,7 @@ post_box.map((post)=>{
         },
         comment: [{
             id: post.CommentID,
+            user_id: post.UserIDComment,
             text: post.CommentText,
             rank: post.CommentRank,
             game_id: post.CommentNameUser,
@@ -338,6 +340,7 @@ for(const post in posts){
         let txt = data.toString();
         return txt.replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
+    let session = req.session.acc_session;
     let post_select = posts[post];
     let AOP = post_select.post.author; // Author OF Post
     let DOP = post_select.post; // Data of Post
@@ -346,7 +349,7 @@ for(const post in posts){
         post_select.comment = post_select.comment.sort((a,b)=>{ return a.id - b.id})
         post_select.comment.map((COU)=>{ // COMMENT OF USER
             html_comments += `<form action="/post_action" method="POST">
-    <input type="hidden" name="csrfmiddlewaretoken" value="Rf1l2sGNvtktXJXQ6wMixtiELPoz74Mk83iaUaGpSeLF01xKCmYXY30kvyZ7hmwi" />
+    <input type="hidden" name="csrfmiddlewaretoken" value="${session}" />
     <input type="hidden" name="CommentID" value="${COU.id}" />
     <div class="Comment${COU.date == Math.round(Date.now() / 1000) ? ' new':''}">
         <div class="CommentT">
@@ -354,7 +357,7 @@ for(const post in posts){
             <span class="" data-rank="${COU.rank}">${htmlToString(COU.text)}</span>
         </div>
         <div class="ShowOnHover">
-            ${(rows[0].IdAcc === req.session.account_id || AOP.id === req.session.account_id)?'<input type="submit" class="DeleteComment glow_button" name="action" value="deleteComment" />':''}
+            ${session && (rows[0].IdAcc === req.session.account_id || COU.user_id === req.session.account_id)?'<input type="submit" class="DeleteComment glow_button" name="action" value="deleteComment" />':''}
             
         </div>
     </div>
@@ -364,7 +367,7 @@ for(const post in posts){
     }
     let html = `<div class="Box">
     <form action="/post_action" method="POST">
-        <input type="hidden" name="csrfmiddlewaretoken" value="Rf1l2sGNvtktXJXQ6wMixtiELPoz74Mk83iaUaGpSeLF01xKCmYXY30kvyZ7hmwi" />
+        <input type="hidden" name="csrfmiddlewaretoken" value="${session}" />
         <input type="hidden" name="PostID" value="${DOP.id}" />
         <div class="boxTitle${DOP.date == Math.round(Date.now() / 1000) ? ' new':''}">
             <span class="PostTitleEmo"><span class="span_rank rank rank${AOP.rank}"></span></span> <a class="name" href="/user/${AOP.name}">${AOP.name}</a>
@@ -374,15 +377,14 @@ for(const post in posts){
         <div class="boxBody boxBodyPost" data-rank="${post_select.post.author.rank}">${htmlToString(DOP.text)}</div>
     </form>
     ${html_comments}
-    ${(rows[0].IdAcc === req.session.account_id || AOP.id === req.session.account_id) ? `<form action="/post_action" method="POST" class="PostCommentForm">
-        <input type="hidden" name="csrfmiddlewaretoken" value="Rf1l2sGNvtktXJXQ6wMixtiELPoz74Mk83iaUaGpSeLF01xKCmYXY30kvyZ7hmwi" />
+     ${session?`<form action="/post_action" method="POST" class="PostCommentForm">
+        <input type="hidden" name="csrfmiddlewaretoken" value="${session}" />
         <input type="hidden" name="PostID" value="${DOP.id}" />
         <input type="hidden" name="action" value="comment" />
         <div class="Center">
             <input name="text" class="CommentText" placeholder="Escribe un comentario..." autocomplete="off" maxlength="150" />
         </div>
     </form>`:''}
-    
 </div>
 `
 texto_test += html;

@@ -1585,3 +1585,1017 @@
 [ LOG    ]: user: [wilmer]
 [ INFO   ]: It has just added a point of view to the user: wilmer
 [ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: 'Alex' 0
+[ LOG    ]: 'Alex' password error wilmer 123456
+[ LOG    ]: 'Alex' 0
+[ LOG    ]: Login: Alex
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ INFO   ]: Post ID: 40 - UserID: 45
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ INFO   ]: Post ID: 39 - UserID: 45
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ INFO   ]: Post ID: 41 - UserID: 45
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: 'qewfqweqewwq' m
+[ LOG    ]: 'Zamy' m
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: 'Zamy' 0
+[ LOG    ]: Login: Zamy
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: 'Zamy' 0
+[ LOG    ]: Login: Zamy
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: 'Zamy' 0
+[ LOG    ]: Login: Zamy
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Wilmer]
+[ INFO   ]: It has just added a point of view to the user: wilmer
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: 'Zamy' 0
+[ LOG    ]: Login: Zamy
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [DN]
+[ INFO   ]: It has just added a point of view to the user: DN
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: 'Zamy' 0
+[ LOG    ]: Login: Zamy
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ NORMAL ]: MYSQL Connect!
+[ NORMAL ]: Listening on LOCAL 80
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: 'Zamy' 0
+[ LOG    ]: Login: Zamy
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ DEBUG  ]: Error, no posts were found
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
+[ LOG    ]: user: [Alex]
+[ INFO   ]: It has just added a point of view to the user: Alex
+[ INFO   ]: Publications found, sending confirmation message
