@@ -426,7 +426,7 @@ texto_test += html;
                                                             login_id: loguser,
                                                             guild: guild_name,
                                                             pos_state: true,
-
+                                                            adminPage: req.session.account_id === rows[0].IdAcc,
                                                             id_page: rows[0].IdAcc,
                                                             posts: texto_test,
 
