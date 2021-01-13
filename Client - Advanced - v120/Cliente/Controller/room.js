@@ -55,6 +55,13 @@ module.exports = class Room {
         } else {
             this.is_avatars_on = 0;
         }
+        if (this.game_mode === Types.GAME_MODE.SAME) {
+            if (typeof (account) !== 'undefined') {
+            account.player.mobile = mobile_room;
+        }
+        } else {
+            this.game_mode = game_mode; 
+        }
         this.is_dual_plus_disabled = 0;
         this.player_count = 0;
         this.turn_time = 20;
