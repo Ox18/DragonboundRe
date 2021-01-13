@@ -68,7 +68,7 @@ node game.js
 
 -   [AlexWathever](https://github.com/WickedPeanuts/)  (Wilmer Delgado)
 -   [rayjencode](https://github.com/rayjencode/) (Melon Shake)
--   [rksmw](https://github.com/rayjencode/) (AndrewC)
+-   [AndrewC](https://github.com/rksmw/) (AndrewC)
 
 ### Bug Reports/Testers
 
