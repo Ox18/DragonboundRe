@@ -226,6 +226,7 @@ module.exports = class Game {
         }
         if (account.player.TELEPORT == 1) {
             this.world.shoots[0] = new Shoot(pfinal.x, pfinal.y, ang, power, type, ax, ay, this.wind_angle, this.wind_power, 0, account);
+            this.world.shoots[0].damageComplete = true;
             this.world.shoot(true);
             this.world.shoots_count = 1;
         } else {
