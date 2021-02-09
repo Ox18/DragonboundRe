@@ -129,35 +129,43 @@ module.exports = class Game {
         //Logger.debug("x: " + x + " y: " + y + " body: " + body + " look: " + look + " ang: " + ang + " power: " + power);
         power = parseInt(power * 234 / 100);
         var mobile_data = Types.MOBILES[account.player.mobile];
-        /*
-        var b0 = Math.round(parseInt(Math.cos(self.wind_ang * Math.PI / 180) * self.wind_power * mobile_data.by)) / 100;
-        var b1 = Math.round(parseInt(Math.sin(self.wind_ang * Math.PI / 180) * self.wind_power * mobile_data.by - mobile_data.bx)) / 100;
-        var ax = Math.round(mobile_data.bx - b0);
+        
+        var b0 = Math.round(parseInt(Math.cos(self.wind_angle * Math.PI / 180) * self.wind_power * mobile_data.by)) / 100;
+        var b1 = Math.round(parseInt(Math.sin(self.wind_angle * Math.PI / 180) * self.wind_power * mobile_data.by - mobile_data.bx)) / 100;
+        var ax = Math.round(0 - b0);
         var ay = Math.round(mobile_data.by - b1);
-        if (self.wind_power == 0)
-        fay = mobile_data.by;
-        */
-        var ax = mobile_data.bx;
-        var ay = mobile_data.by;
+        if (self.wind_power === 0) {
+            ax = 0;
+            ay = mobile_data.by;
+        }
+        
+        /*var ax = mobile_data.bx;
+        var ay = mobile_data.by;*/
         var dis = 0;
         if (look === 0) {
             ang = 180 - ang;
-            dis = -11;
+            if (account.player.mobile === Types.MOBILE.ADUKA) {
+                dis = 26;
+            } else {
+                dis = -11;
+            }
         } else {
-            dis = 11;
+            if (account.player.mobile === Types.MOBILE.ADUKA) {
+                dis = -26;
+            } else {
+                dis = 11;
+            }
         }
         ang -= body;
         var point = {
             x: x + dis,
-            y: y - 28
+            y: account.player.mobil === Types.MOBILE.ADUKA ? y - 31 : y - 28
         };
         var pfinal = self.rotatePoint(point, {
             x: x,
             y: y
         }, body);
-
-        //Logger.debug("x: " + rx + " y: " + ry + " body: " + body + " look: " + _mlook + " ang: " + ang + " power: " + power);
-
+        
         if (type === 0) {
             account.player.addDelay(100);
         } else if (type == 1) {
