@@ -13,6 +13,7 @@
 |--|--|--|
 | 🌪 Weather Effect |✖ | ✔ |
 | 🚜 Animation Mobile |✖  | ✔ |
+| 💨 Wind |✔ | ✔ |
 | 🏆 Ranking Search |✔ | ✔ |
 | 💻 Multiple servers |✖  | ✔ |
 | 🍪 Use session | ✖ | ✔ |
