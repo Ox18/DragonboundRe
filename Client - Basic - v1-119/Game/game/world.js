@@ -1,6 +1,7 @@
 var Types = require('./gametypes');
 var Logger = require('./lib/logger');
 var Message = require('./lib/message');
+const MAPS = require('./src/modelos/maps');
 require('setimmediate');
 
 // World
@@ -15,6 +16,8 @@ module.exports = class World {
         this.shoots_complete = 0;
         this.shoots_data = [];
         this.map = game.map;
+        this.map_id = game.map.id;
+        this.map_detail = MAPS[this.map_id];
         this.chat = [];
         this.shoot_complete = null;
 
@@ -101,13 +104,8 @@ module.exports = class World {
                         this.shoots_data[this.shoots_complete].hole.push(38);
                         self.map.AddGroundHole(a.x, a.y, 38, 38);
                         shoot.groundCollide = true;
-                    } else if (self.map.w < a.x || self.map.h < a.y) {
+                    } else if (this.calculateLimitXLeft(self.map_detail) < a.x || this.calculateLimitYDown(self.map_detail) < a.y) {
                         shoot.isComplete = true;
-                        this.shoots_data[this.shoots_complete].hole.push(a.x);
-                        this.shoots_data[this.shoots_complete].hole.push(a.y);
-                        this.shoots_data[this.shoots_complete].hole.push(38);
-                        this.shoots_data[this.shoots_complete].hole.push(38);
-                        shoot.groundCollide = true;
                     }
                     if (!shoot.damageComplete) {
                         self.game.room.forPlayers(function (account) {
@@ -282,5 +280,14 @@ module.exports = class World {
     }
     onShootComplete(callback) {
         this.shoot_complete = callback;
+    }
+    calculateLimitXLeft(map_detail){
+        let {offset_x, w} = map_detail;
+        let limit = (offset_x * 2) + w + 400;
+        return limit; 
+    }
+    calculateLimitYDown(map_detail){
+        let { ground_size } = map_detail;
+        return ground_size;    
     }
 };
