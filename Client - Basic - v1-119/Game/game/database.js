@@ -948,4 +948,30 @@ module.exports = class DataBase {
             });
         });
     }
+    getUserByGameId(userEl){
+        let query = 'SELECT IdAcc, game_id, photo_url, bg_url, country, rank, gp, win, gender, loss FROM users where LOWER(`game_id`) = ?';
+        let params = [userEl]
+        var self = this;
+        return new Promise(function (resolve, reject) {
+            self.connection.getConnection().then(conn => {
+                conn.query(query, params)
+                    .then(rows => {
+                        conn.release();
+                        let userEL;
+                        if (rows[0].length > 0){
+                            let data = rows[0][0];
+                            let { Id, game_id, rank, gp, gold, cash, gender, unlock, photo_url, name_changes, power_user, plus10gp, mobile_fox, country, flowers, map_pack, megaphones, is_mute, win, loss, gm, IdAcc, bg_url } = data;
+                            userEL = new UserEL(Id, game_id, rank, gp, gold, cash, gender, unlock, photo_url, name_changes, power_user, plus10gp, mobile_fox, country, flowers, map_pack, megaphones, is_mute, win, loss, gm, IdAcc, bg_url);
+                            return resolve(userEL);
+                        }
+                        else{
+                            return resolve(userEL);
+                        }
+                    })
+                    .catch(()=>{
+                        return resolve('Generate error by search in SQL.');
+                    });
+            });
+        });
+    }
 };
