@@ -23,14 +23,14 @@ module.exports = class User {
         if (loss === void 0) { loss = 0; }
         if (gm === void 0) { gm = 0; }
         if (IdAcc === void 0) { IdAcc = 0; }
-        if (bg_url === void 0) { bg_url = ""; }
-        this.Id = Id;
+        if (bg_url === null || bg_url === '') { bg_url = "/static/images/aqua_bg.jpg"; }
+        this.Id = IdAcc
         this.game_id = game_id;
         this.rank = rank;
         this.gp = gp;
         this.gold = gold;
         this.cash = cash;
-        this.gender = gender;
+        this.gender = gender ==='m' ? 'Male' : 'Female';
         this.unlock = unlock;
         this.photo_url = photo_url;
         this.name_changes = name_changes;

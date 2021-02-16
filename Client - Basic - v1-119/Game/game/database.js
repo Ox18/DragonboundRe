@@ -1,6 +1,7 @@
 let mysql = require('mysql2/promise');
 var Logger = require('./lib/logger');
 var Promise = require('promise');
+const UserEL = require('./EntityLayer/userEL');
 // database
 module.exports = class DataBase {
     constructor() {
@@ -8,7 +9,7 @@ module.exports = class DataBase {
         this.connection = null;
         this.host = 'localhost';
         this.user = 'root';
-        this.password = '';
+        this.password = 'wilmerdelgado';
         this.database = 'dragonbound';
         
         this.connection = mysql.createPool({
@@ -968,7 +969,7 @@ module.exports = class DataBase {
                             return resolve(userEL);
                         }
                     })
-                    .catch(()=>{
+                    .catch((error)=>{
                         return resolve('Generate error by search in SQL.');
                     });
             });

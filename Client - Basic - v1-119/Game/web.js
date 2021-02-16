@@ -35,8 +35,14 @@ var hbs = exphbs.create({
     layoutsDir: path.join(__dirname, "/web/views/layouts"),
     partialsDir: [
         '/web/views/partials/'
-    ]
+    ],
+    helpers: {
+        commatize: function(a){ return a.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1,") },
+        toHex: function(word){ return new Buffer(word).toString('base64')},
+    }
 });
+
+
 Logger.Init("web.txt");
 
 var self = this;

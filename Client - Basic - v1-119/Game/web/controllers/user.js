@@ -2,36 +2,53 @@ var express = require('express'),
     router = express.Router();
 
 var mysql = require('mysql');
-var Logger = require('../../game/lib/logger');
-var ignoreCase = require('ignore-case');
-var md5 = require('md5');
-var constants = require('constants');
+
 
 
 router.get('/', function (req, res) {
     res.redirect('/');
 });
 
+function renderName(name){
+    let rename = name;
+    rename = mysql.escape(rename).replace("'", "").replace("'", "");
+    rename = rename.toLowerCase();
+    return rename;
+}
+function renderProperty(object){
+    let reObject = {}
+    let extractProperty = Object.entries(object);
+    extractProperty.map((property)=>{
+        let key = property[0];
+        let value = property[1];
+        reObject[key] = value;
+    });
+    return reObject;
+}
 router.get('/:game_id', async function (req, res) {
-    let database = req.db;
+    const { game_id } = req.params;
+    const name = renderName(game_id);
+    try{
+    const database = req.db;
+    const data_user_sql = await database.getUserByGameId(name);
+    const info_user = await data_user_sql;
+
+    const property_user = renderProperty(info_user); 
     
-    let { game_id } = req.params;
-    game_id = mysql.escape(game_id).replace("'", "").replace("'", "");
-    game_id = game_id.toLowerCase();
-    let byteLengthBuffer = Buffer.byteLength(game_id, 'utf8');
-    
-    
-    if(byteLengthBuffer < 30){
-        try{
-            const data = await database.getUserByGameId(game_id);
-            res.status(200).render('info', data);
-        }catch(error){
-            res.status(505).json({
-                message: error
-            })
-        }
-        
+    const data = {
+        'user': property_user,
     }
+    console.log(data)
+    res.status(200).render('info', data);
+
+    }
+    catch(error){
+        res.status(505).json({
+            message: 'Sorry but user not exist!'
+        })
+    }
+
 });
 
 module.exports = router;
+//database.getUserByGameId(game_id)
