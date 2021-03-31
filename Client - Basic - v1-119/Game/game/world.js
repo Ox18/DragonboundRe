@@ -3,7 +3,7 @@ var Logger = require('./lib/logger');
 var Message = require('./lib/message');
 const MAPS = require('./src/modelos/maps');
 require('setimmediate');
-
+const Shoot = require('./lib/shoot')
 // World
 module.exports = class World {
     constructor(game, gameserver) {
@@ -72,7 +72,7 @@ module.exports = class World {
                 damages: [],
                 orbit: null,
                 ss: null,
-
+                is_lightning: null
             });
         }
     }
@@ -100,11 +100,13 @@ module.exports = class World {
                         maxys = true;
                     if (self.map.IsPixel(a.x, a.y) && !shoot.groundCollide) {
                         shoot.isComplete = true;
-                        this.shoots_data[this.shoots_complete].hole.push(a.x);
-                        this.shoots_data[this.shoots_complete].hole.push(a.y);
-                        this.shoots_data[this.shoots_complete].hole.push(38);
-                        this.shoots_data[this.shoots_complete].hole.push(38);
-                        self.map.AddGroundHole(a.x, a.y, 38, 38);
+                        if(!shoot.explodeGhost){
+                            this.shoots_data[this.shoots_complete].hole.push(a.x);
+                            this.shoots_data[this.shoots_complete].hole.push(a.y);
+                            this.shoots_data[this.shoots_complete].hole.push(shoot.hole.w);
+                            this.shoots_data[this.shoots_complete].hole.push(shoot.hole.h);
+                            self.map.AddGroundHole(a.x, a.y, shoot.hole.w, shoot.hole.h);
+                        }
                         shoot.groundCollide = true;
                     } else if (this.calculateLimitXLeft(self.map_detail) < a.x || this.calculateLimitYDown(self.map_detail) < a.y) {
                         shoot.isComplete = true;
@@ -251,7 +253,7 @@ module.exports = class World {
                         });
                     }
                     if (shoot.isComplete) {
-                        if(shoot.groundCollide) onShootCollide(shoot);
+                        if(shoot.groundCollide) this.onShootCollide(shoot);
                         this.shoots_data[this.shoots_complete].s.push(shoot.x0);
                         this.shoots_data[this.shoots_complete].s.push(shoot.y0);
                         this.shoots_data[this.shoots_complete].s.push(shoot.ang);
@@ -264,6 +266,7 @@ module.exports = class World {
                         this.shoots_data[this.shoots_complete].s.push(shoot.img);
                         this.shoots_data[this.shoots_complete].time = shoot.time * 2;
                         this.shoots_data[this.shoots_complete].orbit = shoot.orbit;
+                        this.shoots_data[this.shoots_complete].is_lightning = shoot.is_lightning;
                         var fx = shoot.ss > 0 ? shoot.ss : 0;
                         this.shoots_data[this.shoots_complete].ss = fx;
                         this.shoots_complete++;
@@ -295,6 +298,95 @@ module.exports = class World {
         return ground_size;    
     }
     onShootCollide(shoot){
+       var self = this;
+       if(shoot.before.lightning){
+            this.onLightningS1(shoot);
+       }
+       if(shoot.before.lightning2){
+            this.onLightningS2(shoot);
+       }
+    }
+    onLightningS1(data, playerX = 0){
+        let position = {
+            x: playerX || data.box.position.x,
+            y: 0,
+        }
+        var self = this;
+        let initialDataOfShoot = {
+            x0: position.x,
+            y0: position.y,
+            ang: 270,
+            power: 1000,
+            type: data.type,
+            ax: data.ax,
+            ay: data.ay,
+            wind_angle: data.wind_angle,
+            wind_power: data.wind_power,
+            account: data.account
+        };
+        self.shoots[self.shoots_count] = new Shoot(initialDataOfShoot); 
+                    self.shoots[self.shoots_count].stime = data.time * 2 - 100;
+                    self.shoots[self.shoots_count].exp = 8;
+                    self.shoots[self.shoots_count].img = null;
+                    self.shoots[self.shoots_count].is_lightning = 1;
+                    self.shoots[self.shoots_count].hole = {
+                        w: 42,
+                        h: 30
+                    };
 
+                    this.shoots_count++;
+                    self.shoot();
+    }
+    onLightningS2(data){
+        var self = this;
+        let initialDataOfShoot = [
+        {
+            x0: data.box.position.x + data.box.position.y,
+            y0: 0,
+            ang: 225,
+            power: 1000,
+            type: data.type,
+            ax: data.ax,
+            ay: data.ay,
+            wind_angle: data.wind_angle,
+            wind_power: data.wind_power,
+            account: data.account
+        },
+        {
+            x0: data.box.position.x - data.box.position.y,
+            y0: 0,
+            ang: 315,
+            power: 1000,
+            type: data.type,
+            ax: data.ax,
+            ay: data.ay,
+            wind_angle: data.wind_angle,
+            wind_power: data.wind_power,
+            account: data.account
+        }];
+        self.shoots[self.shoots_count] = new Shoot(initialDataOfShoot[0]); 
+                    self.shoots[self.shoots_count].stime = data.time * 2 - 100;
+                    self.shoots[self.shoots_count].exp = 1;
+                    self.shoots[self.shoots_count].img = null;
+                    self.shoots[self.shoots_count].is_lightning = 1;
+                    self.shoots[self.shoots_count].hole = {
+                        w: 42,
+                        h: 30
+                    };
+                    this.shoots_count++;
+
+                    self.shoots[self.shoots_count] = new Shoot(initialDataOfShoot[1]); 
+                    self.shoots[self.shoots_count].stime = data.time * 2 - 100;
+                    self.shoots[self.shoots_count].exp = 1;
+                    self.shoots[self.shoots_count].img = null;
+                    self.shoots[self.shoots_count].is_lightning = 1;
+                    self.shoots[self.shoots_count].hole = {
+                        w: 42,
+                        h: 30
+                    };
+                    this.shoots_count++;
+
+                    
+                    self.shoot();
     }
 };

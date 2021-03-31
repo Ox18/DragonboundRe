@@ -37,6 +37,17 @@ module.exports = class Shoot {
         this.chat_complete = false;
         this.v = new Vector2(this.ang, this.power);
         this.orbit = null;
+        this.explodeGhost = false;
+        this.is_lightning = null;
+        this.before = {
+            lightning: false,
+            lightning2: false,
+            thor: false,
+        };
+        this.hole = {
+            w: 10,
+            h: 10
+        }
         this.IsComplete = false;
         this.canCollide = false;
         this.damageComplete = false;
