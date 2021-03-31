@@ -2,6 +2,7 @@ var Types = require('./gametypes');
 var Account = require('./account');
 var Logger = require('./lib/logger');
 var Avatars = require('./avatars');
+const GameEngine = require('./GameEngine');
 // gameserver
 module.exports = class GameServer {
     constructor(id, maxPlayers, websocketserver) {
@@ -24,6 +25,7 @@ module.exports = class GameServer {
         this.avatars = new Avatars();
         this.mapControl = null;
         this.server_type = 0;
+        this.GameEngine = GameEngine;
 
         this.evento200 = true;
 

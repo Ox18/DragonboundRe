@@ -13,7 +13,7 @@ var constants = require('constants');
 var fs = require('fs');
 var tls = require('tls');
 var url = require('url');
-var WebSocketServer = require('uws').Server;
+var WebSocketServer = require('ws').Server;
 var Logger = require('./logger');
 
 var hbs = exphbs.create({

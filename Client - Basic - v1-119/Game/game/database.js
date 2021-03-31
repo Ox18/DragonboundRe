@@ -9,7 +9,7 @@ module.exports = class DataBase {
         this.connection = null;
         this.host = 'localhost';
         this.user = 'root';
-        this.password = 'wilmerdelgado';
+        this.password = '';
         this.database = 'dragonbound';
         
         this.connection = mysql.createPool({

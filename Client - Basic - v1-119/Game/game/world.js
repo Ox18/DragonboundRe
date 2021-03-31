@@ -70,7 +70,9 @@ module.exports = class World {
                 time: null,
                 hole: [],
                 damages: [],
-                ss: null
+                orbit: null,
+                ss: null,
+
             });
         }
     }
@@ -249,6 +251,7 @@ module.exports = class World {
                         });
                     }
                     if (shoot.isComplete) {
+                        if(shoot.groundCollide) onShootCollide(shoot);
                         this.shoots_data[this.shoots_complete].s.push(shoot.x0);
                         this.shoots_data[this.shoots_complete].s.push(shoot.y0);
                         this.shoots_data[this.shoots_complete].s.push(shoot.ang);
@@ -260,6 +263,7 @@ module.exports = class World {
                         this.shoots_data[this.shoots_complete].img = shoot.img;
                         this.shoots_data[this.shoots_complete].s.push(shoot.img);
                         this.shoots_data[this.shoots_complete].time = shoot.time * 2;
+                        this.shoots_data[this.shoots_complete].orbit = shoot.orbit;
                         var fx = shoot.ss > 0 ? shoot.ss : 0;
                         this.shoots_data[this.shoots_complete].ss = fx;
                         this.shoots_complete++;
@@ -289,5 +293,8 @@ module.exports = class World {
     calculateLimitYDown(map_detail){
         let { ground_size } = map_detail;
         return ground_size;    
+    }
+    onShootCollide(shoot){
+
     }
 };

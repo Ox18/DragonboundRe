@@ -8,7 +8,18 @@ var Vector = require('./vect');
 
 // Shoot
 module.exports = class Shoot {
-    constructor(x, y, ang, power, type, ax, ay, wind_ang, wind_power, account) {
+    constructor(data) {
+        let x = data.x0,
+            y = data.y0,
+            ang = data.ang, 
+            power = data.power,
+            type = data.type,
+            ax = data.ax,
+            ay = data.ay,
+            wind_ang = data.wind_ang,
+            wind_power = data.wind_power,
+            account = data.account;
+
         var self = this;
         this.x0 = x;
         this.y0 = y;
@@ -25,7 +36,7 @@ module.exports = class Shoot {
         this.wind_power = wind_power;
         this.chat_complete = false;
         this.v = new Vector2(this.ang, this.power);
-
+        this.orbit = null;
         this.IsComplete = false;
         this.canCollide = false;
         this.damageComplete = false;
@@ -134,17 +145,27 @@ module.exports = class Shoot {
 
     getPosAtTime() {
         var a = this.time / 485;
-        return {
+        let getPosAtTime = {
             x: Math.ceil(this.x0 + this.v.x * a + this.ax * a * a / 2),
             y: Math.ceil(this.y0 + this.v.y * a + this.ay * a * a / 2)
         };
+        let b = this.orbit ? this.GetPosAtTimeOrbit(this.time, this.orbit[0], this.orbit[1], this.orbit[2], this.orbit[3]) : getPosAtTime;
+        return b;
     }
-
+    GetPosAtTimeOrbit(a, b, c, d, e){
+        var a = a / 485,
+            f = this.y0 + this.v.y * a + this.ay * a * a / 2;
+        return {
+            x: Math.round(this.x0 + this.v.x * a + this.ax * a * a / 2 + (a >= d ? e : e * a / d) * Math.cos(AngleToRad(b + c * a))),
+            y: Math.round(f - (a >= d ? e : e * a / d) * Math.sin(AngleToRad(b + c * a)))
+        }
+    }
     GetAngleAtTime(a) {
         var b = this.getPosAtTime(a - 5);
         a = this.getPosAtTime(a + 5);
         return RadToAngle(Math.atan2(a.y - b.y, a.x - b.x));
     }
+
 };
 
 function Vector2(a, b) {
