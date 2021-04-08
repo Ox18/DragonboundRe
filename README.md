@@ -84,10 +84,6 @@ node game.js
 
 All repositories/programs that copies this repository must include the following line:
 
--   Copyright (C) 2021, Wilmer Delgado.  [wilmer.delgadoalama09@gmail.com](mailto:wilmer.delgadoalama09@gmail.com)
-
-Copyright (C) 2021, Wilmer Delgado  [wilmer.delgadoalama09@gmail.com](mailto:wilmer.delgadoalama09@gmail.com)
-
 This file is part of SocialBound-HTML5
 
 SocialBound-HMTL5 is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
