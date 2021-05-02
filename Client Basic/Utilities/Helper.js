@@ -47,10 +47,12 @@ class Helper {
         return 0 <= d && d === a.length - c.length;
     }
     Vector(a, b) {
-        this.ang = a;
-        this.size = b;
-        this.x = Math.cos(this.AngleToRad(a)) * b;
-        this.y = -Math.sin(this.AngleToRad(a)) * b;
+        return {
+            ang: a,
+            size: b,
+            x: Math.cos(this.AngleToRad(a)) * b,
+            y: -Math.sin(this.AngleToRad(a)) * b
+        };
     }
     Dist2Points(a, b, c, d) {
         return Math.hypot(c - a, d - b);
