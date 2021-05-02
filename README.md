@@ -2,7 +2,7 @@
 # SocialBound 
 > is a game engine based on the Dragonbound game
 
-**Discord Group** :speech_balloon: www.discord.gg/TXedzyxE
+**Discord Group** :speech_balloon: https://discord.gg/yHRNz4Ys
 
 <br>
 
@@ -33,17 +33,6 @@
 - NodeJS (v6.8)
 - MySQL
 
-### Install Modules:
-```
-npm install
-```
-
-### Run server:
-```
-node web.js
-node game.js
-```
-<br><br>
 # 2. Server Advanced
 ### Utilities:
 - [DataBase.sql](https://github.com/alexwathever/Openbound-HTML5/blob/main/Client%20-%20Advanced%20-%20v120/DataBase/game.sql)
@@ -71,14 +60,6 @@ node game.js
 -   [rayjencode](https://github.com/rayjencode/) (Melon Shake)
 -   [AndrewC](https://github.com/rksmw/) (AndrewC)
 
-### Bug Reports/Testers
-
--   ...
-
-### Game client assets
-
-- ....
-<br>
 
 ## Licence and copyright
 
