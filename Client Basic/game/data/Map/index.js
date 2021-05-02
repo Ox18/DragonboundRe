@@ -66,7 +66,7 @@ module.export = class Map{
         return this.MapList().filter( map => map.ID === mapID);
     }
     GetRandomMap(){
-        let max = this.MapList().length;
+        let max = this.MapList().length - 1;
         return this.MapList()[Helper.random(0, max)];
     }
 };
