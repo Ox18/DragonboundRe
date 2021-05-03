@@ -1,4 +1,4 @@
-const Helper = require("../../../Utilities/Helper");
+const Helper = require("../Utilities/Helper");
 
 class MapData{
     constructor(ID, Name, SpawnPoints, w, h, ground_size, offset_x, offset_y){
