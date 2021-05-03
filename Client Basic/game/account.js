@@ -989,12 +989,14 @@ module.exports = class Account {
     send(data) {
         this.connection.send(data);
     }
-
     sendMessage(message) {
         message = message.serialize();
         this.connection.send(message);
     }
-
+    SendAlert(title, message){
+        var self = this;
+        self.sendMessage(new Message.alertResponse(title, message));
+    }
     onExit(callback) {
         this.exit_callback = callback;
     }
