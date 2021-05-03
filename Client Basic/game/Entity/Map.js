@@ -13,7 +13,58 @@ class MapData{
     }
 };
 
-module.export = class Map{
+class Map{
+    constructor(){
+        this.type = {
+            CUSTOM: -2,
+            RANDOM: -1,
+            MIRAMO: 0,
+            NIRVANA: 1,
+            METRO: 2,
+            SEA: 3,
+            ADIUM: 4,
+            DRAGON: 5,
+            COZY: 6,
+            DUMMY: 7,
+            STAR: 8,
+            METAMINE: 9,
+            CAVE: 10,
+            SECRET: 11,
+            ICECAVE: 12,
+            TREEOFLIFE: 13,
+            ICEFISH: 14,
+            SOCCER: 15,
+            CANDY: 16,
+            MONSTER: 17,
+            MIRAMO2: 18,
+            NIRVANA2: 19,
+            METRO2: 20,
+            SEA2: 21,
+            AUDIM2: 22,
+            DRAGON2: 23,
+            COZY2: 24,
+            DUMMY2: 25,
+            STAR2: 26,
+            METAMINE2: 27,
+            LOVEYOU: 28,
+            LOVEYOU2: 29,
+            LOND: 30,
+            LOND2: 31,
+            DESERT: 32,
+            DESERT2: 33,
+            GRAY: 34,
+            GRAY2: 35,
+            JUNGLE: 36,
+            JUNGLE2: 37,
+            MYROOM: 38,
+            MYROOM2: 39,
+            DUMMY3: 40,
+            ADIUM3: 41,
+            MEGAMINE: 42,
+            MINIMINE: 43,
+            NUMBER_OF_MAPS: 44
+        };
+    }
     MapList(){
         return [
         new MapData(0, 'Dragon Lava', [[100,22]], 1766, 456, 1800, 17, 1344),
@@ -70,3 +121,6 @@ module.export = class Map{
         return this.MapList()[Helper.random(0, max)];
     }
 };
+
+const map = new Map();
+module.exports = map;

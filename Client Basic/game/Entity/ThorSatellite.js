@@ -1,6 +1,6 @@
 const Helper = require("../Utilities/Helper");
 
-module.exports = class Thor{
+module.exports = class ThorSatellite{
     constructor(){
         this.x = this.GetRandomX();
         this.y = this.GetRandomY();

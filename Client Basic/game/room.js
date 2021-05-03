@@ -4,6 +4,7 @@ var Message = require('./lib/message');
 var Game = require('./game');
 var Logger = require('./lib/logger');
 require('setimmediate');
+const Map = require('./Entity/Map');
 
 // room
 module.exports = class Room {
@@ -32,6 +33,7 @@ module.exports = class Room {
 
         this.look = 0;
         this.map = -1;
+        this.map_random = true;
         this.power = 0;
         this.max_wind = 0;
         this.gp_rate = 0;
@@ -58,7 +60,23 @@ module.exports = class Room {
             this.look = 1;
         }
     }
-
+    SetMap(id){
+        var self = this;
+        self.map = id;
+        self.map_random = id === Map.type.RANDOM;
+    }
+    LoadMap(){
+        var self = this;
+        const map_random = self.map === Map.type.RANDOM;
+        const game_boss = self.game_mode === Types.GAME_MODE.BOSS;
+        const is_random = map_random || game_boss;
+        (is_random) && (self.map = Map.GetRandomMap().ID);
+    }
+    ReloadMap(){
+        var self = this;
+        const map_is_random = self.map_random;
+        (map_is_random) && (self.SetMap(Map.type.RANDOM));
+    }
     addBot(bot) {
         var self = this;
         this.team_bots[bot.user_id] = bot.user_id;
@@ -162,11 +180,7 @@ module.exports = class Room {
         var self = this;
         if (self.status === Types.ROOM_STATUS.WAITING || self.status === Types.ROOM_STATUS.FULL) {
             if (((self.player_count > 0) && self.game_mode === Types.GAME_MODE.BOSS) || ((self.player_count > 1) && self.game_mode === Types.GAME_MODE.NORMAL && self.team_a_count === self.team_b_count)) {
-                var mlng = Types.MAPS_PLAY.length;
-                var rnmap = self.RandomInt(0, mlng);
-                self.map = Types.MAPS_PLAY[rnmap];
-
-                //Logger.debug("map: " + self.map);
+                self.LoadMap();
                 self.game = new Game(self.id, self, self.gameserver);
                 if (self.game) {
                     self.status = Types.ROOM_STATUS.PLAYING;
@@ -174,11 +188,9 @@ module.exports = class Room {
                         self.gameserver.pushToRoom(self.id, new Message.gameStart(self));
                     });
                     self.game.onGameEnd(function (team) {
+                        self.ReloadMap();
                         Logger.debug("Game End: " + self.id + " win team: " + team);
                         var checkt = true;
-                        /*var check_time = self.game.time_played + 30 * 1000;
-                        if (check_time < Date.now())
-                            checkt = true;*/
                         self.forPlayers(function (account) {
                             let player = account.player;
                             if (typeof (account) !== 'undefined') {

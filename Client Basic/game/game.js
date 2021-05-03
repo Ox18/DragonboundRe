@@ -3,8 +3,8 @@ var Logger = require('./lib/logger');
 var Message = require('./lib/message');
 var World = require('./world');
 var Shoot = require('./lib/shoot');
+const ThorSatellite = require('./Entity/ThorSatellite');
 
-// Game
 module.exports = class Game {
     constructor(id, room, gameserver) {
         var self = this;
@@ -17,12 +17,7 @@ module.exports = class Game {
         this.time_played = 0;
         this.turn_player = 0;
         this.gameEnd_callback = null;
-        this.thor = {
-            x: 500,
-            y: -200,
-            angle: 260,
-            damage: 100
-        };
+        this.thor = new ThorSatellite();
         this.map = self.gameserver.mapControl.getMap(room.map);
         this.world = new World(self, self.gameserver);
         this.world.onShootComplete(function (acc, shoot, chat) {
