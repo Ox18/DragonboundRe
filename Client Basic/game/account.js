@@ -1000,7 +1000,6 @@ module.exports = class Account {
     onExit(callback) {
         this.exit_callback = callback;
     }
-
     update() {
         var self = this;
         if (self.room) {
