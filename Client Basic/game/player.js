@@ -72,7 +72,6 @@ module.exports = class player {
         this.gm = data.gm;
         this.is_muted = data.is_muted;
         this.country = data.country;
-
         this.x = 0;
         this.y = 0;
         this.body = 0;
@@ -98,35 +97,6 @@ module.exports = class player {
         this.relationship_with_photo = '';
         this.relationship_with_name = '';
         this.relationship_with_gender = '';
-        if (this.user_id === 1) {
-            this.relationship_status = 'm';
-            this.relationship_with_id = 850;
-            this.relationship_with_rank = 26;
-            this.relationship_with_photo = 'http://image.prntscr.com/image/ed024f398bf14facbfac8bf0340e5c7b.jpg';
-            this.relationship_with_name = 'Yabi';
-            this.relationship_with_gender = 'f';
-        } else if (this.user_id === 850) {
-            this.relationship_status = 'm';
-            this.relationship_with_id = 1;
-            this.relationship_with_rank = 27;
-            this.relationship_with_photo = 'http://i.imgur.com/WKLv6jI.jpg';
-            this.relationship_with_name = 'Dev';
-            this.relationship_with_gender = 'fm';
-        } else if (this.user_id === 36) {
-            this.relationship_status = 'm';
-            this.relationship_with_id = 2;
-            this.relationship_with_rank = 27;
-            this.relationship_with_photo = 'http://i.imgur.com/rDvaR5P.png';
-            this.relationship_with_name = 'Betax';
-            this.relationship_with_gender = 'm';
-        } else if (this.user_id === 2) {
-            this.relationship_status = 'm';
-            this.relationship_with_id = 36;
-            this.relationship_with_rank = 12;
-            this.relationship_with_photo = 'http://i.imgur.com/LpEEVkG.gif';
-            this.relationship_with_name = 'Frostwhisper';
-            this.relationship_with_gender = 'm';
-        }
         this.maps_pack = 0;
         this.guild_score = 0;
     }

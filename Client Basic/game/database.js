@@ -16,7 +16,7 @@ module.exports = class DataBase {
             host: self.host,
             user: self.user,
             password: self.password,
-            database: self.database
+            database: self.database,
         });
         if (this.connection !== null) {
             Logger.normal("MYSQL Connect!");
