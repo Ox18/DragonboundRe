@@ -10,7 +10,6 @@
  * You should have received a copy of the GNU General Public License along with SocialBound. If not, see http://www.gnu.org/licenses/.
  */
 
-const { IsSpecial } = require("../../Entity/Mobile");
 const Mobile = require("../../Entity/Mobile");
 
 class MobileHandler{

@@ -802,7 +802,7 @@ module.exports = class Account {
                     const isValid = MobileHandler.GuessValid(mobileSelected, self.player);
                     if(inRoom){
                         if(isValid){
-                            self.player.mobile = mobile_number;
+                            self.player.mobile = mobileSelected;
                             self.gameserver.pushToRoom(self.room.id, new Message.changedMobile(self));
                         }else{
                             self.SendAlert("Mobile oculto","El mobile que intentas selccionar no se encuentra disponible");
