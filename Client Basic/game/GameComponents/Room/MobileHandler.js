@@ -10,24 +10,25 @@
  * You should have received a copy of the GNU General Public License along with SocialBound. If not, see http://www.gnu.org/licenses/.
  */
 
+const { IsSpecial } = require("../../Entity/Mobile");
 const Mobile = require("../../Entity/Mobile");
 
 class MobileHandler{
-    GuessMobile(inRoom, mobile_number, haveFox, isGM){
-        const isIn = Mobile.CheckMobile(mobile_number);
-        const isFox = mobile_number === Mobile.FOX;
-        const isSpecial = Mobile.IsSpecial(mobile_number);
-        let validated = false;
-        if(inRoom && isIn){
+    GuessValid(mobileSelected, player){
+        const isIn = Mobile.CheckMobile(mobileSelected);
+        const isFox = mobileSelected === Mobile.FOX;
+        const isSpecial = Mobile.IsSpecial(mobileSelected);
+        let isValid = false;
+        if(isIn){
             if(isFox){
-                if(haveFox) validated = true;
+                if(player.mobile_fox) isValid = true;
             }
             else if(isSpecial){
-                if(isGM) validated = true;
+                if(player.gm) isValid = true;
             }
-            else validated = true;
+            else isValid = true;
         }
-        return validated;
+        return isValid;
     }
 }
 const mobileHandler = new MobileHandler();

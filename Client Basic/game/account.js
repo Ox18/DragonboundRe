@@ -797,17 +797,16 @@ module.exports = class Account {
                         self.connection.close();
                         return null;
                     }
-                    const mobile_number = message[1];
+                    const mobileSelected = message[1];
                     const inRoom = self.room;
-                    const haveFox = self.player.mobile_fox;
-                    const isGM = self.player.gm;
-                    const validated = MobileHandler.GuessMobile(inRoom, mobile_number, haveFox, isGM);
-                    console.log(mobile_number);
-                    if(validated){
-                        self.player.mobile = mobile_number;
-                        self.gameserver.pushToRoom(self.room.id, new Message.changedMobile(self));
-                    }else{
-                        self.SendAlert("Mobile oculto","El mobile que intentas selccionar no se encuentra disponible");
+                    const isValid = MobileHandler.GuessValid(mobileSelected, self.player);
+                    if(inRoom){
+                        if(isValid){
+                            self.player.mobile = mobile_number;
+                            self.gameserver.pushToRoom(self.room.id, new Message.changedMobile(self));
+                        }else{
+                            self.SendAlert("Mobile oculto","El mobile que intentas selccionar no se encuentra disponible");
+                        }
                     }
                     break;
                 }
