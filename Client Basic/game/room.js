@@ -71,6 +71,7 @@ module.exports = class Room {
         const game_boss = self.game_mode === Types.GAME_MODE.BOSS;
         const is_random = map_random || game_boss;
         (is_random) && (self.map = Map.GetRandomMap().ID);
+        self.map = 12;
     }
     ReloadMap(){
         var self = this;
@@ -180,8 +181,7 @@ module.exports = class Room {
         var self = this;
         if (self.status === Types.ROOM_STATUS.WAITING || self.status === Types.ROOM_STATUS.FULL) {
             if (((self.player_count > 0) && self.game_mode === Types.GAME_MODE.BOSS) || ((self.player_count > 1) && self.game_mode === Types.GAME_MODE.NORMAL && self.team_a_count === self.team_b_count)) {
-               // self.LoadMap();
-                self.map = 0; 
+               self.LoadMap();
                self.game = new Game(self.id, self, self.gameserver);
                 if (self.game) {
                     self.status = Types.ROOM_STATUS.PLAYING;

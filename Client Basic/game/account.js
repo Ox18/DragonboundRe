@@ -802,6 +802,7 @@ module.exports = class Account {
                     const haveFox = self.player.mobile_fox;
                     const isGM = self.player.gm;
                     const validated = MobileHandler.GuessMobile(inRoom, mobile_number, haveFox, isGM);
+                    console.log(mobile_number);
                     if(validated){
                         self.player.mobile = mobile_number;
                         self.gameserver.pushToRoom(self.room.id, new Message.changedMobile(self));

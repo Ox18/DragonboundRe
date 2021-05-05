@@ -4,6 +4,7 @@ var Message = require('./lib/message');
 var World = require('./world');
 var Shoot = require('./lib/shoot');
 const ThorSatellite = require('./Entity/ThorSatellite');
+const Map = require('./Entity/Map');
 
 module.exports = class Game {
     constructor(id, room, gameserver) {
@@ -75,10 +76,9 @@ module.exports = class Game {
         self.room.forPlayers(function (account) {
             if (account !== null) {
                 let player = account.player;
-                var point = self.map.GetPoint();
-                //Logger.debug("point: " + point.x + " " + point.y);
-                player.x = point.x;
-                player.y = point.y;
+                var point = self.map === Map.type.ICECAVE ? Map.GetRandomPoint(Map.type.ICECAVE) :self.map.GetPoint();
+                player.x = 584// point.x;
+                player.y = 891//point.y;
                 player.reloadHp();
             }
         });
