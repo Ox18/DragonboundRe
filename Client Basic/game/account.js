@@ -8,7 +8,7 @@ var ignoreCase = require('ignore-case');
 var mysql = require('mysql');
 var Commands = require('./commands');
 const ItemHandler = require("./GameComponents/Game/ItemHandler");
-                
+const Mobile = require("./Entity/Mobile");
 // account
 module.exports = class Account {
     constructor(connection, gameserver) {
@@ -793,18 +793,28 @@ module.exports = class Account {
                 }
             case Types.CLIENT_OPCODE.mobile:
                 {
-                    // seguridad
                     if (!self.login_complete) {
                         self.connection.close();
                         return null;
                     }
-                    var _mob = message[1];
-                    if (self.room) {
-                        if (typeof (Types.MOBILES[_mob]) != 'undefined' && Types.MOBILES[_mob] !== null) {
-                            if (_mob == Types.MOBILE.RANDOM)
-                                _mob = Types.MOBILE.MAGE;
-                            self.player.mobile = _mob;
+                    const mobile_number = message[1];
+                    const inRoom = self.room;
+                    const isIn = Mobile.CheckMobile(mobile_number);
+                    const isFox = mobile_number === Mobile.FOX;
+                    const haveFox = self.player.mobile_fox;
+                    const isSpecial = Mobile.IsSpecial(mobile_number);
+                    const isGM = self.player.gm;
+                    let isValid = false;
+                    if(inRoom && isIn){
+                        if(isFox || isSpecial){
+                            if(haveFox || isGM) isValid = true;
+                        }
+                        else isValid = true;
+                        if(isValid){
+                            self.player.mobile = mobile_number;
                             self.gameserver.pushToRoom(self.room.id, new Message.changedMobile(self));
+                        }else{
+                            self.SendAlert("Mobile oculto","El mobile que intentas selccionar no se encuentra disponible")
                         }
                     }
                     break;

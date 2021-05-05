@@ -6,10 +6,10 @@ module.exports = class DataBase {
     constructor() {
         var self = this;
         this.connection = null;
-        this.host = 'localhost';
-        this.user = 'root';
-        this.password = '';
-        this.database = 'dragonbound';
+        this.host = 'bb7wlsmmkpvbgeqncbjs-mysql.services.clever-cloud.com';
+        this.user = 'uzvmgnykhpt1bxzj';
+        this.password = 'rYrXe0lsxZ01Z8qoJCd6';
+        this.database = 'bb7wlsmmkpvbgeqncbjs';
         
         this.connection = mysql.createPool({
             connectionLimit: 500,
