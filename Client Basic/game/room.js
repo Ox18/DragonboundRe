@@ -71,7 +71,6 @@ module.exports = class Room {
         const game_boss = self.game_mode === Types.GAME_MODE.BOSS;
         const is_random = map_random || game_boss;
         (is_random) && (self.map = Map.GetRandomMap().ID);
-        self.map = 12;
     }
     ReloadMap(){
         var self = this;

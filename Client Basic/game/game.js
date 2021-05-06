@@ -76,9 +76,9 @@ module.exports = class Game {
         self.room.forPlayers(function (account) {
             if (account !== null) {
                 let player = account.player;
-                var point = self.map === Map.type.ICECAVE ? Map.GetRandomPoint(Map.type.ICECAVE) :self.map.GetPoint();
-                player.x = 584// point.x;
-                player.y = 891//point.y;
+                var point = self.map.GetPoint();
+                player.x = point.x;
+                player.y = point.y;
                 player.reloadHp();
             }
         });
