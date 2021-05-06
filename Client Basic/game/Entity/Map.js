@@ -20,7 +20,7 @@ const PivotMap = {
                 x: [-a, c + a],
                 y: [-b - g, e - b + (2 * d)]
             },
-            marein: {
+            margin: {
                 x: [-a - f, c + a + f],
                 y: [-b - g, e - b + (2 * d) + f],
             }

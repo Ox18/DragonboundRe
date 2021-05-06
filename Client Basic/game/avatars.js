@@ -9,7 +9,22 @@ module.exports = Avatars = cls.Class.extend({
     init: function () {
 
     },
-
+    getAvatarAlert: function(avatarID){
+        const avatar = this.ConvertArrayToObject(this.getAvatar(avatarID));
+        return [avatar.ID, 1, 0, avatar.name];
+    },
+    ConvertArrayToObject: function(avatar){
+        return {
+            ID: avatar[0],
+            number: avatar[1],
+            type: avatar[2],
+            gender: avatar[3],
+            name: avatar[4],
+            namefile: avatar[5],
+            other: avatar[6],
+            animation: avatar[7]
+        };
+    },
     getAvatar: function (id) {
         //Logger.log("getAvatar: " + id);
         var itm = [];

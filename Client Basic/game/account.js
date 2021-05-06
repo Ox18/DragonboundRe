@@ -153,16 +153,24 @@ module.exports = class Account {
                         self.connection.close();
                         return null;
                     }
-                    let _msj = message[1];
-                    if (_msj.length > 35) { } else if (self.player.megaphones > 0) {
-                        _msj = _msj.replace("<", "");
-                        _msj = _msj.replace(">", "");
-                        _msj = _msj.replace("alert", "");
-                        _msj = _msj.replace("\\", "");
-                        _msj = _msj.replace("//", "");
-                        _msj = _msj.replace("%", "");
-                        self.gameserver.pushBroadcast(new Message.chatResponse(self, _msj, Types.CHAT_TYPE.BUGLE));
-                        self.player.megaphones -= 1;
+                    const BcmHandler = require("./GameComponents/Channel/BcmHandler");
+                    const message = BcmHandler.ConvertExpressToText(message[1]);
+                    const haveBcm = BcmHandler.GuessValidHave(player);
+                    const isLong = BcmHandler.GuessLongValid(message);
+                    
+                    if(haveBcm){
+                        if(isLong){
+                            self.SendAlert("Sorry, a find error", "Your message is long");
+                        }
+                        else{
+                            self.gameserver.pushBroadcastChat(new Message.chatResponse(self, message, Types.CHAT_TYPE.BUGLE));
+                            self.player.megaphones -= 1;
+                            // add function to save in channel chat (buggle)
+                            // add function to save in page /Broadcast 
+                        }
+                    }else{
+                        self.sendMessage(new Message.alert2Response(Types.ALERT2_TYPES.NEED_ITEM, self.gameserver.avatars.getAvatarAlert(894)));
+                        return null;
                     }
                     break;
                 }
