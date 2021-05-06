@@ -21,7 +21,7 @@ const PivotMap = {
                 y: [-b - g, e - b + (2 * d)]
             },
             marein: {
-                x: [-a - m, c + a + f],
+                x: [-a - f, c + a + f],
                 y: [-b - g, e - b + (2 * d) + f],
             }
         }       
