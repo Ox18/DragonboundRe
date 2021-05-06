@@ -13,16 +13,16 @@
 const Helper = require("../Utilities/Helper");
 const PivotMap = {
     Scope(a, b, c, d, e){
-        const m = 200;
-        const l = 2500;
+        const f = 200;
+        const g = 2500;
         return {
             normal: {
                 x: [-a, c + a],
-                y: [-b - l, e - b + (2 * d)]
+                y: [-b - g, e - b + (2 * d)]
             },
             marein: {
-                x: [-a - m, c + a + m],
-                y: [-b - l, e - b + (2 * d) + m],
+                x: [-a - m, c + a + f],
+                y: [-b - g, e - b + (2 * d) + f],
             }
         }       
     }
