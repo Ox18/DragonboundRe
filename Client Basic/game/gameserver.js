@@ -4,10 +4,10 @@ var Logger = require('./lib/logger');
 var Avatars = require('./avatars');
 // gameserver
 module.exports = class GameServer {
-    constructor(id, maxPlayers, websocketserver) {
+    constructor(ServerData, websocketserver) {
         var self = this;
-        this.id = id;
-        this.maxPlayers = maxPlayers;
+        this.id = ServerData.ID;
+        this.maxPlayers = ServerData.ID;
         this.server = websocketserver;
         this.accounts = {};
         this.bots = {};
@@ -17,22 +17,16 @@ module.exports = class GameServer {
         this.outgoingQueues = {};
         this.ups = 50;
         this.db = null;
-        this.ver = 86;
-        this.name = 'Dev';
+        this.ver = ServerData.Version;
+        this.name = ServerData.Name;
         this.room_ids = [];
         this.bot_ids = [];
         this.avatars = new Avatars();
         this.mapControl = null;
-        this.server_type = 0;
-
-        this.evento200 = true;
-
-        if (process.env.vps === "1" || process.env.vps === "2")
-            this.server_type = 0;
-        else {
-            this.name = "Boss";
-            this.server_type = 0;
-        }
+        this.server_type = ServerData.Server_type;
+        this.evento200 = ServerData.EventGP;
+        this.tournament = ServerData.Tournament;
+        this.LobbyText = ServerData.LobbyText;
 
         this.onAccountConnect(function (account) {
             account.send([Types.SERVER_OPCODE.hi, self.ver, self.name, self.server_type, 0]);
@@ -64,10 +58,6 @@ module.exports = class GameServer {
                 self.sendAccountsOnline();
                 account = null;
             });
-
-            /*account.onBroadcast(function(message, ignoreSelf) {
-                self.pushToAdjacentGroups(account.group, message, ignoreSelf ? account.id : null)
-            });*/
         });
     }
 

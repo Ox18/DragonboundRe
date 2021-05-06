@@ -167,6 +167,7 @@ module.exports = class Account {
                             self.player.megaphones -= 1;
                             // add function to save in channel chat (buggle)
                             // add function to save in page /Broadcast 
+                            // add function to update megaphone in BD
                         }
                     }else{
                         self.sendMessage(new Message.alert2Response(Types.ALERT2_TYPES.NEED_ITEM, self.gameserver.avatars.getAvatarAlert(894)));

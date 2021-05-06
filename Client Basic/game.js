@@ -5,17 +5,15 @@ var Logger = require('./game/lib/logger');
 var GameServer = require('./game/gameserver');
 var Account = require('./game/account');
 var MapController = require('./game/lib/mapController');
+var ServerData = require('./game/Network/ServerData');
 
 var port = 8000;
 
-
-var loadx = process.env.vps === '1' ? false : true;
 var self = this;
-Logger.Init("game.txt");
 this.db = new DataBase();
-mapControll = new MapController(loadx);
+mapControll = new MapController(true);
 server = new ws(port);
-game = new GameServer(1, 500, server);
+game = new GameServer(ServerData[0], server);
 game.db = this.db;
 game.mapControl = mapControll;
 
