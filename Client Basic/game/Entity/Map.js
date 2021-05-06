@@ -11,7 +11,22 @@
  */
 
 const Helper = require("../Utilities/Helper");
-
+const PivotMap = {
+    Scope(a, b, c, d, e){
+        const m = 200;
+        const l = 2500;
+        return {
+            normal: {
+                x: [-a, c + a],
+                y: [-b - l, e - b + (2 * d)]
+            },
+            marein: {
+                x: [-a - m, c + a + m],
+                y: [-b - l, e - b + (2 * d) + m],
+            }
+        }       
+    }
+}
 class MapData {
     constructor(ID, Name, SpawnPoints, w, h, ground_size, offset_x, offset_y) {
         this.ID = ID;
@@ -22,28 +37,7 @@ class MapData {
         this.ground_size = ground_size;
         this.offset_x = offset_x;
         this.offset_y = offset_y;
-        this.pivot = {
-            x: {
-                normal: [
-                    -offset_x,
-                    w + offset_x
-                ],
-                margin: [
-                    -offset_x - 200,
-                    w + offset_x + 200
-                ]
-            },
-            y: {
-                normal: [
-                    -offset_y - 2500,
-                    ground_size - offset_y + (2 * w)
-                ],
-                margin: [
-                    -offset_y - 2500,
-                    ground_size - offset_y + (2 * w) + 200
-                ]
-            }
-        }
+        this.pivot = PivotMap.Scope(offset_x, offset_y, w, h, ground_size); 
     }
 };
 
