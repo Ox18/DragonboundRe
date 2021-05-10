@@ -2,7 +2,7 @@ const ServerData = [
     {
         ID: 0,
         MaxPlayers: 200,
-        Version: 96,
+        Version: 86,
         Name: "Normal",
         Server_type: 0,
         EventGP: false,
