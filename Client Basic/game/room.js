@@ -400,7 +400,12 @@ module.exports = class Room {
             }
         }
     }
-
+    RoomUpdate(room_options) {
+        var self = this;
+        self.room_options = room_options;
+        self.gameserver.pushToRoom(self.id, new Message.roomState(self));
+        self.gameserver.pushToRoom(self.id, new Message.roomPlayers(self), null);
+    }
     RoomTitle(title) {
         var self = this;
         self.title = title;

@@ -504,6 +504,29 @@ module.exports = class Account {
                     }
                     break;
                 }
+            case Types.CLIENT_OPCODE.room_options:
+                {
+                    // seguridad
+                    if (!self.login_complete) {
+                        self.connection.close();
+                        return null;
+                    }
+                    const isMaster = self.player.is_master === 1;
+                    const inRoom = self.room;
+                    if (isMaster && inRoom) {
+                        self.room.max_players = message[1];
+                        self.room.game_mode = message[2];
+                        self.room.map = message[3];
+                        self.room.is_avatars_on = message[4];
+                        self.room.max_wind = message[5];
+                        self.room.is_s1_disabled = message[7];/*6*/
+                        self.room.is_tele_disabled = message[8];/*7*/
+                        self.room.is_random_teams = message[9];/*8*/
+                        self.room.is_dual_plus_disabled = message[10];/*9*/
+                        self.room.RoomUpdate(self);
+                    }
+                    break;
+                }
             case Types.CLIENT_OPCODE.guild_approved:
                 {
                     // seguridad
@@ -690,11 +713,6 @@ module.exports = class Account {
                         self.connection.close();
                         return null;
                     }
-
-                    /*if ((self.player.rank >= 27) === false) {
-                        return null;
-                    }*/
-
                     let id = self.gameserver.getIdforRoom();
                     let title = message[1];
                     let password = message[2];
@@ -722,10 +740,14 @@ module.exports = class Account {
                         self.connection.close();
                         return null;
                     }
-                    var _title1 = message[1];
-                    if (self.room) {
-                        self.room.RoomTitle(_title1);
-                    }
+                    
+                    const title = message[1];
+                    const isMaster = self.player.is_master;
+                    const inRoom = self.room;
+                    const isValid = isMaster && inRoom;
+                     
+                    if(isValid) self.room.RoomTitle(title), self.room.RoomUpdate(self)
+
                     break;
                 }
             case Types.CLIENT_OPCODE.room_change_ready:

@@ -83,6 +83,19 @@ Messages.changedReady = Message.extend({
     }
 });
 
+Messages.changedReady = Message.extend({
+    init: function (account) {
+        this.player = account.player;
+    },
+    serialize: function () {
+        return [
+            Types.SERVER_OPCODE.changed_ready,
+            this.player.user_id,
+            this.player.is_ready
+        ];
+    }
+});
+
 Messages.passMaster = Message.extend({
     init: function (account) {
         this.player = account.player;
