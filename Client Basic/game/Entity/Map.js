@@ -142,7 +142,7 @@ class Map {
         ];
     }
     GetMap(mapID) {
-        return this.MapList().filter(map => map.ID === mapID);
+        return this.MapList().filter(map => map.ID === mapID)[0];
     }
     GetRandomPoint(mapID){
         const map = this.MapList[mapID];
