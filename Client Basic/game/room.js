@@ -9,29 +9,21 @@ const Map = require('./Entity/Map');
 // room
 module.exports = class Room {
     constructor(id, title, password, max_players, game_mode, gameserver) {
-        var self = this;
         this.id = id;
-        this.max_players = 2; //max_players;
-        if (process.env.vps === '1' || process.env.vps === '2') {
-            this.game_mode = Types.GAME_MODE.NORMAL;
-        } else {
-            this.game_mode = Types.GAME_MODE.BOSS; //game_mode;
-        }
+        this.max_players = max_players; 
+        this.game_mode = game_mode;
         this.gameserver = gameserver;
         this.title = title;
         this.password = password;
-
         this.team_a = {};
         this.team_a_gp = 0;
         this.team_a_count = 0;
         this.team_b = {};
         this.team_b_gp = 0;
         this.team_b_count = 0;
-
         this.team_bots = {};
         this.team_bots_count = 0;
-
-        this.look = 0;
+        this.look = this.password.length;
         this.map = -1;
         this.map_random = true;
         this.power = 0;
@@ -39,26 +31,19 @@ module.exports = class Room {
         this.gp_rate = 0;
         this.minimap = 0;
         this.room_type = 1;
-
         this.is_s1_disabled = 0;
+        this.event_game = 0;
         this.is_tele_disabled = 0;
         this.is_random_teams = 0;
         this.is_avatars_on = 1;
         this.is_dual_plus_disabled = 0;
         this.player_count = 0;
-
-        this.frist_turn = 0;
-
+        this.first_turn = 0;
         this.canremove = false;
-
         this.status = Types.ROOM_STATUS.WAITING;
         this.game = null;
         this.masterTimeCall = null;
         this.masterTimeTick = 20;
-
-        if (this.password.length > 0) {
-            this.look = 1;
-        }
     }
     SetMap(id){
         var self = this;

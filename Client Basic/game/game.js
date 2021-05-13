@@ -5,6 +5,7 @@ var World = require('./world');
 var Shoot = require('./lib/shoot');
 const ThorSatellite = require('./Entity/ThorSatellite');
 const Map = require('./Entity/Map');
+const Helper = require('./Utilities/Helper');
 
 module.exports = class Game {
     constructor(id, room, gameserver) {
@@ -17,6 +18,7 @@ module.exports = class Game {
         this.frist_turn = 0;
         this.time_played = 0;
         this.turn_player = 0;
+        this.weather = [0,0,0,0,0];
         this.gameEnd_callback = null;
         this.thor = new ThorSatellite();
         this.map = self.gameserver.mapControl.getMap(room.map);
@@ -266,6 +268,7 @@ module.exports = class Game {
             this.world.shoots_count = 1;
         }
         this.world.run();
+        this.PushWeather();
     }
 
     getNextTurn(callback) {
@@ -318,8 +321,13 @@ module.exports = class Game {
                 self.gameserver.pushToRoom(self.room.id, new Message.gamePass(account, player, self.room));
             } else {}
         });
+        self.PushWeather();
     }
-
+    PushWeather(){
+        const nextWeather = Helper.random(-1, 1);
+        this.weather.shift();
+        this.weather.push(nextWeather);
+    }
     onGameEnd(callback) {
         this.gameEnd_callback = callback;
     }

@@ -278,7 +278,7 @@ Messages.gameStart = Message.extend({
                     player.abackground,
                     player.aforeground,
                 ],
-                mob_data.aim[0][0],//aim_s1_ang aim_s1_len aim_s2_ang aim_s2_len aim_ss_ang aim_ss_len 
+                mob_data.aim[0][0],
                 mob_data.aim[0][1],
                 mob_data.aim[1][0],
                 mob_data.aim[1][1],
@@ -288,24 +288,20 @@ Messages.gameStart = Message.extend({
                 player.country
             ]);
         });
-
-        //players first_turn thor_x thor_y thor_a thor_d weather wind_power wind_angle map 
-        //is_s1_disabled event_game game_mode score
         this.data.push(this.players);
-        this.data.push(this.room.game.frist_turn);
-        this.data.push(this.room.game.thor.x); // thor_x
-        this.data.push(this.room.game.thor.y); // thor_y
-        this.data.push(this.room.game.thor.angle); //thor_a
-        this.data.push(this.room.game.thor.damage); //thor_d
-        this.data.push([0, 0, 0, 0, 0]); //weather
+        this.data.push(this.room.first_turn);
+        this.data.push(this.room.game.thor.x);
+        this.data.push(this.room.game.thor.y);
+        this.data.push(this.room.game.thor.angle);
+        this.data.push(this.room.game.thor.damage);
+        this.data.push(this.room.game.weather);
         this.data.push(this.room.game.wind_power);
         this.data.push(this.room.game.wind_angle);
         this.data.push(this.room.map);
-
-        this.data.push(0); //is_s1_disabled
-        this.data.push(0); //event_game
-        this.data.push(this.room.game_mode); //game_mode
-        this.data.push(0); //score
+        this.data.push(this.room.is_s1_disabled);
+        this.data.push(this.room.event_game);
+        this.data.push(this.room.game_mode);
+        this.data.push(this.room.score);
     },
 
     serialize: function () {
@@ -333,11 +329,11 @@ Messages.gamePlay = Message.extend({
             this.chat,
             this.account.room.game.thor.x,
             this.account.room.game.thor.y,
-            this.account.room.game.thor.angle, //thor_angle
-            this.account.room.game.thor.damage, //thor_damage
-            0, //new_weather
-            this.account.room.game.wind_power, //wind_power
-            this.account.room.game.wind_angle, //wind_angle
+            this.account.room.game.thor.angle, 
+            this.account.room.game.thor.damage,
+            this.account.room.game.weather[4], 
+            this.account.room.game.wind_power, 
+            this.account.room.game.wind_angle,
             this.data,
             0
         ]];
@@ -410,7 +406,7 @@ Messages.gamePass = Message.extend({
                 this.room.game.thor.y,
                 this.room.game.thor.angle, //thor_angle
                 this.room.game.thor.damage, //thor_damage
-                0,
+                this.room.game.weather[4],
                 this.room.game.wind_power,
                 this.room.game.wind_angle
             ]
