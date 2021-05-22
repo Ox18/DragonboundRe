@@ -75,7 +75,15 @@ module.exports = class World {
             self.update();
         });
     }
-
+    AddHole(shot) {
+        var self = this;
+        var a = shot.getPosAtTime();
+        this.shoots_data[this.shoots_complete].hole.push(a.x);
+        this.shoots_data[this.shoots_complete].hole.push(a.y);
+        this.shoots_data[this.shoots_complete].hole.push(shot.hole[0]);
+        this.shoots_data[this.shoots_complete].hole.push(shot.hole[1]);
+        self.map.AddGroundHole(a.x, a.y, shot.hole[0], shot.hole[1]);
+    }
     update() {
         var self = this;
         if (this.shoots_count > 0) {
@@ -84,27 +92,16 @@ module.exports = class World {
                 if (shoot && !shoot.isComplete) {
                     shoot.update();
                     var a = shoot.getPosAtTime();
-                    var maxys = false;
-                    var maxtim = false;
-                    //var ang = shoot.GetAngleAtTime();
                     shoot.move(a.x, a.y, 0);
-                    if (a.y <= 0)
-                        maxys = true;
-                    if (self.map.IsPixel(a.x, a.y) && !shoot.groundCollide) {
+
+                    const isColliding = self.map.IsPixel(a.x, a.y) && !shoot.groundCollide;
+                    const isOutMap = self.map.w < a.x || self.map.h < a.y;
+                    if (isColliding) {
                         shoot.isComplete = true;
-                        this.shoots_data[this.shoots_complete].hole.push(a.x);
-                        this.shoots_data[this.shoots_complete].hole.push(a.y);
-                        this.shoots_data[this.shoots_complete].hole.push(38);
-                        this.shoots_data[this.shoots_complete].hole.push(38);
-                        self.map.AddGroundHole(a.x, a.y, 38, 38);
+                        this.AddHole(shoot);
                         shoot.groundCollide = true;
-                    } else if (self.map.w < a.x || self.map.h < a.y) {
+                    } else if (isOutMap) {
                         shoot.isComplete = true;
-                        this.shoots_data[this.shoots_complete].hole.push(a.x);
-                        this.shoots_data[this.shoots_complete].hole.push(a.y);
-                        this.shoots_data[this.shoots_complete].hole.push(38);
-                        this.shoots_data[this.shoots_complete].hole.push(38);
-                        shoot.groundCollide = true;
                     }
                     if (!shoot.damageComplete) {
                         self.game.room.forPlayers(function (account) {
@@ -248,14 +245,7 @@ module.exports = class World {
                         });
                     }
                     if (shoot.isComplete) {
-                        this.shoots_data[this.shoots_complete].s.push(shoot.x0);
-                        this.shoots_data[this.shoots_complete].s.push(shoot.y0);
-                        this.shoots_data[this.shoots_complete].s.push(shoot.ang);
-                        this.shoots_data[this.shoots_complete].s.push(shoot.power);
-                        this.shoots_data[this.shoots_complete].s.push(shoot.ax);
-                        this.shoots_data[this.shoots_complete].s.push(shoot.ay);
-                        this.shoots_data[this.shoots_complete].s.push(shoot.stime);
-                        this.shoots_data[this.shoots_complete].s.push(shoot.img);
+                        this.shoots_data[this.shoots_complete].s = shoot.GetS();
                         this.shoots_data[this.shoots_complete].time = shoot.GetTimeFinal();
                         shoot.GetProperties().map(a => this.shoots_data[this.shoots_complete][a[0]] = a[1]);
                         this.shoots_complete++;

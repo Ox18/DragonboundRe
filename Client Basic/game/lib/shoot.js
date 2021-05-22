@@ -1,4 +1,3 @@
-var Types = require("../gametypes");
 var Box = require('./box');
 var Vector = require('./vect');
 var Helper = require('../Utilities/Helper');
@@ -22,7 +21,7 @@ module.exports = class Shoot {
         this.stime = 0;
         this.img = 11;
         this.exp = null;
-        this.hole = [0, 0];
+        this.hole = [30, 10];
         this.wave = null;
         this.orbit = null;
         this.jumping = null;
@@ -38,6 +37,7 @@ module.exports = class Shoot {
         this.canCollide = false;
         this.damageComplete = false;
         this.groundCollide = false;
+        this.s = [this.x0, this.y0, this.ang, this.power, this.ax, this.ay, this.stime];
         this.type = {
             isChangeHoleWithTime: false,
             isChangeImgWithTime: false,
@@ -81,10 +81,13 @@ module.exports = class Shoot {
     GetTimeFinal() {
         return this.type.isTimeFinalZero ? 0 : this.time * 2;
     }
-    GetProperties(){
+    GetProperties() {
         let data = [];
         let properties = ['ss', 'is_lightning', 'thor', 'wave', 'orbit', 'jumping', 'exp', 'img'];
         properties.map(propertie => (this[propertie]) && data.push([propertie, this[propertie]]));
         return data;
-     }
+    }
+    GetS(){
+        return this.s;
+    }
 };
