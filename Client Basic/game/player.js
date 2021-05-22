@@ -19,7 +19,8 @@ module.exports = class player {
         this.tournament = 0;
         this.plus10gp = 0;
         this.mobile_fox = 0;
-
+        this.item_selected = [-1, -1, -1, -1, -1, -1];
+        this.itemInUse = null;
         this.flowers = 0;
         this.is_bot = 0;
         this.mobile = Types.MOBILE.ARMOR;

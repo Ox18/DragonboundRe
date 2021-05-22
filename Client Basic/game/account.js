@@ -98,6 +98,35 @@ module.exports = class Account {
                     if (data !== null) self.send([Types.SERVER_OPCODE.avatar_info, _id, data]);
                     break;
                 }
+            case Types.CLIENT_OPCODE.game_use_item:
+                {
+                    // seguridad
+                    if (!self.login_complete) {
+                        self.connection.close();
+                        return null;
+                    }
+                    const item_number = message[1];
+                    let item_point = 0;
+                    let item_count = 6;
+                    let item = {};
+                    for(item_point; item_point < item_count; item_point++){
+                        item[item_point] = item_point === item_number;
+                    }
+                    const item_use = self.player.item_selected[item_number];
+                    const itemIsValid = item_use != -1 && item_number < 6 && self.player.itemInUse === null;
+                    if(itemIsValid){
+                        const ITEM_NAME = ["Dual", "Teleport", "Dual+"]
+                        self.gameserver.pushBroadcastChat(new Message.chatResponse(self, this.player.game_id+ " Used Item: "+ ITEM_NAME[item_use], Types.CHAT_TYPE.SYSTEM), self.room);
+                        self.player.itemInUse = item_use;
+                        self.player.item_selected[item_number] = -1;
+                        let item_data = [Types.SERVER_OPCODE.items, [
+                            self.player.item_selected, -1
+                        ]];
+                        self.send(item_data);
+                    }
+                
+                    break;
+                }
             case Types.CLIENT_OPCODE.get_my_avatars:
                 {
                     // seguridad
@@ -863,9 +892,9 @@ module.exports = class Account {
                         self.connection.close();
                         return null;
                     }
-                    let item_selected = ItemHandler.GuessItems(message[1], self.room.is_dual_plus_disabled, self.room.is_tele_disabled);
+                    self.player.item_selected = ItemHandler.GuessItems(message[1], self.room.is_dual_plus_disabled, self.room.is_tele_disabled);
                     let item_data = [Types.SERVER_OPCODE.items, [
-                        item_selected, -1
+                        self.player.item_selected, -1
                     ]];
                     self.send(item_data);
                     break;
