@@ -261,7 +261,7 @@ module.exports = class World {
                         this.shoots_data[this.shoots_complete].exp = shoot.exp;
                         this.shoots_data[this.shoots_complete].img = shoot.img;
                         this.shoots_data[this.shoots_complete].s.push(shoot.img);
-                        this.shoots_data[this.shoots_complete].time = shoot.time * 2;
+                        this.shoots_data[this.shoots_complete].time = shoot.GetTimeFinal();
                         var fx = shoot.ss > 0 ? shoot.ss : 0;
                         this.shoots_data[this.shoots_complete].ss = fx;
                         this.shoots_complete++;

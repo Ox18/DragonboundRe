@@ -2,6 +2,8 @@ var Types = require("../gametypes");
 var Box = require('./box');
 var Vector = require('./vect');
 var Helper = require('../Utilities/Helper');
+const ZotataPhysics = require("../GameComponents/Physics");
+
 // Shoot
 module.exports = class Shoot {
     constructor(x, y, ang, power, type, ax, ay, wind_ang, wind_power, account) {
@@ -19,6 +21,7 @@ module.exports = class Shoot {
         this.wind_ang = wind_ang;
         this.wind_power = wind_power;
         this.chat_complete = false;
+        this.zp = new ZotataPhysics(this.x0, this.y0, this.ang, this.power, this.ax, this.ay);
         this.v = Helper.Vector(this.ang, this.power);
         this.IsComplete = false;
         this.canCollide = false;
@@ -38,6 +41,22 @@ module.exports = class Shoot {
         if (typeof (fexp) == 'undefined' || fexp === null) {
             this.exp = 0;
         } else this.exp = fexp;
+        this.type = {
+            isChangeHoleWithTime: false,
+            isChangeImgWithTime: false,
+            isEndColliding: false,
+            isNotExplode: false,
+            isNotDamage: false,
+            isDamage: false,
+            isUndeground: false,
+            isThor: false,
+            isLightning: false,
+            isStartInPositionInitial: false,
+            isStartInPositionExplode: false,
+            isStartWithTimeElapsed: false,
+            isEndWithTimeElapsed: false,
+            isTimeFinalZero: false
+        };
     }
 
     move(x, y) {
@@ -57,16 +76,12 @@ module.exports = class Shoot {
     }
 
     getPosAtTime() {
-        var a = this.time / 485;
-        return {
-            x: Math.ceil(this.x0 + this.v.x * a + this.ax * a * a / 2),
-            y: Math.ceil(this.y0 + this.v.y * a + this.ay * a * a / 2)
-        };
+        return this.zp.GetPosAtTime(this.time);
     }
-
-    GetAngleAtTime(a) {
-        var b = this.getPosAtTime(a - 5);
-        a = this.getPosAtTime(a + 5);
-        return Helper.RadToAngle(Math.atan2(a.y - b.y, a.x - b.x));
+    GetAngleAtTime() {
+        return this.zp.GetAngleAtTime(this.time);
+    }
+    GetTimeFinal(){
+        return this.type.isTimeFinalZero ? 0 : this.time * 2;
     }
 };
