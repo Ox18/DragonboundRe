@@ -130,7 +130,6 @@ module.exports = Map = cls.Class.extend({
         if (!(0 > a || a >= this.w || (0 > b && (b = 0), c >= this.h && (c = this.h - 1), c < b)))
             for (var d = this.w, e = b; e <= c; e++) b = 4 * (e * d + a), this.data[b] /= 2, this.data[b + 1] /= 2, this.data[b + 2] /= 2;
     },
-
     loadMap: function (callback) {
         var self = this;
         fs.createReadStream(__dirname + '/maps/map' + self.id + '.png')

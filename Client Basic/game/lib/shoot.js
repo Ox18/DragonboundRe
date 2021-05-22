@@ -5,40 +5,41 @@ const ZotataPhysics = require("../GameComponents/Physics");
 
 module.exports = class Shoot {
     constructor(x, y, ang, power, type, ax, ay, wind_ang, wind_power, account) {
-        this.x0 = x;
-        this.y0 = y;
-        this.ax = ax;
-        this.ay = ay;
-        this.wind_ang = wind_ang;
-        this.wind_power = wind_power;
-        this.account = account;
-        this.ang = ang;
-        this.power = power;
-        this.type = type;
-        this.v = Helper.Vector(this.ang, this.power);
-        this.zp = new ZotataPhysics(x, y, ang, power, ax, ay);
-        this.time = 0;
-        this.stime = 0;
-        this.img = 11;
-        this.exp = null;
-        this.hole = [30, 10];
-        this.wave = null;
-        this.orbit = null;
-        this.jumping = null;
-        this.under = null;
-        this.damage = 0;
-        this.ss = null;
-        this.is_lightning = null;
-        this.thor = null;
-        this.box = new Box(new Vector(x, y), 30, 25, 0);
-        this.explodebox = new Box(new Vector(x, y), 40, 40, 0);
-        this.chat_complete = false;
-        this.IsComplete = false;
-        this.canCollide = false;
+        this.x0             = x;
+        this.y0             = y;
+        this.ax             = ax;
+        this.ay             = ay;
+        this.wind_ang       = wind_ang;
+        this.wind_power     = wind_power;
+        this.account        = account;
+        this.ang            = ang;
+        this.power          = power;
+        this.type           = type;
+        this.v              = Helper.Vector(this.ang, this.power);
+        this.zp             = new ZotataPhysics(x, y, ang, power, ax, ay);
+        this.time           = 0;
+        this.stime          = 0;
+        this.img            = 11;
+        this.exp            = null;
+        this.hole           = [30, 10];
+        this.wave           = null;
+        this.orbit          = null;
+        this.jumping        = null;
+        this.under          = null;
+        this.bounce         = null;
+        this.damage         = 0;
+        this.ss             = null;
+        this.is_lightning   = null;
+        this.thor           = null;
+        this.box            = new Box(new Vector(x, y), 30, 25, 0);
+        this.explodebox     = new Box(new Vector(x, y), 40, 40, 0);
+        this.chat_complete  = false;
+        this.IsComplete     = false;
+        this.canCollide     = false;
         this.damageComplete = false;
-        this.groundCollide = false;
-        this.s = [this.x0, this.y0, this.ang, this.power, this.ax, this.ay, this.stime];
-        this.type = {
+        this.groundCollide  = false;
+        this.s              = [this.x0, this.y0, this.ang, this.power, this.ax, this.ay, this.stime];
+        this.type           = {
             isChangeHoleWithTime: false,
             isChangeImgWithTime: false,
             isEndColliding: false,
@@ -87,7 +88,7 @@ module.exports = class Shoot {
         properties.map(propertie => (this[propertie]) && data.push([propertie, this[propertie]]));
         return data;
     }
-    GetS(){
+    GetS() {
         return this.s;
     }
 };

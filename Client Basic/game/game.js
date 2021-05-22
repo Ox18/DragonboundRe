@@ -18,7 +18,7 @@ module.exports = class Game {
         this.frist_turn = 0;
         this.time_played = 0;
         this.turn_player = 0;
-        this.weather = [0,0,0,0,0];
+        this.weather = [0, 0, 0, 0, 0];
         this.gameEnd_callback = null;
         this.thor = new ThorSatellite();
         this.map = self.gameserver.mapControl.getMap(room.map);
@@ -85,6 +85,7 @@ module.exports = class Game {
             }
         });
         callback();
+
     }
 
     checkDead() {
@@ -126,7 +127,7 @@ module.exports = class Game {
         //Logger.debug("x: " + x + " y: " + y + " body: " + body + " look: " + look + " ang: " + ang + " power: " + power);
         power = parseInt(power * 234 / 100);
         var mobile_data = Types.MOBILES[account.player.mobile];
-        
+
         var b0 = Math.round(parseInt(Math.cos(self.wind_angle * Math.PI / 180) * self.wind_power * mobile_data.by)) / 100;
         var b1 = Math.round(parseInt(Math.sin(self.wind_angle * Math.PI / 180) * self.wind_power * mobile_data.by - mobile_data.bx)) / 100;
         var ax = Math.round(0 - b0);
@@ -135,7 +136,7 @@ module.exports = class Game {
             ax = 0;
             ay = mobile_data.by;
         }
-        
+
         /*var ax = mobile_data.bx;
         var ay = mobile_data.by;*/
         var dis = 0;
@@ -319,11 +320,11 @@ module.exports = class Game {
                     });
                 }
                 self.gameserver.pushToRoom(self.room.id, new Message.gamePass(account, player, self.room));
-            } else {}
+            } else { }
         });
         self.PushWeather();
     }
-    PushWeather(){
+    PushWeather() {
         const nextWeather = Helper.random(-1, 1);
         this.weather.shift();
         this.weather.push(nextWeather);
