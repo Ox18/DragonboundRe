@@ -62,12 +62,9 @@ module.exports = class World {
         for (var id in this.shoots) {
             this.shoots_data.push({
                 s: [],
-                exp: null,
-                img: null,
                 time: null,
                 hole: [],
                 damages: [],
-                ss: null
             });
         }
     }
@@ -258,12 +255,9 @@ module.exports = class World {
                         this.shoots_data[this.shoots_complete].s.push(shoot.ax);
                         this.shoots_data[this.shoots_complete].s.push(shoot.ay);
                         this.shoots_data[this.shoots_complete].s.push(shoot.stime);
-                        this.shoots_data[this.shoots_complete].exp = shoot.exp;
-                        this.shoots_data[this.shoots_complete].img = shoot.img;
                         this.shoots_data[this.shoots_complete].s.push(shoot.img);
                         this.shoots_data[this.shoots_complete].time = shoot.GetTimeFinal();
-                        var fx = shoot.ss > 0 ? shoot.ss : 0;
-                        this.shoots_data[this.shoots_complete].ss = fx;
+                        shoot.GetProperties().map(a => this.shoots_data[this.shoots_complete][a[0]] = a[1]);
                         this.shoots_complete++;
                     }
                 }
