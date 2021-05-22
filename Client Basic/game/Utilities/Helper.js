@@ -84,10 +84,16 @@ class Helper {
             max: limit_max + space_max,
         };
     }
-    ArrayDimensionalOf(a){
+    ArrayDimensionalOf(a) {
         return Array.from(Array(a + 1).keys());
     }
-};
-
-const helper = new Helper();
-module.exports = helper;
+    CalcOrbitPoint(a, b, c, d) {
+        return {
+            x: Math.ceil(a + c * Math.cos(this.AngleToRad(d))),
+            y: Math.ceil(b - c * Math.sin(this.AngleToRad(d)))
+        }
+    }
+  };
+  
+  const helper = new Helper();
+  module.exports = helper;
