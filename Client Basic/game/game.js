@@ -169,17 +169,19 @@ module.exports = class Game {
         const dataDelay = [100, 150, 250];
         account.player.addDelay(dataDelay[type] || 0);
 
-        const { itemInUse } = account.player;
-
+        const { itemInUse, mobile } = account.player;
+        const mobileSelected = self.gameserver.Mobiles[mobile];
+        const mobileProjectile = mobileSelected.projectile;
         const isTeleport = itemInUse === 1;
         const isDual = itemInUse === 0;
         const isDualPlus = itemInUse === 2;
         const methodProjectile = ['getS1', 'getS2', 'getSS'];
         const itemMethod = isDual ? methodProjectile[type === 0 ? 0 : 1] : isDualPlus ? methodProjectile[type === 0 ? 1 : 0] : null;
         const methodSelected = methodProjectile[type];
-        var dataShot = isTeleport ? TeleportProjectile.Get() : [...armorProjectile[methodSelected]()];
+        var dataShot = isTeleport ? TeleportProjectile.Get() : [...mobileProjectile[methodSelected]()];
         if(!isTeleport && itemMethod){
-            dataShot = [...dataShot, ...armorProjectile[itemMethod](1000)];
+            console.log("Se cumple")
+            dataShot = [...dataShot, ...mobileProjectile[itemMethod](1000)];
         }
         let n_shot = 0;
         dataShot.map((shot) => {

@@ -227,7 +227,6 @@ module.exports = class World {
                         this.shoots_data[this.shoots_complete].time = shoot.GetTimeFinal();
                         shoot.GetProperties().map(a => this.shoots_data[this.shoots_complete][a[0]] = a[1]);
                         (shoot.isOutMap) && (shoot.GetPropertyDeleteIsOutMap().map(prop => delete this.shoots_data[this.shoots_complete][prop]));
-                        console.log(this.shoots_data[this.shoots_complete]);
                         this.shoots_complete++;
                         
                     }
