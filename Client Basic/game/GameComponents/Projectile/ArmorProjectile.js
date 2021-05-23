@@ -10,25 +10,25 @@
  * You should have received a copy of the GNU General Public License along with SocialBound. If not, see http://www.gnu.org/licenses/.
  */
 
-const Mobiles = require("../../Entity/Mobiles");
 
-class MobileHandler{
-    GuessValid(mobileSelected, player){
-        const isIn = Mobiles.CheckMobile(mobileSelected);
-        const isFox = mobileSelected === Mobiles.FOX;
-        const isSpecial = Mobiles.IsSpecial(mobileSelected);
-        let isValid = false;
-        if(isIn){
-            if(isFox){
-                if(player.mobile_fox) isValid = true;
-            }
-            else if(isSpecial){
-                if(player.gm) isValid = true;
-            }
-            else isValid = true;
-        }
-        return isValid;
+class ArmorProjectile {
+  getS1() {
+    return {
+      data: {
+        img: Types.BULLETS.ARMOR1,
+        exp: Types.EXPLODE.ARMOR1,
+        hole: helper.Pivot(30, 40)
+      },
+      type: {
+        isEndColliding: true,
+        isExplode: true,
+        isDamage: true
+      },
+      subBullet: [],
+      currentData: {}
     }
+  }
 }
-const mobileHandler = new MobileHandler();
-module.exports = mobileHandler;
+
+const armorProjectile = new ArmorProjectile();
+module.exports = armorProjectile;

@@ -21,7 +21,7 @@ module.exports = class Shoot {
         this.stime          = 0;
         this.img            = 11;
         this.exp            = null;
-        this.hole           = [30, 10];
+        this.hole           = [10, 10];
         this.wave           = null;
         this.orbit          = null;
         this.jumping        = null;
@@ -43,6 +43,7 @@ module.exports = class Shoot {
             isChangeHoleWithTime: false,
             isChangeImgWithTime: false,
             isEndColliding: false,
+            isExplode: false,
             isNotExplode: false,
             isNotDamage: false,
             isDamage: false,

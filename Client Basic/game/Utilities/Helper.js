@@ -93,6 +93,30 @@ class Helper {
             y: Math.ceil(b - c * Math.sin(this.AngleToRad(d)))
         }
     }
+    Pivot(a, b){
+        return [a, b];
+    }
+    aim_data(a, b){
+        return {
+            ang: a,
+            len: b
+        }
+    }
+    aim(a, b, c){
+        return [a.ang, a.len, b.ang, b.len, c.ang, c.len];
+    }
+    Point(x, y){
+        return {
+            x: x,
+            y: y
+        }
+    }
+    Angle(min, max){
+        return {
+            min: a,
+            max: b
+        }
+    }
   };
   
   const helper = new Helper();
