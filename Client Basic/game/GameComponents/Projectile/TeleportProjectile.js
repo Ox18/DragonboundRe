@@ -10,24 +10,26 @@
  * You should have received a copy of the GNU General Public License along with SocialBound. If not, see http://www.gnu.org/licenses/.
  */
 
-const Mobile = require("../../Entity/Mobile");
-const helper = require("../../Utilities/Helper");
-const armorProjectile = require("../Projectile/ArmorProjectile");
-
-class Armor extends Mobile {
-  constructor() {
-    super();
-    this.name       = 'Armor';
-    this.file       = 'armor';
-    this.hp         = 1000;
-    this.shield     = 0;
-    this.player     = helper.Point(17, -28);
-    this.ang        = helper.Angle(10, 55);
-    this.a          = helper.Point(73.5, 0.74);
-    this.b          = helper.Point(200, 398);
-    this.aim        = helper.aim(helper.aim_data(52, 33), helper.aim_data(52, 33), helper.aim_data(52, 33));
-    this.projectile = armorProjectile;
+const Types = require("../../gametypes");
+const { BULLETS, EXPLODE } = Types;
+class TeleportProjectile {
+  Get() {
+    return [{
+      data: {
+        img: BULLETS.TELEPORT,
+        exp: EXPLODE.TELEPORT,
+        isTeleport: true,
+        hole: [0, 0]
+      },
+      type: {
+        isEndColliding: true,
+        isNotDamage: true
+      },
+      subBullet: [],
+      currentData: {}
+    }];
   }
 }
 
-module.exports = new Armor();
+const teleportProjectile = new TeleportProjectile();
+module.exports = teleportProjectile;

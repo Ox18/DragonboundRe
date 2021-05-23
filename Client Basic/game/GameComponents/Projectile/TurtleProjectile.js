@@ -14,12 +14,12 @@ const helper = require("../../Utilities/Helper");
 const Types = require("../../gametypes");
 const { BULLETS, EXPLODE } = Types;
 
-class ArmorProjectile {
+class TurtleProjectile {
   getS1(stime = 0) {
     return [{
       data: {
-        img: BULLETS.ARMOR1,
-        exp: EXPLODE.ARMOR1,
+        img: BULLETS.TURTLE1,
+        exp: EXPLODE.TURTLE1,
         stime: stime,
         hole: helper.Pivot(30, 40)
       },
@@ -35,22 +35,8 @@ class ArmorProjectile {
   getS2(stime = 0) {
     return [{
       data: {
-        img: BULLETS.ARMOR2,
-        exp: EXPLODE.ARMOR2,
-        stime: stime,
-        hole: helper.Pivot(30, 40)
-      },
-      type: {
-        isEndColliding: true,
-        isExplode: true,
-        isDamage: true
-      },
-      subBullet: [],
-      currentData: {}
-    }, {
-      data: {
-        img: BULLETS.ARMOR2,
-        exp: EXPLODE.ARMOR2,
+        img: BULLETS.TURTLE2A,
+        exp: EXPLODE.TURTLE2,
         stime: stime,
         hole: helper.Pivot(30, 40)
       },
@@ -66,15 +52,10 @@ class ArmorProjectile {
   getSS(stime = 0) {
     return [{
       data: {
-        img: BULLETS.ARMORSS,
-        exp: EXPLODE.ARMORSS,
+        img: BULLETS.TURTLESS,
+        exp: EXPLODE.TURTLESS,
         stime: stime,
-        hole: helper.Pivot(30, 40),
-        change: {
-          at: 1540,
-          exp: BULLETS.ARMORSS2,
-          img: EXPLODE.ARMORSS2
-        }
+        hole: helper.Pivot(30, 40)
       },
       type: {
         isEndColliding: true,
@@ -87,5 +68,5 @@ class ArmorProjectile {
   }
 }
 
-const armorProjectile = new ArmorProjectile();
-module.exports = armorProjectile;
+const turtleProjectile = new TurtleProjectile();
+module.exports = turtleProjectile;

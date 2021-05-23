@@ -93,31 +93,34 @@ class Helper {
             y: Math.ceil(b - c * Math.sin(this.AngleToRad(d)))
         }
     }
-    Pivot(a, b){
+    Pivot(a, b) {
         return [a, b];
     }
-    aim_data(a, b){
+    aim_data(a, b) {
         return {
             ang: a,
             len: b
         }
     }
-    aim(a, b, c){
+    aim(a, b, c) {
         return [a.ang, a.len, b.ang, b.len, c.ang, c.len];
     }
-    Point(x, y){
+    Point(x, y) {
         return {
             x: x,
             y: y
         }
     }
-    Angle(min, max){
+    Angle(min, max) {
         return {
-            min: a,
-            max: b
+            min: min,
+            max: max
         }
     }
-  };
-  
-  const helper = new Helper();
-  module.exports = helper;
+    AngleMirror(angle) {
+        return angle >= 0 && angle <= 180 ? 180 - angle : angle >= 180 && angle <= 270 ? 360 - (angle - 180) : angle >= 270 && angle <= 360 ? 180 + (angle - 360) : null;
+    }
+};
+
+const helper = new Helper();
+module.exports = helper;

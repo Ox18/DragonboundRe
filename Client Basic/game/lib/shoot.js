@@ -3,7 +3,7 @@ var Vector = require('./vect');
 var Helper = require('../Utilities/Helper');
 const ZotataPhysics = require("../GameComponents/Physics");
 
-module.exports = class Shoot {
+module.exports              = class Shoot {
     constructor(x, y, ang, power, type, ax, ay, wind_ang, wind_power, account) {
         this.x0             = x;
         this.y0             = y;
@@ -14,23 +14,27 @@ module.exports = class Shoot {
         this.account        = account;
         this.ang            = ang;
         this.power          = power;
-        this.type           = type;
+        this.button         = type;
+        this.change         = null;
+        this.position       = null;
         this.v              = Helper.Vector(this.ang, this.power);
         this.zp             = new ZotataPhysics(x, y, ang, power, ax, ay);
         this.time           = 0;
         this.stime          = 0;
-        this.img            = 11;
+        this.img            = 0;
         this.exp            = null;
-        this.hole           = [10, 10];
+        this.hole           = [40, 10];
         this.wave           = null;
         this.orbit          = null;
         this.jumping        = null;
         this.under          = null;
         this.bounce         = null;
         this.damage         = 0;
-        this.ss             = null;
+        this.ss             = type == 2 ? 1 : null;
         this.is_lightning   = null;
         this.thor           = null;
+        this.isTeleport     = null;
+        this.tele           = null;
         this.box            = new Box(new Vector(x, y), 30, 25, 0);
         this.explodebox     = new Box(new Vector(x, y), 40, 40, 0);
         this.chat_complete  = false;
@@ -38,7 +42,7 @@ module.exports = class Shoot {
         this.canCollide     = false;
         this.damageComplete = false;
         this.groundCollide  = false;
-        this.s              = [this.x0, this.y0, this.ang, this.power, this.ax, this.ay, this.stime];
+        this.isOutMap       = false;
         this.type           = {
             isChangeHoleWithTime: false,
             isChangeImgWithTime: false,
@@ -75,7 +79,9 @@ module.exports = class Shoot {
     }
 
     getPosAtTime() {
-        return this.zp.GetPosAtTime(this.time);
+        this.position = this.zp.GetPosAtTime(this.time);
+        this.onGetPosAtTime();
+        return this.position;
     }
     GetAngleAtTime() {
         return this.zp.GetAngleAtTime(this.time);
@@ -85,11 +91,20 @@ module.exports = class Shoot {
     }
     GetProperties() {
         let data = [];
-        let properties = ['ss', 'is_lightning', 'thor', 'wave', 'orbit', 'jumping', 'exp', 'img'];
-        properties.map(propertie => (this[propertie]) && data.push([propertie, this[propertie]]));
+        let properties = ['ss', 'is_lightning', 'thor', 'wave', 'orbit', 'jumping', 'exp', 'img', 'change'];
+        if(!this.isOutMap){
+            properties.push('tele');
+        }
+        properties.map(propertie => (this[propertie] !== null || this[propertie] != false) && data.push([propertie, this[propertie]]));
         return data;
     }
     GetS() {
-        return this.s;
+        return [this.x0, this.y0, this.ang, this.power, this.ax, this.ay, this.stime]
+    }
+    GetPropertyDeleteIsOutMap(){
+        return ['exp', 'exp', 'hole', 'tele'];        
+    }
+    onGetPosAtTime(){
+        (this.isTeleport) && (this.tele = [this.account.player.position, this.position.x, this.position.y, this.position.x, this.position.y]);
     }
 };

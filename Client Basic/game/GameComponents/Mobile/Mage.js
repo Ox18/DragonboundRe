@@ -12,13 +12,13 @@
 
 const Mobile = require("../../Entity/Mobile");
 const helper = require("../../Utilities/Helper");
-const armorProjectile = require("../Projectile/ArmorProjectile");
+const MageProjectile = require("../Projectile/MageProjectile");
 
-class Armor extends Mobile {
+class Mage extends Mobile {
   constructor() {
     super();
-    this.name       = 'Armor';
-    this.file       = 'armor';
+    this.name       = 'Mage';
+    this.file       = 'Mage';
     this.hp         = 1000;
     this.shield     = 0;
     this.player     = helper.Point(17, -28);
@@ -26,8 +26,8 @@ class Armor extends Mobile {
     this.a          = helper.Point(73.5, 0.74);
     this.b          = helper.Point(200, 398);
     this.aim        = helper.aim(helper.aim_data(52, 33), helper.aim_data(52, 33), helper.aim_data(52, 33));
-    this.projectile = armorProjectile;
+    this.projectile = MageProjectile;
   }
 }
 
-module.exports = new Armor();
+module.exports = new Mage();

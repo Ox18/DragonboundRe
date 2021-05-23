@@ -2,6 +2,7 @@ var Types = require('./gametypes');
 var Account = require('./account');
 var Logger = require('./lib/logger');
 var Avatars = require('./avatars');
+const Mobiles = require('./Entity/Mobiles');
 // gameserver
 module.exports = class GameServer {
     constructor(ServerData, websocketserver) {
@@ -17,6 +18,7 @@ module.exports = class GameServer {
         this.outgoingQueues = {};
         this.ups = 50;
         this.db = null;
+        this.Mobiles = Mobiles.GetListMobile();
         this.ver = ServerData.Version;
         this.name = ServerData.Name;
         this.room_ids = [];

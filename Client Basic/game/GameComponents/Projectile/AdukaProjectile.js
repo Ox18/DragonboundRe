@@ -14,12 +14,12 @@ const helper = require("../../Utilities/Helper");
 const Types = require("../../gametypes");
 const { BULLETS, EXPLODE } = Types;
 
-class ArmorProjectile {
+class AdukaProjectile {
   getS1(stime = 0) {
     return [{
       data: {
-        img: BULLETS.ARMOR1,
-        exp: EXPLODE.ARMOR1,
+        img: BULLETS.ADUKA1_THOR,
+        exp: EXPLODE.ADUKA1_THOR,
         stime: stime,
         hole: helper.Pivot(30, 40)
       },
@@ -35,8 +35,8 @@ class ArmorProjectile {
   getS2(stime = 0) {
     return [{
       data: {
-        img: BULLETS.ARMOR2,
-        exp: EXPLODE.ARMOR2,
+        img: BULLETS.ADUKA2,
+        exp: undefined,
         stime: stime,
         hole: helper.Pivot(30, 40)
       },
@@ -49,9 +49,9 @@ class ArmorProjectile {
       currentData: {}
     }, {
       data: {
-        img: BULLETS.ARMOR2,
-        exp: EXPLODE.ARMOR2,
-        stime: stime,
+        img: BULLETS.ADUKA2,
+        exp: undefined,
+        stime: stime + 300,
         hole: helper.Pivot(30, 40)
       },
       type: {
@@ -61,20 +61,29 @@ class ArmorProjectile {
       },
       subBullet: [],
       currentData: {}
-    }];
+    }, {
+      data: {
+        img: BULLETS.ADUKA2,
+        exp: undefined,
+        stime: stime + 600,
+        hole: helper.Pivot(30, 40)
+      },
+      type: {
+        isEndColliding: true,
+        isExplode: true,
+        isDamage: true
+      },
+      subBullet: [],
+      currentData: {}
+    },];
   }
   getSS(stime = 0) {
     return [{
       data: {
-        img: BULLETS.ARMORSS,
-        exp: EXPLODE.ARMORSS,
+        img: BULLETS.ADUKASS,
+        exp: EXPLODE.ADUKA1_THOR,
         stime: stime,
-        hole: helper.Pivot(30, 40),
-        change: {
-          at: 1540,
-          exp: BULLETS.ARMORSS2,
-          img: EXPLODE.ARMORSS2
-        }
+        hole: helper.Pivot(30, 40)
       },
       type: {
         isEndColliding: true,
@@ -87,5 +96,5 @@ class ArmorProjectile {
   }
 }
 
-const armorProjectile = new ArmorProjectile();
-module.exports = armorProjectile;
+const adukaProjectile = new AdukaProjectile();
+module.exports = adukaProjectile;

@@ -11,6 +11,21 @@
  */
 
 const Helper = require("../Utilities/Helper");
+const Armor = require("../GameComponents/Mobile/Armor");
+const Aduka = require("../GameComponents/Mobile/Aduka");
+const Asate = require("../GameComponents/Mobile/Asate");
+const Bigfoot = require("../GameComponents/Mobile/Bigfoot");
+const Boomer = require("../GameComponents/Mobile/Boomer");
+const Dragon = require("../GameComponents/Mobile/Dragon");
+const Fox = require("../GameComponents/Mobile/Fox");
+const Ice = require("../GameComponents/Mobile/Ice");
+const Jd = require("../GameComponents/Mobile/Jd");
+const Knight = require("../GameComponents/Mobile/Knight");
+const Lightning = require("../GameComponents/Mobile/Lightning");
+const Mage = require("../GameComponents/Mobile/Mage");
+const Nak = require("../GameComponents/Mobile/Nak");
+const Trico = require("../GameComponents/Mobile/Trico");
+const Turtle = require("../GameComponents/Mobile/Turtle");
 
 class Mobile {
     constructor() {
@@ -37,32 +52,51 @@ class Mobile {
         this.KALSIDDON = 20;
         this.NUMBER_OF_MOBILE = 21;
     }
-    GetSpecialMobile(){
+    GetListMobile() {
+        let data = [];
+        data[this.ARMOR] = Armor;
+        data[this.ICE]   = Ice;
+        data[this.ADUKA] = Aduka;
+        data[this.LIGHTNING] = Lightning;
+        data[this.BIGFOOT] = Bigfoot;
+        data[this.JD] = Jd;
+        data[this.ASATE] = Asate;
+        data[this.KNIGHT] = Knight;
+        data[this.FOX] = Fox;
+        data[this.DRAGO] = Dragon;
+        data[this.NAK] = Nak;
+        data[this.TRICO] = Trico;
+        data[this.MAGE] = Mage;
+        data[this.TURTLE] = Turtle;
+        data[this.BOOMER] = Boomer;
+        return data;
+    }
+    GetSpecialMobile() {
         return [this.KNIGHT, this.FOX, this.DRAGON, this.ELECTRICO, this.DRAG];
     }
-    GetCountSpecialMobile(){
+    GetCountSpecialMobile() {
         return this.GetCountSpecialMobile().length;
     }
-    GetNormalMobile(){
+    GetNormalMobile() {
         return [this.ARMOR, this.ICE, this.ADUKA, this.LIGHTNING, this.BIGFOOT, this.JD, this.ASATE, this.RANDOM, this.NAK, this.TRICO, this.MAGE, this.TURTLE, this.BOOMER, this.GRUB, this.RAON, this.KALSIDDON];
     }
-    GetCountNormalMobile(){
+    GetCountNormalMobile() {
         return this.GetNormalMobile().length;
     }
-    GetAllMobile(){
+    GetAllMobile() {
         let normalMobiles = this.GetNormalMobile();
         return [...this.GetSpecialMobile(), ...normalMobiles];
     }
-    GetRandomMobile(){
+    GetRandomMobile() {
         let MIN_NUMBER = 0;
         let MAX_NUMBER = this.NUMBER_OF_MOBILE - 1;
         let RANDOM_NUMBER = Helper.random(MIN_NUMBER, MAX_NUMBER);
         return this.GetAllMobile()[RANDOM_NUMBER];
     }
-    CheckMobile(mobile_number){
+    CheckMobile(mobile_number) {
         return this.GetAllMobile().includes(mobile_number);
     }
-    IsSpecial(mobile_number){
+    IsSpecial(mobile_number) {
         return this.GetSpecialMobile().includes(mobile_number);
     }
 }

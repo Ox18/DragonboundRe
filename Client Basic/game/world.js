@@ -6,52 +6,24 @@ require('setimmediate');
 // World
 module.exports = class World {
     constructor(game, gameserver) {
-        this.game = game;
-        this.gameserver = gameserver;
-
-        this.work = false;
-        this.shoots = {};
-        this.shoots_count = 0;
+        this.game            = game;
+        this.gameserver      = gameserver;
+        this.work            = false;
+        this.shoots          = {};
+        this.shoots_count    = 0;
         this.shoots_complete = 0;
-        this.shoots_data = [];
-        this.map = game.map;
-        this.chat = [];
-        this.shoot_complete = null;
-
-        this.chat_complete = false;
-
-        this.gp_kill = 8;
-        this.gold_kill = 500;
-
-        this.gold_good = 50;
-        this.gold_excellent = 100;
-
-        this.gold_penalty = -250;
-        this.gp_penalty = 0;
-
-        if (gameserver.evento200 === true) {
-            this.gp_kill = (8 * 2);
-            this.gold_kill = (500 * 2);
-
-            this.gold_good = (50 * 2);
-            this.gold_excellent = (100 * 2);
-
-            this.gold_penalty = -250;
-            this.gp_penalty = 0;
-        }
-
-        if (this.game.room.game_mode === Types.GAME_MODE.BOSS) {
-            this.gp_kill = 4;
-            this.gold_kill = 250;
-
-            this.gold_good = 50;
-            this.gold_excellent = 100;
-
-            this.gold_penalty = -250;
-            this.gp_penalty = 0;
-        }
+        this.shoots_data     = [];
+        this.map             = game.map;
+        this.chat            = [];
+        this.shoot_complete  = null;
+        this.chat_complete   = false;
+        this.gp_kill         = 8;
+        this.gold_kill       = 500;
+        this.gold_good       = 50;
+        this.gold_excellent  = 100;
+        this.gold_penalty    = -250;
+        this.gp_penalty      = 0;
     }
-
     start() {
         this.work = true;
         this.run();
@@ -77,12 +49,17 @@ module.exports = class World {
     }
     AddHole(shot) {
         var self = this;
-        var a = shot.getPosAtTime();
-        this.shoots_data[this.shoots_complete].hole.push(a.x);
-        this.shoots_data[this.shoots_complete].hole.push(a.y);
-        this.shoots_data[this.shoots_complete].hole.push(shot.hole[0]);
-        this.shoots_data[this.shoots_complete].hole.push(shot.hole[1]);
-        self.map.AddGroundHole(a.x, a.y, shot.hole[0], shot.hole[1]);
+        const { isNotExplode } = shot.type;
+        if(isNotExplode){
+            return;
+        }
+        var position = shot.getPosAtTime();
+        let shoots_complete = self.shoots_complete;
+        self.shoots_data[shoots_complete].hole.push(position.x);
+        self.shoots_data[shoots_complete].hole.push(position.y);
+        self.shoots_data[shoots_complete].hole.push(shot.hole[0]);
+        self.shoots_data[shoots_complete].hole.push(shot.hole[1]);
+        self.map.AddGroundHole(position.x, position.y, shot.hole[0], shot.hole[1]);
     }
     update() {
         var self = this;
@@ -102,8 +79,9 @@ module.exports = class World {
                         shoot.groundCollide = true;
                     } else if (isOutMap) {
                         shoot.isComplete = true;
+                        shoot.isOutMap = true;
                     }
-                    if (!shoot.damageComplete) {
+                    if (!shoot.damageComplete && shoot.type.isDamage) {
                         self.game.room.forPlayers(function (account) {
                             let player = account.player;
                             account.update();
@@ -248,7 +226,10 @@ module.exports = class World {
                         this.shoots_data[this.shoots_complete].s = shoot.GetS();
                         this.shoots_data[this.shoots_complete].time = shoot.GetTimeFinal();
                         shoot.GetProperties().map(a => this.shoots_data[this.shoots_complete][a[0]] = a[1]);
+                        (shoot.isOutMap) && (shoot.GetPropertyDeleteIsOutMap().map(prop => delete this.shoots_data[this.shoots_complete][prop]));
+                        console.log(this.shoots_data[this.shoots_complete]);
                         this.shoots_complete++;
+                        
                     }
                 }
             }
