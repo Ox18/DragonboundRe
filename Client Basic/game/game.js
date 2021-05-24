@@ -4,10 +4,9 @@ var Message = require('./lib/message');
 var World = require('./world');
 var Shoot = require('./lib/shoot');
 const ThorSatellite = require('./Entity/ThorSatellite');
-const Map = require('./Entity/Map');
 const Helper = require('./Utilities/Helper');
 const TeleportProjectile = require('./GameComponents/Projectile/TeleportProjectile');
-const armorProjectile = require('./GameComponents/Projectile/ArmorProjectile');
+const ProjectileHandler = require('./GameComponents/Projectile/Projectile');
 
 module.exports = class Game {
     constructor(id, room, gameserver) {
@@ -126,51 +125,23 @@ module.exports = class Game {
 
     gameShoot(x, y, body, look, ang, power, time, type, account) {
         var self = this;
-        //Logger.debug("x: " + x + " y: " + y + " body: " + body + " look: " + look + " ang: " + ang + " power: " + power);
-        power = parseInt(power * 234 / 100);
-        var mobile_data = Types.MOBILES[account.player.mobile];
+        const { MOBILES } = Types;
+        const { player } = account;
+        const { itemInUse, mobile } = player;
 
-        var b0 = Math.round(parseInt(Math.cos(self.wind_angle * Math.PI / 180) * self.wind_power * mobile_data.by)) / 100;
-        var b1 = Math.round(parseInt(Math.sin(self.wind_angle * Math.PI / 180) * self.wind_power * mobile_data.by - mobile_data.bx)) / 100;
-        var ax = Math.round(0 - b0);
-        var ay = Math.round(mobile_data.by - b1);
-        if (self.wind_power === 0) {
-            ax = 0;
-            ay = mobile_data.by;
-        }
-
-        /*var ax = mobile_data.bx;
-        var ay = mobile_data.by;*/
-        var dis = 0;
-        if (look === 0) {
-            ang = 180 - ang;
-            if (account.player.mobile === Types.MOBILE.ADUKA) {
-                dis = 26;
-            } else {
-                dis = -11;
-            }
-        } else {
-            if (account.player.mobile === Types.MOBILE.ADUKA) {
-                dis = -26;
-            } else {
-                dis = 11;
-            }
-        }
-        ang -= body;
-        var point = {
-            x: x + dis,
-            y: account.player.mobil === Types.MOBILE.ADUKA ? y - 31 : y - 28
+        const mobileSelected = self.gameserver.Mobiles[mobile];
+        var mobile_data = MOBILES[account.player.mobile];
+        const point = { x, y };
+        const wind = {
+            power: self.wind_power,
+            angle: self.wind_angle
         };
-        var pfinal = self.rotatePoint(point, {
-            x: x,
-            y: y
-        }, body);
-
+        const MetaDataProjectile = ProjectileHandler.GuessMetaData(point, body, look, ang, power, wind, mobile, mobile_data);
+ 
         const dataDelay = [100, 150, 250];
         account.player.addDelay(dataDelay[type] || 0);
 
-        const { itemInUse, mobile } = account.player;
-        const mobileSelected = self.gameserver.Mobiles[mobile];
+
         const mobileProjectile = mobileSelected.projectile;
         const isTeleport = itemInUse === 1;
         const isDual = itemInUse === 0;
@@ -179,13 +150,13 @@ module.exports = class Game {
         const itemMethod = isDual ? methodProjectile[type === 0 ? 0 : 1] : isDualPlus ? methodProjectile[type === 0 ? 1 : 0] : null;
         const methodSelected = methodProjectile[type];
         var dataShot = isTeleport ? TeleportProjectile.Get() : [...mobileProjectile[methodSelected]()];
-        if(!isTeleport && itemMethod){
+        if (!isTeleport && itemMethod) {
             console.log("Se cumple")
             dataShot = [...dataShot, ...mobileProjectile[itemMethod](1000)];
         }
         let n_shot = 0;
         dataShot.map((shot) => {
-            this.world.shoots[n_shot] = new Shoot(pfinal.x, pfinal.y, ang, power, type, ax, ay, this.wind_angle, this.wind_power, account);
+            this.world.shoots[n_shot] = new Shoot(MetaDataProjectile.final, MetaDataProjectile.angle, MetaDataProjectile.power, type, MetaDataProjectile.ligth, this.wind_angle, this.wind_power, account);
             Object.entries(shot.data).map(a => this.world.shoots[n_shot][a[0]] = a[1]);
             Object.entries(shot.type).map(a => this.world.shoots[n_shot].type[a[0]] = a[1]);
             n_shot++;
@@ -196,7 +167,7 @@ module.exports = class Game {
         this.world.run();
         this.PushWeather();
     }
-
+    
     getNextTurn(callback) {
         var self = this;
         var list_turn = [];
@@ -256,34 +227,5 @@ module.exports = class Game {
     }
     onGameEnd(callback) {
         this.gameEnd_callback = callback;
-    }
-
-    getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min)) + min;
-    }
-
-    RadToAngle(a) {
-        return 180 * a / Math.PI;
-    }
-
-    AngleToRad(p) {
-        return p * Math.PI / 180;
-    }
-
-    vector(a, b) {
-        var data = {};
-        data.x = Math.cos(this.RadToAngle(a)) * b;
-        data.y = -Math.sin(this.RadToAngle(a)) * b;
-        return data;
-    }
-
-    rotatePoint(point, center, angle) {
-        var px = {};
-        angle = (angle) * (Math.PI / 180); // Convert to radians
-        px.x = Math.cos(angle) * (point.x - center.x) - Math.sin(angle) * (point.y - center.y) + center.x;
-        px.y = Math.sin(angle) * (point.x - center.x) + Math.cos(angle) * (point.y - center.y) + center.y;
-        px.x = Math.floor(px.x);
-        px.y = Math.floor(px.y);
-        return px;
     }
 };

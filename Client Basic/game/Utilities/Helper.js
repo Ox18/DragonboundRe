@@ -120,6 +120,14 @@ class Helper {
     AngleMirror(angle) {
         return angle >= 0 && angle <= 180 ? 180 - angle : angle >= 180 && angle <= 270 ? 360 - (angle - 180) : angle >= 270 && angle <= 360 ? 180 + (angle - 360) : null;
     }
+
+    RotatePoint(point, center, angle){
+        angle = this.AngleToRad(angle);
+        return {
+            x: Math.floor(Math.cos(angle) * (point.x - center.x) - Math.sin(angle) * (point.y - center.y) + center.x),
+            y: Math.floor(Math.sin(angle) * (point.x - center.x) + Math.cos(angle) * (point.y - center.y) + center.y)
+        }
+    }
 };
 
 const helper = new Helper();
