@@ -157,4 +157,7 @@ module.exports = class player {
         var self = this;
         self.move();
     }
+    CleanItemUse(){
+        this.itemInUse = null;
+    }
 };

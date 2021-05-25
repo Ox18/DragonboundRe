@@ -4,11 +4,11 @@ var Helper = require('../Utilities/Helper');
 const ZotataPhysics = require("../GameComponents/Physics");
 
 module.exports              = class Shoot {
-    constructor(point, ang, power, type, ligth, wind_ang, wind_power, account) {
-        this.x0             = point.x;
-        this.y0             = point.y;
-        this.ax             = ligth.ax;
-        this.ay             = ligth.ay;
+    constructor(x, y, ang, power, type, ax, ay, wind_ang, wind_power, account) {
+        this.x0             = x;
+        this.y0             = y;
+        this.ax             = ax;
+        this.ay             = ay;
         this.wind_ang       = wind_ang;
         this.wind_power     = wind_power;
         this.account        = account;
@@ -18,7 +18,7 @@ module.exports              = class Shoot {
         this.change         = null;
         this.position       = null;
         this.v              = Helper.Vector(this.ang, this.power);
-        this.zp             = new ZotataPhysics(this.x, this.y, this.ang, this.power, this.ax, this.ay);
+        this.zp             = new ZotataPhysics(x, y, ang, power, ax, ay);
         this.time           = 0;
         this.stime          = 0;
         this.img            = 0;
@@ -35,9 +35,8 @@ module.exports              = class Shoot {
         this.thor           = null;
         this.isTeleport     = null;
         this.tele           = null;
-        this.vector         = new Vector(this.x, this.y);
-        this.box            = new Box(this.vector, 30, 25, 0);
-        this.explodebox     = new Box(this.vector, 40, 40, 0);
+        this.box            = new Box(new Vector(x, y), 30, 25, 0);
+        this.explodebox     = new Box(new Vector(x, y), 40, 40, 0);
         this.chat_complete  = false;
         this.IsComplete     = false;
         this.canCollide     = false;
@@ -93,7 +92,7 @@ module.exports              = class Shoot {
     GetProperties() {
         let data = [];
         let properties = ['ss', 'is_lightning', 'thor', 'wave', 'orbit', 'jumping', 'exp', 'img', 'change'];
-        if (!this.isOutMap) {
+        if(!this.isOutMap){
             properties.push('tele');
         }
         properties.map(propertie => (this[propertie] !== null || this[propertie] != false) && data.push([propertie, this[propertie]]));
@@ -102,10 +101,10 @@ module.exports              = class Shoot {
     GetS() {
         return [this.x0, this.y0, this.ang, this.power, this.ax, this.ay, this.stime]
     }
-    GetPropertyDeleteIsOutMap() {
-        return ['exp', 'exp', 'hole', 'tele'];
+    GetPropertyDeleteIsOutMap(){
+        return ['exp', 'exp', 'hole', 'tele'];        
     }
-    onGetPosAtTime() {
+    onGetPosAtTime(){
         (this.isTeleport) && (this.tele = [this.account.player.position, this.position.x, this.position.y, this.position.x, this.position.y]);
     }
 };

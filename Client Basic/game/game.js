@@ -123,47 +123,39 @@ module.exports = class Game {
         }
     }
 
-    gameShoot(x, y, body, look, ang, power, time, type, account) {
+    gameShoot(x, y, body, look, ang, power, time, type, account, GameShoot) {
         var self = this;
-        const { MOBILES } = Types;
-        const { player } = account;
-        const { itemInUse, mobile } = player;
-
-        const mobileSelected = self.gameserver.Mobiles[mobile];
-        var mobile_data = MOBILES[account.player.mobile];
-        const point = { x, y };
         const wind = {
             power: self.wind_power,
             angle: self.wind_angle
         };
-        const MetaDataProjectile = ProjectileHandler.GuessMetaData(point, body, look, ang, power, wind, mobile, mobile_data);
- 
+        const { MOBILES } = Types;
+        const { player } = account;
+        const { mobile } = player;
+        const mobile_data = MOBILES[mobile];
+        
+        GameShoot.UpdateLigth(wind, mobile_data);
+
         const dataDelay = [100, 150, 250];
         account.player.addDelay(dataDelay[type] || 0);
 
-
-        const mobileProjectile = mobileSelected.projectile;
-        const isTeleport = itemInUse === 1;
-        const isDual = itemInUse === 0;
-        const isDualPlus = itemInUse === 2;
-        const methodProjectile = ['getS1', 'getS2', 'getSS'];
-        const itemMethod = isDual ? methodProjectile[type === 0 ? 0 : 1] : isDualPlus ? methodProjectile[type === 0 ? 1 : 0] : null;
-        const methodSelected = methodProjectile[type];
-        var dataShot = isTeleport ? TeleportProjectile.Get() : [...mobileProjectile[methodSelected]()];
-        if (!isTeleport && itemMethod) {
-            console.log("Se cumple")
-            dataShot = [...dataShot, ...mobileProjectile[itemMethod](1000)];
+        const { ProjectileName } = GameShoot;
+        var dataShot = GameShoot.item.isTeleport ? TeleportProjectile.Get() : [...armorProjectile[ProjectileName.first]()];
+        
+        if(GameShoot.isItem && GameShoot.ItemMethod){
+            dataShot = [...dataShot, ...armorProjectile[ProjectileName.second](1000)];
+            account.player.CleanItemUse();
         }
         let n_shot = 0;
         dataShot.map((shot) => {
-            this.world.shoots[n_shot] = new Shoot(MetaDataProjectile.final, MetaDataProjectile.angle, MetaDataProjectile.power, type, MetaDataProjectile.ligth, this.wind_angle, this.wind_power, account);
+            this.world.shoots[n_shot] = new Shoot(GameShoot.final.x, GameShoot.final.y, GameShoot.angle, GameShoot.power, GameShoot.type, GameShoot.ligth.ax, GameShoot.ligth.ay, wind.angle, wind.power, GameShoot.account);
             Object.entries(shot.data).map(a => this.world.shoots[n_shot][a[0]] = a[1]);
             Object.entries(shot.type).map(a => this.world.shoots[n_shot].type[a[0]] = a[1]);
             n_shot++;
         });
         this.world.shoot();
         this.world.shoots_count = n_shot;
-        (isTeleport) && (account.player.itemInUse = null);
+
         this.world.run();
         this.PushWeather();
     }

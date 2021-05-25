@@ -9,6 +9,7 @@ var mysql = require('mysql');
 var Commands = require('./commands');
 const ItemHandler = require("./GameComponents/Game/ItemHandler");
 const MobileHandler = require('./GameComponents/Room/MobileHandler');
+const GameShoot = require('./Entity/GameShoot');
 // account
 module.exports = class Account {
     constructor(connection, gameserver) {
@@ -968,7 +969,8 @@ module.exports = class Account {
                         self.player.body = body;
                         self.player.look = look;
                         self.player.move();
-                        self.room.game.gameShoot(x, y, body, look, ang, power, time, type, self);
+                        const gameShoot = new GameShoot(x, y, body, look, ang, power, time, type, self);
+                        self.room.game.gameShoot(x, y, body, look, ang, power, time, type, self, gameShoot);
                     }
                     break;
                 }
