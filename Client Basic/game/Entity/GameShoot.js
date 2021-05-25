@@ -1,24 +1,9 @@
 const helper = require("../Utilities/Helper");
 const Types = require('../gametypes');
 const { ADUKA, NAK } = Types.MOBILES;
-class Look {
-  constructor(look) {
-    this.data = look;
-    this.isLeft = look === 0;
-    this.isRight = look === 1;
-  }
-}
-class Item {
-  constructor(item) {
-    this.number = item;
-    this.isDual = this.isEqualsTo(0);
-    this.isTeleport = this.isEqualsTo(1);
-    this.isDualPlus = this.isEqualsTo(2);
-  }
-  isEqualsTo(a) {
-    return a === this.number;
-  }
-}
+const Item = require('./Item');
+const Look = require('./Look');
+
 class GameShoot {
   constructor(x, y, body, look, angle, power, time, type, account) {
     this.point = helper.Point(x, y);

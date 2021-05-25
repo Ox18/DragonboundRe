@@ -35,6 +35,9 @@ class Helper {
     round2(a) {
         return Math.round(100 * a) / 100;
     }
+    assertAEqualsB(a, b){
+        return a === b;
+    }
     between(a, b, c) {
         return this.max(this.min(b, c), a);
     }
