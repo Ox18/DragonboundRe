@@ -14,9 +14,9 @@ const Helper = require("../Utilities/Helper");
 
 module.exports = class ThorSatellite{
     constructor(){
-        this.x = this.GetRandomX();
-        this.y = this.GetRandomY();
-        this.angle = this.GetRandomAngle();
+        this.x      = this.GetRandomX();
+        this.y      = this.GetRandomY();
+        this.angle  = this.GetRandomAngle();
         this.damage = 0;
     }
     GetRandomAngle(){

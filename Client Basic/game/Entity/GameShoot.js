@@ -6,22 +6,22 @@ const Look = require('./Look');
 
 class GameShoot {
   constructor(x, y, body, look, angle, power, time, type, account) {
-    this.point = helper.Point(x, y);
-    this.center = this.point;
-    this.body = body;
-    this.look = new Look(look)
-    this.angle = this.GuessAngle(angle, body);
-    this.power = power;
-    this.time = time;
-    this.type = type;
-    this.account = account;
-    this.flip = this.GuessFlipMobile(account.player.mobile);
-    this.distance = this.GuessDistance();
-    this.ligth = null;
-    this.final = null;
-    this.isItem = this.GuessIsItem();
-    this.Item = new Item(account.player.itemInUse);
-    this.ItemMethod = this.GuessItemMethod();
+    this.point          = helper.Point(x, y);
+    this.center         = this.point;
+    this.body           = body;
+    this.look           = new Look(look)
+    this.angle          = this.GuessAngle(angle, body);
+    this.power          = power;
+    this.time           = time;
+    this.type           = type;
+    this.account        = account;
+    this.flip           = this.GuessFlipMobile(account.player.mobile);
+    this.distance       = this.GuessDistance();
+    this.ligth          = null;
+    this.final          = null;
+    this.isItem         = this.GuessIsItem();
+    this.Item           = new Item(account.player.itemInUse);
+    this.ItemMethod     = this.GuessItemMethod();
     this.ProjectileName = this.GuessProjectileName();
     this.Init();
   }

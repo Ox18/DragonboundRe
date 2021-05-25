@@ -12,8 +12,8 @@
 
 module.exports = class Item {
   constructor(number) {
-    this.number = number;
-    this.isDual = helper.assertAEqualsB(number, 0);
+    this.number     = number;
+    this.isDual     = helper.assertAEqualsB(number, 0);
     this.isTeleport = helper.assertAEqualsB(number, 1);
     this.isDualPlus = helper.assertAEqualsB(number, 2);
   }

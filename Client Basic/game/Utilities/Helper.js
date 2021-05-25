@@ -14,20 +14,20 @@ class Helper {
     constructor() {
         this.TIME_SECOND = 1e3;
         this.TIME_MINUTE = 60 * this.TIME_SECOND;
-        this.TIME_HOUR = 60 * this.TIME_MINUTE;
-        this.TIME_DAY = 24 * this.TIME_HOUR;
-        this.TIME_WEEK = 7 * this.TIME_DAY;
-        this.TIME_MONTH = 30 * this.TIME_DAY;
-        this.TIME_YEAR = 365 * this.TIME_DAY;
-        this.get_time = Date.now;
-        this.Now = Date.now;
-        this.max = Math.max;
-        this.min = Math.min;
-        this.abs = Math.abs;
-        this.round = Math.round;
-        this.floor = Math.floor;
-        this.ceil = Math.ceil;
-        this.PI = Math.PI;
+        this.TIME_HOUR   = 60 * this.TIME_MINUTE;
+        this.TIME_DAY    = 24 * this.TIME_HOUR;
+        this.TIME_WEEK   = 7 * this.TIME_DAY;
+        this.TIME_MONTH  = 30 * this.TIME_DAY;
+        this.TIME_YEAR   = 365 * this.TIME_DAY;
+        this.get_time    = Date.now;
+        this.Now         = Date.now;
+        this.max         = Math.max;
+        this.min         = Math.min;
+        this.abs         = Math.abs;
+        this.round       = Math.round;
+        this.floor       = Math.floor;
+        this.ceil        = Math.ceil;
+        this.PI          = Math.PI;
     }
     round1(a) {
         return Math.round(10 * a) / 10;

@@ -16,7 +16,7 @@ class ZotataPhysics {
   constructor(x0, y0, ang, power, ax, ay) {
     this.x0 = x0;
     this.y0 = y0;
-    this.v = Helper.Vector(ang, power);
+    this.v  = Helper.Vector(ang, power);
     this.ax = ax;
     this.ay = ay;
   }

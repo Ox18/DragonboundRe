@@ -12,22 +12,14 @@
 
 const Mobiles = require("../../Entity/Mobiles");
 
-class MobileHandler{
-    GuessValid(mobileSelected, player){
-        const isIn = Mobiles.CheckMobile(mobileSelected);
-        const isFox = mobileSelected === Mobiles.FOX;
-        const isSpecial = Mobiles.IsSpecial(mobileSelected);
-        let isValid = false;
-        if(isIn){
-            if(isFox){
-                if(player.mobile_fox) isValid = true;
-            }
-            else if(isSpecial){
-                if(player.gm) isValid = true;
-            }
-            else isValid = true;
-        }
-        return isValid;
+class MobileHandler {
+    GuessValid(mobileSelected, player) {
+        const isIn               = Mobiles.CheckMobile(mobileSelected);
+        const isFox              = mobileSelected === Mobiles.FOX;
+        const isSpecial          = Mobiles.IsSpecial(mobileSelected);
+        let isValid              = false;
+        const { mobile_fox, gm } = player;
+        return isIn && ((isFox && mobile_fox) || (isSpecial && gm) || isValid);
     }
 }
 const mobileHandler = new MobileHandler();

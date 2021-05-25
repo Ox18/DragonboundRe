@@ -12,8 +12,8 @@
 
 module.exports = class Look {
   constructor(look) {
-    this.data = look;
-    this.isLeft = helper.assertAEqualsB(look, 0);
+    this.data    = look;
+    this.isLeft  = helper.assertAEqualsB(look, 0);
     this.isRight = helper.assertAEqualsB(look, 1);
   }
 }
