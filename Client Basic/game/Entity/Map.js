@@ -29,15 +29,15 @@ const PivotMap = {
 }
 class MapData {
     constructor(ID, Name, SpawnPoints, w, h, ground_size, offset_x, offset_y) {
-        this.ID = ID;
-        this.Name = Name;
+        this.ID          = ID;
+        this.Name        = Name;
         this.SpawnPoints = SpawnPoints;
-        this.w = w;
-        this.h = h;
+        this.w           = w;
+        this.h           = h;
         this.ground_size = ground_size;
-        this.offset_x = offset_x;
-        this.offset_y = offset_y;
-        this.pivot = PivotMap.Scope(offset_x, offset_y, w, h, ground_size); 
+        this.offset_x    = offset_x;
+        this.offset_y    = offset_y;
+        this.pivot       = PivotMap.Scope(offset_x, offset_y, w, h, ground_size); 
     }
 };
 
@@ -145,11 +145,11 @@ class Map {
         return this.MapList().filter(map => map.ID === mapID)[0];
     }
     GetRandomPoint(mapID){
-        const map = this.MapList[mapID];
-        const MinNumber = 0;
-        const MaxNumber = map.SpawnPoints.length - 1;
+        const map         = this.MapList[mapID];
+        const MinNumber   = 0;
+        const MaxNumber   = map.SpawnPoints.length - 1;
         const RandomPoint = Helper.random(MinNumber, MaxNumber);
-        const point = map.SpawnPoints[RandomPoint]
+        const point       = map.SpawnPoints[RandomPoint]
         return {
             x: point[0],
             y: point[1]

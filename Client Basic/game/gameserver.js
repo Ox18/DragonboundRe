@@ -2,6 +2,7 @@ var Types = require('./gametypes');
 var Account = require('./account');
 var Logger = require('./lib/logger');
 var Avatars = require('./avatars');
+const Mobiles = require('./Entity/Mobiles');
 // gameserver
 module.exports = class GameServer {
     constructor(ServerData, websocketserver) {
@@ -28,15 +29,15 @@ module.exports = class GameServer {
         this.tournament = ServerData.Tournament;
         this.LobbyText = ServerData.LobbyText;
 
-        this.onAccountConnect(function (account) {
+        this.onAccountConnect(function(account) {
             account.send([Types.SERVER_OPCODE.hi, self.ver, self.name, self.server_type, 0]);
         });
 
-        this.onAccountRemoved(function () {
+        this.onAccountRemoved(function() {
             // Logger.debug("playerRemoved")
         });
 
-        this.onAccountEnter(function (account) {
+        this.onAccountEnter(function(account) {
             if (self.chathistory !== null) {
                 var data = self.chathistory.slice(0);
                 data.push(['', '', 9]);
@@ -47,7 +48,7 @@ module.exports = class GameServer {
             }
             self.sendAccountsOnline();
             self.sendRooms(account);
-            account.onExit(function () {
+            account.onExit(function() {
                 Logger.info(account.player.game_id + ' has left the game.');
                 account.hasEnteredGame = false;
                 account.login_complete = false;
@@ -64,7 +65,7 @@ module.exports = class GameServer {
     sendAccountsOnline() {
         var self = this;
         var data = [];
-        self.forEachAccount(function (account) {
+        self.forEachAccount(function(account) {
             if (account !== null) {
                 data.push(account.user_id);
                 data.push(account.player.game_id);
@@ -78,10 +79,10 @@ module.exports = class GameServer {
     sendRooms(account) {
         var self = this;
         var data = [];
-        self.getRoomsArray(function (arr) {
+        self.getRoomsArray(function(arr) {
             data = arr;
             var snd = [Types.SERVER_OPCODE.rooms_list, data];
-            if (typeof (account) !== 'undefined')
+            if (typeof(account) !== 'undefined')
                 account.send(snd);
             else
                 self.pushBroadcastChannel(snd);
@@ -91,7 +92,7 @@ module.exports = class GameServer {
     sendRoomsType(account, page, type) {
         var self = this;
         var data_fin = [];
-        self.getRoomsArray(function (arr) {
+        self.getRoomsArray(function(arr) {
             if (arr !== null) {
                 for (var i = page; i < (page + 7); i++) {
                     if (i < arr.length) {
@@ -108,7 +109,7 @@ module.exports = class GameServer {
         var self = this;
         var regenCount = this.ups * 2;
         var updateCount = 0;
-        setInterval(function () {
+        setInterval(function() {
             self.processQueues();
             if (updateCount < regenCount) {
                 updateCount += 1;
@@ -134,8 +135,8 @@ module.exports = class GameServer {
         var self = this,
             room = this.rooms[roomId];
         if (room) {
-            room.forPlayers(function (account) {
-                if (account !== null && typeof (account) !== 'undefined') {
+            room.forPlayers(function(account) {
+                if (account !== null && typeof(account) !== 'undefined') {
                     if (account.user_id != ignoredAccount && account.player.is_bot === 0) {
                         self.pushToAccount(account, message);
                     }
@@ -191,7 +192,7 @@ module.exports = class GameServer {
         for (var id in this.outgoingQueues) {
             if (this.outgoingQueues[id].length > 0) {
                 var account = this.getAccountById(id);
-                if (account !== null && typeof (account) != 'undefined') {
+                if (account !== null && typeof(account) != 'undefined') {
                     connection = this.server.getConnection(account.con_id);
                     for (var i = 0; i < this.outgoingQueues[id].length; i++) {
                         try {
@@ -232,7 +233,7 @@ module.exports = class GameServer {
     getRoomsArray(callback) {
         var self = this;
         var data = [];
-        self.forEachRooms(function (rom) {
+        self.forEachRooms(function(rom) {
             data.push([
                 rom.id,
                 rom.title,
@@ -283,7 +284,7 @@ module.exports = class GameServer {
 
     getIdforRoom() {
         for (var i = 1; i < 500; i++) {
-            if (this.room_ids[i] === null || typeof (this.room_ids[i]) === 'undefined') {
+            if (this.room_ids[i] === null || typeof(this.room_ids[i]) === 'undefined') {
                 this.room_ids[i] = true;
                 return i;
             }
@@ -307,7 +308,7 @@ module.exports = class GameServer {
 
     getIdforBot() {
         for (var i = 60000; i < 60500; i++) {
-            if (this.bot_ids[i] === null || this.bot_ids[i] === false || typeof (this.bot_ids[i]) === 'undefined') {
+            if (this.bot_ids[i] === null || this.bot_ids[i] === false || typeof(this.bot_ids[i]) === 'undefined') {
                 this.bot_ids[i] = true;
                 return i;
             }
@@ -333,7 +334,7 @@ module.exports = class GameServer {
     checkAccountOnline(user_id, callback) {
         var self = this;
         var exi = false;
-        self.forEachAccount(function (account) {
+        self.forEachAccount(function(account) {
             if (account !== null) {
                 if (user_id === account.user_id) {
                     exi = true;
@@ -345,7 +346,7 @@ module.exports = class GameServer {
 
     checkAccountOnlineAndClose(user_id, callback) {
         var self = this;
-        self.forEachAccount(function (account) {
+        self.forEachAccount(function(account) {
             if (account !== null) {
                 if (user_id === account.user_id) {
                     self.closeAccount(account);
@@ -368,7 +369,7 @@ module.exports = class GameServer {
 
     closeAccount(account) {
         var self = this;
-        if (typeof (account) !== 'undefined') {
+        if (typeof(account) !== 'undefined') {
             account.connection.close();
             self.removeAccount(account);
         }

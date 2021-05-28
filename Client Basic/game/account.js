@@ -9,6 +9,7 @@ var mysql = require('mysql');
 var Commands = require('./commands');
 const ItemHandler = require("./GameComponents/Game/ItemHandler");
 const MobileHandler = require('./GameComponents/Room/MobileHandler');
+const GameShoot = require('./Entity/GameShoot');
 // account
 module.exports = class Account {
     constructor(connection, gameserver) {
@@ -28,7 +29,7 @@ module.exports = class Account {
         this.commands = new Commands(this);
 
         var self = this;
-        connection.listen(function (message) {
+        connection.listen(function(message) {
             var opcode = parseInt(message[0]);
             try {
                 self.Handler(opcode, message);
@@ -38,7 +39,7 @@ module.exports = class Account {
             }
         });
 
-        connection.onClose(function () {
+        connection.onClose(function() {
             if (self.room) {
                 self.room.removePlayer(self);
             }
@@ -58,37 +59,37 @@ module.exports = class Account {
                     let _session = message[3];
                     let _hash = parseInt(message[4]);
                     let _last_win = parseInt(message[5]);
-                    if (typeof (_id) !== 'number') {
+                    if (typeof(_id) !== 'number') {
                         self.sendMessage(new Message.alertResponse(":)", "Que haces? Ctrl+F5"));
                         self.connection.close();
                         return null;
                     }
                     self.gameserver.db.getPlayerData(_id, _session)
-                        .then(function (data) {
-                            if (data.error_mysql || data.error_querry) {
-                                self.sendMessage(new Message.alertResponse(":)", "Error Servidor!"));
-                                self.connection.close();
-                            } else if (data.error_session || data.error_exist) {
-                                self.sendMessage(new Message.alertResponse(":)", "Que haces? Ctrl+F5"));
-                                self.connection.close();
-                            } else {
-                                self.send([Types.SERVER_OPCODE.login_profile]);
-                                self.gameserver.checkAccountOnlineAndClose(data.user_id, function () {
-                                    self.send([Types.SERVER_OPCODE.login_avatars]);
-                                    self.user_id = data.user_id;
-                                    self.is_muted = data.is_muted;
-                                    self.player = new Player(data);
-                                    self.login_complete = true;
-                                    self.location_type = Types.LOCATION.CHANNEL;
-                                    self.sendMessage(new Message.loginResponse(self));
-                                    self.gameserver.addAccount(self);
-                                    self.gameserver.enter_callback(self);
-                                });
-                            }
-                        })
-                        .catch(function (err) {
+                    .then(function(data) {
+                        if (data.error_mysql || data.error_querry) {
+                            self.sendMessage(new Message.alertResponse(":)", "Error Servidor!"));
                             self.connection.close();
-                        });
+                        } else if (data.error_session || data.error_exist) {
+                            self.sendMessage(new Message.alertResponse(":)", "Que haces? Ctrl+F5"));
+                            self.connection.close();
+                        } else {
+                            self.send([Types.SERVER_OPCODE.login_profile]);
+                            self.gameserver.checkAccountOnlineAndClose(data.user_id, function() {
+                                self.send([Types.SERVER_OPCODE.login_avatars]);
+                                self.user_id = data.user_id;
+                                self.is_muted = data.is_muted;
+                                self.player = new Player(data);
+                                self.login_complete = true;
+                                self.location_type = Types.LOCATION.CHANNEL;
+                                self.sendMessage(new Message.loginResponse(self));
+                                self.gameserver.addAccount(self);
+                                self.gameserver.enter_callback(self);
+                            });
+                        }
+                    })
+                    .catch(function(err) {
+                        self.connection.close();
+                    });
                     break;
                 }
             case Types.CLIENT_OPCODE.get_avatar:
@@ -96,6 +97,35 @@ module.exports = class Account {
                     let _id = message[1];
                     var data = self.gameserver.avatars.getAvatar(_id);
                     if (data !== null) self.send([Types.SERVER_OPCODE.avatar_info, _id, data]);
+                    break;
+                }
+            case Types.CLIENT_OPCODE.game_use_item:
+                {
+                    // seguridad
+                    if (!self.login_complete) {
+                        self.connection.close();
+                        return null;
+                    }
+                    const item_number = message[1];
+                    let item_point = 0;
+                    let item_count = 6;
+                    let item = {};
+                    for (item_point; item_point < item_count; item_point++) {
+                        item[item_point] = item_point === item_number;
+                    }
+                    const item_use = self.player.item_selected[item_number];
+                    const itemIsValid = item_use != -1 && item_number < 6 && self.player.itemInUse === null;
+                    if (itemIsValid) {
+                        const ITEM_NAME = ["Dual", "Teleport", "Dual+"]
+                        self.gameserver.pushBroadcastChat(new Message.chatResponse(self, this.player.game_id + " Used Item: " + ITEM_NAME[item_use], Types.CHAT_TYPE.SYSTEM), self.room);
+                        self.player.itemInUse = item_use;
+                        self.player.item_selected[item_number] = -1;
+                        let item_data = [Types.SERVER_OPCODE.items, [
+                            self.player.item_selected, -1
+                        ]];
+                        self.send(item_data);
+                    }
+
                     break;
                 }
             case Types.CLIENT_OPCODE.get_my_avatars:
@@ -106,12 +136,12 @@ module.exports = class Account {
                         return null;
                     }
                     self.gameserver.db.getPlayerAvatars(self)
-                        .then(function (data) {
-                            if (data.error_mysql || data.error_querry) { } else {
-                                var dat = self.gameserver.avatars.getAvatarDataList(data.data_list);
-                                self.sendMessage(new Message.myAvatars(self, dat));
-                            }
-                        });
+                    .then(function(data) {
+                        if (data.error_mysql || data.error_querry) {} else {
+                            var dat = self.gameserver.avatars.getAvatarDataList(data.data_list);
+                            self.sendMessage(new Message.myAvatars(self, dat));
+                        }
+                    });
                     break;
                 }
             case Types.CLIENT_OPCODE.chat:
@@ -157,19 +187,18 @@ module.exports = class Account {
                     const message = BcmHandler.ConvertExpressToText(message[1]);
                     const haveBcm = BcmHandler.GuessValidHave(player);
                     const isLong = BcmHandler.GuessLongValid(message);
-                    
-                    if(haveBcm){
-                        if(isLong){
+
+                    if (haveBcm) {
+                        if (isLong) {
                             self.SendAlert("Sorry, a find error", "Your message is long");
-                        }
-                        else{
+                        } else {
                             self.gameserver.pushBroadcastChat(new Message.chatResponse(self, message, Types.CHAT_TYPE.BUGLE));
                             self.player.megaphones -= 1;
                             // add function to save in channel chat (buggle)
                             // add function to save in page /Broadcast 
                             // add function to update megaphone in BD
                         }
-                    }else{
+                    } else {
                         self.sendMessage(new Message.alert2Response(Types.ALERT2_TYPES.NEED_ITEM, self.gameserver.avatars.getAvatarAlert(894)));
                         return null;
                     }
@@ -183,11 +212,11 @@ module.exports = class Account {
                         return null;
                     }
                     let _id = parseInt(message[1]);
-                    if (typeof (_id) !== 'number')
+                    if (typeof(_id) !== 'number')
                         return null;
                     let _msj = message[2];
                     let account = self.gameserver.getAccountById(_id);
-                    if (typeof (account) !== 'undefined' && account !== null) {
+                    if (typeof(account) !== 'undefined' && account !== null) {
                         account.sendMessage(new Message.pChatResponse(self, this.player.game_id, _msj));
                         self.sendMessage(new Message.pChatResponse(account, this.player.game_id, _msj));
                     }
@@ -288,12 +317,12 @@ module.exports = class Account {
 
                             } else {
                                 self.gameserver.db.buyAvatarForAccount(self.user_id, is_cash, _iprecio, data)
-                                    .then(function (data) {
-                                        if (data.error_mysql || data.error_querry) { } else {
+                                    .then(function(data) {
+                                        if (data.error_mysql || data.error_querry) {} else {
                                             self.sendMessage(new Message.alert2Response(Types.ALERT2_TYPES.PURCHASED, [id]));
                                         }
                                     })
-                                    .catch(function (err) {
+                                    .catch(function(err) {
                                         Logger.error("" + err.stack);
                                     });
                             }
@@ -312,7 +341,7 @@ module.exports = class Account {
                     var arr_up = message[1];
                     var work = false;
                     for (var idx in arr_up) {
-                        if (typeof (arr_up[idx]) !== 'number') {
+                        if (typeof(arr_up[idx]) !== 'number') {
                             return null;
                         }
                     }
@@ -332,8 +361,8 @@ module.exports = class Account {
                     self.player.aforeground = 0;
                     if (work) {
                         self.gameserver.db.equipAvatar(arr_up, self)
-                            .then(function (data) {
-                                if (data.error_mysql || data.error_querry) { } else {
+                            .then(function(data) {
+                                if (data.error_mysql || data.error_querry) {} else {
                                     self.sendMessage(new Message.loginResponse(self));
                                 }
                             });
@@ -363,13 +392,13 @@ module.exports = class Account {
                         self.player.event2 = 1;
 
                     self.gameserver.db.eventUpdate(self, type)
-                        .then(function (data) {
-                            if (data.error_mysql || data.error_querry) {
+                    .then(function(data) {
+                        if (data.error_mysql || data.error_querry) {
 
-                            } else if (data.complete) {
-                                self.sendMessage(new Message.alert2Response(Types.ALERT2_TYPES.WON_EVENT2, [data.gold, data.cash]));
-                            }
-                        });
+                        } else if (data.complete) {
+                            self.sendMessage(new Message.alert2Response(Types.ALERT2_TYPES.WON_EVENT2, [data.gold, data.cash]));
+                        }
+                    });
                     break;
                 }
 
@@ -412,14 +441,14 @@ module.exports = class Account {
                         self.sendMessage(new Message.alert2Response(Types.ALERT2_TYPES.NAME_BAD_CHAR, []));
                     } else if (_nname.length < 25) {
                         self.gameserver.db.changeName(_nname, self)
-                            .then(function (data) {
+                            .then(function(data) {
                                 if (data.change) {
                                     self.player.game_id = _nname;
                                     self.sendMessage(new Message.loginResponse(self));
                                     self.gameserver.sendAccountsOnline();
                                 }
                             })
-                            .catch(function (data) {
+                            .catch(function(data) {
                                 if (data.error_mysql || data.error_querry) {
                                     self.sendMessage(new Message.alert2Response(Types.ALERT2_TYPES.NAME_BAD_CHAR, []));
                                 } else if (data.error_exist) {
@@ -472,11 +501,11 @@ module.exports = class Account {
                             return null;
                         }
                         self.gameserver.db.createGuild(gname, self)
-                            .then(function (data) {
+                            .then(function(data) {
                                 self.sendMessage(new Message.alert2Response(Types.ALERT2_TYPES.GUILD_CREATED, []));
                                 self.sendMessage(new Message.loginResponse(self));
                             })
-                            .catch(function (data) {
+                            .catch(function(data) {
                                 if (data.error_mysql || data.error_querry) {
                                     self.sendMessage(new Message.alert2Response(Types.ALERT2_TYPES.GUILD_NAME_BAD_WORD, []));
                                 } else if (data.error_exist) {
@@ -519,10 +548,10 @@ module.exports = class Account {
                         self.room.map = message[3];
                         self.room.is_avatars_on = message[4];
                         self.room.max_wind = message[5];
-                        self.room.is_s1_disabled = message[7];/*6*/
-                        self.room.is_tele_disabled = message[8];/*7*/
-                        self.room.is_random_teams = message[9];/*8*/
-                        self.room.is_dual_plus_disabled = message[10];/*9*/
+                        self.room.is_s1_disabled = message[7]; /*6*/
+                        self.room.is_tele_disabled = message[8]; /*7*/
+                        self.room.is_random_teams = message[9]; /*8*/
+                        self.room.is_dual_plus_disabled = message[10]; /*9*/
                         self.room.RoomUpdate(self);
                     }
                     break;
@@ -537,7 +566,7 @@ module.exports = class Account {
                     let id = parseInt(message[1]);
                     if (self.player.guild === '') {
                         self.gameserver.db.joinGuild(self, id)
-                            .then(function (data) {
+                            .then(function(data) {
                                 if (data.good) {
                                     self.sendMessage(new Message.alert2Response(Types.ALERT2_TYPES.ALREADY_IN_GUILD, []));
                                     if (self.room) {
@@ -545,8 +574,8 @@ module.exports = class Account {
                                     }
                                 }
                             })
-                            .catch(function (data) {
-                                if (data.error_mysql || data.error_querry) { } else if (data.error_exist) { }
+                            .catch(function(data) {
+                                if (data.error_mysql || data.error_querry) {} else if (data.error_exist) {}
                             });
                     }
                     break;
@@ -560,7 +589,7 @@ module.exports = class Account {
                     }
                     if (self.player.guild !== '' && self.player.guild_job === 0) {
                         self.gameserver.db.leaveGuild(self)
-                            .then(function (data) {
+                            .then(function(data) {
                                 if (data.complete) {
                                     self.player.guild = '';
                                     self.player.guild_job = 0;
@@ -572,8 +601,8 @@ module.exports = class Account {
                                     }
                                 }
                             })
-                            .catch(function (data) {
-                                if (data.error_mysql || data.error_querry) { }
+                            .catch(function(data) {
+                                if (data.error_mysql || data.error_querry) {}
                             });
                     }
                     break;
@@ -590,13 +619,13 @@ module.exports = class Account {
                         self.sendMessage(new Message.alert2Response(Types.ALERT2_TYPES.CANT_KICK_YOURSELF, []));
                     } else if (self.player.guild !== '' && self.player.guild_job === 1) {
                         self.gameserver.db.kickGuild(guser_id, self.player.guild_id)
-                            .then(function (data) {
+                            .then(function(data) {
                                 if (data.complete) {
                                     self.sendMessage(new Message.alert2Response(Types.ALERT2_TYPES.KICKED_GUILD, []));
                                 }
                             })
-                            .catch(function (data) {
-                                if (data.error_mysql || data.error_querry) { }
+                            .catch(function(data) {
+                                if (data.error_mysql || data.error_querry) {}
                             });
                     }
                     break;
@@ -631,7 +660,7 @@ module.exports = class Account {
                         return null;
                     }
                     let room_id = parseInt(message[1]);
-                    self.gameserver.getRoomById(room_id, function (room) {
+                    self.gameserver.getRoomById(room_id, function(room) {
                         if (room) {
                             self.sendMessage(new Message.extraRoomInfo(room));
                         }
@@ -685,7 +714,7 @@ module.exports = class Account {
                     }
                     let id = message[1];
                     let password = message[2];
-                    self.gameserver.getRoomById(id, function (room) {
+                    self.gameserver.getRoomById(id, function(room) {
                         if (room) {
                             if (room.player_count < room.max_players && room.status === Types.ROOM_STATUS.WAITING) {
                                 if (room.look === 1 && self.player.gm === 0) {
@@ -719,7 +748,7 @@ module.exports = class Account {
                     let maxplayers = message[3];
                     let gamemode = message[4];
                     self.gameserver.rooms[id] = new Room(id, title, password, maxplayers, gamemode, self.gameserver);
-                    self.gameserver.getRoomById(id, function (room) {
+                    self.gameserver.getRoomById(id, function(room) {
                         if (room) {
                             if (room.player_count < room.max_players) {
                                 self.player.is_master = 1;
@@ -740,13 +769,14 @@ module.exports = class Account {
                         self.connection.close();
                         return null;
                     }
-                    
+
                     const title = message[1];
                     const isMaster = self.player.is_master;
                     const inRoom = self.room;
                     const isValid = isMaster && inRoom;
-                     
-                    if(isValid) self.room.RoomTitle(title), self.room.RoomUpdate(self)
+
+                    if (isValid) self.room.RoomTitle(title),
+                    self.room.RoomUpdate(self)
 
                     break;
                 }
@@ -831,12 +861,12 @@ module.exports = class Account {
                     const mobileSelected = message[1];
                     const inRoom = self.room;
                     const isValid = MobileHandler.GuessValid(mobileSelected, self.player);
-                    if(inRoom){
-                        if(isValid){
+                    if (inRoom) {
+                        if (isValid) {
                             self.player.mobile = mobileSelected;
                             self.gameserver.pushToRoom(self.room.id, new Message.changedMobile(self));
-                        }else{
-                            self.SendAlert("Mobile oculto","El mobile que intentas selccionar no se encuentra disponible");
+                        } else {
+                            self.SendAlert("Mobile oculto", "El mobile que intentas selccionar no se encuentra disponible");
                         }
                     }
                     break;
@@ -863,9 +893,9 @@ module.exports = class Account {
                         self.connection.close();
                         return null;
                     }
-                    let item_selected = ItemHandler.GuessItems(message[1], self.room.is_dual_plus_disabled, self.room.is_tele_disabled);
+                    self.player.item_selected = ItemHandler.GuessItems(message[1], self.room.is_dual_plus_disabled, self.room.is_tele_disabled);
                     let item_data = [Types.SERVER_OPCODE.items, [
-                        item_selected, -1
+                        self.player.item_selected, -1
                     ]];
                     self.send(item_data);
                     break;
@@ -1007,8 +1037,8 @@ module.exports = class Account {
     saveWinDB() {
         var self = this;
         self.gameserver.db.updateUser(self)
-            .then(function (data) {
-                if (data.error_mysql || data.error_querry) { } else {
+            .then(function(data) {
+                if (data.error_mysql || data.error_querry) {} else {
                     self.player.win_gold = 0;
                     self.player.win_gp = 0;
                     self.player.is_win = 0;

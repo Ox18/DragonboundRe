@@ -1,43 +1,66 @@
-var Types = require("../gametypes");
 var Box = require('./box');
 var Vector = require('./vect');
 var Helper = require('../Utilities/Helper');
-// Shoot
+const ZotataPhysics = require("../GameComponents/Physics");
+
 module.exports = class Shoot {
     constructor(x, y, ang, power, type, ax, ay, wind_ang, wind_power, account) {
         this.x0 = x;
         this.y0 = y;
         this.ax = ax;
         this.ay = ay;
+        this.wind_ang = wind_ang;
+        this.wind_power = wind_power;
         this.account = account;
         this.ang = ang;
         this.power = power;
+        this.button = type;
+        this.change = null;
+        this.position = null;
+        this.v = Helper.Vector(this.ang, this.power);
+        this.zp = new ZotataPhysics(x, y, ang, power, ax, ay);
         this.time = 0;
         this.stime = 0;
-        this.exp = 0;
         this.img = 0;
-        this.wind_ang = wind_ang;
-        this.wind_power = wind_power;
+        this.exp = null;
+        this.hole = [40, 10];
+        this.wave = null;
+        this.orbit = null;
+        this.jumping = null;
+        this.under = null;
+        this.bounce = null;
+        this.damage = 0;
+        this.angleAtTime = null;
+        this.ss = type == 2 ? 1 : null;
+        this.is_lightning = null;
+        this.thor = null;
+        this.isTeleport = null;
+        this.tele = null;
+        this.box = new Box(new Vector(x, y), 30, 25, 0);
+        this.explodebox = new Box(new Vector(x, y), 40, 40, 0);
         this.chat_complete = false;
-        this.v = Helper.Vector(this.ang, this.power);
         this.IsComplete = false;
         this.canCollide = false;
         this.damageComplete = false;
         this.groundCollide = false;
-
-        this.box = new Box(new Vector(x, y), 30, 25, 0);
-        this.explodebox = new Box(new Vector(x, y), 40, 40, 0);
-        this.ss = 0;
-
-
-        var mobile = this.account.player.mobile;
-        var defmobile = Types.MOBILES[mobile];
-        this.damageshot = 150;
-        this.img = defmobile.bullets[type];
-        var fexp = defmobile.explodes[type];
-        if (typeof (fexp) == 'undefined' || fexp === null) {
-            this.exp = 0;
-        } else this.exp = fexp;
+        this.isOutMap = false;
+        this.type = {
+            isChangeHoleWithTime: false,
+            isChangeImgWithTime: false,
+            isEndColliding: false,
+            isExplode: false,
+            isNotExplode: false,
+            isNotDamage: false,
+            isDamage: false,
+            isUndeground: false,
+            isThor: false,
+            isLightning: false,
+            isStartInPositionInitial: false,
+            isStartInPositionExplode: false,
+            isStartWithTimeElapsed: false,
+            isEndWithTimeElapsed: false,
+            isTimeFinalZero: false
+        };
     }
 
     move(x, y) {
@@ -54,19 +77,36 @@ module.exports = class Shoot {
 
     update() {
         this.time++;
+        this.angleAtTime = this.GetAngleAtTime();
     }
 
     getPosAtTime() {
-        var a = this.time / 485;
-        return {
-            x: Math.ceil(this.x0 + this.v.x * a + this.ax * a * a / 2),
-            y: Math.ceil(this.y0 + this.v.y * a + this.ay * a * a / 2)
-        };
+        this.position = this.wave ? this.zp.GetPosAtTimeWave(this.time, this.wave) : this.jumping ? this.zp.GetPosAtTimeJumping(this.time, this.jumping) : this.orbit ? this.zp.GetPosAtTimeOrbit(this.time, this.orbit[0], this.orbit[1], this.orbit[2], this.orbit[3]) : this.zp.GetPosAtTime(this.time);
+        this.onGetPosAtTime();
+        return this.position;
     }
-
-    GetAngleAtTime(a) {
-        var b = this.getPosAtTime(a - 5);
-        a = this.getPosAtTime(a + 5);
-        return Helper.RadToAngle(Math.atan2(a.y - b.y, a.x - b.x));
+    GetAngleAtTime() {
+        return this.wave ? this.zp.GetAngleAtTimeWave(this.time, this.wave) : this.zp.GetAngleAtTime(this.time);
+    }
+    GetTimeFinal() {
+        return this.type.isTimeFinalZero ? 0 : this.time * 2;
+    }
+    GetProperties() {
+        let data = [];
+        let properties = ['ss', 'is_lightning', 'thor', 'wave', 'orbit', 'jumping', 'exp', 'img', 'change'];
+        if (!this.isOutMap) {
+            properties.push('tele');
+        }
+        properties.map(propertie => (this[propertie] !== null || this[propertie] != false) && data.push([propertie, this[propertie]]));
+        return data;
+    }
+    GetS() {
+        return [this.x0, this.y0, this.ang, this.power, this.ax, this.ay, this.stime]
+    }
+    GetPropertyDeleteIsOutMap() {
+        return ['exp', 'exp', 'hole', 'tele'];
+    }
+    onGetPosAtTime() {
+        (this.isTeleport) && (this.tele = [this.account.player.position, this.position.x, this.position.y, this.position.x, this.position.y]);
     }
 };

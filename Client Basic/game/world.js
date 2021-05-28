@@ -6,52 +6,24 @@ require('setimmediate');
 // World
 module.exports = class World {
     constructor(game, gameserver) {
-        this.game = game;
-        this.gameserver = gameserver;
-
-        this.work = false;
-        this.shoots = {};
-        this.shoots_count = 0;
+        this.game            = game;
+        this.gameserver      = gameserver;
+        this.work            = false;
+        this.shoots          = {};
+        this.shoots_count    = 0;
         this.shoots_complete = 0;
-        this.shoots_data = [];
-        this.map = game.map;
-        this.chat = [];
-        this.shoot_complete = null;
-
-        this.chat_complete = false;
-
-        this.gp_kill = 8;
-        this.gold_kill = 500;
-
-        this.gold_good = 50;
-        this.gold_excellent = 100;
-
-        this.gold_penalty = -250;
-        this.gp_penalty = 0;
-
-        if (gameserver.evento200 === true) {
-            this.gp_kill = (8 * 2);
-            this.gold_kill = (500 * 2);
-
-            this.gold_good = (50 * 2);
-            this.gold_excellent = (100 * 2);
-
-            this.gold_penalty = -250;
-            this.gp_penalty = 0;
-        }
-
-        if (this.game.room.game_mode === Types.GAME_MODE.BOSS) {
-            this.gp_kill = 4;
-            this.gold_kill = 250;
-
-            this.gold_good = 50;
-            this.gold_excellent = 100;
-
-            this.gold_penalty = -250;
-            this.gp_penalty = 0;
-        }
+        this.shoots_data     = [];
+        this.map             = game.map;
+        this.chat            = [];
+        this.shoot_complete  = null;
+        this.chat_complete   = false;
+        this.gp_kill         = 8;
+        this.gold_kill       = 500;
+        this.gold_good       = 50;
+        this.gold_excellent  = 100;
+        this.gold_penalty    = -250;
+        this.gp_penalty      = 0;
     }
-
     start() {
         this.work = true;
         this.run();
@@ -62,12 +34,9 @@ module.exports = class World {
         for (var id in this.shoots) {
             this.shoots_data.push({
                 s: [],
-                exp: null,
-                img: null,
                 time: null,
                 hole: [],
                 damages: [],
-                ss: null
             });
         }
     }
@@ -78,7 +47,20 @@ module.exports = class World {
             self.update();
         });
     }
-
+    AddHole(shot) {
+        var self = this;
+        const { isNotExplode } = shot.type;
+        if(isNotExplode){
+            return;
+        }
+        var position = shot.getPosAtTime();
+        let shoots_complete = self.shoots_complete;
+        self.shoots_data[shoots_complete].hole.push(position.x);
+        self.shoots_data[shoots_complete].hole.push(position.y);
+        self.shoots_data[shoots_complete].hole.push(shot.hole[0]);
+        self.shoots_data[shoots_complete].hole.push(shot.hole[1]);
+        self.map.AddGroundHole(position.x, position.y, shot.hole[0], shot.hole[1]);
+    }
     update() {
         var self = this;
         if (this.shoots_count > 0) {
@@ -87,29 +69,19 @@ module.exports = class World {
                 if (shoot && !shoot.isComplete) {
                     shoot.update();
                     var a = shoot.getPosAtTime();
-                    var maxys = false;
-                    var maxtim = false;
-                    //var ang = shoot.GetAngleAtTime();
                     shoot.move(a.x, a.y, 0);
-                    if (a.y <= 0)
-                        maxys = true;
-                    if (self.map.IsPixel(a.x, a.y) && !shoot.groundCollide) {
+
+                    const isColliding = self.map.IsPixel(a.x, a.y) && !shoot.groundCollide;
+                    const isOutMap = self.map.w < a.x || self.map.h < a.y;
+                    if (isColliding) {
                         shoot.isComplete = true;
-                        this.shoots_data[this.shoots_complete].hole.push(a.x);
-                        this.shoots_data[this.shoots_complete].hole.push(a.y);
-                        this.shoots_data[this.shoots_complete].hole.push(38);
-                        this.shoots_data[this.shoots_complete].hole.push(38);
-                        self.map.AddGroundHole(a.x, a.y, 38, 38);
+                        this.AddHole(shoot);
                         shoot.groundCollide = true;
-                    } else if (self.map.w < a.x || self.map.h < a.y) {
+                    } else if (isOutMap) {
                         shoot.isComplete = true;
-                        this.shoots_data[this.shoots_complete].hole.push(a.x);
-                        this.shoots_data[this.shoots_complete].hole.push(a.y);
-                        this.shoots_data[this.shoots_complete].hole.push(38);
-                        this.shoots_data[this.shoots_complete].hole.push(38);
-                        shoot.groundCollide = true;
+                        shoot.isOutMap = true;
                     }
-                    if (!shoot.damageComplete) {
+                    if (!shoot.damageComplete && shoot.type.isDamage) {
                         self.game.room.forPlayers(function (account) {
                             let player = account.player;
                             account.update();
@@ -251,20 +223,12 @@ module.exports = class World {
                         });
                     }
                     if (shoot.isComplete) {
-                        this.shoots_data[this.shoots_complete].s.push(shoot.x0);
-                        this.shoots_data[this.shoots_complete].s.push(shoot.y0);
-                        this.shoots_data[this.shoots_complete].s.push(shoot.ang);
-                        this.shoots_data[this.shoots_complete].s.push(shoot.power);
-                        this.shoots_data[this.shoots_complete].s.push(shoot.ax);
-                        this.shoots_data[this.shoots_complete].s.push(shoot.ay);
-                        this.shoots_data[this.shoots_complete].s.push(shoot.stime);
-                        this.shoots_data[this.shoots_complete].exp = shoot.exp;
-                        this.shoots_data[this.shoots_complete].img = shoot.img;
-                        this.shoots_data[this.shoots_complete].s.push(shoot.img);
-                        this.shoots_data[this.shoots_complete].time = shoot.time * 2;
-                        var fx = shoot.ss > 0 ? shoot.ss : 0;
-                        this.shoots_data[this.shoots_complete].ss = fx;
+                        this.shoots_data[this.shoots_complete].s = shoot.GetS();
+                        this.shoots_data[this.shoots_complete].time = shoot.GetTimeFinal();
+                        shoot.GetProperties().map(a => this.shoots_data[this.shoots_complete][a[0]] = a[1]);
+                        (shoot.isOutMap) && (shoot.GetPropertyDeleteIsOutMap().map(prop => delete this.shoots_data[this.shoots_complete][prop]));
                         this.shoots_complete++;
+                        
                     }
                 }
             }

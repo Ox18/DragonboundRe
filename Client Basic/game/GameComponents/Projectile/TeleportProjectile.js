@@ -10,24 +10,26 @@
  * You should have received a copy of the GNU General Public License along with SocialBound. If not, see http://www.gnu.org/licenses/.
  */
 
-const Helper = require("../Utilities/Helper");
-
-class Weather{
-    constructor(){
-        this.Empty = -1;
-        this.Thor  = 0;
-        this.Wind  = 1;
-    }
-    
-    WeatherList(){
-        return [this.Empty, this.Thor, this.Wind];
-    }
-    GetRandomWeather(){
-        let count  = this.WeatherList().length - 1;
-        let number = Helper.random(0, count)
-        return this.WeatherList()[number];
-    }
+const Types = require("../../gametypes");
+const { BULLETS, EXPLODE } = Types;
+class TeleportProjectile {
+  Get() {
+    return [{
+      data: {
+        img: BULLETS.TELEPORT,
+        exp: EXPLODE.TELEPORT,
+        isTeleport: true,
+        hole: [0, 0]
+      },
+      type: {
+        isEndColliding: true,
+        isNotDamage: true
+      },
+      subBullet: [],
+      currentData: {}
+    }];
+  }
 }
 
-const weather = new Weather();
-module.exports = weather;
+const teleportProjectile = new TeleportProjectile();
+module.exports = teleportProjectile;

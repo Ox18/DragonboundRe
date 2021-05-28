@@ -335,7 +335,6 @@ Types = {
         winning_change: 24,
         early_suicide: 25,
         blocked_winning: 26,
-        score_change: 27
     },
 
     ALERT2_TYPES: {

@@ -10,24 +10,24 @@
  * You should have received a copy of the GNU General Public License along with SocialBound. If not, see http://www.gnu.org/licenses/.
  */
 
-const Helper = require("../Utilities/Helper");
+const Mobile = require("../../Entity/Mobile");
+const helper = require("../../Utilities/Helper");
+const NakProjectile = require("../Projectile/NakProjectile");
 
-class Weather{
-    constructor(){
-        this.Empty = -1;
-        this.Thor  = 0;
-        this.Wind  = 1;
-    }
-    
-    WeatherList(){
-        return [this.Empty, this.Thor, this.Wind];
-    }
-    GetRandomWeather(){
-        let count  = this.WeatherList().length - 1;
-        let number = Helper.random(0, count)
-        return this.WeatherList()[number];
-    }
+class Nak extends Mobile {
+  constructor() {
+    super();
+    this.name       = 'Nak';
+    this.file       = 'Nak';
+    this.hp         = 1000;
+    this.shield     = 0;
+    this.player     = helper.Point(17, -28);
+    this.ang        = helper.Angle(10, 55);
+    this.a          = helper.Point(73.5, 0.74);
+    this.b          = helper.Point(200, 398);
+    this.aim        = helper.aim(helper.aim_data(52, 33), helper.aim_data(52, 33), helper.aim_data(52, 33));
+    this.projectile = NakProjectile;
+  }
 }
 
-const weather = new Weather();
-module.exports = weather;
+module.exports = new Nak();

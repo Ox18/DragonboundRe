@@ -15,8 +15,8 @@ const Types = require("../../gametypes");
 class ItemHandler{
     GuessItems(items, is_dual_plus_disabled, is_tele_disabled){
         let item_selected = items;
-        let number_item = 0;
-        let count_item = 6;
+        let number_item   = 0;
+        let count_item    = 6;
         for(number_item; number_item < count_item; number_item++){
             let item = item_selected[number_item];
             let is_disabled = false;

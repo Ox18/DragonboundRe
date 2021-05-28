@@ -9,25 +9,12 @@
  * 
  * You should have received a copy of the GNU General Public License along with SocialBound. If not, see http://www.gnu.org/licenses/.
  */
+const helper = require("../Utilities/Helper");
 
-const Helper = require("../Utilities/Helper");
-
-class Weather{
-    constructor(){
-        this.Empty = -1;
-        this.Thor  = 0;
-        this.Wind  = 1;
-    }
-    
-    WeatherList(){
-        return [this.Empty, this.Thor, this.Wind];
-    }
-    GetRandomWeather(){
-        let count  = this.WeatherList().length - 1;
-        let number = Helper.random(0, count)
-        return this.WeatherList()[number];
-    }
+module.exports   = class Look {
+  constructor(look) {
+    this.data    = look;
+    this.isLeft  = helper.assertAEqualsB(look, 0);
+    this.isRight = helper.assertAEqualsB(look, 1);
+  }
 }
-
-const weather = new Weather();
-module.exports = weather;

@@ -1,9 +1,8 @@
-var _ = require("underscore");
 var cls = require("./class");
-var Types = require("../gametypes");
 var Logger = require('./logger');
 var fs = require('fs'),
     PNG = require('pngjs').PNG;
+const MapEntity = require('../Entity/Map');
 
 module.exports = Map = cls.Class.extend({
     init: function (id) {
@@ -13,6 +12,7 @@ module.exports = Map = cls.Class.extend({
         self.w = 0;
         self.h = 0;
         self.points = [];
+        self.info = MapEntity.GetMap(id);
     },
 
     GetPoint: function () {
@@ -26,14 +26,12 @@ module.exports = Map = cls.Class.extend({
     },
 
     LoadPoints: function () {
-        var max = 10;
         var self = this;
         var x = 15;
         var i = 0;
-        for (x = 100; x < self.w - 200; x+= 100) {
-            for (var y = 0; y < self.h - 100; y++) {
+        for (x = 100; x < self.w; x+= 10) {
+            for (var y = 0; y < self.h; y++) {
                 if (self.IsPixel(x, y)) {
-                    Logger.debug("Point: x: " + x + " y: " + y);
                     self.points[i] = {
                         x: x,
                         y: y - 1
@@ -132,7 +130,6 @@ module.exports = Map = cls.Class.extend({
         if (!(0 > a || a >= this.w || (0 > b && (b = 0), c >= this.h && (c = this.h - 1), c < b)))
             for (var d = this.w, e = b; e <= c; e++) b = 4 * (e * d + a), this.data[b] /= 2, this.data[b + 1] /= 2, this.data[b + 2] /= 2;
     },
-
     loadMap: function (callback) {
         var self = this;
         fs.createReadStream(__dirname + '/maps/map' + self.id + '.png')
@@ -143,12 +140,12 @@ module.exports = Map = cls.Class.extend({
                 self.w = this.width;
                 self.h = this.height;
                 self.data = this.data;
-                //Logger.debug("LoadMap: " + self.id);
                 callback();
             })
             .on('error', function () {
                 Logger.error("Map Error: " + self.id);
             });
+            Logger.log(`Load Map [${this.info.Name}]`);
     },
 
     RadToAngle: function (a) {

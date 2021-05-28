@@ -160,55 +160,71 @@ module.exports = class Room {
             });
         }
     }
-
+    assertMapControl(){
+        var self = this;
+        const mapControl = self.gameserver.mapControl.getMap(self.map);
+        const data = mapControl != undefined;
+        return data;
+    }
     gameStart(account) {
         var self = this;
-        if (self.status === Types.ROOM_STATUS.WAITING || self.status === Types.ROOM_STATUS.FULL) {
-            if (((self.player_count > 0) && self.game_mode === Types.GAME_MODE.BOSS) || ((self.player_count > 1) && self.game_mode === Types.GAME_MODE.NORMAL && self.team_a_count === self.team_b_count)) {
-               self.LoadMap();
-               self.game = new Game(self.id, self, self.gameserver);
-                if (self.game) {
-                    self.status = Types.ROOM_STATUS.PLAYING;
-                    self.game.start(function () {
-                        self.gameserver.pushToRoom(self.id, new Message.gameStart(self));
-                    });
-                    self.game.onGameEnd(function (team) {
-                        self.ReloadMap();
-                        Logger.debug("Game End: " + self.id + " win team: " + team);
-                        var checkt = true;
-                        self.forPlayers(function (account) {
-                            let player = account.player;
-                            if (typeof (account) !== 'undefined') {
-                                if (team == player.team) {
-                                    if (self.gameserver.evento250) {
-                                        player.addWinGoldWinGp(400, 16);
-                                    } else {
-                                        player.addWinGoldWinGp(200, 8);
-                                    }
-                                    player.is_win = 1;
-                                    if (checkt)
-                                        account.saveWinDB();
-                                } else {
-                                    if (self.gameserver.evento250) {
-                                        player.addWinGoldWinGp(200, 8);
-                                    } else {
-                                        player.addWinGoldWinGp(100, 4);
-                                    }
-                                    player.is_loss = 1;
-                                    if (checkt)
-                                        account.saveWinDB();
-                                }
-                            }
+        self.LoadMap();
+        
+        if(self.assertMapControl()){
+            if (self.status === Types.ROOM_STATUS.WAITING || self.status === Types.ROOM_STATUS.FULL) {
+                if (true) {
+                   
+                   self.game = new Game(self.id, self, self.gameserver);
+                    if (self.game) {
+                        self.status = Types.ROOM_STATUS.PLAYING;
+                        self.game.start(function () {
+                            self.gameserver.pushToRoom(self.id, new Message.gameStart(self));
                         });
-                        self.game = null;
-                        self.status = Types.ROOM_STATUS.WAITING;
-                        self.gameserver.pushToRoom(self.id, new Message.roomPlayers(self));
-                    });
+                        self.game.onGameEnd(function (team) {
+                            self.ReloadMap();
+                            Logger.debug("Game End: " + self.id + " win team: " + team);
+                            var checkt = true;
+                            self.forPlayers(function (account) {
+                                let player = account.player;
+                                if (typeof (account) !== 'undefined') {
+                                    if (team == player.team) {
+                                        if (self.gameserver.evento250) {
+                                            player.addWinGoldWinGp(400, 16);
+                                        } else {
+                                            player.addWinGoldWinGp(200, 8);
+                                        }
+                                        player.is_win = 1;
+                                        if (checkt)
+                                            account.saveWinDB();
+                                    } else {
+                                        if (self.gameserver.evento250) {
+                                            player.addWinGoldWinGp(200, 8);
+                                        } else {
+                                            player.addWinGoldWinGp(100, 4);
+                                        }
+                                        player.is_loss = 1;
+                                        if (checkt)
+                                            account.saveWinDB();
+                                    }
+                                }
+                            });
+                            self.game = null;
+                            self.status = Types.ROOM_STATUS.WAITING;
+                            self.gameserver.pushToRoom(self.id, new Message.roomPlayers(self));
+                        });
+                    }
                 }
-            }
+            } 
+        }else{
+            self.MapIsNotLoad();
         }
+        
     }
-
+    MapIsNotLoad(){
+        var self = this;
+        let text = "The map is not successful load.";
+        self.gameserver.pushBroadcastChat(new Message.chatResponse(self, text, Types.CHAT_TYPE.SYSTEM), self);
+    }
     checkReady() {
 
     }
