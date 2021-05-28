@@ -1,28 +1,30 @@
+const ThorSatelliteProjectile = require('./GameComponents/Projectile/ThorSatelliteProjectile');
 var Types = require('./gametypes');
 var Logger = require('./lib/logger');
 var Message = require('./lib/message');
+var Shoot = require('./lib/shoot');
 require('setimmediate');
 
 // World
 module.exports = class World {
     constructor(game, gameserver) {
-        this.game            = game;
-        this.gameserver      = gameserver;
-        this.work            = false;
-        this.shoots          = {};
-        this.shoots_count    = 0;
+        this.game = game;
+        this.gameserver = gameserver;
+        this.work = false;
+        this.shoots = {};
+        this.shoots_count = 0;
         this.shoots_complete = 0;
-        this.shoots_data     = [];
-        this.map             = game.map;
-        this.chat            = [];
-        this.shoot_complete  = null;
-        this.chat_complete   = false;
-        this.gp_kill         = 8;
-        this.gold_kill       = 500;
-        this.gold_good       = 50;
-        this.gold_excellent  = 100;
-        this.gold_penalty    = -250;
-        this.gp_penalty      = 0;
+        this.shoots_data = [];
+        this.map = game.map;
+        this.chat = [];
+        this.shoot_complete = null;
+        this.chat_complete = false;
+        this.gp_kill = 8;
+        this.gold_kill = 500;
+        this.gold_good = 50;
+        this.gold_excellent = 100;
+        this.gold_penalty = -250;
+        this.gp_penalty = 0;
     }
     start() {
         this.work = true;
@@ -43,14 +45,14 @@ module.exports = class World {
 
     run() {
         var self = this;
-        setImmediate(function () {
+        setImmediate(function() {
             self.update();
         });
     }
     AddHole(shot) {
         var self = this;
         const { isNotExplode } = shot.type;
-        if(isNotExplode){
+        if (isNotExplode) {
             return;
         }
         var position = shot.getPosAtTime();
@@ -82,7 +84,7 @@ module.exports = class World {
                         shoot.isOutMap = true;
                     }
                     if (!shoot.damageComplete && shoot.type.isDamage) {
-                        self.game.room.forPlayers(function (account) {
+                        self.game.room.forPlayers(function(account) {
                             let player = account.player;
                             account.update();
                             if (player.is_alive === 1 || player.is_alive === true) {
@@ -228,7 +230,8 @@ module.exports = class World {
                         shoot.GetProperties().map(a => this.shoots_data[this.shoots_complete][a[0]] = a[1]);
                         (shoot.isOutMap) && (shoot.GetPropertyDeleteIsOutMap().map(prop => delete this.shoots_data[this.shoots_complete][prop]));
                         this.shoots_complete++;
-                        
+                        (shoot.groundCollide) && (this.onGroundCollide(shoot));
+
                     }
                 }
             }
@@ -239,9 +242,43 @@ module.exports = class World {
                 this.chat = [];
                 this.shoots_data = [];
             }
-            setImmediate(function () {
+            setImmediate(function() {
                 self.update();
             });
+        }
+    }
+    onGroundCollide(shoot) {
+        var self = this;
+        if (!shoot.thor) {
+            const L = ['shoots_count', '263wOnEkg', 'shoots', 'hole', '115916dVYOIz', 'thor', 'time', '701046OrwvbB', 'angle', '737834wDsYdJ', 'atan2', 'type', '124571vCTEWy', '3QsyaCZ', '570247DdpvJF', 'game', '9048cSwdBZ', 'img', '64540UYdeLl', '8xgNZoD', 'isHole', 'stime'];
+
+            function K(p, I) { p = p - 0x1ed; let a = L[p]; return a; }
+            const D = K;
+            (function(p, I) {
+                const q = K;
+                while (!![]) {
+                    try {
+                        const a = -parseInt(q(0x1f1)) + parseInt(q(0x1f6)) + parseInt(q(0x1f4)) * -parseInt(q(0x1f5)) + parseInt(q(0x1fb)) * -parseInt(q(0x1fa)) + -parseInt(q(0x1ef)) + -parseInt(q(0x202)) + -parseInt(q(0x1ff)) * -parseInt(q(0x1f8));
+                        if (a === I) break;
+                        else p['push'](p['shift']());
+                    } catch (O) { p['push'](p['shift']()); }
+                }
+            }(L, 0x7b4d2));
+            var self = this;
+            let n = self['shoots_count'];
+            const CalculeAngle = (p, I) => {
+                    const P = K;
+                    let O = -Math[P(0x1f2)](p['y'] - I['y'], p['x'] - I['x']);
+                    O = RadToAngle(O);
+                    if (O < 0x0) O += 0x168;
+                    return O;
+                },
+                RadToAngle = p => { return 0xb4 * p / Math['PI']; };
+            if (true) {
+                let thor = self[D(0x1f7)][D(0x1ed)],
+                    angle = CalculeAngle(shoot['position'], { 'x': thor['x'], 'y': thor['y'] });
+                self['game'][D(0x1ed)][D(0x1f0)] = angle, self[D(0x200)][n] = new Shoot(thor['x'], thor['y'], angle, 0x1f4, shoot[D(0x1f3)], 0x0, 0x0, 0x0, 0x0, shoot['account']), self[D(0x200)][n][D(0x1f9)] = undefined, self[D(0x200)][n].type.isExplode = true, self[D(0x200)][n].type.isTimeFinalZero = true, self[D(0x200)][n].type.isEndColliding = true, self[D(0x200)][n].type.isDamage = true, self[D(0x200)][n]['exp'] = 0x6, self[D(0x200)][n][D(0x1ed)] = 0x1, self[D(0x200)][n][D(0x1fc)] = !![], self[D(0x200)][n][D(0x1ee)] = 0x0, self[D(0x200)][n][D(0x1fd)] = shoot[D(0x1ee)] * 0x2 + shoot[D(0x1fd)], self[D(0x1fe)]++, self['shoot']();
+            }
         }
     }
     onShootComplete(callback) {
