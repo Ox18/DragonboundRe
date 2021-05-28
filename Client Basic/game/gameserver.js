@@ -18,6 +18,7 @@ module.exports = class GameServer {
         this.outgoingQueues = {};
         this.ups = 50;
         this.db = null;
+        this.Mobiles = Mobiles.GetListMobile();
         this.ver = ServerData.Version;
         this.name = ServerData.Name;
         this.room_ids = [];
