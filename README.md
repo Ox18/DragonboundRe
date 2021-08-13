@@ -6,6 +6,25 @@
 
 <br>
 
+Initial configuration
+Save it inside the src folder
+
+# .env file configuration
+(It is necessary to create it)
+save it in the src folder
+
+PORT_SERVER_WEB=3000<br>
+PORT_SERVER_GAME=9001<br>
+DB_HOST=localhost<br>
+DB_USER=root<br>
+DB_PASSWORD=<br>
+DB_DATABASE=name_of_database<br>
+DB_CONNECTION_LIMIT=500<br>
+
+<br>
+
+![image](https://user-images.githubusercontent.com/73305665/128940443-964344fc-7b66-461a-b2c0-2bdf669ad778.png)
+
 ### What is the difference between basic and advanced?
 
 
@@ -30,7 +49,7 @@
 - [DataBase.sql](https://github.com/alexwathever/Openbound-HTML5/blob/main/Client%20-%20Basic%20-%20v1-119/DataBase/dragonbound.sql)
 
 ### Requirements:
-- NodeJS (v6.8)
+- NodeJS (v6.8+)
 - MySQL
 
 # 2. Server Advanced
@@ -38,12 +57,16 @@
 - [DataBase.sql](https://github.com/alexwathever/Openbound-HTML5/blob/main/Client%20-%20Advanced%20-%20v120/DataBase/game.sql)
 
 ### Requirements:
-- NodeJS (v8.0 - v14.4)
+- NodeJS (v14.4) [backward incompatible due to old ECMAscript]
 - MySQL
 
 ### Install Modules:
 ```bash
 npm install
+```
+or
+```bash
+yarn install
 ```
 
 ### Run Server:
@@ -52,13 +75,19 @@ node web.js
 node game.js
 ```
 <br><br>
-## Contributors
 
-### Developers
+<h2>Contributors</h2>
 
--   [AlexWathever](https://github.com/WickedPeanuts/)  (Wilmer Delgado)
--   [rayjencode](https://github.com/rayjencode/) (Melon Shake)
--   [AndrewC](https://github.com/rksmw/) (AndrewC)
+<h3>Developers</h3>
+
+ - [AlexWathever](https://github.com/alexwathever/)  (lnferno)
+ - [SafedG](https://github.com/safedg)  (Safed)
+ - [AndrewC](https://github.com/rksmw/) (AndrewC)
+ - [Eddy](https://github.com/eddycasos/) (Eddy)
+
+<h3>Tester</h3>
+
+ - [rayjencode](https://github.com/rayjencode/) (Melon Shake)
 
 
 ## Licence and copyright
