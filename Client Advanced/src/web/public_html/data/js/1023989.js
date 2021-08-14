@@ -38178,6 +38178,25 @@
         this.ChangeBodyAngle(d);
         void 0 != r && (a = dragonTheme.Get("HD"),
         b = GAME_STUFF,
+
+
+        // dev
+
+        this.pointerRed = new PIXI.Graphics,
+        this.pointerRed.beginFill(0xff0000),
+        this.pointerRed.lineStyle(2, 0xFF0000),
+        this.pointerRed.drawRect(-2.5, -5, 5, 5),
+        this.pointerRed.z = 5,
+        this.mobileSquare = new PIXI.Graphics,
+        this.mobileSquare.beginFill(0, 0.1),
+        this.mobileSquare.lineStyle(1, 0x000000),
+        //this.mobileSquare.drawRect(-(b.digW / 2), -b.digH, b.digW, b.digH),
+        this.mobileSquare.drawRect(-( 52/ 2), -33, 52, 33),
+        console.log(b),
+        this.mobileSquare.z = 4,
+
+
+
         this.aimCircle = new PIXI.Sprite(GetTexture(g_gameStuffImageURL, b.aimX, b.aimY, b.aimW, b.aimW)),
         this.aimCircle.anchor.x = this.aimCircle.anchor.y = .5,
         a && (this.aimCircle.scale.x = this.aimCircle.scale.y = .5),
@@ -38188,6 +38207,8 @@
         this.greenArea.arc(0, 0, 28, AngleToRad(180 + v), AngleToRad(180 + w + 3)),
         this.greenArea.z = 12,
         this.rotate_container.addChild(this.greenArea),
+        this.rotate_container.addChild(this.pointerRed),
+        this.rotate_container.addChild(this.mobileSquare),
         this.angle = new PIXI.Sprite(GetTexture(g_gameStuffImageURL, b.pArwX, b.pArwY, b.pArwW, b.pArwH)),
         this.angle.anchor.x = this.angle.anchor.y = .5,
         a && (this.angle.scale.x = this.angle.scale.y = .5),

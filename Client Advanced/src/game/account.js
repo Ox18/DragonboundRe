@@ -2456,6 +2456,7 @@ module.exports = class Account {
                         self.player.body = body;
                         self.player.look = look;
                         self.player.move();
+                        console.log(body);
                         self.room.game.gameShoot(x, y, body, look, ang, power, time, type, self);
                         //Logger.info('x: '+x+' - y: '+y+' - body: '+body+' - look: '+look+' - ang: '+ang+' - power: '+power+' - time: '+time+' - type: '+type+' - self: '+self);
                     }

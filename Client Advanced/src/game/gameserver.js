@@ -4,7 +4,7 @@ var Logger = require('./lib/logger');
 var Avatars = require('./avatars');
 // gameserver
 module.exports = class GameServer {
-    constructor({ id, chat, name, playerOnline, playerLimit, type: server_type}, version, websocketserver) {
+    constructor({ id, chat, name, playerOnline, playerLimit, type: server_type}, version, websocketserver, db, mapControl) {
         var self = this;
         this.server         = websocketserver;
         this.accounts       = {};
@@ -14,11 +14,11 @@ module.exports = class GameServer {
         this.chathistory    = [];
         this.outgoingQueues = {};
         this.ups            = 50;
-        this.db             = null;
+        this.db             = db;
         this.room_ids       = [];
         this.bot_ids        = [];
         this.avatars        = new Avatars();
-        this.mapControl     = null;
+        this.mapControl     = mapControl;
 
         // server properties
         this.id             = id;
