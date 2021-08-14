@@ -7,6 +7,9 @@ var Logger = require('./game/lib/logger');
 var GameServer = require('./game/gameserver');
 var Account = require('./game/account');
 var MapController = require('./game/lib/mapController');
+const ServerController = require('./Controller/ServerController');
+const serversData = ServerController.GetData();
+const serverVersion = serversData.version;
 
 var loadx = process.env.vps === '1' ? false : true;
 
@@ -15,28 +18,16 @@ this.db = new DataBase();
 mapControll = new MapController(loadx);
 server = new ws(process.env.PORT_SERVER_GAME);
 
-this.multiworld = {};
-this.multiworld[0] = new GameServer(1,[86,"High Ranks",0,0], 900, server);
-this.multiworld[1] = new GameServer(2,[86,"Mid Ranks",0,0], 900, server);
-this.multiworld[2] = new GameServer(3,[86,"Beginners",0,0], 900, server);
-this.multiworld[3] = new GameServer(4,[86,"All",0,0], 900, server);
-this.multiworld[4] = new GameServer(5,[86,"All",0,0], 900, server);
-this.multiworld[5] = new GameServer(6,[86,"Bunge.",1,3], 900, server);
-this.multiworld[6] = new GameServer(7,[86,"All",0,0], 900, server);
-this.multiworld[7] = new GameServer(8,[86,"All",0,0], 900, server);
-this.multiworld[8] = new GameServer(9,[86,"Aduka",1,3], 900, server);
-this.multiworld[9] = new GameServer(10,[86,"All",0,0], 900, server);
-this.multiworld[10] = new GameServer(11,[86,"All",0,0], 900, server);
-this.multiworld[11] = new GameServer(12,[86,"All",0,0], 900, server);
-this.multiworld[12] = new GameServer(13,[86,"Avatar On",1,3], 900, server);
-this.multiworld[13] = new GameServer(14,[86,"Avatar Off",1,3], 900, server);
+self.multiworld = {};
 
-
-for (var i in this.multiworld) {
-    this.multiworld[i].db = this.db;
-    this.multiworld[i].mapControl = mapControll;
-    Logger.info("Server:"+this.multiworld[i].id+" Map And DB loaded");
-}
+serversData.servers.map(function(serverMetaData){
+    const { id } = serverMetaData;
+    self.multiworld[id] = new GameServer(serverMetaData, serverVersion, server);
+    self.multiworld[id].db = self.db;
+    self.multiworld[id].mapControll = mapControll;
+    Logger.info("Server:"+id+" Map And DB loaded");
+    self.multiworld[id].run();
+});
 
 server.onConnect(function (connection) {
     for (var i in self.multiworld) {
@@ -45,9 +36,6 @@ server.onConnect(function (connection) {
         }
     }
 });
-for (var i in this.multiworld) {
-    this.multiworld[i].run();
-}
 
 server.onError(function () {
     Logger.log('Error Server');
@@ -65,4 +53,5 @@ function keepAlive() {
             });
     });
 }
+
 setInterval(keepAlive, 28000);

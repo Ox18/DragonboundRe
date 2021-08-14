@@ -4,28 +4,32 @@ var Logger = require('./lib/logger');
 var Avatars = require('./avatars');
 // gameserver
 module.exports = class GameServer {
-    constructor(id, server_options, maxPlayers, websocketserver) {
+    constructor({ id, chat, name, playerOnline, playerLimit, type: server_type}, version, websocketserver) {
         var self = this;
-        this.id = id;
-        this.server_options = server_options;
-        this.maxPlayers = maxPlayers;
-        this.server = websocketserver;
-        this.accounts = {};
-        this.bots = {};
-        this.groups = {};
-        this.rooms = {};
-        this.chathistory = [];
+        this.server         = websocketserver;
+        this.accounts       = {};
+        this.bots           = {};
+        this.groups         = {};
+        this.rooms          = {};
+        this.chathistory    = [];
         this.outgoingQueues = {};
-        this.ups = 50;
-        this.db = null;
-        this.ver = this.server_options[0];
-        this.name = this.server_options[1];
-        this.room_ids = [];
-        this.bot_ids = [];
-        this.avatars = new Avatars();
-        this.mapControl = null;
-        this.server_type = this.server_options[2];
-        this.server_subtype = this.server_options[3];
+        this.ups            = 50;
+        this.db             = null;
+        this.room_ids       = [];
+        this.bot_ids        = [];
+        this.avatars        = new Avatars();
+        this.mapControl     = null;
+
+        // server properties
+        this.id             = id;
+        this.ver            = version;
+        this.name           = name;
+        this.server_type    = server_type;
+        this.server_subtype = 0;            // ??
+        this.playerOnline   = playerOnline;
+        this.playerLimit    = playerLimit;
+        this.chat           = chat;
+        //
 
         this.onAccountConnect(function (account) {
             account.send([Types.SERVER_OPCODE.hi, this.ver, this.name, this.server_type, this.server_subtype]);
@@ -36,44 +40,27 @@ module.exports = class GameServer {
         });
 
         this.onAccountEnter(function (account) {
-            Logger.info('The user '+account.player.game_id+' has entered the server '+self.id);
-            
-            if (Date.now() < account.player.gameserverevent) {
-                if (1558933200000 === account.player.gameserverevent) {
-                    this.evento500 = true;
-                } else {
-                    this.evento200 = true;
-                }
-            } else {
-                this.evento200 = false;
-                this.evento500 = false;
+            if(this.isExcedeedPlayer()){
+                Logger.info("Server is full");
+                return;
             }
+            this.pushPlayer();
+
+            Logger.info('The user '+account.player.game_id+' has entered the server '+self.id);
             
             if (self.chathistory !== null) {
                 var data = self.chathistory.slice(0);
-                data.push(['', '', 9]);
-                if (self.evento200 === true) {
-                    data.push([' El porcentaje de GP & Gold cambiaron a 200%', '[Inicio de Evento', 17]);
-                }
-                if (self.evento500 === true) {
-                    data.push([' El porcentaje de GP & Gold cambiaron a 500%', '[Inicio de Evento', 17]);
-                }
-                
-                if (self.name === 'Holiday') {
-                    data.push([' Búscame, gáname y te llevas un regalo: (gift) '+account.player.gifts_holiday+' Regalos enviados (gift)', 'EasterBunny', 5]);
-                    data.push([' Tienes '+account.player.gm_probability+' ganadas seguidas = 200% GP & Gold! Event probabilidad x'+account.player.gm_probability, '', 6]);
-                } else if (self.id === 2) {
-                   
-                } else {}
-               
-
-                data.push(['Bienvenido a DragonBound! v3', '', 9]);
+                this.chat.map(({ message, player_name, type})=>{
+                    data.push([message, player_name, type]);
+                })
                 account.send([Types.SERVER_OPCODE.room_state, [0, data], 1]);
             }
             self.sendAccountsOnline();
             if (self.server_subtype !== 3)
                 self.sendRooms(account);
+
             account.onExit(function () {
+                this.playerOnline -= 1;
                 Logger.info(account.player.game_id + ' has left the game server.');
                 Logger.info(account.player.game_id + ' has left the [Room: '+account.player.room_number+'] game.');
                 self.db.updateServerByUserId(0, account.player.user_id);
@@ -84,26 +71,19 @@ module.exports = class GameServer {
                     self.removed_callback();
                 }
                 self.sendAccountsOnline();
-                if (account.player.room_number !== 0) {//win_gold, win_gp, is_loss, user_id
-                    if (self.name === 'Holiday') {
-                        self.db.updateProbability(0, account.player.user_id);
-                    } else if (self.name === 'Prix') {
-                        account.player.punts_prix_user -= 1;
-                        self.db.updatePrix(account.player.punts_prix_user, account);
-                    }/* else if (self.name === 'Guilds Prix' && account.player.guild !== '' && self.player.server_tournament_state === 0) {//Revisar
-                        account.player.guild_score -= 1;
-                        self.db.updateGuildPrixById(account.player.guild_score, account.player.guild_id);
-                    }*/ else {}
-                    self.db.updateLeftByIdAcc(1500, 5, 1, account.player.user_id);
-                }
                 account = null;
             });
-
-            /*account.onBroadcast(function(message, ignoreSelf) {
-                self.pushToAdjacentGroups(account.group, message, ignoreSelf ? account.id : null)
-            });*/
         });
     }
+    isExcedeedPlayer(){
+        return (this.playerOnline >= this.playerLimit);
+    }
+
+    pushPlayer(){
+        this.playerOnline += 1;
+    }
+
+    
 
     sendAccountsOnline() {
         var self = this;
@@ -163,7 +143,7 @@ module.exports = class GameServer {
                 updateCount = 0;
             }
         }, 1000 / this.ups);
-        Logger.normal('' + this.id + ' created (capacity: ' + this.maxPlayers + ' players).');
+        Logger.normal('' + this.id + ' created (capacity: ' + this.playerLimit + ' players).');
     }
 
     pushToAccount(account, message) {

@@ -15,6 +15,9 @@ class ServerModel{
         data.push(Date.now());
         return data;
     }
+    static GetData(){
+        return { ...ServerData };
+    }
 };
 
 module.exports = ServerModel;

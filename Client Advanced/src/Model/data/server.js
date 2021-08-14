@@ -1,4 +1,16 @@
 const ServerTypes = require("../../types/ServerTypes");
+const ChatTypes = require('../../types/ChatTypes');
+
+const defaultMessage = {
+    message: '',
+    player_name: '',
+    type: ChatTypes.TYPE.BUGLE
+}
+const welcomeMessage = {
+    message: 'Welcome to SocialBound',
+    player_name: '',
+    type: ChatTypes.TYPE.BUGLE
+}
 
 module.exports = {
     version: 86,
@@ -14,7 +26,9 @@ module.exports = {
             playerLimit     : 1000,
             isRestricted    : true,
             minRank         : 9,
-            maxRank         : 24
+            maxRank         : 24,
+            chat            : [{...welcomeMessage}]
+            
         },
         {
             id              : 2,
@@ -25,7 +39,8 @@ module.exports = {
             playerLimit     : 1000,
             isRestricted    : true,
             minRank         : 7,
-            maxRank         : 17
+            maxRank         : 17,
+            chat            : [{...welcomeMessage}]
         },
         {
             id              : 3,
@@ -36,7 +51,8 @@ module.exports = {
             playerLimit     : 1000,
             isRestricted    : true,
             minRank         : 0,
-            maxRank         : 6
+            maxRank         : 6,
+            chat            : [{...welcomeMessage}]
         },
     ]
 };
