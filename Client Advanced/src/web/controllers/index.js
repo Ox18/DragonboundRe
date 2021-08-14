@@ -31,6 +31,7 @@ function addZero(i) {
   return i;
 }
 
+router.use('/w2', require('./w2'));
 router.use('/guild', require('./guild'));
 router.use('/user', require('./user'));
 router.use('/u', require('./search_user_id'));
@@ -688,41 +689,6 @@ router.post('/ajaxRegister', function (req, res) {
         return null;
             });
     }
-});
-
-router.get('/w2', function (req, res) {
-    const moonLanding = Date.now();
-    res.setHeader('Content-Type', 'application/json');
-    req.db.connection.getConnection().then(conn => {
-    conn.query('SELECT * from servidores Where Active = 1').then(rows => {
-    	
-    	var data = [86, 0, 0];
-    	let servers = rows[0];
-
-    	for(let i = 0; i < servers.length; i++){
-    		let a = [],
-    			b = servers[i];
-    		a.push(b.Nombre);
-    		a.push(b.Tipo);
-    		a.push(b.Puerto);
-    		a.push(b.minUser);
-    		a.push(b.maxUser);
-    		if(b.maxRank > 0){
-    			a.push(b.minRank);
-    			a.push(b.maxRank);
-    		}
-    		if(b.timeEnd > 0 && b.Tipo > 1){
-    			a.push(b.timeStart);
-    			a.push(b.timeEnd);
-    		}
-    		data.push(a);
-    	}
-    
-    data.push(moonLanding);
-    req.session.touch();
-    res.send(JSON.stringify(data));
-    });
-	});
 });
 
 
