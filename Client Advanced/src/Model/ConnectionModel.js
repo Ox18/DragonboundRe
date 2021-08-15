@@ -11,15 +11,18 @@ module.exports = class Connection {
     this.user = process.env.DB_USER;
     this.password = process.env.DB_PASSWORD;
     this.database = process.env.DB_DATABASE;
+    this.connectionLimit = process.env.DB_CONNECTION_LIMIT; 
     this.connection = mysql.createPool({
-      connectionLimit: process.env.DB_CONNECTION_LIMIT,
+      connectionLimit: self.connectionLimit,
       host: self.host,
       user: self.user,
       password: self.password,
       database: self.database,
     });
     if (this.connection !== null) {
-      Logger.normal("MYSQL Connect!");
+      Logger.normal("MYSQL Connected!");
+    }else{
+      Logger.error("Ups... not connected MYSQL!"); 
     }
   }
 };
