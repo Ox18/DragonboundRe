@@ -21,7 +21,7 @@ class WeatherModel{
 
     static buildInitialQueue(){
         let limitQueue = 5;
-        let queue = Array.from({length: limitQueue}, (x) => WeatherModel.getIdRandomWeather())        
+        let queue = Array.from({length: limitQueue}, () => WeatherModel.getIdRandomWeather())        
         return new WeatherQueue(queue);
     }
 
