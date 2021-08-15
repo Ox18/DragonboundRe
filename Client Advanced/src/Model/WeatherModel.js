@@ -32,8 +32,7 @@ class WeatherModel{
     }
 
     static WeatherListToNumberList(){
-        const { THOR, WIND_CHANGE, NOITEMS, SUN, LIGHTNING, BLACK, RANDOM, MIRROR, TORNADO, NONE, MOON, LAND} = WeatherType;
-        return [THOR, WIND_CHANGE, NOITEMS, SUN, LIGHTNING, BLACK, RANDOM, MIRROR, TORNADO, NONE, MOON, LAND];
+        return Object.values(WeatherType);
     }
 
     static buildWeatherEntity(){
