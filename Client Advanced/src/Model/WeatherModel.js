@@ -3,19 +3,6 @@ const WeatherQueue = require("../Entity/WeatherQueue");
 const Helper = require('../Helper');
 
 class WeatherModel{
-
-    static buildInitialQueue(){
-        let queue = [];
-        let limitQueue = 5;
-        let pointerQueue = 0;
-        for(pointerQueue; pointerQueue < limitQueue; pointerQueue++){
-            queue.push(WeatherModel.getIdRandomWeather());
-        }
-        // queue = Array.from({length: limitQueue}, (x) => WeatherModel.getIdRandomWeather())
-        
-        return new WeatherQueue(queue);
-    }
-
     static update(weatherEntity){
         const next_weather = WeatherModel.getIdRandomWeather();
         weatherEntity.weatherQueue.SetNextWeather(next_weather);
@@ -26,30 +13,34 @@ class WeatherModel{
         }
         return weatherEntity;
     }
-
-    static getIdRandomWeather(){
-        const min = Helper.getMin(WeatherModel.WeatherListToNumberList());
-        const max = Helper.getMax(WeatherModel.WeatherListToNumberList());
-        return Helper.random(min, max);
-    }
-
-    static WeatherListToNumberList(){
-        return Object.values(WeatherType);
-    }
-    
-    
-    // static getMinWeatherId(){
-        // const min = Helper.getMin(WeatherModel.WeatherListToNumberList());
-    //}
-    
-    // static getMaxWeatherId(){
-        // const min = Helper.getMax(WeatherModel.WeatherListToNumberList());
-    //}
-    
     
     static buildWeatherEntity(){
         const weatherQueue = WeatherModel.buildInitialQueue();
         return weatherQueue;
+    }
+
+    static buildInitialQueue(){
+        let limitQueue = 5;
+        let queue = Array.from({length: limitQueue}, (x) => WeatherModel.getIdRandomWeather())        
+        return new WeatherQueue(queue);
+    }
+
+    static getIdRandomWeather(){    
+        const min = WeatherModel.getMinWeatherId();
+        const max = WeatherModel.getMaxWeatherId();
+        return Helper.random(min, max);
+    }
+    
+    static getMinWeatherId(){
+        return Helper.getMin(WeatherModel.WeatherListToNumberList());
+    }
+    
+    static getMaxWeatherId(){
+        return Helper.getMax(WeatherModel.WeatherListToNumberList());
+    }
+
+    static WeatherListToNumberList(){
+        return Object.values(WeatherType);
     }
 }
 
