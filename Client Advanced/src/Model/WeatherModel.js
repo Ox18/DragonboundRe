@@ -19,14 +19,11 @@ class WeatherModel{
     }
 
     static buildInitialQueue(){
-        let queue = Array.from({length: 5}, () => WeatherModel.getIdRandomWeather())        
-        return new WeatherQueue(queue);
+        return Array.from({length: 5}, () => WeatherModel.getIdRandomWeather())        
     }
 
     static getIdRandomWeather(){    
-        const min = WeatherModel.getMinWeatherId();
-        const max = WeatherModel.getMaxWeatherId();
-        return Helper.random(min, max);
+        return Helper.random(WeatherModel.getMinWeatherId(), WeatherModel.getMaxWeatherId());
     }
     
     static getMinWeatherId(){
