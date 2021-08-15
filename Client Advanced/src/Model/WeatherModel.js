@@ -15,8 +15,7 @@ class WeatherModel{
     }
     
     static buildWeatherEntity(){
-        const weatherQueue = WeatherModel.buildInitialQueue();
-        return weatherQueue;
+        return WeatherModel.buildInitialQueue();
     }
 
     static buildInitialQueue(){
