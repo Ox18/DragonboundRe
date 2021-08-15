@@ -11,6 +11,8 @@ class WeatherModel{
         for(pointerQueue; pointerQueue < limitQueue; pointerQueue++){
             queue.push(WeatherModel.getIdRandomWeather());
         }
+        // queue = Array.from({length: limitQueue}, (x) => WeatherModel.getIdRandomWeather())
+        
         return new WeatherQueue(queue);
     }
 
@@ -34,7 +36,17 @@ class WeatherModel{
     static WeatherListToNumberList(){
         return Object.values(WeatherType);
     }
-
+    
+    
+    // static getMinWeatherId(){
+        // const min = Helper.getMin(WeatherModel.WeatherListToNumberList());
+    //}
+    
+    // static getMaxWeatherId(){
+        // const min = Helper.getMax(WeatherModel.WeatherListToNumberList());
+    //}
+    
+    
     static buildWeatherEntity(){
         const weatherQueue = WeatherModel.buildInitialQueue();
         return weatherQueue;
