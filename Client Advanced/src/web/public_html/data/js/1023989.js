@@ -20181,7 +20181,7 @@
         FROG: 21,
         KALSIDDON: 22
     }
-      , SELECTABLE_MOBILES = [MOBILE.ARMOR, MOBILE.ICE, MOBILE.ADUKA, MOBILE.LIGHTNING, MOBILE.BIGFOOT, MOBILE.JD, MOBILE.ASATE, MOBILE.RANDOM, MOBILE.NAK, MOBILE.TRICO, MOBILE.MAGE, MOBILE.TURTLE, MOBILE.BOOMER, MOBILE.GRUB, MOBILE.RAON, MOBILE.KALSIDDON];
+      , SELECTABLE_MOBILES = [MOBILE.ARMOR, MOBILE.ICE, MOBILE.ADUKA, MOBILE.LIGHTNING, MOBILE.BIGFOOT, MOBILE.JD, MOBILE.ASATE, MOBILE.RANDOM, MOBILE.NAK, MOBILE.TRICO, MOBILE.MAGE, MOBILE.TURTLE, MOBILE.BOOMER, MOBILE.GRUB, MOBILE.RAON, MOBILE.KALSIDDON, MOBILE.DRAGON2];
     function GetMobileAfter(a) {
         return SELECTABLE_MOBILES[(SELECTABLE_MOBILES.indexOf(a) + 1) % SELECTABLE_MOBILES.length]
     }
@@ -32927,7 +32927,6 @@
         var a = '<br><div class="ContactTitle">- ' + "Negocios y Asesoria" + ' -</div><div class="ContactName">' + l.t("Community") + ':</div><div class="ContactFB"><a href="mailto:mawi240818@gmail.com">community@game.net</a></div><div class="ContactLang">(' + l.t("English / Spanish") + ')</div><br><div class="ContactName">' + "Desarrollo de Juego" + ':</div><div class="ContactFB"><a href="mailto:mawi240818@gmail.com">business@game.net</a></div><div class="ContactLang">(' + l.t("COMPANIES ONLY, IN ENGLISH") + ')</div><div class="ContactTitle">- ' + l.t("GM LIST") + " -</div>", b;
         b = [
             ["lnferno", "", "Spanish, English"],
-            ["YeyoxD", "", "Spanish, English"]
             ];
         for (var c = 0; c < b.length; c++)
             var d = b[c][1]
@@ -38190,9 +38189,7 @@
         this.mobileSquare = new PIXI.Graphics,
         this.mobileSquare.beginFill(0, 0.1),
         this.mobileSquare.lineStyle(1, 0x000000),
-        //this.mobileSquare.drawRect(-(b.digW / 2), -b.digH, b.digW, b.digH),
-        this.mobileSquare.drawRect(-( 52/ 2), -33, 52, 33),
-        console.log(b),
+        this.mobileSquare.drawRect(-(b.digW / 2), -b.digH, b.digW, b.digH),
         this.mobileSquare.z = 4,
 
 

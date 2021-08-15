@@ -230,7 +230,79 @@ module.exports = class Game {
             this.world.shoot(true);
             this.world.shoots_count = 1;
         } else {
-            if (Types.MOBILE.ARMOR === account.player.mobile && type === 0) {
+            
+            const meMobile = account.player.mobile;
+            const isDragon2 = meMobile === Types.MOBILE.DRAGON2;
+            
+            if(isDragon2){
+  const isS1 = type === 0;
+  const isS2 = type === 1;
+  const isSS = type === 2;
+  const isDual = account.player.DUAL === 1;
+  const isDualPlus = account.player.DUAL_PLUS === 1;
+
+  const dragonS1 = (stime, n)=>{
+      this.world.shoots[0 + n] = new Shoot(pfinal.x, pfinal.y, ang, power, type, ax, ay, this.wind_angle, this.wind_power, 0, account);
+      this.world.shoots[0 + n].img = 56;
+      this.world.shoots[0 + n].exp = 45;
+      this.world.shoots[0 + n].hole = { w: 40, h: 30};
+      this.world.shoots[0 + n].tr = [44, 3, 0, 20];
+      this.world.shoots[0 + n].stime = 0 + stime;
+  }
+  const dragonS2 = (stime, n)=>{
+      const n_effects = [1, 3];
+      for(let i = 0; i < 4; i++){
+          const isEffect = n_effects.includes(i);
+          const last_ang = isEffect ? ang - 2 : ang;
+          const last_power = isEffect ? power - 60 : power;
+          const id = i + n;
+          this.world.shoots[id] = new Shoot(pfinal.x, pfinal.y, last_ang, last_power, type, ax, ay, this.wind_angle, this.wind_power, 0, account);
+          this.world.shoots[id].img = 56;
+          this.world.shoots[id].exp = 45;
+          this.world.shoots[id].hole = { w: 40, h: 30};
+          this.world.shoots[id].tr = [44, 3, 0, 20];
+          this.world.shoots[id].stime = (i * 250) + stime;
+      }
+  }
+  if(isS1){
+      dragonS1(0, 0);
+      if(isDual){
+          dragonS1(1000, 1);
+          this.world.shoots_count = 2;
+      }
+      else if(isDualPlus){
+          dragonS2(1000, 2);
+          this.world.shoots_count = 5;
+      }
+      else{
+          this.world.shoots_count = 1;
+      }
+  }
+  if(isS2){
+      dragonS2(0, 0);
+      if(isDual){
+          dragonS2(1000, 4);
+          this.world.shoots_count = 8;
+      }
+      else if(isDualPlus){
+          dragonS1(1000, 4);
+          this.world.shoots_count = 5;
+      }
+      else{
+          this.world.shoots_count = 4;
+      }
+  }   
+  if(isSS){
+      this.world.shoots[0] = new Shoot(pfinal.x, pfinal.y, ang, power, type, ax, ay, this.wind_angle, this.wind_power, 0, account);
+      this.world.shoots[0].img = 57;
+      this.world.shoots[0].ss = 1;
+      this.world.shoots[0].noExplode = true;
+      this.world.shoots_count = 1;
+  }
+  this.world.shoot();
+}
+            
+            else if (Types.MOBILE.ARMOR === account.player.mobile && type === 0) {
                 var x2 = look ? pfinal.x + power : pfinal.x - power;
                 this.world.shoots[0] = new Shoot(pfinal.x, pfinal.y, ang, power, type, ax, ay, this.wind_angle, this.wind_power, 0, account);
                 if (account.player.DUAL === 1 && type !== 2) {

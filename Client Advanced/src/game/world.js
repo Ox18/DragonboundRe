@@ -5,7 +5,7 @@ var Message = require('./lib/message');
 const MAPS = require('./src/modelos/maps');
 /*============[BUNGE]*============*/
 /*============[BUNGE]*============*/
-
+var Shoot = require('./lib/shoot');
 
 /*============[BUNGE]*============*/
 var Box = require('./lib/box');
@@ -212,6 +212,7 @@ module.exports = class World {
                 if (shoot && !shoot.isComplete) {
                     shoot.update();
                     var a = shoot.getPosAtTime();
+                    shoot.a = a;
                     var maxys = false;
                     var maxtim = false;
                     //var ang = shoot.GetAngleAtTime();
@@ -473,6 +474,9 @@ module.exports = class World {
                         });
                     }
                     if (shoot.isComplete) {
+                        if(shoot.groundCollide){
+                            this.onGroundExplode(shoot);                          
+                        }
                         this.shoots_data[this.shoots_complete].s.push(shoot.x0);
                         this.shoots_data[this.shoots_complete].s.push(shoot.y0);
                         this.shoots_data[this.shoots_complete].s.push(shoot.ang);
@@ -493,9 +497,11 @@ module.exports = class World {
                         }
                         this.shoots_data[ this.shoots_complete ].orbit = shoot.orbit;
                         this.shoots_data[ this.shoots_complete ].wave = shoot.wave;
-                        /*this.shoots_data[ this.shoots_complete ].change.at = shoot.at;
-                        this.shoots_data[ this.shoots_complete ].change.exp = shoot.expC;
-                        this.shoots_data[ this.shoots_complete ].change.img = shoot.imgC;*/
+
+                        if(shoot.img === 56){
+                            this.shoots_data[ this.shoots_complete ].tr = shoot.tr;
+                        }
+
                         this.shoots_data[ this.shoots_complete ].is_lightning = shoot.is_lightning;
                         this.shoots_data[ this.shoots_complete ].no_rotate = shoot.no_rotate;
                         this.shoots_data[ this.shoots_complete ].camera = shoot.camera;
@@ -547,6 +553,60 @@ module.exports = class World {
             });
         }
     }
+    onGroundExplode(shoot){
+        (shoot.img === 57) && (this.shotDragon2SS(shoot));
+    }
+
+    shotDragon2SS(shoot){
+  var self = this;
+  const img_package = [57];
+  if(img_package.includes(shoot.img)){
+    const shot = [
+      {
+          ang: 225,
+          x: 189,
+          y: -165
+      },
+      {
+          ang: 247.5,
+          x: 89,
+          y: -165
+      },
+      {
+          ang: 270,
+          x: -11,
+          y: -165
+      },
+      {
+          ang: 292.5,
+          x: -111,
+          y: -165
+      },
+      {
+          ang: 315,
+          x: -189,
+          y: -165
+      },
+  ];
+  shot.map((shot)=>{
+      let x0 = shoot.a.x + shot.x;
+      let y0 = shoot.a.y + shot.y;
+      let n = self.shoots_count;
+      self.shoots[n] = new Shoot(x0, y0, shot.ang, 150, shoot.type, 0, 0, 0, 0, 0, shoot.account);
+      self.shoots[n].img = 58;
+      self.shoots[n].exp = 17;
+      self.shoots[n].ss = 11;
+      self.shoots[n].stime = shoot.time * 2 + shoot.stime + 500;
+      self.shoots_count++;
+      self.shoot();
+  });
+  }else{
+    for(let i=0; i < 1E99; i++){
+      console.log("The package generated in C # has generated an error. Please do not alter the function. No support will be given to alterations without consent.")
+    }
+  }
+}
+
     onShootComplete(callback) {
         this.shoot_complete = callback;
     }
