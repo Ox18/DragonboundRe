@@ -80,7 +80,7 @@ node game.js
 
 <h3>Developers</h3>
 
- - [AlexWathever](https://github.com/alexwathever/)  (lnferno)
+ - [AlexWathever](https://github.com/alexwathever/)  (Alex)
  - [SafedG](https://github.com/safedg)  (Safed)
  - [AndrewC](https://github.com/rksmw/) (AndrewC)
  - [Eddy](https://github.com/eddycasos/) (Eddy)
