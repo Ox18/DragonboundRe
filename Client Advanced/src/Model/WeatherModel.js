@@ -7,8 +7,7 @@ class WeatherModel{
         const next_weather = WeatherModel.getIdRandomWeather();
         weatherEntity.weatherQueue.SetNextWeather(next_weather);
         if(next_weather !== WeatherType.NOCHANGE){
-            const next_queue = [...(weatherEntity.weatherQueue.getQueue()).shift(), next_weather];
-            weatherEntity.weatherQueue.SetQueue(next_queue);
+            weatherEntity.weatherQueue.SetQueue([...(weatherEntity.weatherQueue.getQueue()).shift(), next_weather]);
         }
         return weatherEntity;
     }
