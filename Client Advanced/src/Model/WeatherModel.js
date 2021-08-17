@@ -4,12 +4,10 @@ const Helper = require('../Helper');
 
 class WeatherModel{
     static update(weatherEntity){
-        const next_weather = WeatherModel.getIdRandomWeather();
-        weatherEntity.weatherQueue.SetNextWeather(next_weather);
+        weatherEntity.weatherQueue.SetNextWeather(WeatherModel.getIdRandomWeather());
         if(next_weather !== WeatherType.NOCHANGE){
-            weatherEntity.weatherQueue.SetQueue([...(weatherEntity.weatherQueue.getQueue()).shift(), next_weather]);
+            weatherEntity.weatherQueue.SetQueue([...(weatherEntity.weatherQueue.getQueue()).shift(), weatherEntity.weatherQueue.GetNextWeather()]);
         }
-        return weatherEntity;
     }
     
     static buildWeatherEntity(){
