@@ -53,22 +53,18 @@ module.exports = {
             minRank         : 0,
             maxRank         : 6,
             chat            : [
-                // default message
                 {...welcomeMessage},
-                // different messages with different types
+                { ...defaultMessage },
                 {
                     message: 'I am a second welcome message',
                     player_name: '',
                     type: ChatTypes.TYPE.BUGLE
                 },
-                // message with player name
                 {
                     message: 'Hello all, I am the message of a gm programmed from a fictitious database.',
                     player_name: 'Alex',
                     type: ChatTypes.TYPE.GM
-                },
-                // message empty
-                { ...defaultMessage }
+                }
             ]
         },
     ]
