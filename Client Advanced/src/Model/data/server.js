@@ -52,7 +52,24 @@ module.exports = {
             isRestricted    : true,
             minRank         : 0,
             maxRank         : 6,
-            chat            : [{...welcomeMessage}]
+            chat            : [
+                // default message
+                {...welcomeMessage},
+                // different messages with different types
+                {
+                    message: 'I am a second welcome message',
+                    player_name: '',
+                    type: ChatTypes.TYPE.BUGLE
+                },
+                // message with player name
+                {
+                    message: 'Hello all, I am the message of a gm programmed from a fictitious database.',
+                    player_name: 'Alex',
+                    type: ChatTypes.TYPE.GM
+                },
+                // message empty
+                { ...defaultMessage }
+            ]
         },
     ]
 };
