@@ -21,7 +21,13 @@ class Helper{
             x: Math.cos(ang * Math.PI / 180) * size,
             y: -Math.sin(ang * Math.PI / 180) * size
         }
-    }   
+    }  
+    
+    // An example
+    // const text = "Hi, my name is $?, and I'm a member of the $? staff.";
+    // const params = ["Alex", "SocialBound"];
+    // Helper.textParams(text, params);
+    // result is: "Hi, my name is Alex, and I'm a member of the SocialBound staff."
     static textParams(text, params){
          let lastText = text;
          params.map(param => lastText = lastText.replace("$?", param) );
