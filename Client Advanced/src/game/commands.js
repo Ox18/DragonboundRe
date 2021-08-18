@@ -1893,6 +1893,22 @@ module.exports = class Commands {
                         }
                         break;
                     }
+                  //update allow watch
+                     case '/allow_watch':
+                    {
+                        if(self.account.player.is_master === 1) {
+                            self.account.room.allow_watch = self.account.room.allow_watch ? 0 : 1;
+                            self.account.room.RoomUpdate();
+                            self.gameserver.sendRooms();
+                            if (self.account.room.allow_watch === true || self.account.room.allow_watch === 1) {
+                                self.gameserver.pushBroadcastChat(new Message.chatResponse(self, "✔👁 Players can watch this room by clicking 👁 or by: /watch "+self.account.room.id, Types.CHAT_TYPE.SYSTEM), self.account.room);
+                            }
+                            if (self.account.room.allow_watch === true || self.account.room.allow_watch === 0) {                            
+                                self.gameserver.pushBroadcastChat(new Message.chatResponse(self, "❌👁 Los jugadores ya NO pueden ver esta sala. ", Types.CHAT_TYPE.SYSTEM), self.account.room);
+                            }
+                        }
+                        break;
+                    }
                 case '/master':
                     {
                         //Logger.info("El User: "+self.account.player.game_id+" Ha Usado El Comando Master");
