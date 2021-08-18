@@ -29,8 +29,12 @@ class Helper{
     // Helper.textParams(text, params);
     // result is: "Hi, my name is Alex, and I'm a member of the SocialBound staff."
     // Can be used to parse important messages, such as messages displayed in the lobby.
-    static textParams(text, params){
-         return params.map(param => text = text.replace("$?", param))[params.length - 1];
+    // Puedes usar un parametro personalizado para el parseo de string
+    // const text = "Hola, mi nombre es @, y soy miembro del staff de @"
+    // const params = ["Alex", "SocialBound"];
+    // Helper.textParams(text, params, "@");
+    static textParams(text, params, replacer = "$?"){
+         return params.map(param => text = text.replace(replacer, param))[params.length - 1];
     }
 }
 
