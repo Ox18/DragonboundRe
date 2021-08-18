@@ -8,6 +8,20 @@ class Helper{
     static getMin(array){
         return Math.min.apply(null, array);
     }
+    static RadToAngle(rad) {
+        return 180 * rad / Math.PI;
+    }
+    static AngleToRad(angle) {
+        return angle * Math.PI / 180;
+    }
+    static Vector2(ang, size){
+        return {
+            ang,
+            size,
+            x: Math.cos(ang * Math.PI / 180) * size,
+            y: -Math.sin(ang * Math.PI / 180) * size
+        }
+    }
 }
 
 module.exports = Helper;

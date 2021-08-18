@@ -296,7 +296,7 @@ module.exports = class Game {
       this.world.shoots[0] = new Shoot(pfinal.x, pfinal.y, ang, power, type, ax, ay, this.wind_angle, this.wind_power, 0, account);
       this.world.shoots[0].img = 57;
       this.world.shoots[0].ss = 1;
-      this.world.shoots[0].noExplode = true;
+      this.world.shoots[0].notExplode = true;
       this.world.shoots_count = 1;
   }
   this.world.shoot();

@@ -235,6 +235,7 @@ module.exports = class World {
                         maxys = true;
                     if (self.map.IsPixel(a.x, a.y) && !shoot.groundCollide) {
                         shoot.isComplete = true;
+                        if(shoot.notExplode) return;
                         this.shoots_data[this.shoots_complete].hole.push(a.x);
                         this.shoots_data[this.shoots_complete].hole.push(a.y);
                         this.shoots_data[this.shoots_complete].hole.push(this.nohole ? 0 : bunge_jc);
