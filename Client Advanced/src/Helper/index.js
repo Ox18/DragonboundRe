@@ -11,6 +11,10 @@ class Helper{
     static RadToAngle(rad) {
         return 180 * rad / Math.PI;
     }
+    static vector(ang, size){
+        const { x, y } = Helper.Vector2(ang, size);
+        return { x, y };
+    }
     static Vector2(ang, size){
         return {
             ang,
