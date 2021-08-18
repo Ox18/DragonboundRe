@@ -40,6 +40,13 @@ class Helper{
     static textParams(text, params, replacer = "$?"){
          return params.map(param => text = text.replace(replacer, param))[params.length - 1];
     }
+    static rotatePoint(point, center, beforeAngle) {
+        const angle = Helper.AngleToRad(beforeAngle);        
+        return {
+            x: Math.floor(Math.cos(angle) * (point.x - center.x) - Math.sin(angle) * (point.y - center.y) + center.x),
+            y: Math.floor(Math.sin(angle) * (point.x - center.x) + Math.cos(angle) * (point.y - center.y) + center.y),
+        }
+    }
 }
 
 module.exports = Helper;
