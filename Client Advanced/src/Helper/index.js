@@ -11,17 +11,17 @@ class Helper{
     static RadToAngle(rad) {
         return 180 * rad / Math.PI;
     }
-    static AngleToRad(angle) {
-        return angle * Math.PI / 180;
-    }
     static Vector2(ang, size){
         return {
             ang,
             size,
-            x: Math.cos(ang * Math.PI / 180) * size,
-            y: -Math.sin(ang * Math.PI / 180) * size
+            x: Math.cos(Helper.AngleToRad(ang)) * size,
+            y: -Math.sin(Helper.AngleToRad(ang)) * size
         }
-    }  
+    }
+    static AngleToRad(angle) {
+        return angle * Math.PI / 180;
+    }
     
     // An example
     // const text = "Hi, my name is $?, and I'm a member of the $? staff.";
