@@ -21,6 +21,11 @@ class Helper{
             x: Math.cos(ang * Math.PI / 180) * size,
             y: -Math.sin(ang * Math.PI / 180) * size
         }
+    }   
+    static textParams(text, params){
+         let lastText = text;
+         params.map(param => lastText = lastText.replace("$?", param) );
+         return lastText;
     }
 }
 
