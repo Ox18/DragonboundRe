@@ -29,9 +29,7 @@ class Helper{
     // Helper.textParams(text, params);
     // result is: "Hi, my name is Alex, and I'm a member of the SocialBound staff."
     static textParams(text, params){
-         let lastText = text;
-         params.map(param => lastText = lastText.replace("$?", param) );
-         return lastText;
+         return params.map(param => text = text.replace("$?", param))[params.length - 1];
     }
 }
 
