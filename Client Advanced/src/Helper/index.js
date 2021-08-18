@@ -28,6 +28,7 @@ class Helper{
     // const params = ["Alex", "SocialBound"];
     // Helper.textParams(text, params);
     // result is: "Hi, my name is Alex, and I'm a member of the SocialBound staff."
+    // Can be used to parse important messages, such as messages displayed in the lobby.
     static textParams(text, params){
          return params.map(param => text = text.replace("$?", param))[params.length - 1];
     }
