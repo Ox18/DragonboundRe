@@ -6,7 +6,8 @@ class WeatherModel{
     static update(weatherEntity){
         weatherEntity.weatherQueue.SetNextWeather(WeatherModel.getIdRandomWeather());
         if(next_weather !== WeatherType.NOCHANGE){
-            weatherEntity.weatherQueue.SetQueue([...(weatherEntity.weatherQueue.getQueue()).shift(), weatherEntity.weatherQueue.GetNextWeather()]);
+            weatherEntity.weatherQueue.queue.shift();
+            weatherEntity.weatherQueue.queue.push(weatherEntity.weatherQueue.GetNextWeather());
         }
     }
     
