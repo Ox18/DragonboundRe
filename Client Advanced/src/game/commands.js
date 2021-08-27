@@ -1908,6 +1908,21 @@ module.exports = class Commands {
                             }
                         }
                         break;
+                   }
+                  //add allow talk
+                  case '/allow_talk':
+                  {
+                  //Logger.info("El User: "+self.account.player.game_id+" Ha Usado El Comando Kick");
+                  if(self.account.player.is_master === 1) {
+                  self.account.room.allow_talk = self.account.room.allow_talk ? 0 : 1;
+                            self.account.room.RoomUpdate();
+                            if (self.account.room.allow_talk === true || self.account.room.allow_talk === 1) {
+                                    self.gameserver.pushBroadcastChat(new Message.chatResponse(self, "✔🎤 Los espectadores pueden interactuar con los jugadores de la sala. ", Types.CHAT_TYPE.SYSTEM), self.account.room);
+                        }   if (self.account.room.allow_talk === true || self.account.room.allow_talk === 0) {
+                                    self.gameserver.pushBroadcastChat(new Message.chatResponse(self, "❌🎤 Los espectadores pueden interactuar SÓLO con otros espectadores. ", Types.CHAT_TYPE.SYSTEM), self.account.room);
+                          }
+                        }
+                        break;
                     }
                 case '/master':
                     {
