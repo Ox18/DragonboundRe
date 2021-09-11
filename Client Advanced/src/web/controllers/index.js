@@ -384,12 +384,6 @@ router.post('/g', function (req, res) {
 router.post('/ajaxLogin', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     var valid_enter = true;
-    /*var valid_enter = false;*/
-    /*if (req.headers.origin !== "null") {
-        if ((req.headers.origin == "http://localhost:8080" || req.headers.origin == "http://www.localhost:8080") || (req.headers.host == "localhost:8080" || req.headers.host == "www.localhost:8080")) {
-            valid_enter = true;
-        }
-    }*/
     var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || (req.connection.socket ? req.connection.socket.remoteAddress : null);
     var reg = /([^f:]+)/;
     let ip_result = reg.exec(req.connection.remoteAddress)[0];
@@ -484,12 +478,6 @@ router.post('/ajaxLogin', function (req, res) {
 router.post('/ajaxRegister', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     var valid_enter = true;
-    /*var valid_enter = false;*/
-    /*if (req.headers.origin !== "null") {
-        if ((req.headers.origin == "http://localhost:8080" || req.headers.origin == "http://www.localhost:8080") || (req.headers.host == "localhost:8080" || req.headers.host == "www.localhost:8080")) {
-            valid_enter = true;
-        }
-    }*/
     var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || (req.connection.socket ? req.connection.socket.remoteAddress : null);
     var reg = /([^f:]+)/;
     let ip_result = reg.exec(req.connection.remoteAddress)[0];
@@ -690,10 +678,5 @@ router.post('/ajaxRegister', function (req, res) {
             });
     }
 });
-
-
-router.get('/checkacc', function(req, res){
-    res.send(1);
-})
 
 module.exports = router;
