@@ -1,6 +1,5 @@
 
 # SocialBound 
-> is a game engine based on the Dragonbound game
 
 **Discord Group** :speech_balloon: https://discord.gg/pApEqzeMEW
 
