@@ -25,8 +25,6 @@ serversData.servers.map(function(serverMetaData){
     let gameServer = new GameServer(serverMetaData, serverVersion, server, self.db, mapControll);
 
     self.multiworld[id] = gameServer;
-
-    Logger.info("Server:"+id+" Map And DB loaded");
     self.multiworld[id].run();
 });
 
