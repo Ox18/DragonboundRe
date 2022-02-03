@@ -1,11 +1,8 @@
-import Server from "../../core/Model/Server";
+import ServerService from "../../core/Service/ServerService";
 
-const server = Server.fromHashMap({
-    name: "Ga"
-})
-
-console.log(server.toHashMap());
+const serverService = new ServerService();
 
 export const get = async (req, res) => {
-    res.send('Hello World!');
+    const servers = await serverService.findAll();
+    res.json(servers);
 }
