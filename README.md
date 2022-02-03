@@ -88,6 +88,14 @@ node game.js
 
  - [rayjencode](https://github.com/rayjencode/) (Melon Shake)
 
+## 🔥 Recommended extensions
+
+### Animation Frogtion
+Animation for the game buttons, this will make it look like gunbound.
+<br>
+documentation: [https://github.com/Ox18/Frogtion](https://github.com/Ox18/Frogtion)<br>
+![Preview](https://github.com/Ox18/Frogtion/blob/master/images/example_1.gif)
+
 
 ## Licence and copyright
 
