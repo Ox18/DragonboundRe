@@ -1,11 +1,12 @@
 [
-    [
-        "High Ranks",
-        0,
-        9001,
-        201,
-        3000,
-        9,
-        24
-    ]
+    {
+        "id": 0,
+        "name": "High Ranks",
+        "type": 0,
+        "port": 9001,
+        "players": 201,
+        "maxPlayers": 3000,
+        "minRank": 9,
+        "maxRank": 24
+    }
 ]

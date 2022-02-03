@@ -1,5 +1,9 @@
+import ServerFakeData from "../Network/Data/servers.json";
+
 class DatabaseMySQL{
-    constructor(){}
+    constructor(){
+        this.servers = ServerFakeData; 
+    }
 }
 
 export default DatabaseMySQL;
