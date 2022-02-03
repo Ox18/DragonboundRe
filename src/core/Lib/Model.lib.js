@@ -41,7 +41,8 @@ class ModelLib{
     }
 
     /**
-     * Method to get object properties but id property is excluded
+     * Method to get object properties but id property 
+     * is excluded
      * @returns {Object}
      */
     toHashMapToDatabase(){
