@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "babel-node": "babel-node",
-    "dev-web": "nodemon --exec npm run babel-node -- src/web/app.js"
+    "dev-web": "nodemon --ignore src/socket --exec npm run babel-node -- src/web/app.js",
+    "dev-socket": "nodemon --ignore src/web --exec npm run babel-node -- src/socket/app.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,9 @@
   "homepage": "https://github.com/Ox18/Socialbound#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "socket.io": "^4.4.1",
+    "ws": "^8.4.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.0",
