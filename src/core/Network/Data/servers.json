@@ -6,7 +6,7 @@
         "port": 9001,
         "players": 201,
         "maxPlayers": 3000,
-        "minRank": 9,
-        "maxRank": 24
+        "minRank": 0,
+        "maxRank": 26
     }
 ]
