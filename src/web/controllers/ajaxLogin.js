@@ -9,9 +9,9 @@ export const post = (req, res) => {
 
     const user = {
         id: 213,
-        rank: 25,
+        rank: 24,
         username: "admin",
-        session: "admin",
+        session: "0wdqkkmqwdlm",
         game_id: "admin",
         gender: "m"
     }
@@ -56,10 +56,6 @@ export const post = (req, res) => {
             break;
     };
     
-    if(typeof data === "string") {
-        res.send(data);
-    }
-    else {
-        res.json(data);
-    }
+    if(typeof data === "string") res.send(data);
+    else res.json(data);
 }
