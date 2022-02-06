@@ -3,6 +3,9 @@
 
 **Discord Group** :speech_balloon: https://discord.gg/pApEqzeMEW
 
+## Important announcement
+I will no longer support the basic or advanced customer of this branch. I am doing the project from 0 with the current version of the game in the Remake branch.
+
 <br>
 
 Initial configuration
