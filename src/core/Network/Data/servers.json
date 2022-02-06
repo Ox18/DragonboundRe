@@ -1,6 +1,26 @@
 [
     {
-        "id": 0,
+        "id": 1,
+        "name": "High Ranks",
+        "type": 0,
+        "port": 9001,
+        "players": 201,
+        "maxPlayers": 3000,
+        "minRank": 0,
+        "maxRank": 26
+    },
+    {
+        "id": 2,
+        "name": "High Ranks",
+        "type": 0,
+        "port": 9001,
+        "players": 201,
+        "maxPlayers": 3000,
+        "minRank": 0,
+        "maxRank": 26
+    },
+    {
+        "id": 3,
         "name": "High Ranks",
         "type": 0,
         "port": 9001,

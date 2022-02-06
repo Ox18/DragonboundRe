@@ -1,3 +1,4 @@
-import WebSocket from "./Libraries/WebSocket";
+import ApplicationWebsocket from "./Libraries/ApplicationWebSocket";
 
-const server = new WebSocket(9001);
+
+ApplicationWebsocket.instance(9001);
