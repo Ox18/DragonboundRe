@@ -17,6 +17,10 @@ class AccountHandler{
     Handler(opcode, data){
         throw new Error("Handler not implemented");
     }
+
+    Emit(opcode, data){
+        this.connection.send([opcode, ...data]);
+    }
 }
 
 export default AccountHandler;
