@@ -11,8 +11,16 @@ class Account extends AccountHandler{
         switch(opcode){
             case CLIENT_OPCODE.login:
                 {
-                    console.log("login");
-                    console.log(data);
+                    const [
+                        hash,                // [String] Hash connection
+                        session,             // [String] Session
+                        version,             // [String] Version of client
+                        code_integer_first,  // [Number] ??
+                        user_id,             // [Number] User id
+                        code_integer_second, // [Number] ??
+                        code_string_first    // [String] ??
+                    ] = data;
+                    self.connection.send([25, 1, 3, 4, 5])
                 };
                 break;
             default:
