@@ -1,5 +1,6 @@
 import WebSocket from "./WebSocket";
 import GameServer from "../GameServer";
+import Account from "../Account";
 
 class ApplicationWebsocket{
     server = null;
@@ -28,10 +29,11 @@ class ApplicationWebsocket{
             // connection.send(999 );
             // connection.close(); // Disconnects the connection
             connection.send([9,133,"Betting",0,0]);
+            new Account(connection, self.servers[server_qid], server_qid);
 
-            connection.listen(function(message){
-                console.log(message);
-            })
+            // connection.listen(function(message){
+            //     console.log(message);
+            // })
 
         });
         
