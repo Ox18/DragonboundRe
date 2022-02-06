@@ -1,6 +1,5 @@
 import WebSocket from "./WebSocket";
 import GameServer from "../GameServer";
-import Account from "../Account";
 
 class ApplicationWebsocket{
     server = null;
@@ -26,10 +25,13 @@ class ApplicationWebsocket{
         self.server.onConnect(function(connection){
             const { server_qid } = self.server;
 
-            connection.send([6,"a", "b", "c"]);
+            // connection.send(999 );
+            // connection.close(); // Disconnects the connection
+            connection.send([9,133,"Betting",0,0])
+
         });
         
-    }
+    }   
 
     initializeOnError(){
         var self = this;
