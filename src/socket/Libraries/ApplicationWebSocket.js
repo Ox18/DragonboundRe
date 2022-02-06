@@ -27,7 +27,11 @@ class ApplicationWebsocket{
 
             // connection.send(999 );
             // connection.close(); // Disconnects the connection
-            connection.send([9,133,"Betting",0,0])
+            connection.send([9,133,"Betting",0,0]);
+
+            connection.listen(function(message){
+                console.log(message);
+            })
 
         });
         
