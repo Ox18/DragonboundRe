@@ -21,6 +21,10 @@ class AccountHandler{
     Emit(opcode, data){
         this.connection.send([opcode, ...data]);
     }
+
+    Disconnect(){
+        this.connection.close();
+    }
 }
 
 export default AccountHandler;

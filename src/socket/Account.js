@@ -1,5 +1,7 @@
 import AccountHandler from "./Libraries/AccountHandler";
-import { CLIENT_OPCODE } from "../consts/TYPES"; 
+import { CLIENT_OPCODE } from "../consts/CLIENT_OPCODE"; 
+
+import MessageLogin from "./Messages/MessageLogin";
 
 class Account extends AccountHandler{
     constructor(...params){
@@ -11,16 +13,7 @@ class Account extends AccountHandler{
         switch(opcode){
             case CLIENT_OPCODE.login:
                 {
-                    const [
-                        hash,                // [String] Hash connection
-                        session,             // [String] Session
-                        version,             // [String] Version of client
-                        code_integer_first,  // [Number] ??
-                        user_id,             // [Number] User id
-                        code_integer_second, // [Number] ??
-                        code_string_first    // [String] ??
-                    ] = data;
-                    self.Emit(25, [4])
+                    MessageLogin.listener(self, data);
                 };
                 break;
             default:
