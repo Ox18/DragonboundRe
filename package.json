@@ -23,7 +23,6 @@
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "express-async-errors": "^3.1.1",
-    "socket.io": "^4.4.1",
     "ws": "^8.4.2"
   },
   "devDependencies": {
@@ -32,7 +31,6 @@
     "@babel/node": "^7.16.8",
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
-    "base64-arraybuffer": "^1.0.2",
     "ejs": "^3.1.6",
     "nodemon": "^2.0.15"
   }
