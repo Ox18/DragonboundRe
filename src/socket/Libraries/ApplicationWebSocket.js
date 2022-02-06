@@ -25,16 +25,8 @@ class ApplicationWebsocket{
         var self = this;
         self.server.onConnect(function(connection){
             const { server_qid } = self.server;
-
-            // connection.send(999 );
-            // connection.close(); // Disconnects the connection
             connection.send([9,133,"Betting",0,0]);
             new Account(connection, self.servers[server_qid], server_qid);
-
-            // connection.listen(function(message){
-            //     console.log(message);
-            // })
-
         });
         
     }   
