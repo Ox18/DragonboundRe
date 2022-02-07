@@ -2,17 +2,15 @@ class MessageLogin{
     constructor(account, data){
         this.account = account;
         this.data = data;
-
         const [
-            hash,                // [String] Hash connection
-            session,             // [String] Session
-            version,             // [String] Version of client
-            code_integer_first,  // [Number] ??
-            user_id,             // [Number] User id
-            code_integer_second, // [Number] ??
-            code_string_first    // [String] ??
+            x,                  // [String] Hash connection
+            user_auth_key,      // [String] User auth key
+            version_calculated, // [Number] Client Game ID - m * e.user_id * a * (_0x6932 ^ 17 * _0x6923 + 386421) % 89534761
+            user_id,            // [Number] User id
+            a,                  // [Number] Version of client
+            m,                  // [Number] LocalStorage lobby_channel 1 or the number of location user in the game
+            version             // [String] Version of client
         ] = data;
-        
     }
 
     static listener(account, data){
