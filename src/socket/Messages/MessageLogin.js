@@ -1,16 +1,27 @@
 class MessageLogin{
+    hash_connection;
+    user_auth_key;
+    version_encrypted;
+    user_id;
+    version_client;
+    lobby_channel;
+    version;
+
     constructor(account, data){
         this.account = account;
-        this.data = data;
-        const [
-            x,                  // [String] Hash connection
-            user_auth_key,      // [String] User auth key
-            version_calculated, // [Number] Client Game ID - m * e.user_id * a * (_0x6932 ^ 17 * _0x6923 + 386421) % 89534761
-            user_id,            // [Number] User id
-            a,                  // [Number] Version of client
-            m,                  // [Number] LocalStorage lobby_channel 1 or the number of location user in the game
-            version             // [String] Version of client
-        ] = data;
+        this.initializeProperties(data);
+
+        // this.account.Emit(1, [1, 2, 3, 4, 5, 6, 7, 1, 1, 1, 1, 1])
+    }
+
+    initializeProperties(data){
+        this.hash_connection = data[0];
+        this.user_auth_key = data[1];
+        this.version_encrypted = data[2];
+        this.user_id = data[3];
+        this.version_client = data[4];
+        this.lobby_channel = data[5];
+        this.version = data[6];
     }
 
     static listener(account, data){

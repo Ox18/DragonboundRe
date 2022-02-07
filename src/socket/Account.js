@@ -14,6 +14,9 @@ class Account extends AccountHandler{
             case CLIENT_OPCODE.login:
                 {
                     MessageLogin.listener(self, data);
+                    self.Emit(26, []);
+                    self.Emit(27, []);
+                    self.Emit(1, [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
                 };
                 break;
             default:
