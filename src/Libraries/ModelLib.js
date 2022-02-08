@@ -37,6 +37,9 @@ class ModelLib{
                 model[prop] = obj[prop];
             }
         });
+        if(model.init){
+            model.init();
+        }
         return model; 
     }
 
