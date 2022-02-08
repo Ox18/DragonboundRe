@@ -19,6 +19,7 @@ class MessageLogin{
         this.user_auth_key = data[1];
         this.version_encrypted = data[2];
         this.user_id = data[3];
+        console.log(this.user_id);
         this.version_client = data[4];
         this.lobby_channel = data[5];
         this.version = data[6];
