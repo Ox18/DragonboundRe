@@ -43,6 +43,27 @@ class ModelLib{
         return model; 
     }
 
+    static fromProps({ data, ...args }){
+        var model = new this();
+        var keys = Object.keys(model.props);
+        var lastKeys = [...keys];
+        
+        var index = 0;
+        lastKeys.forEach(key => {
+            model.props[key] = data[index];
+            index++;
+        });
+        model.initial_data = data;
+        
+        let _obj_keys = Object.keys(args);
+        _obj_keys.forEach(key => {
+            model[key] = args[key];
+        });
+
+        model.init();
+        return model;
+    }
+
     /**
      * Method to get object properties but id property 
      * is excluded
