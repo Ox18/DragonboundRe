@@ -11,7 +11,7 @@ class LoginListener extends Listener {
         version_client      = undefined,
         user_last_location  = undefined,
         version             = undefined
-    }
+    };
 
     constructor(...args){
         super(...args);
