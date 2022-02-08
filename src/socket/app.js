@@ -1,4 +1,3 @@
-import ApplicationWebsocket from "./Libraries/ApplicationWebSocket";
+import WebSocketServer from "./Libraries/WebSocketServer";
 
-
-ApplicationWebsocket.instance(9001);
+WebSocketServer.instanceFromPort(9001);

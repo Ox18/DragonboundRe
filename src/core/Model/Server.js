@@ -11,7 +11,7 @@ class Server extends ModelLib{
             maxPlayers: 0,
             minRank: 0,
             maxRank: 0,
-        })
+        });
     }
 }
 
