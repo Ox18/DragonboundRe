@@ -1,4 +1,4 @@
-import ModelLib from "../Lib/Model.lib";
+import ModelLib from "../../Libraries/ModelLib";
 
 class Server extends ModelLib{
     constructor(){
