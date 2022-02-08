@@ -1,23 +1,21 @@
-class Server{
-    id;
-    name;
-    type;
-    port;
-    players;
-    maxPlayers;
-    minRank;
-    maxRank;
+import ModelLib from "../Libraries/ModelLib";
+import AccountStorage from "./AccountStorage";
 
+var schema = {
+    id: undefined,
+    name: undefined,
+    type: undefined,
+    port: undefined,
+    players: undefined,
+    maxPlayers: undefined,
+    minRank: undefined,
+    maxRank: undefined,
+    accountStorage: new AccountStorage()
+};
 
-    constructor(){ }
-
-    static fromJSON(json){
-        let obj = new Server();
-        let keys = Object.keys(json);
-        keys.forEach(key => {
-            obj[key] = json[key];
-        });
-        return obj;
+class Server extends ModelLib{
+    constructor(){
+        super(schema);
     }
 }
 

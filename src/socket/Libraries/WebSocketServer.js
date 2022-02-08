@@ -1,7 +1,7 @@
 import express from 'express';
 import Server from '../Server';
-
 import ServerService from '../../core/Service/ServerService';
+import Account from '../Account';
 
 const serverService = new ServerService();
 
@@ -9,6 +9,7 @@ var http = require("http").createServer();
 var WSS = require("ws").Server;
 
 class WebSocketServer{
+    version_game = 133;
     port;
     httpServer;
     app;
@@ -20,7 +21,6 @@ class WebSocketServer{
     }
 
     constructor(port){
-        var self = this;
         this.port = port;
         this.app = express();
         this.httpServer = http;
@@ -38,7 +38,7 @@ class WebSocketServer{
         try{
             this.servers.loading = true;
             let response = await serverService.findAll();
-            this.servers.list = response.map(server => Server.fromJSON(server.toHashMap()));
+            this.servers.list = response.map(server => Server.fromHashMap(server.toHashMap()));
         }catch(ex){
             this.servers.error = ex;
         }finally{
@@ -54,7 +54,27 @@ class WebSocketServer{
         this.wss.on("listening", this.onListening.bind(this));
     }
 
-    onConnection(connection, req){}
+    onConnection(connection, req){
+        let server_id = Number(req.url.split("/")[1]);
+
+        if(this.existServer(server_id)){    // Server exist
+            connection.send(JSON.stringify([9,133,"Betting",0,0]));
+
+            let server = this.findServer(server_id);
+            let id = "wilmer";
+            let app = this.app;
+
+            let account = Account.fromHashMap({
+                id,
+                server,
+                app,
+                connection
+            });
+            server.accountStorage.add(account);
+        }else{
+            connection.close();
+        }
+    }
 
     onClose(connection, req){}
 
@@ -64,6 +84,13 @@ class WebSocketServer{
 
     onListening(connection, req){}
 
+    existServer(id){
+        return this.servers.list.find(server => server.id === id);
+    }
+
+    findServer(id){
+        return this.servers.list.find(server => server.id === id);
+    }
 
     static instanceFromPort(port){
         return new WebSocketServer(port);
