@@ -2,26 +2,26 @@ import Listener from "../Libraries/Listener";
 
 class LoginListener extends Listener {
     account;
-    initial_properties      = [];
+    initial_data            = [];
     props = {
-        hash_connection     = undefined,
-        user_auth           = undefined,
-        version_encrypted   = undefined,
-        user_id             = undefined,
-        version_client      = undefined,
-        user_last_location  = undefined,
-        version             = undefined
+        hash_connection     : undefined, // string
+        user_auth           : undefined, // string
+        version_encrypted   : undefined, // number
+        user_id             : undefined, // number
+        version_client      : undefined, // number
+        user_last_location  : undefined, // number
+        version             : undefined  // string
     };
 
-    constructor(...args){
-        super(...args);
+    constructor(account, data){
+        super(account, data);
         this.init();
 
-        this.account.EMITTERS.login_profile.Emit();
+        console.log(this.props);
     }
     
-    static instance(...args){
-        return new LoginListener(...args);
+    static instance(account, data){
+        return new LoginListener(account, data);
     }
 }
 
