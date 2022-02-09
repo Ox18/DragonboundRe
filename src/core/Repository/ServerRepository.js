@@ -3,13 +3,13 @@ import Server from "../Model/Server";
 
 
 class ServerRepository{
-    database = DatabaseNEDB.instance("servers");
+    database = DatabaseNEDB.instance("servers").db;
 
     findAll(){
         return new Promise(async (resolve, reject) => {
             var servers = [];
 
-            this.database.db.find({}, function(err, docs){
+            this.database.find({}, function(err, docs){
                 if(err){
                     reject(err);
                 }

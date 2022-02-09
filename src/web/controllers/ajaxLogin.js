@@ -1,22 +1,33 @@
 import { RESPONSE_WEB } from "../../consts/RESPONSE_WEB";
+import AccountService from "../../core/Service/AccountService";
 
-export const post = (req, res) => {
+export const post = async (req, res) => {
+    const accountService = new AccountService();
+
     const { 
         u, // username ✅
         p, // password ✅
         r  // remember ??
     } = req.body;
 
+    const account = await accountService.findByUsernameAndPassword(u, p);
+
+    var status;
+
+    if(account){
+        status = RESPONSE_WEB.LOGIN.SUCCESS;
+    }else{
+        status = RESPONSE_WEB.LOGIN.ACCOUNT_NOT_EXIST;
+    }
+
     const user = {
-        id: 999,
+        id: "sdfsd",
         rank: 24,
         username: "admin",
         session: "0wdqkkmqwdlm",
         game_id: "admin",
         gender: "m"
     }
-
-    const status = RESPONSE_WEB.LOGIN.SUCCESS;
 
     let data = "";
 

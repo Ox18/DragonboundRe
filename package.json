@@ -23,8 +23,10 @@
   "homepage": "https://github.com/Ox18/Socialbound#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "express-async-errors": "^3.1.1",
+    "mysql2": "^2.3.3",
     "nedb": "^1.8.0",
     "ws": "^8.4.2"
   },
