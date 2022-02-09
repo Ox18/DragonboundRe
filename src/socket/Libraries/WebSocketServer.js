@@ -9,7 +9,7 @@ var http = require("http").createServer();
 var WSS = require("ws").Server;
 
 class WebSocketServer{
-    version_game = 133;
+    version_client = 133;
     port;
     httpServer;
     app;
@@ -38,7 +38,7 @@ class WebSocketServer{
         try{
             this.servers.loading = true;
             let response = await serverService.findAll();
-            this.servers.list = response.map(server => Server.fromHashMap(server.toHashMap()));
+            this.servers.list = response.map(server => Server.fromHashMap({ ...server.toHashMap(), version_client: this.version_client }));
         }catch(ex){
             this.servers.error = ex;
         }finally{
@@ -62,7 +62,7 @@ class WebSocketServer{
 
             let server = this.findServer(server_id);
             let id = "wilmer";
-            let app = this.app;
+            let app = this;
 
             let account = Account.fromHashMap({
                 id,

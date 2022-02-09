@@ -20,8 +20,15 @@ class LoginListener extends ModelLib {
     }
 
     init(){
-        
+        if(this.isInvalidVersionClient()){
+            this.account.EMITTERS.disconnect_reason.disconnectBadClient();
+        }
     }
+
+    isInvalidVersionClient(){
+        return this.props.version_client !== this.account.app.version_client;
+    }
+
 }
 
 export { LoginListener };

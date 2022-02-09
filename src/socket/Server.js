@@ -10,7 +10,7 @@ var schema = {
     maxPlayers: undefined,
     minRank: undefined,
     maxRank: undefined,
-    accountStorage: new AccountStorage()
+    accountStorage: new AccountStorage(),
 };
 
 class Server extends ModelLib{

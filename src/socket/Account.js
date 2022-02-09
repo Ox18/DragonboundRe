@@ -1,13 +1,14 @@
 import ModelLib from "../Libraries/ModelLib";
 import { LoginListener } from "./Listeners/LoginListener";
-
 import { CLIENT_OPCODE } from "../consts/CLIENT_OPCODE";
+import { DisconnectEmitter } from "./Emitters";
 
 var schema = {
     id: undefined,
     server: undefined,
     app: undefined,
-    connection: undefined
+    connection: undefined,
+    EMITTERS: {}
 }
 
 class Account extends ModelLib{
@@ -16,7 +17,13 @@ class Account extends ModelLib{
     }
 
     init(){
+        this.initializeEmitters();
         this.connection.on("message", this.onMessage.bind(this));
+    }
+
+    initializeEmitters(){
+        var account = this;
+        this.EMITTERS.disconnect_reason = DisconnectEmitter.fromHashMap({ account });
     }
 
     onMessage(messageUTF8){
