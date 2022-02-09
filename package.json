@@ -6,7 +6,9 @@
   "scripts": {
     "babel-node": "babel-node",
     "dev-web": "nodemon --ignore src/socket --exec npm run babel-node -- src/web/app.js",
-    "dev-socket": "nodemon --ignore src/web --exec npm run babel-node -- src/socket/app.js"
+    "dev-socket": "nodemon --ignore src/web --exec npm run babel-node -- src/socket/app.js",
+    "web": "babel-node src/web/app.js",
+    "socket": "babel-node src/socket/app.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "express-async-errors": "^3.1.1",
+    "nedb": "^1.8.0",
     "ws": "^8.4.2"
   },
   "devDependencies": {

@@ -1,32 +1,12 @@
-[
-    {
-        "id": 1,
-        "name": "High Ranks",
-        "type": 0,
-        "port": 9001,
-        "players": 201,
-        "maxPlayers": 3000,
-        "minRank": 0,
-        "maxRank": 26
-    },
-    {
-        "id": 2,
-        "name": "High Ranks",
-        "type": 0,
-        "port": 9001,
-        "players": 201,
-        "maxPlayers": 3000,
-        "minRank": 0,
-        "maxRank": 26
-    },
-    {
-        "id": 3,
-        "name": "High Ranks",
-        "type": 0,
-        "port": 9001,
-        "players": 201,
-        "maxPlayers": 3000,
-        "minRank": 0,
-        "maxRank": 26
-    }
-]
+{"id":12,"name":"High Ranks","type":0,"port":9001,"players":201,"maxPlayers":3000,"minRank":0,"maxRank":26,"_id":"6zZpZy3GilLIqwDT"}
+{"id":10,"name":"High Ranks","type":0,"port":9001,"players":201,"maxPlayers":3000,"minRank":0,"maxRank":26,"_id":"7lrUuYFVqi4LyJJi"}
+{"id":2,"name":"High Ranks","type":0,"port":9001,"players":201,"maxPlayers":3000,"minRank":0,"maxRank":26,"_id":"HTgwJkAoSMfOzoK0"}
+{"id":4,"name":"High Ranks","type":0,"port":9001,"players":201,"maxPlayers":3000,"minRank":0,"maxRank":26,"_id":"HrdK3eOv4h6kJneR"}
+{"id":6,"name":"High Ranks","type":0,"port":9001,"players":201,"maxPlayers":3000,"minRank":0,"maxRank":26,"_id":"L85eSRQXQgNlwMbv"}
+{"id":7,"name":"High Ranks","type":0,"port":9001,"players":201,"maxPlayers":3000,"minRank":0,"maxRank":26,"_id":"bKGtsjXyeA4ijT1O"}
+{"id":3,"name":"High Ranks","type":0,"port":9001,"players":201,"maxPlayers":3000,"minRank":0,"maxRank":26,"_id":"cU8NraBlc7okaTCD"}
+{"id":9,"name":"High Ranks","type":0,"port":9001,"players":201,"maxPlayers":3000,"minRank":0,"maxRank":26,"_id":"cjXufaiazyjOXZdE"}
+{"id":1,"name":"High Ranks","type":0,"port":9001,"players":201,"maxPlayers":3000,"minRank":0,"maxRank":26,"_id":"hBzwNm3TbYcRgPc2"}
+{"id":8,"name":"High Ranks","type":0,"port":9001,"players":201,"maxPlayers":3000,"minRank":0,"maxRank":26,"_id":"icY3S0VwZItYOJR9"}
+{"id":11,"name":"High Ranks","type":0,"port":9001,"players":201,"maxPlayers":3000,"minRank":0,"maxRank":26,"_id":"jnmwD3p4tA5vqUBm"}
+{"id":5,"name":"High Ranks","type":0,"port":9001,"players":201,"maxPlayers":3000,"minRank":0,"maxRank":26,"_id":"zmLJMgN8T7aakjXs"}
