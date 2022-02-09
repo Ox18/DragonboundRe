@@ -1,14 +1,12 @@
 import ModelLib from "../Libraries/ModelLib";
 import { LoginListener } from "./Listeners/LoginListener";
 import { CLIENT_OPCODE } from "../consts/CLIENT_OPCODE";
-import { DisconnectEmitter } from "./Emitters";
 
 var schema = {
     id: undefined,
     server: undefined,
     app: undefined,
     connection: undefined,
-    EMITTERS: {}
 }
 
 class Account extends ModelLib{
@@ -17,13 +15,7 @@ class Account extends ModelLib{
     }
 
     init(){
-        this.initializeEmitters();
         this.connection.on("message", this.onMessage.bind(this));
-    }
-
-    initializeEmitters(){
-        var account = this;
-        this.EMITTERS.disconnect_reason = DisconnectEmitter.fromHashMap({ account });
     }
 
     onMessage(messageUTF8){
@@ -148,8 +140,6 @@ class Account extends ModelLib{
             //     break; 
             //  case CLIENT_OPCODE.game_pass_turn: 
             //     break; 
-            //  case CLIENT_OPCODE.get_avatar: 
-            //     break; 
             //  case CLIENT_OPCODE.get_shop_page: 
             //     break; 
             //  case CLIENT_OPCODE.get_next_avatar: 
@@ -175,6 +165,7 @@ class Account extends ModelLib{
             default:
                 {
                     console.log("Unknown opcode: " + opcode);
+                    console.log(data);
                 };
                 break;
         }

@@ -1,4 +1,5 @@
 import ModelLib from "../../Libraries/ModelLib";
+import { DisconnectMessage } from "../Message/DisconnectMessage";
 
 var schema = {
     account: undefined,
@@ -21,7 +22,7 @@ class LoginListener extends ModelLib {
 
     init(){
         if(this.isInvalidVersionClient()){
-            this.account.EMITTERS.disconnect_reason.disconnectBadClient();
+            this.account.send(DisconnectMessage.REASON_BAD_CLIENT.meet());
         }
     }
 
