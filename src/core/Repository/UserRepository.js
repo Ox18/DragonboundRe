@@ -1,14 +1,14 @@
 import DatabaseMySQL from "../DB/DatabaseMySQL";
-import Account from "../Model/Account";
+import User from "../Model/User";
 
-class AccountRepository{
+class UserRepository{
     db = DatabaseMySQL.instance();
 
-    findByUsernameAndPassword(username, password){
+    findByAccountId(account_id){
         return new Promise(async (resolve, reject) => {   
             var self = this;
-            var sql = "SELECT * FROM `account` WHERE `username` = ? AND `password` = ?";
-            var params = [username, password];
+            var sql = "SELECT * FROM `user` WHERE `account_id` = ?";
+            var params = [account_id];
             this.db.connection
             .query(sql, params, function(err, result, fields){
                 self.db.connection.end();
@@ -16,8 +16,8 @@ class AccountRepository{
                     reject(err);
                 }
                 if(result.length > 0){
-                    var account = Account.fromHashMap(result[0]);
-                    resolve(account);
+                    var user = User.fromHashMap(result[0]);
+                    resolve(user);
                 }
                 else{
                     resolve(null);
@@ -27,4 +27,4 @@ class AccountRepository{
     }
 }
 
-export default AccountRepository;
+export default UserRepository;
