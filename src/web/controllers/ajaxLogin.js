@@ -3,40 +3,50 @@ import AccountService from "../../core/Service/AccountService";
 import UserService from "../../core/Service/UserService";
 
 export const post = async (req, res) => {
-    const sessionId = req.sessionID;
-
-    const accountService = new AccountService();
-    const userService = new UserService();
-
-    const { 
-        u, // username ✅
-        p, // password ✅
-        r  // remember ??
-    } = req.body;
-
     var status;
     var user_data;
     var user;
-    
-    const account = await accountService.findByUsernameAndPassword(u, p);
-
-    if(account){
-        status = RESPONSE_WEB.LOGIN.SUCCESS;
-        user_data = await userService.findByAccountId(account.id);
-        user = {
-            id: user_data.user_id,
-            rank: user_data.rank,
-            username: account.username,
-            session: sessionId,
-            game_id: user_data.game_id,
-            gender: user_data.gender
-        };
-        req.session.user = user;
-    }else{
-        status = RESPONSE_WEB.LOGIN.ACCOUNT_NOT_EXIST;
+    var dialog = {
+        title: "",
+        message: "",
     }
 
-    let data = "";
+    try{
+        const sessionId = req.sessionID;
+
+        const accountService = new AccountService();
+        const userService = new UserService();
+
+        var { 
+            u, // username ✅
+            p, // password ✅
+            create_account  // number create 0 false 1 true
+        } = req.body;
+        
+        const account = await accountService.findByUsernameAndPassword(u, p);
+
+        if(account){
+            status = RESPONSE_WEB.LOGIN.SUCCESS;
+            user_data = await userService.findByAccountId(account.id);
+            user = {
+                id: user_data.user_id,
+                rank: user_data.rank,
+                username: account.username,
+                session: sessionId,
+                game_id: user_data.game_id,
+                gender: user_data.gender
+            };
+            req.session.user = user;
+        }else{
+            status = RESPONSE_WEB.LOGIN.ACCOUNT_NOT_EXIST;
+        }
+    }catch(ex){
+        status = RESPONSE_WEB.LOGIN.DIALOG;
+        dialog.title = "Ha ocurrido un error";
+        dialog.message = "Por favor intente de nuevo";
+    }
+
+    var data = "";
 
     switch (status) {
         case RESPONSE_WEB.LOGIN.ACCOUNT_NOT_EXIST:
@@ -61,13 +71,10 @@ export const post = async (req, res) => {
             data = [99, 0];
             break;
         case RESPONSE_WEB.LOGIN.SUCCESS:
-            const create_account = 0; // true = 1 | false = 0
             data = [user.id, user.rank, create_account, user.session, user.game_id, user.gender];
             break;
         case RESPONSE_WEB.LOGIN.DIALOG:
-            const title = "title to dialog";
-            const description = "description to dialog";
-            data = [title, description];
+            data = [dialog.title, dialog.message];
             break;
         default:
             data = ["Internal server error", "Please try again later"];
