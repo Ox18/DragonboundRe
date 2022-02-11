@@ -7,6 +7,7 @@ var schema = {
     server: undefined,
     app: undefined,
     connection: undefined,
+    player: undefined,
 }
 
 class Account extends ModelLib{

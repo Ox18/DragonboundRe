@@ -86,6 +86,14 @@ class ModelLib{
         });
         return hashMap;
     }
+
+    assignProps(props){
+        this._getProperties().forEach(prop => {
+            if(props[prop]){
+                this[prop] = props[prop];
+            }
+        });
+    }
 }
 
 export default ModelLib;
