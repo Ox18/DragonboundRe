@@ -23,7 +23,7 @@ class DatabaseMySQL{
         return new DatabaseMySQL();
     }
 
-    findAll(query, params = []){
+    find(query, params = []){
         var self = this;
         return new Promise(async (resolve, reject) => {
             try{
