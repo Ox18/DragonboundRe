@@ -12,27 +12,25 @@ export const post = async (req, res) => {
         r  // remember ??
     } = req.body;
 
-    const account = await accountService.findByUsernameAndPassword(u, p);
-    
-
     var status;
     var user_data;
+    var user;
+    
+    const account = await accountService.findByUsernameAndPassword(u, p);
 
     if(account){
         status = RESPONSE_WEB.LOGIN.SUCCESS;
-
         user_data = await userService.findByAccountId(account.id);
+        user = {
+            id: user_data.user_id,
+            rank: user_data.rank,
+            username: account.username,
+            session: "0wdqkkmqwdlm",
+            game_id: user_data.game_id,
+            gender: user_data.gender
+        };
     }else{
         status = RESPONSE_WEB.LOGIN.ACCOUNT_NOT_EXIST;
-    }
-
-    const user = {
-        id: user_data.user_id,
-        rank: user_data.rank,
-        username: account.username,
-        session: "0wdqkkmqwdlm",
-        game_id: user_data.game_id,
-        gender: user_data.gender
     }
 
     let data = "";

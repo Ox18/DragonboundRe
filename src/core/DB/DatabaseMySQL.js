@@ -1,4 +1,4 @@
-const mysql = require("mysql2");
+const mysql = require("mysql2/promise");
 
 class DatabaseMySQL{
     constructor(){
@@ -21,6 +21,33 @@ class DatabaseMySQL{
 
     static instance(){
         return new DatabaseMySQL();
+    }
+
+    findAll(query, params = []){
+        var self = this;
+        return new Promise(async (resolve, reject) => {
+            try{
+                const response = await self.query(query, params);
+                const data = response[0];
+                resolve(data);
+            }catch(ex){
+                reject(ex);
+            }
+        });
+    }
+
+    query(query, params){
+        var self = this;
+        return new Promise(async (resolve, reject) => {
+            try{
+                const conn = await self.connection;
+                const response = await conn.query(query, params);
+                conn.end();
+                resolve(response);
+            }catch(err){
+                reject(err);
+            }
+        });
     }
 }
 

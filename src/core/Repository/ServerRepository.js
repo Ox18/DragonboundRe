@@ -1,26 +1,16 @@
-import DatabaseNEDB from "../DB/DatabaseNEDB";
+import DatabaseMySQL from "../DB/DatabaseMySQL";
 import Server from "../Model/Server";
 
 
 class ServerRepository{
-    database = DatabaseNEDB.instance("servers").db;
-
     findAll(){
+        var db = DatabaseMySQL.instance();
         return new Promise(async (resolve, reject) => {
-            var servers = [];
-
-            this.database.find({}, function(err, docs){
-                if(err){
-                    reject(err);
-                }
-                else{
-                    docs.forEach(server => {
-                        const lastServer = Server.fromHashMap(server);
-                        servers.push(lastServer);
-                    });
-                    resolve(servers);
-                }
-            });
+            const sql = "SELECT * FROM Servers";
+            const params = [];
+            const response = await db.findAll(sql, params);
+            const servers = response.map(server => Server.fromHashMap(server));
+            resolve(servers);
         });
     }
 }
