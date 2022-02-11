@@ -2,21 +2,38 @@ const mysql = require("mysql2/promise");
 
 class DatabaseMySQL{
     constructor(){
-        this.host = "db4free.net";
-        this.user = "lnferno";
-        this.password = ".zSv43'jeRux998";
-        this.database = "socialboundb";
         this.connection = undefined;
         this.init();
     }
 
+    static HOST = "db4free.net";
+    static USER = "lnferno";
+    static PASSWORD = ".zSv43'jeRux998";
+    static DATABASE = "socialboundb";
+
     init(){
         this.connection = mysql.createConnection({
-            host: this.host,
-            user: this.user,
-            password: this.password,
-            database: this.database
+            host: DatabaseMySQL.HOST,
+            user: DatabaseMySQL.USER,
+            password: DatabaseMySQL.PASSWORD,
+            database: DatabaseMySQL.DATABASE
         });
+    }
+
+    static MySQLStoreOptions = {
+        host: DatabaseMySQL.HOST,
+        port: 3306,
+        user: DatabaseMySQL.USER,
+        password: DatabaseMySQL.PASSWORD,
+        database: DatabaseMySQL.DATABASE,
+        schema: {
+            tableName: "account_sessions",
+            columnNames: {
+                session_id: "session_id",
+                expires: "expires",
+                data: "data"
+            }
+        }
     }
 
     static instance(){

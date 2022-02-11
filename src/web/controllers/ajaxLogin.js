@@ -3,6 +3,8 @@ import AccountService from "../../core/Service/AccountService";
 import UserService from "../../core/Service/UserService";
 
 export const post = async (req, res) => {
+    const sessionId = req.sessionID;
+
     const accountService = new AccountService();
     const userService = new UserService();
 
@@ -25,10 +27,11 @@ export const post = async (req, res) => {
             id: user_data.user_id,
             rank: user_data.rank,
             username: account.username,
-            session: "0wdqkkmqwdlm",
+            session: sessionId,
             game_id: user_data.game_id,
             gender: user_data.gender
         };
+        req.session.user = user;
     }else{
         status = RESPONSE_WEB.LOGIN.ACCOUNT_NOT_EXIST;
     }
