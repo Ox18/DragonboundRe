@@ -1,6 +1,9 @@
 import ModelLib from "../Libraries/ModelLib";
 import { LoginListener } from "./Listeners/LoginListener";
 import { CLIENT_OPCODE } from "../consts/CLIENT_OPCODE";
+import { CHANNEL_TYPE } from "../consts/CHANNEL_TYPE";
+import { ChangeLobbyChannelListener } from "./Listeners/ChangeLobbyChannelListener";
+import { ChatListener } from "./Listeners/ChatListener";
 
 var schema = {
     id: undefined,
@@ -8,6 +11,7 @@ var schema = {
     app: undefined,
     connection: undefined,
     player: undefined,
+    lobby_channel: CHANNEL_TYPE.CHAT,
 }
 
 class Account extends ModelLib{
@@ -55,8 +59,11 @@ class Account extends ModelLib{
             //     break; 
             //  case CLIENT_OPCODE.mobile: 
             //     break; 
-            //  case CLIENT_OPCODE.chat: 
-            //     break; 
+             case CLIENT_OPCODE.chat: 
+                {
+                    ChatListener.fromProps({ account: self, data });
+                };  
+                break; 
             //  case CLIENT_OPCODE.addfriend: 
             //     break; 
             //  case CLIENT_OPCODE.refresh_guildies: 
@@ -119,8 +126,11 @@ class Account extends ModelLib{
             //     break; 
             //  case CLIENT_OPCODE.tournament_start_game: 
             //     break; 
-            //  case CLIENT_OPCODE.change_lobby_channel: 
-            //     break; 
+            case CLIENT_OPCODE.change_lobby_channel: 
+                {
+                    ChangeLobbyChannelListener.fromProps({ account: self, data });
+                };
+                break; 
             //  case CLIENT_OPCODE.guild_leave: 
             //     break; 
             //  case CLIENT_OPCODE.guildinvite: 
