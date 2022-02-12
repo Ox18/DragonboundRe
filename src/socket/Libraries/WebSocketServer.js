@@ -29,7 +29,6 @@ class WebSocketServer{
         this.wss = new WSS({
             server: http
         });
-
         this.initializeServers();
         this.initializeWebSocketOn();
     }

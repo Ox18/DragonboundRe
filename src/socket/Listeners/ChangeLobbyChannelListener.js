@@ -15,6 +15,10 @@ class ChangeLobbyChannelListener extends ModelLib{
 
     init(){
         this.account.lobby_channel = this.props.lobby_channel;
+
+        const messages = this.account.server.chat.filter(message => message.lobby_channel == this.props.lobby_channel);
+        const lastMessages = messages.map((msg)=> msg.toArray());
+        this.account.send([5, [0, lastMessages], this.account.lobby_channel]);
     }
 }
 

@@ -11,6 +11,7 @@ var schema = {
     minRank: undefined,
     maxRank: undefined,
     accountStorage: new AccountStorage(),
+    chat: []
 };
 
 class Server extends ModelLib{
