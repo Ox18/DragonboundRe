@@ -1,5 +1,5 @@
 import Server from "./Server";
-import Buffer from "./Buffer";
+import Packet from "../util/Packet";
 
 class Client{
     constructor(
@@ -10,9 +10,11 @@ class Client{
     }
 
     onMessage(message: any){
-        const buffer = message.toJSON();
-        const data = Buffer.BufferArrayToNormalArray(buffer.data);
+        const data: Array<String | Number> = Packet.DecodeBuffer(message);
         console.log(data);
+        // const buffer = message.toJSON();
+        // const data = Packet.BufferArrayToNormalArray(buffer.data);
+        // console.log(data);
     }
 }
 
