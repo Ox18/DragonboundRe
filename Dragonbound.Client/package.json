@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "babel-node": "babel-node",
-    "web": "nodemon --ignore src/socket --exec npm run babel-node -- src/web/app.js",
+    "dev": "nodemon --ignore src/socket --exec npm run babel-node -- src/web/app.js",
     "start": "babel-node src/web/app.js"
   },
   "repository": {
