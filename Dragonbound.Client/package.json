@@ -5,10 +5,8 @@
   "main": "index.js",
   "scripts": {
     "babel-node": "babel-node",
-    "dev-web": "nodemon --ignore src/socket --exec npm run babel-node -- src/web/app.js",
-    "dev-socket": "nodemon --ignore src/web --exec npm run babel-node -- src/socket/app.js",
-    "web": "babel-node src/web/app.js",
-    "socket": "babel-node src/socket/app.js"
+    "web": "nodemon --ignore src/socket --exec npm run babel-node -- src/web/app.js",
+    "start": "babel-node src/web/app.js"
   },
   "repository": {
     "type": "git",
