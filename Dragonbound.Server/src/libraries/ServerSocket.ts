@@ -4,6 +4,7 @@ import StorageServer from "../StorageServer";
 import Logger from "./Logger";
 var http = require("http").createServer();
 var Websocket = require("ws").Server;
+import Buffer from "./Buffer";
 
 class ServerSocket{
     app: Express.Express;
@@ -27,11 +28,9 @@ class ServerSocket{
         try{
             const serverID = parseInt(req.url.split("/")[1]);
             if(this.servers.exists(serverID)){
-                const response = '9,133,"Beginners",0,0'
-                
-                connection.send(response);
-
-                console.log("ServerSocket: Server " + serverID + " connected");
+                const response = [9,133,"Beginners",0,0];
+                const data = Buffer.ArrayBufferToString(response);
+                connection.send(data);
             }else{
                 throw new Error("ServerSocket: Server " + serverID + " not found");
             }
