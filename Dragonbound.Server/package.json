@@ -1,0 +1,24 @@
+{
+  "name": "socialbound",
+  "version": "1.0.0",
+  "description": "**Discord Group** :speech_balloon: https://discord.gg/pApEqzeMEW",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ox18/Socialbound.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ox18/Socialbound/issues"
+  },
+  "homepage": "https://github.com/Ox18/Socialbound#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
