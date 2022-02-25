@@ -50,8 +50,17 @@ class Packet{
             var d = a.buffer.slice(a.byteOffset, a.byteOffset + a.byteLength)
               , c = new TextDecoder("utf-8")
               , f = c.decode(d);
-
+        const stringOriginal = JSON.stringify(f);
+        const removedFirstLetter = stringOriginal.substring(1, stringOriginal.length - 1);
         let array = [];
+
+        // capture number
+        let NEXT_QUOTE_POSITION = removedFirstLetter.indexOf(`"`);
+        let SVG_CODE = removedFirstLetter.substring(0, NEXT_QUOTE_POSITION);
+
+        SVG_CODE = SVG_CODE.replace(/\\/g, "");
+        array.push(Packet.DecodeNumber(SVG_CODE));
+
         while(true){
             let NEXT_COMMA_POSITION = f.indexOf(",");
             if(NEXT_COMMA_POSITION === -1){
@@ -72,6 +81,10 @@ class Packet{
 
     public static GuessTypeOfBufferString(data: string): String{
         return data.indexOf("\"") !== -1 ? this.TYPES.STRING : this.TYPES.NUMBER;
+    }
+
+    public static DecodeNumber(data: string): number{
+        return parseInt(data.replace("u", "0x"), 16);
     }
 }
 

@@ -1,4 +1,5 @@
 import StorageClient from "./StorageClient";
+import StorageRoom from "./StorageRoom";
 
 class Server{
     constructor(
@@ -6,7 +7,8 @@ class Server{
         public name: string = "",
         public server_type: number = 0,
         public server_subtype: number = 0,
-        public clientList: StorageClient = new StorageClient()
+        public clientList: StorageClient = new StorageClient(),
+        public roomList: StorageRoom = new StorageRoom(),
     ){}
 }
 

@@ -10,11 +10,11 @@ class Client{
         connection.on("close", this.onClose.bind(this));
         connection.on("error", this.onError.bind(this));
         connection.on("open", this.onOpen.bind(this));
-
     }
 
     onMessage(message: any){
         const data: Array<String | Number> = Packet.DecodeBuffer(message);
+        console.log(data);
     }
 
     onClose(...args: any){

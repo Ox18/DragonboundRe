@@ -45,6 +45,22 @@ class ServerSocket{
             connection.close();
         }
     }
+
+    onError(error: any){
+        Logger.ERROR(error);
+    }
+
+    onClose(...args: any){
+        Logger.SUCCESS(args);
+    }
+
+    onOpen(...args: any){
+        Logger.SUCCESS(args);
+    }
+
+    onMessage(message: any){
+        console.log(message);
+    }
 }
 
 export default ServerSocket;
