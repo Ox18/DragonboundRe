@@ -1,0 +1,8 @@
+const DISCONNECT_REASON = {
+    INACTIVE: 1, 
+    FULL: 2, 
+    CHANGED_CHANNEL: 3, 
+    BAD_CLIENT: 4
+};
+
+export default DISCONNECT_REASON;

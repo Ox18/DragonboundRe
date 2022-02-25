@@ -1,5 +1,6 @@
 import Server from "./Server";
 import Packet from "../util/Packet";
+import CLIENT_OPCODE from "../consts/CLIENT_OPCODE";
 
 class Client{
     constructor(
@@ -13,8 +14,10 @@ class Client{
     }
 
     onMessage(message: any){
-        const data: Array<String | Number> = Packet.DecodeBuffer(message);
-        console.log(data);
+        const data: Array<any> = Packet.DecodeBuffer(message);
+        const MESSAGE_ID = data[0];
+        const MESSAGE_DATA = data.slice(1);
+        this.processMessage(MESSAGE_ID, MESSAGE_DATA);
     }
 
     onClose(...args: any){
@@ -27,6 +30,16 @@ class Client{
 
     onOpen(){
         throw new Error("OnOpen is not implemented");
+    }
+
+    processMessage(MESSAGE_ID: Number, MESSAGE_DATA: Array<any>){
+        switch(MESSAGE_ID){
+            case CLIENT_OPCODE.login:
+                console.log(MESSAGE_DATA);
+                break;
+            default:
+                console.log(MESSAGE_ID, MESSAGE_DATA);
+        }
     }
 }
 
