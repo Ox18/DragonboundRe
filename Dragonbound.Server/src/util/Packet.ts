@@ -1,3 +1,12 @@
+/**
+ * @author lnferno / Alex
+ * @email xander.scorpio@gmail.com
+ * @create date 2022-02-25 16:25:02
+ * @modify date 2022-02-25 16:25:02
+ * @desc Reverse-engineered code to decode data brought in from the client
+ */
+
+
 class Packet{
     public static TYPES = {
         STRING: "string",
@@ -53,8 +62,7 @@ class Packet{
         const stringOriginal = JSON.stringify(f);
         const removedFirstLetter = stringOriginal.substring(1, stringOriginal.length - 1);
         let array = [];
-
-        // capture number
+        
         let NEXT_QUOTE_POSITION = removedFirstLetter.indexOf(`"`);
         let SVG_CODE = removedFirstLetter.substring(0, NEXT_QUOTE_POSITION);
 
