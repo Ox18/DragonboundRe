@@ -6,7 +6,8 @@
   "scripts": {
     "babel-node": "babel-node",
     "dev": "nodemon --ignore src/socket --exec npm run babel-node -- src/web/app.js",
-    "start": "babel-node src/web/app.js"
+    "start": "babel-node src/web/app.js",
+    "pm2": "pm2 start npm -- start --name dragonbound-web"
   },
   "repository": {
     "type": "git",
@@ -26,9 +27,7 @@
     "express-async-errors": "^3.1.1",
     "express-mysql-session": "^2.1.7",
     "express-session": "^1.17.2",
-    "mysql2": "^2.3.3",
-    "nedb": "^1.8.0",
-    "ws": "^8.4.2"
+    "mysql2": "^2.3.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.0",
