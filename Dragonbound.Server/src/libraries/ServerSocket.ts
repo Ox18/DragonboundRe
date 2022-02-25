@@ -1,12 +1,9 @@
 import Express from "express";
-import Server from "./Server";
 import StorageServer from "./StorageServer";
 import Logger from "./Logger";
+import Client from "./Client";
 var http = require("http").createServer();
 var Websocket = require("ws").Server;
-import SERVER_OPCODE from "../consts/SERVER_OPCODE";
-import Client from "./Client";
-import Packet from "../util/Packet";
 
 class ServerSocket{
     app: Express.Express;
@@ -32,11 +29,8 @@ class ServerSocket{
             const serverID = parseInt(req.url.split("/")[1]);
             if(this.servers.exists(serverID)){
                 const serverSelected = this.servers.find(serverID);
-                const response = [SERVER_OPCODE.hi, this.VERSION, serverSelected.name, serverSelected.server_type, serverSelected.server_type];
-                const data = Packet.ArrayToString(response);
                 const client = new Client(connection, serverSelected);
                 serverSelected.clientList.add(client);
-                connection.send(data);
             }else{
                 throw new Error("ServerSocket: Server " + serverID + " not found");
             }
