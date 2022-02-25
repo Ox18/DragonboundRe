@@ -30,7 +30,8 @@ class ServerSocket{
         try{
             const serverID = parseInt(req.url.split("/")[1]);
             if(this.servers.exists(serverID)){
-                const response = [SERVER_OPCODE.hi, this.VERSION, "Beginners",0,0];
+                const serverSelected = this.servers.find(serverID);
+                const response = [SERVER_OPCODE.hi, this.VERSION, serverSelected.name, serverSelected.server_type, serverSelected.server_type];
                 const data = Buffer.ArrayBufferToString(response);
                 connection.send(data);
             }else{
