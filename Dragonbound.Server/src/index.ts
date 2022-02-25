@@ -1,7 +1,10 @@
 import ServerSocket from "./libraries/ServerSocket";
-import Server from "./Server";
+import ServerA from "./ServerA";
 
-const server_1 = new Server(1);
+const SOCKET_PORT = 9001;
+const CLIENT_VERSION = 133;
 
-const serverSocket = new ServerSocket(9001);
-serverSocket.servers.add(server_1);
+const serverBeginner = new ServerA();
+
+const serverSocket = new ServerSocket(SOCKET_PORT, CLIENT_VERSION);
+serverSocket.servers.add(serverBeginner);
