@@ -9,13 +9,13 @@ class ClientListSubject extends Subject<ClientListSubject>{
     }    
 
     add(client: Client): void {
-        console.log("add");
+        this.clients.push(client);
         this.notify(this);
     }
 
     remove(client: Client): void {
-        console.log("remove");
-        
+        this.clients = this.clients.filter(c => c !== client);
+        this.notify(this);
     }
 }
 

@@ -29,7 +29,7 @@ class Packet{
                 data += pointer;
             }
             else if(typeof pointer === Packet.TYPES.OBJECT){
-                data += this.ArrayToString(pointer);
+                data += Packet.ArrayToString(pointer);
             }
             else{
                 data += pointer;
@@ -72,11 +72,11 @@ class Packet{
         while(true){
             let NEXT_COMMA_POSITION = f.indexOf(",");
             if(NEXT_COMMA_POSITION === -1){
-                array.push(this.GuessAndConvertToDataBufferString(f));
+                array.push(Packet.GuessAndConvertToDataBufferString(f));
                 break;
             }else{
                 let nextData = f.substring(0, NEXT_COMMA_POSITION);
-                array.push(this.GuessAndConvertToDataBufferString(nextData));
+                array.push(Packet.GuessAndConvertToDataBufferString(nextData));
                 f = f.substring(NEXT_COMMA_POSITION + 1);
             }
         }
@@ -84,11 +84,11 @@ class Packet{
     }
 
     public static GuessAndConvertToDataBufferString(data: string): String | Number{
-        return this.GuessTypeOfBufferString(data) === this.TYPES.STRING ? data.split("\"")[1] : parseInt(data);
+        return Packet.GuessTypeOfBufferString(data) === Packet.TYPES.STRING ? data.split("\"")[1] : parseInt(data);
     }
 
     public static GuessTypeOfBufferString(data: string): String{
-        return data.indexOf("\"") !== -1 ? this.TYPES.STRING : this.TYPES.NUMBER;
+        return data.indexOf("\"") !== -1 ? Packet.TYPES.STRING : Packet.TYPES.NUMBER;
     }
 
     public static DecodeNumber(data: string): number{
