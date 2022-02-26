@@ -7,4 +7,4 @@ const CLIENT_VERSION = 133;
 const serverBeginner = new ServerA();
 
 const serverSocket = new ServerSocket(SOCKET_PORT, CLIENT_VERSION);
-serverSocket.servers.add(serverBeginner);
+serverSocket.servers.push(serverBeginner);

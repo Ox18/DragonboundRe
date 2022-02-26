@@ -1,7 +1,9 @@
 import Express from "express";
-import StorageServer from "../storages/StorageServer";
-import Logger from "./Logger";
+import Logger from "../util/Logger";
 import Client from "../Client";
+import Server from "../Server";
+import CriteriaExistByIdServer from "../Criteria/Server/CriteriaExistById";
+import CriteriaStartIdServer from "../Criteria/Server/CriteriaStartId";
 var http = require("http").createServer();
 var Websocket = require("ws").Server;
 
@@ -9,7 +11,7 @@ class ServerSocket{
     app: Express.Express;
     httpServer: any;
     ws: any;
-    servers: StorageServer = new StorageServer();
+    servers: Array<Server> = [];
 
     constructor(
         public PORT: number,
@@ -27,8 +29,9 @@ class ServerSocket{
     onConnection(connection: any, req: Request){
         try{
             const serverID = parseInt(req.url.split("/")[1]);
-            if(this.servers.exists(serverID)){
-                const serverSelected = this.servers.find(serverID);
+            const existServer = CriteriaExistByIdServer.meet(this.servers, serverID);
+            if(existServer){
+                const serverSelected = CriteriaStartIdServer.meet(this.servers, serverID)[0];
                 const client = new Client(connection, serverSelected);
                 serverSelected.clientList.add(client);
             }else{
