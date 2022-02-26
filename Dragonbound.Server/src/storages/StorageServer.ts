@@ -1,4 +1,4 @@
-import Storage from "./Storage";
+import Storage from "../libraries/Storage";
 import Server from "../Server";
 
 class StorageServer extends Storage<Server>{

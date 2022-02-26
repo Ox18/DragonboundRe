@@ -1,5 +1,5 @@
 import Express from "express";
-import StorageServer from "./StorageServer";
+import StorageServer from "../storages/StorageServer";
 import Logger from "./Logger";
 import Client from "../Client";
 var http = require("http").createServer();

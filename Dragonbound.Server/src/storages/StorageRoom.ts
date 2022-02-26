@@ -1,5 +1,5 @@
 import Room from "../Room";
-import Storage from "./Storage";
+import Storage from "../libraries/Storage";
 
 class StorageRoom extends Storage<Room> {}
 

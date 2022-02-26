@@ -1,5 +1,5 @@
-import StorageClient from "./libraries/StorageClient";
-import StorageRoom from "./libraries/StorageRoom";
+import StorageClient from "./storages/StorageClient";
+import StorageRoom from "./storages/StorageRoom";
 
 class Server{
     constructor(
