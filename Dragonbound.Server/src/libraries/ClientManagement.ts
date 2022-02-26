@@ -1,4 +1,5 @@
 import SERVER_OPCODE from "../consts/SERVER_OPCODE";
+
 import Server from "../Server";
 import Packet from "../util/Packet";
 
