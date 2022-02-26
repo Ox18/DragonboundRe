@@ -1,5 +1,6 @@
-import StorageClient from "./storages/StorageClient";
+import AddClientListObserver from "./Observers/ClientList/AddClientListObserver";
 import StorageRoom from "./storages/StorageRoom";
+import ClientListSubject from "./Subjects/ClientListSubject";
 
 class Server{
     constructor(
@@ -7,9 +8,12 @@ class Server{
         public name: string = "",
         public server_type: number = 0,
         public server_subtype: number = 0,
-        public clientList: StorageClient = new StorageClient(),
+        public clientList: ClientListSubject = new ClientListSubject(),
         public roomList: StorageRoom = new StorageRoom(),
-    ){}
+    ){
+
+        this.clientList.subscribe(new AddClientListObserver());
+    }
 }
 
 export default Server;
