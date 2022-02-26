@@ -1,4 +1,4 @@
-import Server from "./libraries/Server";
+import Server from "./Server";
 
 class ServerA extends Server{
     constructor(){

@@ -1,7 +1,7 @@
 import Express from "express";
 import StorageServer from "./StorageServer";
 import Logger from "./Logger";
-import Client from "./Client";
+import Client from "../Client";
 var http = require("http").createServer();
 var Websocket = require("ws").Server;
 

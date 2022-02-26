@@ -1,12 +1,11 @@
-import Server from "./Server";
-import Packet from "../util/Packet";
-import CLIENT_OPCODE from "../consts/CLIENT_OPCODE";
 import SERVER_OPCODE from "../consts/SERVER_OPCODE";
+import Server from "../Server";
+import Packet from "../util/Packet";
 
-class Client{
+class ClientManagement{
     constructor(
         public connection: any,
-        public contextServer: Server
+        public contextServer: Server,
     ){
         connection.on("message", this.onMessage.bind(this));
         connection.on("close", this.onClose.bind(this));
@@ -42,13 +41,7 @@ class Client{
     }
 
     processMessage(MESSAGE_ID: Number, MESSAGE_DATA: Array<any>){
-        switch(MESSAGE_ID){
-            case CLIENT_OPCODE.login:
-                console.log(MESSAGE_DATA);
-                break;
-            default:
-                console.log(MESSAGE_ID, MESSAGE_DATA);
-        }
+        throw new Error("ProcessMessage is not implemented");
     }
 
     sendMessage(MESSAGE_ID: Number, MESSAGE_DATA: Array<any>){
@@ -57,4 +50,4 @@ class Client{
     }
 }
 
-export default Client;
+export default ClientManagement;

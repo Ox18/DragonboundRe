@@ -1,5 +1,5 @@
 import Storage from "./Storage";
-import Server from "./Server";
+import Server from "../Server";
 
 class StorageServer extends Storage<Server>{
     exists(id: number): boolean{
