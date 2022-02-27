@@ -23,7 +23,7 @@ class ClientManagement{
     }
 
     onClose(...args: any){
-        console.log(args);
+        // console.log(args);
     }
 
     onError(){
@@ -47,7 +47,7 @@ class ClientManagement{
 
     sendMessage(MESSAGE_ID: Number, MESSAGE_DATA: Array<any>){
         const data = [MESSAGE_ID, ...MESSAGE_DATA];
-        this.connection.send(Packet.ArrayToString(data));
+        this.connection.send(Packet.EncodeArray(data));
     }
 }
 

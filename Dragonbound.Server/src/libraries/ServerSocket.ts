@@ -56,7 +56,7 @@ class ServerSocket{
     }
 
     onMessage(message: any){
-        console.log(message);
+        // console.log(message);
     }
 }
 

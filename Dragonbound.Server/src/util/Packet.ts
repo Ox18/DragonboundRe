@@ -2,98 +2,60 @@
  * @author lnferno / Alex
  * @email xander.scorpio@gmail.com
  * @create date 2022-02-25 16:25:02
- * @modify date 2022-02-25 16:25:02
+ * @modify date 2022-02-26 22:09:29
  * @desc Reverse-engineered code to decode data brought in from the client
  */
 
+ function BufferToString(a: any) {
+    a instanceof ArrayBuffer && (a = new Uint8Array(a));
+    return (new TextDecoder("utf-8")).decode(a)
+}
 
 class Packet{
-    public static TYPES = {
-        STRING: "string",
-        NUMBER: "number",
-        OBJECT: "object",
-    }
-
     public static TYPES_DATA = {
         BUFFER: "Buffer",
     }
 
-    public static ArrayToString(buffer: Array<any>): string{
-        let data = ``;
-        for(let i = 0; i < buffer.length; i++){
-            let pointer = buffer[i];
-            if(typeof pointer === Packet.TYPES.STRING){
-                data += `"${pointer}"`;
-            }
-            else if(typeof pointer === Packet.TYPES.NUMBER){
-                data += pointer;
-            }
-            else if(typeof pointer === Packet.TYPES.OBJECT){
-                data += Packet.ArrayToString(pointer);
-            }
-            else{
-                data += pointer;
-            }
-            if(i < buffer.length - 1){
-                data += ",";
-            }
-        }
-        return data;
+    public static EncodeArray(data: Array<any>): string{
+        return JSON.stringify(data).slice(1, -1);
     }
 
     public static DecodeBuffer(buffer: any): Array<any>{
         const { type, data } = buffer.toJSON();
+
         switch(type){
             case Packet.TYPES_DATA.BUFFER:
-                return Packet.BufferToArray(data);
+                return Packet.Decode(data);
             default:
-                throw new Error(`Unknown type: ${type}`);
+                throw new Error("Packet is not valid");
         }
     }
 
-    public static BufferToArray(buffer: Array<any>): Array<String | Number>{
-        var a = new Uint8Array(buffer);
-            var size = a.length;
-            for (var b = 0; b < size; b++)
-                a[b] ^= 165;
-            var d = a.buffer.slice(a.byteOffset, a.byteOffset + a.byteLength)
-              , c = new TextDecoder("utf-8")
-              , f = c.decode(d);
-        const stringOriginal = JSON.stringify(f);
-        const removedFirstLetter = stringOriginal.substring(1, stringOriginal.length - 1);
-        let array = [];
-        
-        let NEXT_QUOTE_POSITION = removedFirstLetter.indexOf(`"`);
-        let SVG_CODE = removedFirstLetter.substring(0, NEXT_QUOTE_POSITION);
-
-        SVG_CODE = SVG_CODE.replace(/\\/g, "");
-        array.push(Packet.DecodeNumber(SVG_CODE));
-
-        while(true){
-            let NEXT_COMMA_POSITION = f.indexOf(",");
-            if(NEXT_COMMA_POSITION === -1){
-                array.push(Packet.GuessAndConvertToDataBufferString(f));
-                break;
-            }else{
-                let nextData = f.substring(0, NEXT_COMMA_POSITION);
-                array.push(Packet.GuessAndConvertToDataBufferString(nextData));
-                f = f.substring(NEXT_COMMA_POSITION + 1);
-            }
+    public static Decode(data: Uint8Array): Array<any>{
+        var c = data;
+        for(var e = new Uint8Array(c), f = e.length, h = 0; h < f; h++) {
+            e[h] ^= 165;
         }
-        return array;
-    }
+        f = e[0];
+        if(0 == data.byteLength) throw new Error("Packet is empty");
 
-    public static GuessAndConvertToDataBufferString(data: string): String | Number{
-        return Packet.GuessTypeOfBufferString(data) === Packet.TYPES.STRING ? data.split("\"")[1] : parseInt(data);
-    }
+        var packet_received = [f];
 
-    public static GuessTypeOfBufferString(data: string): String{
-        return data.indexOf("\"") !== -1 ? Packet.TYPES.STRING : Packet.TYPES.NUMBER;
-    }
+        try{
+            var d = e.buffer.slice(e.byteOffset, e.byteOffset + e.byteLength)
+            , g = new TextDecoder("utf-8")
+            , a = g.decode(d);        
+            var k = "[" + a + "]";
+            var l = JSON.stringify(k);
+            var m = JSON.parse(l);
+            packet_received = [...packet_received, ...m];
+        }  
+        catch(e){
+            throw new Error("Packet is not valid");
+        }
 
-    public static DecodeNumber(data: string): number{
-        return parseInt(data.replace("u", "0x"), 16);
-    }
+        return packet_received;
+    }  
 }
 
 export default Packet;
