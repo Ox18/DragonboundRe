@@ -16,6 +16,11 @@ class Packet{
         BUFFER: "Buffer",
     }
 
+    public static NUMBERS = {
+        CLIENT_SERVER_DIGIT_DECRYPTION: 165,
+        CLIENT_WEB_DIGIT_DECRYPTION: 219,
+    }
+
     public static EncodeArray(data: Array<any>): string{
         return JSON.stringify(data).slice(1, -1);
     }
@@ -34,7 +39,7 @@ class Packet{
     public static Decode(data: Uint8Array): Array<any>{
         var c = data;
         for(var e = new Uint8Array(c), f = e.length, h = 0; h < f; h++) {
-            e[h] ^= 165;
+            e[h] ^= Packet.NUMBERS.CLIENT_SERVER_DIGIT_DECRYPTION;
         }
         f = e[0];
         if(0 == data.byteLength) throw new Error("Packet is empty");
