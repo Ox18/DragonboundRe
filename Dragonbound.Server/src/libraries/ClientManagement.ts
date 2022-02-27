@@ -37,8 +37,8 @@ class ClientManagement{
     init(){
         const { name, server_type, server_subtype  } = this.contextServer;
         const version = 133;
-        const data = [version, name, server_type, server_subtype];
-        this.sendMessage(SERVER_OPCODE.hi, data);
+        const dataArray = [SERVER_OPCODE.hi, version, name, server_type, server_subtype];
+        this.sendBuffer(dataArray);
     }
 
     processMessage(MESSAGE_ID: Number, MESSAGE_DATA: Array<any>){
@@ -50,12 +50,12 @@ class ClientManagement{
         this.connection.send(Packet.EncodeArray(data));
     }
 
-    sendData(data: Array<any>){
-        this.connection.send(Packet.EncodeArray(data));
-    }
-
     sendUTF8(data: string){
         this.connection.send(data);
+    }
+
+    sendBuffer(dataArray: Array<any>){
+        this.connection.send(Packet.Encode(...dataArray));
     }
 }
 
