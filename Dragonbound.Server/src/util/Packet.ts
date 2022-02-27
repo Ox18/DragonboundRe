@@ -6,9 +6,8 @@
  * @desc Reverse-engineered code to decode data brought in from the client
  */
 
- function BufferToString(a: any) {
-    a instanceof ArrayBuffer && (a = new Uint8Array(a));
-    return (new TextDecoder("utf-8")).decode(a)
+function StringToBuffer(a:any) {
+    return (new TextEncoder()).encode(a)
 }
 
 class Packet{
@@ -69,6 +68,24 @@ class Packet{
 
         return packet_received;
     }  
+
+    public static Encode(...rest: any): Uint8Array{
+        if(0 != arguments.length){
+            for (var a:any = [], b:any = 0; b < arguments.length; b++)
+            a.push(arguments[b]);
+            a = JSON.stringify(a).slice(1, -1);
+            var c:any = a.indexOf(",");
+            -1 == c ? a = new Uint8Array([Number(a)]) : (b = Number(a.substring(0, c)),
+            a = StringToBuffer(a.substring(c)),
+            a[0] = b);
+            c = a.length;
+            for (b = 0; b < c; b++)
+                a[b] ^= Packet.NUMBERS.CLIENT_WEB_DIGIT_DECRYPTION;
+            return a;
+        }else{
+            throw new Error("error in packet");
+        }
+    }
 }
 
 export default Packet;

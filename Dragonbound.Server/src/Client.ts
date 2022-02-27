@@ -1,8 +1,9 @@
 import CLIENT_OPCODE from "./consts/CLIENT_OPCODE";
 import SERVER_OPCODE from "./consts/SERVER_OPCODE";
 import ClientManagement from "./libraries/ClientManagement";
+import Packet from "./util/Packet";
 
-const player:any = {
+var Player = {
     user_id: 1,
             location_type: 1,
             room_number: 0,
@@ -59,7 +60,9 @@ class Client extends ClientManagement{
                 ] = MESSAGE_DATA;
                 this.sendMessage(SERVER_OPCODE.login_avatars, []);
                 this.sendMessage(SERVER_OPCODE.login_profile, []);
-                this.sendMessage(SERVER_OPCODE.my_player_info, [1, 2, 3, 4,1, 2, 3, 4,1, 2, 3, 4,1, 2, 3, 4,1, 2, 3, 4,1, 2, 3, 4,1, 2, 3, 4,1, 2, 3, 4, 12, 123, 123]);  
+                console.log(user_id);
+                const data = [1,Object.values(Player)];
+                this.connection.send(Packet.Encode(...data));
                 break;
             default:
                 console.log(MESSAGE_ID, MESSAGE_DATA);

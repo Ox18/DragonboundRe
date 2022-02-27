@@ -49,6 +49,14 @@ class ClientManagement{
         const data = [MESSAGE_ID, ...MESSAGE_DATA];
         this.connection.send(Packet.EncodeArray(data));
     }
+
+    sendData(data: Array<any>){
+        this.connection.send(Packet.EncodeArray(data));
+    }
+
+    sendUTF8(data: string){
+        this.connection.send(data);
+    }
 }
 
 export default ClientManagement;
