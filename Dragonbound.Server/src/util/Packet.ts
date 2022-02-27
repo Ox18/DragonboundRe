@@ -5,11 +5,6 @@
  * @modify date 2022-02-26 22:09:29
  * @desc Reverse-engineered code to decode data brought in from the client
  */
-
-function StringToBuffer(a:any) {
-    return (new TextEncoder()).encode(a)
-}
-
 class Packet{
     public static TYPES_DATA = {
         BUFFER: "Buffer",
@@ -76,7 +71,7 @@ class Packet{
             a = JSON.stringify(a).slice(1, -1);
             var c:any = a.indexOf(",");
             -1 == c ? a = new Uint8Array([Number(a)]) : (b = Number(a.substring(0, c)),
-            a = StringToBuffer(a.substring(c)),
+            a = Packet.StringToBuffer(a.substring(c)),
             a[0] = b);
             c = a.length;
             for (b = 0; b < c; b++)
@@ -85,6 +80,10 @@ class Packet{
         }else{
             throw new Error("error in packet");
         }
+    }
+
+    public static StringToBuffer(a:string): Uint8Array {
+        return (new TextEncoder()).encode(a)
     }
 }
 
