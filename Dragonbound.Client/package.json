@@ -7,7 +7,8 @@
     "babel-node": "babel-node",
     "dev": "nodemon --ignore src/socket --exec npm run babel-node -- src/web/app.js",
     "start": "babel-node src/web/app.js",
-    "pm2": "pm2 start npm -- start --name dragonbound-web"
+    "pm2": "pm2 start npm -- start --name dragonbound-web",
+    "minify-app": "gulp minify-client"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,8 @@
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "ejs": "^3.1.6",
+    "gulp": "^4.0.2",
+    "gulp-minify": "^3.1.0",
     "nodemon": "^2.0.15"
   }
 }
