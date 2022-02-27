@@ -59,10 +59,10 @@ class Client extends ClientManagement{
                 ] = MESSAGE_DATA;
                 this.sendMessage(SERVER_OPCODE.login_avatars, []);
                 this.sendMessage(SERVER_OPCODE.login_profile, []);
-                this.sendMessage(SERVER_OPCODE.my_player_info, [1, 2, 3, 4,1, 2, 3, 4,1, 2, 3, 4,1, 2, 3, 4,1, 2, 3, 4,1, 2, 3, 4,1, 2, 3, 4,1, 2, 3, 4]);  
+                this.sendMessage(SERVER_OPCODE.my_player_info, [1, 2, 3, 4,1, 2, 3, 4,1, 2, 3, 4,1, 2, 3, 4,1, 2, 3, 4,1, 2, 3, 4,1, 2, 3, 4,1, 2, 3, 4, 12, 123, 123]);  
                 break;
             default:
-                // console.log(MESSAGE_ID, MESSAGE_DATA);
+                console.log(MESSAGE_ID, MESSAGE_DATA);
         }
     }
 }

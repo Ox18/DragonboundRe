@@ -44,19 +44,27 @@ class Packet{
         f = e[0];
         if(0 == data.byteLength) throw new Error("Packet is empty");
 
-        var packet_received = [f];
+        var packet_received:Array<any> = [Number(f)];
 
         try{
             var d = e.buffer.slice(e.byteOffset, e.byteOffset + e.byteLength)
             , g = new TextDecoder("utf-8")
-            , a = g.decode(d);        
-            var k = "[" + a + "]";
-            var l = JSON.stringify(k);
-            var m = JSON.parse(l);
-            packet_received = [...packet_received, ...m];
+            , a = g.decode(d);    
+
+            let NEXT_QUOTE = a.indexOf('"');
+            let next_dat = a.slice(NEXT_QUOTE, a.length);
+            let next_dat_array: Array<string> = next_dat.split(",");
+            next_dat_array.forEach((element: string) => {
+                if(element.includes('"')){
+                    packet_received.push(String(element.replace(/"/g, '')));
+                }else{
+                    packet_received.push(Number(element));
+                }
+            })
+
         }  
         catch(e){
-            throw new Error("Packet is not valid");
+            
         }
 
         return packet_received;
