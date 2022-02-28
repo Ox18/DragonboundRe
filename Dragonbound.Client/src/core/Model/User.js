@@ -18,16 +18,15 @@ class User extends ModelLib{
             updated_at: Date.now(),
             // 'location_type', // agregar
             // 'room_number', // agregar
-            // unlock // Computers players derrotados
 
         })
     }
 };
 
 export default User;
-
+// 'location_type', // agregar
+// 'room_number', // agregar
 //   plus10gp
-//   'unlock',
 //   'power_user',
 //   'tournament',
 //   'plus10gp',

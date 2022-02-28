@@ -54,15 +54,28 @@ class Client extends ClientManagement{
                     user_auth,
                     version_encrypted,
                     user_id,
-                    version_client,
+                    version_client_web,
                     user_last_location,
-                    version_client_web
+                    version_file_js
                 ] = MESSAGE_DATA;
+
+                this.hash_connection = hash_connection;
+                this.use_auth = user_auth;
+                this.version_encrypted = version_encrypted;
+                this.user_id = user_id;
+                this.version_client_web = version_client_web;
+                this.user_last_location = user_last_location;
+                this.version_file_js = version_file_js;
+
+                this.sendBuffer([SERVER_OPCODE.login_profile]);
+
+
                 // this.sendMessage(SERVER_OPCODE.login_avatars, []);
                 // this.sendMessage(SERVER_OPCODE.login_profile, []);
                 // console.log(user_id);
                 // const data = [1,Object.values(Player)];
                 // this.connection.send(Packet.Encode(...data));
+                
                 break;
             default:
                 console.log(MESSAGE_ID, MESSAGE_DATA);

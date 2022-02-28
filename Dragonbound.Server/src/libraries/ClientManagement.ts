@@ -4,6 +4,14 @@ import Server from "../Server";
 import Packet from "../util/Packet";
 
 class ClientManagement{
+    hash_connection: string = "";
+    use_auth: number = 0;
+    version_encrypted: number = 0;
+    user_id: number = 0;
+    version_client_web: number = 0;
+    user_last_location: number = 0;
+    version_file_js: string = "";
+
     constructor(
         public connection: any,
         public contextServer: Server,
