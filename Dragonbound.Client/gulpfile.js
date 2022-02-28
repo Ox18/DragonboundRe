@@ -1,41 +1,43 @@
 var gulp = require("gulp");
+var { exec } = require('child_process');
 var minify = require("gulp-minify");
 var fs = require('fs');
-var concat = require('gulp-concat');
 
-function readModuleFile(path, callback) {
-  try {
-      var filename = require.resolve(path);
-      fs.readFile(filename, 'utf8', callback);
-  } catch (e) {
-      callback(e);
+// ENVIRONMENTS
+var FILE_NUMBER = 1089276;
+
+var from = "src/web/public/js/jquery/jquery.js";
+var dest = "src/web/public/js";
+
+gulp.task("reversesheet", function(done){
+  try{
+    const wordFather = fs.readFileSync(from, 'utf8');
+    const wordChildren = fs.readFileSync(dest + "/dragonbound.js", 'utf8');
+    const word = wordFather.replace("{@body}", wordChildren);
+    fs.writeFileSync(dest + "/" + FILE_NUMBER + ".js", word);
+    exec("gulp minified");
+  }catch(ex){
+    console.log(ex);
+  }finally{
+    done();
   }
-}
-
-gulp.task("merges", ()=>{
-  gulp.src([
-    "src/web/public/js/jquery/jq_header.js",
-    "src/web/public/js/dragonbound.js",
-    "src/web/public/js/jquery/jq_footer.js"
-  ])
-  .pipe(concat("dragonbound-merge.js"))
-  .pipe(gulp.dest("src/web/public/js"))
 });
 
-gulp.task("minify-app", function(){
-  gulp.src("src/web/public/js/dragonbound-merge.js", { allowEmpty: true })
+gulp.task("minified", function(done){
+  const stream = gulp.src("src/web/public/js/" + FILE_NUMBER + ".js", { allowEmpty: true })
   .pipe(minify({ noSource: true }))
   .pipe(gulp.dest("./src/web/public/js"));
+  stream.on("end", function(){
+    const wordMerge = fs.readFileSync(dest + "/" + FILE_NUMBER + "-min.js", "utf8");
+    const wordJSON = JSON.stringify(wordMerge, null, 2);
+    fs.writeFileSync(dest + "/" + FILE_NUMBER + ".js", wordJSON);
+    fs.unlinkSync(dest + "/" + FILE_NUMBER + "-min.js");
+  })
+  done();
 });
 
-gulp.task("minify-app-to-serialized", function(){
-  readModuleFile('./src/web/public/js/dragonbound-merge-min.js', function (err, words) {
-    const data = JSON.stringify(words, null, 2)
-    fs.writeFile('./src/web/public/js/1089276.js', data, function (err) {
-      if (err) return console.log(err);
-    });
-    fs.unlinkSync('./src/web/public/js/dragonbound-merge-min.js')
-  });
-})
 
-gulp.task("minify-client", gulp.series("minify-app", "minify-app-to-serialized"))
+gulp.task("default", function(done){
+  exec("gulp reversesheet")
+  done();
+})
