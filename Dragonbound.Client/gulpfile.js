@@ -18,6 +18,7 @@ gulp.task("reversesheet", function(done){
     const DRAGONBOUND_TEXT = fs.readFileSync(PATH_DRAGONBOUND, 'utf8');
     let MERGE_TEXT = JQUERY_TEXT.replace("{@body}", DRAGONBOUND_TEXT);
         MERGE_TEXT = MERGE_TEXT.replace("@{API_REDIRECT}", OTHER_CONST.API_REDIRECT);
+        MERGE_TEXT = MERGE_TEXT.replace("@{FACEBOOK_APP_ID}", process.env.FACEBOOK_APP_ID)
     fs.writeFileSync(PATH_BUILD, MERGE_TEXT);
     exec("gulp minified");
   }catch(ex){
