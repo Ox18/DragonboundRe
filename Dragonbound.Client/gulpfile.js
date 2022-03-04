@@ -1,9 +1,10 @@
+require("dotenv").config();
 var gulp = require("gulp");
 var { exec } = require('child_process');
 var minify = require("gulp-minify");
 var fs = require('fs');
 
-var FILE_NUMBER = 1089276;
+var FILE_NUMBER = process.env.DRAGONBOUND_FILE_VERSION;
 var PATH_DEST = "src/web/public/js";
 var PATH_DRAGONBOUND = PATH_DEST + "/dragonbound.js";
 var PATH_BUILD = PATH_DEST + "/" + FILE_NUMBER + ".js";
