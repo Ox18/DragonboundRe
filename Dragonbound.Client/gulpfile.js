@@ -3,18 +3,19 @@ var { exec } = require('child_process');
 var minify = require("gulp-minify");
 var fs = require('fs');
 
-// ENVIRONMENTS
 var FILE_NUMBER = 1089276;
-
-var from = "src/web/public/js/jquery/jquery.js";
-var dest = "src/web/public/js";
+var PATH_DEST = "src/web/public/js";
+var PATH_DRAGONBOUND = PATH_DEST + "/dragonbound.js";
+var PATH_BUILD = PATH_DEST + "/" + FILE_NUMBER + ".js";
+var PATH_BUILD_MIN = PATH_DEST + "/" + FILE_NUMBER + "-min.js";
+var PATH_JQUERY = PATH_DEST + "/jquery/jquery.js";
 
 gulp.task("reversesheet", function(done){
   try{
-    const wordFather = fs.readFileSync(from, 'utf8');
-    const wordChildren = fs.readFileSync(dest + "/dragonbound.js", 'utf8');
-    const word = wordFather.replace("{@body}", wordChildren);
-    fs.writeFileSync(dest + "/" + FILE_NUMBER + ".js", word);
+    const JQUERY_TEXT = fs.readFileSync(PATH_JQUERY, 'utf8');
+    const DRAGONBOUND_TEXT = fs.readFileSync(PATH_DRAGONBOUND, 'utf8');
+    const MERGE_TEXT = JQUERY_TEXT.replace("{@body}", DRAGONBOUND_TEXT);
+    fs.writeFileSync(PATH_BUILD, MERGE_TEXT);
     exec("gulp minified");
   }catch(ex){
     console.log(ex);
@@ -24,14 +25,14 @@ gulp.task("reversesheet", function(done){
 });
 
 gulp.task("minified", function(done){
-  const stream = gulp.src("src/web/public/js/" + FILE_NUMBER + ".js", { allowEmpty: true })
+  const stream = gulp.src(PATH_BUILD, { allowEmpty: true })
   .pipe(minify({ noSource: true }))
-  .pipe(gulp.dest("./src/web/public/js"));
+  .pipe(gulp.dest(PATH_DEST));
   stream.on("end", function(){
-    const wordMerge = fs.readFileSync(dest + "/" + FILE_NUMBER + "-min.js", "utf8");
-    const wordJSON = JSON.stringify(wordMerge, null, 2);
-    fs.writeFileSync(dest + "/" + FILE_NUMBER + ".js", wordJSON);
-    fs.unlinkSync(dest + "/" + FILE_NUMBER + "-min.js");
+    const MERGE_TEXT = fs.readFileSync(PATH_BUILD_MIN, "utf8");
+    const MERGE_JSON = JSON.stringify(MERGE_TEXT, null, 2);
+    fs.writeFileSync(PATH_BUILD, MERGE_JSON);
+    fs.unlinkSync(PATH_BUILD_MIN);
   })
   done();
 });

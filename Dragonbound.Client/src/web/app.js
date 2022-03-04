@@ -22,7 +22,7 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
     }
 }));
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 3000);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.set("views", "./src/web/views");
