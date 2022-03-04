@@ -12,13 +12,12 @@ var PATH_BUILD = PATH_DEST + "/" + FILE_NUMBER + ".js";
 var PATH_BUILD_MIN = PATH_DEST + "/" + FILE_NUMBER + "-min.js";
 var PATH_JQUERY = PATH_DEST + "/jquery/jquery.js";
 
-console.log(OTHER_CONST);
-
 gulp.task("reversesheet", function(done){
   try{
     const JQUERY_TEXT = fs.readFileSync(PATH_JQUERY, 'utf8');
     const DRAGONBOUND_TEXT = fs.readFileSync(PATH_DRAGONBOUND, 'utf8');
-    const MERGE_TEXT = JQUERY_TEXT.replace("{@body}", DRAGONBOUND_TEXT);
+    let MERGE_TEXT = JQUERY_TEXT.replace("{@body}", DRAGONBOUND_TEXT);
+        MERGE_TEXT = MERGE_TEXT.replace("@{API_REDIRECT}", OTHER_CONST.API_REDIRECT);
     fs.writeFileSync(PATH_BUILD, MERGE_TEXT);
     exec("gulp minified");
   }catch(ex){
