@@ -70,11 +70,11 @@ class Client extends ClientManagement{
                 this.sendBuffer([SERVER_OPCODE.login_profile]);
 
 
-                // this.sendMessage(SERVER_OPCODE.login_avatars, []);
-                // this.sendMessage(SERVER_OPCODE.login_profile, []);
-                // console.log(user_id);
-                // const data = [1,Object.values(Player)];
-                // this.connection.send(Packet.Encode(...data));
+                this.sendMessage(SERVER_OPCODE.login_avatars, []);
+                this.sendMessage(SERVER_OPCODE.login_profile, []);
+                console.log(user_id);
+                const data = [1,Object.values(Player)];
+                this.connection.send(Packet.Encode(...data));
                 
                 break;
             default:
