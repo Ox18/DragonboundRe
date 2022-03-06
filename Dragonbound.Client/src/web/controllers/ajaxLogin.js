@@ -1,6 +1,6 @@
 import { RESPONSE_WEB } from "../../consts/RESPONSE_WEB";
-import AccountService from "../../core/Service/AccountService";
-import UserService from "../../core/Service/UserService";
+import AccountService from "../../core/Service/Account.service";
+import UserService from "../../core/Service/User.service";
 
 export const post = async (req, res) => {
     var status;

@@ -1,4 +1,4 @@
-import ServerService from "../../core/Service/ServerService";
+import ServerService from "../../core/Service/Server.service";
 import { NUMBER_CONST } from "../../consts/NUMBER_CONST";
 
 const serverService = new ServerService();

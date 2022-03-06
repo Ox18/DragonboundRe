@@ -1,4 +1,4 @@
-import AvatarEquipedRepository from "../Repository/AvatarEquipedRepository";
+import AvatarEquipedRepository from "../Repository/AvatarEquiped.repository";
 
 class AvatarEquipedService {
     repo = new AvatarEquipedRepository();
