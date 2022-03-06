@@ -6,6 +6,10 @@ class AvatarEquipedService {
     async findOneByUserId(userId) {
         return this.repo.findOneByUserId(userId);
     }
+
+    async findById(id){
+        return this.repo.findById(id);
+    }
 }
 
 export default AvatarEquipedService;

@@ -6,6 +6,10 @@ class UserService{
     async findByAccountId(account_id){
         return this.repo.findByAccountId(account_id);
     }
+
+    async findById(id){
+        return this.repo.findById(id);
+    }
 }
 
 export default UserService;
