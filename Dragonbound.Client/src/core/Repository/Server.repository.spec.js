@@ -8,4 +8,16 @@ describe("Server repository", ()=>{
 
         expect(servers.length).toBe(1);
     })
+
+    test("find by querys equals to 1", async ()=>{
+        const repo = new ServerRepository();
+
+        const querys = {
+            name: "Test Server"
+        };
+
+        const servers = await repo.findByQuery(querys);
+
+        expect(servers.length).toBe(1);
+    })
 });
