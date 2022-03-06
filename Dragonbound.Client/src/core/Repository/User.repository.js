@@ -11,7 +11,7 @@ class UserRepository{
                     resolve(users[0]);
                 }
                 else{
-                    reject(new ResourceNotFoundException(account_id));
+                    reject(new ResourceNotFoundException("account_id: " + account_id));
                 }
             }catch(e){
                 reject(e);
@@ -27,7 +27,7 @@ class UserRepository{
                     resolve(user[0]);
                 }
                 else{
-                    reject(new ResourceNotFoundException(id));
+                    reject(new ResourceNotFoundException("id: " + id));
                 }
             }catch(e){
                 reject(e);

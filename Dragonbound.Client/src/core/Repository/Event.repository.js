@@ -10,7 +10,7 @@ class EventRepository{
                     resolve(events[0]);
                 }
                 else{
-                    reject(new ResourceNotFoundException(userId));
+                    reject(new ResourceNotFoundException("user_id: " + userId));
                 }
             }catch(e){
                 reject(e);
@@ -26,7 +26,7 @@ class EventRepository{
                     resolve(event[0]);
                 }
                 else{
-                    reject(new ResourceNotFoundException(id));
+                    reject(new ResourceNotFoundException("id: " + id));
                 }
             }catch(e){
                 reject(e);

@@ -11,7 +11,7 @@ class GuildRepository{
                     resolve(guild[0]);
                 }
                 else{
-                    reject(new ResourceNotFoundException(id));
+                    reject(new ResourceNotFoundException("id: " + id));
                 }
             }catch(e){
                 reject(e);

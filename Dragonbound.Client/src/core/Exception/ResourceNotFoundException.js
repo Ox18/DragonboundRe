@@ -1,6 +1,6 @@
 class ResourceNotFoundException extends Error{
     constructor(id){
-        super("Resource with id: " + id + " not found");
+        super("Resource with " + id + " not found");
         this.name = "ResourceNotFound";
     }
 }

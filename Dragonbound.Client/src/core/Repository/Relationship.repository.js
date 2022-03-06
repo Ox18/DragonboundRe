@@ -11,7 +11,7 @@ class RelationShipRepository{
                     resolve(relationships[0]);
                 }
                 else{
-                    reject(new ResourceNotFoundException(userId));
+                    reject(new ResourceNotFoundException("user_id: " + userId));
                 }
             }catch(e){
                 reject(e);
@@ -27,7 +27,7 @@ class RelationShipRepository{
                     resolve(relationship[0]);
                 }
                 else{
-                    reject(new ResourceNotFoundException(id));
+                    reject(new ResourceNotFoundException("id: "+ id));
                 }
             }
             catch(e){

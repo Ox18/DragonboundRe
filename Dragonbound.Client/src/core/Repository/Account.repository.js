@@ -12,7 +12,7 @@ class AccountRepository{
                     resolve(accounts[0]);
                 }
                 else{
-                    reject(new ResourceNotFoundException("username and password"));
+                    reject(new ResourceNotFoundException("username: "+username+", password: "+password));
                 }
             }catch(e){
                 reject(e);
@@ -40,7 +40,7 @@ class AccountRepository{
                     resolve(accounts[0]);
                 }
                 else{
-                    reject(new ResourceNotFoundException(id));
+                    reject(new ResourceNotFoundException("id: "+id));
                 }
             }catch(e){
                 reject(e);
