@@ -6,6 +6,10 @@ class ServerService{
     async findAll(){
         return this.repo.findAll();
     }
+
+    async findByQuery(querys){
+        return this.repo.findByQuery(querys);
+    }
 }
 
 export default ServerService;
