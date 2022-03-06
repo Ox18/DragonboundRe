@@ -94,6 +94,15 @@ class ModelLib{
             }
         });
     }
+
+    getPropertiesFromArray(array){
+        let properties = {};
+        array.forEach(prop => {
+            properties[prop] = this[prop];
+        }
+        );
+        return properties;
+    }
 }
 
 export default ModelLib;
