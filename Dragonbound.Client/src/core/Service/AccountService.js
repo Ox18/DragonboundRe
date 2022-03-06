@@ -1,4 +1,4 @@
-import AccountRepository from "../Repository/AccountRepository";
+import AccountRepository from "../Repository/Account.repository";
 
 class AccountService{
     repo = new AccountRepository();

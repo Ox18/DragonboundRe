@@ -1,4 +1,4 @@
-import UserRepository from "../Repository/UserRepository";
+import UserRepository from "../Repository/User.repository";
 
 class UserService{
     repo = new UserRepository();
