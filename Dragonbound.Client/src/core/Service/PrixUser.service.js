@@ -10,6 +10,10 @@ class PrixUserService{
     async findByQuery(querys){
         return this.repo.findByQuery(querys);
     }
+
+    async findByUserId(userId){
+        return this.repo.findByUserId(userId);
+    }
 }
 
 export default PrixUserService;
