@@ -15,23 +15,10 @@ class User extends ModelLib{
             country: "",
             gm: 0,
             created_at: Date.now(),
-            updated_at: Date.now(),
-            // 'location_type', // agregar
-            // 'room_number', // agregar
+            updated_at: Date.now()
 
         })
     }
 };
 
 export default User;
-// 'location_type', // agregar
-// 'room_number', // agregar
-//   plus10gp
-//   'power_user',
-//   'tournament',
-//   'plus10gp',
-//   'mobile_fox',
-//   'maps_pack',
-//   'megaphones',
-//   'lucky_egg_sec_left',
-// Obtener valores desde avatares
