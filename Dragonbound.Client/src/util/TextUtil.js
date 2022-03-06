@@ -5,6 +5,14 @@ class TextUtil{
 		}
 		return text;
 	}
+
+	static hasSymbol(text, symbol) {
+		return text.indexOf(symbol) !== -1;
+	}
+
+	static separate(text, symbol) {
+		return text.split(symbol);
+	}
 }
 
 module.exports = TextUtil;
