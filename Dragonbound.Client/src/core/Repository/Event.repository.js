@@ -1,13 +1,19 @@
 import EventData from "../Network/data/EventData";
+import ResourceNotFoundException from "../Exception/ResourceNotFoundException";
 
 class EventRepository{
     findByUserId(userId){
-        return new Promise((resolve, reject)=>{
-            const event = EventData.find(event => event.user_id === userId);
-            if(event){
-                resolve(event);
-            }else{
-                reject(new Error("Event not found"));
+        return new Promise(async (resolve, reject)=>{
+            try{
+                const events = await this.findByQuery({ user_id: userId });
+                if(events.length > 0){
+                    resolve(events[0]);
+                }
+                else{
+                    reject(new ResourceNotFoundException(userId));
+                }
+            }catch(e){
+                reject(e);
             }
         });
     }
@@ -20,7 +26,7 @@ class EventRepository{
                     resolve(event[0]);
                 }
                 else{
-                    reject(new Error("Event not found"));
+                    reject(new ResourceNotFoundException(id));
                 }
             }catch(e){
                 reject(e);

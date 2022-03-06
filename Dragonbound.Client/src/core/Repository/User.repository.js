@@ -1,16 +1,17 @@
 import UserData from "../Network/data/UserData";
 import User from "../Model/User";
+import ResourceNotFoundException from "../Exception/ResourceNotFoundException";
 
 class UserRepository{
     findByAccountId(account_id){
-        return new Promise((resolve, reject)=>{
+        return new Promise(async (resolve, reject)=>{
             try{
-                const user = UserData.find(user => user.account_id === account_id);
-                if(user){
-                    resolve(User.fromHashMap(user));
+                const users = await this.findByQuery({ account_id });
+                if(users.length > 0){
+                    resolve(users[0]);
                 }
                 else{
-                    reject(new Error("User not found"));
+                    reject(new ResourceNotFoundException(account_id));
                 }
             }catch(e){
                 reject(e);
@@ -26,7 +27,7 @@ class UserRepository{
                     resolve(user[0]);
                 }
                 else{
-                    reject(new Error("User not found"));
+                    reject(new ResourceNotFoundException(id));
                 }
             }catch(e){
                 reject(e);

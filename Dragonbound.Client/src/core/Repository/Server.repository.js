@@ -1,11 +1,12 @@
 import ServerData from "../Network/data/ServerData";
 import Server from "../Model/Server";
+import ResourceNotFoundException from "../Exception/ResourceNotFoundException";
 
 class ServerRepository{
     findAll(){
-        return new Promise((resolve, reject)=>{
+        return new Promise(async (resolve, reject)=>{
             try{
-                const servers = ServerData.map(server => Server.fromHashMap(server));
+                const servers = await this.findByQuery({});
                 resolve(servers);
             }catch(e){
                 reject(e);
@@ -21,7 +22,7 @@ class ServerRepository{
                     resolve(server[0]);
                 }
                 else{
-                    reject(new Error("Server not found"));
+                    reject(new ResourceNotFoundException(id));
                 }
             }catch(e){
                 reject(e);

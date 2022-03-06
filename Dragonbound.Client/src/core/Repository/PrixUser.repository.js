@@ -1,15 +1,21 @@
 import PrixUserData from "../Network/data/PrixUser.data";
 import PrixUser from "../Model/PrixUser";
+import ResourceNotFoundException from "../Exception/ResourceNotFoundException";
 
 class PrixUserRepository{
     findByUserId(userId){
-        return new Promise((resolve, reject)=>{
-            const prixUser = PrixUserData.find(prixUser => prixUser.user_id === userId);
-            if(prixUser){
-                resolve(PrixUser.fromHashMap(prixUser));
+        return new Promise(async (resolve, reject)=>{
+            try{
+                const prixUsers = await this.findByQuery({ user_id: userId });
+                if(prixUsers.length > 0){
+                    resolve(prixUsers[0]);
+                }
+                else{
+                    reject(new ResourceNotFoundException(userId));
+                }
             }
-            else{
-                reject(new Error("PrixUser not found"));
+            catch(e){
+                reject(e);
             }
         })
     }
@@ -22,7 +28,7 @@ class PrixUserRepository{
                     resolve(prixUser[0]);
                 }
                 else{
-                    reject(new Error("PrixUser not found"));
+                    reject(new ResourceNotFoundException(id));
                 }
             }catch(e){
                 reject(e);

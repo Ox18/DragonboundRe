@@ -1,15 +1,20 @@
 import GuildMemberData from "../Network/data/GuildMember.data";
 import GuildMember from "../Model/GuildMember";
+import ResourceNotFoundException from "../Exception/ResourceNotFoundException";
 
 class GuildMemberRepository{
     findByUserId(userId){
-        return new Promise((resolve, reject)=>{
-            const guildMember = GuildMemberData.find(guildMember => guildMember.user_id === userId);
-            if(guildMember){
-                resolve(GuildMember.fromHashMap(guildMember));
-            }
-            else{
-                reject(new Error("GuildMember not found"));
+        return new Promise(async (resolve, reject)=>{
+            try{
+                const guildMembers = await this.findByQuery({ user_id: userId });
+                if(guildMembers.length > 0){
+                    resolve(guildMembers[0]);
+                }
+                else{
+                    reject(new ResourceNotFoundException(userId));
+                }
+            }catch(e){
+                reject(e);
             }
         });
     }
@@ -22,7 +27,7 @@ class GuildMemberRepository{
                     resolve(guildMember[0]);
                 }
                 else{
-                    reject(new Error("GuildMember not found"));
+                    reject(new ResourceNotFoundException(id));
                 }
             }catch(e){
                 reject(e);

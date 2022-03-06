@@ -1,15 +1,20 @@
 import RelationshipData from "../Network/data/Relationship.data";
 import Relationship from "../Model/Relationship";
+import ResourceNotFoundException from "../Exception/ResourceNotFoundException";
 
 class RelationShipRepository{
     findByUserId(userId){
-        return new Promise((resolve, reject)=>{
-            const relationship = RelationshipData.find(relationship => relationship.user_id === userId);
-            if(relationship){
-                resolve(Relationship.fromHashMap(relationship));
-            }
-            else{
-                reject(new Error("Relationship not found"));
+        return new Promise(async (resolve, reject)=>{
+            try{
+                const relationships = await this.findByQuery({ user_id: userId });
+                if(relationships.length > 0){
+                    resolve(relationships[0]);
+                }
+                else{
+                    reject(new ResourceNotFoundException(userId));
+                }
+            }catch(e){
+                reject(e);
             }
         });
     }
@@ -22,7 +27,7 @@ class RelationShipRepository{
                     resolve(relationship[0]);
                 }
                 else{
-                    reject(new Error("Relationship not found"));
+                    reject(new ResourceNotFoundException(id));
                 }
             }
             catch(e){

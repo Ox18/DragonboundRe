@@ -1,15 +1,20 @@
 import AvatarEquipedData from "../Network/data/AvatarEquipedData";
 import AvatarEquiped from "../Model/AvatarEquiped";
+import ResourceNotFoundException from "../Exception/ResourceNotFoundException";
 
 class AvatarEquipedRepository{
     findOneByUserId(userId){
-        return new Promise((resolve, reject)=>{
-            const avatarEquiped = AvatarEquipedData.find(avatarEquiped => avatarEquiped.user_id === userId);
-            if(avatarEquiped){
-                resolve(AvatarEquiped.fromHashMap(avatarEquiped));
-            }
-            else{
-                reject(new Error("AvatarEquiped not found"));
+        return new Promise(async (resolve, reject)=>{
+            try{
+                const avatarEquipeds = await this.findByQuery({ user_id: userId });
+                if(avatarEquipeds.length > 0){
+                    resolve(avatarEquipeds[0]);
+                }
+                else{
+                    reject(new ResourceNotFoundException(userId));
+                }
+            }catch(e){
+                reject(e);
             }
         });
     }   
@@ -22,7 +27,7 @@ class AvatarEquipedRepository{
                     resolve(avatarEquiped[0]);
                 }
                 else{
-                    reject(new Error("AvatarEquiped not found"));
+                    reject(new ResourceNotFoundException(id));
                 }
             }catch(e){
                 reject(e);

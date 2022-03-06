@@ -12,7 +12,7 @@ class AccountRepository{
                     resolve(accounts[0]);
                 }
                 else{
-                    reject(new Error("Account not found"));
+                    reject(new ResourceNotFoundException("username and password"));
                 }
             }catch(e){
                 reject(e);
