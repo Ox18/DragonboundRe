@@ -1,6 +1,7 @@
 const QUERY_CONST = {
     words_restricted: [
-        "fields"
+        "fields",
+        "offset"
     ]
 };
 

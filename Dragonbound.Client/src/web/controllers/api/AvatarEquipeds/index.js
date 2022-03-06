@@ -5,6 +5,8 @@ export const get = async (req, res) =>{
 
     const query = req.query;
 
+    const { offset = 1, count = 100 } = query;
+
     const service = new AvatarEquipedService();
 
     const queryNotStricted = QueryUtil.getNotStrictedWords(query);
@@ -16,5 +18,14 @@ export const get = async (req, res) =>{
         items = items.map(item => item.getPropertiesFromArray(fields));
     }
 
-    res.json(items);
+    const entries = items.slice((offset - 1) * count, offset * count);
+
+    const total = items.length; 
+
+    res.json({
+        entries,
+        offset,
+        count,
+        total
+    });
 }
