@@ -13,6 +13,27 @@ class GuildMemberRepository{
             }
         });
     }
+
+    findByQuery(querys){
+        return new Promise((resolve, reject)=>{
+            const keys = Object.keys(querys);
+
+            try{
+                const guildMembers = GuildMemberData.filter(guildMember => {
+                    let result = true;
+                    keys.forEach(key => {
+                        if(guildMember[key] !== querys[key]){
+                            result = false;
+                        }
+                    });
+                    return result;
+                }).map(guildMember => GuildMember.fromHashMap(guildMember));
+                resolve(guildMembers);
+            }catch(ex){
+                reject(ex);
+            }
+        });
+    }
 }
 
 export default GuildMemberRepository;

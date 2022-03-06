@@ -17,6 +17,28 @@ class UserRepository{
             }
         });
     }
+
+    findByQuery(querys){
+        return new Promise((resolve, reject)=>{
+            const keys = Object.keys(querys);
+
+            try{
+                const users = UserData.filter(user => {
+                    let result = true;
+                    keys.forEach(key => {
+                        if(user[key] !== querys[key]){
+                            result = false;
+                        }
+                    }
+                    );
+                    return result;
+                }).map(user => User.fromHashMap(user));
+                resolve(users);
+            }catch(ex){
+                reject(ex);
+            }
+        });
+    }
 }
 
 export default UserRepository;
