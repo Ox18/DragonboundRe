@@ -12,6 +12,22 @@ class EventRepository{
         });
     }
 
+    findById(id){
+        return new Promise(async (resolve, reject)=>{
+            try{
+                const event = await this.findByQuery({ id });
+                if(event.length > 0){
+                    resolve(event[0]);
+                }
+                else{
+                    reject(new Error("Event not found"));
+                }
+            }catch(e){
+                reject(e);
+            }
+        });
+    }
+
     findByQuery(querys){
         return new Promise((resolve, reject)=>{
             const keys = Object.keys(querys);

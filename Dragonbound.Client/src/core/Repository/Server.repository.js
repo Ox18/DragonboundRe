@@ -13,6 +13,22 @@ class ServerRepository{
         });
     }
 
+    findById(id){
+        return new Promise(async (resolve, reject)=>{
+            try{
+                const server = await this.findByQuery({ id });
+                if(server.length > 0){
+                    resolve(server[0]);
+                }
+                else{
+                    reject(new Error("Server not found"));
+                }
+            }catch(e){
+                reject(e);
+            }
+        });
+    }
+
     findByQuery(querys){
         return new Promise((resolve, reject)=>{
             const keys = Object.keys(querys);

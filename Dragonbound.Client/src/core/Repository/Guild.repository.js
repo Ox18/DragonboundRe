@@ -12,6 +12,22 @@ class GuildRepository{
             }
         });
     }
+    
+    findById(id){
+        return new Promise(async (resolve, reject)=>{
+            try{
+                const guild = await this.findByQuery({ id });
+                if(guild.length > 0){
+                    resolve(guild[0]);
+                }
+                else{
+                    reject(new Error("Guild not found"));
+                }
+            }catch(e){
+                reject(e);
+            }
+        });
+    }
 
     findByQuery(querys){
         return new Promise((resolve, reject)=>{

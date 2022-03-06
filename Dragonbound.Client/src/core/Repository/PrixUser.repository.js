@@ -14,6 +14,22 @@ class PrixUserRepository{
         })
     }
 
+    findById(id){
+        return new Promise(async (resolve, reject)=>{
+            try{
+                const prixUser = await this.findByQuery({ id });
+                if(prixUser.length > 0){
+                    resolve(prixUser[0]);
+                }
+                else{
+                    reject(new Error("PrixUser not found"));
+                }
+            }catch(e){
+                reject(e);
+            }
+        });
+    }
+
     findByQuery(querys){
         return new Promise((resolve, reject)=>{
             const keys = Object.keys(querys);

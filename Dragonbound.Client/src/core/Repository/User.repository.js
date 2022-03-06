@@ -18,6 +18,22 @@ class UserRepository{
         });
     }
 
+    findById(id){
+        return new Promise(async (resolve, reject)=>{
+            try{
+                const user = await this.findByQuery({ id });
+                if(user.length > 0){
+                    resolve(user[0]);
+                }
+                else{
+                    reject(new Error("User not found"));
+                }
+            }catch(e){
+                reject(e);
+            }
+        });
+    }
+
     findByQuery(querys){
         return new Promise((resolve, reject)=>{
             const keys = Object.keys(querys);

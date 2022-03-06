@@ -14,6 +14,22 @@ class GuildMemberRepository{
         });
     }
 
+    findById(id){
+        return new Promise(async (resolve, reject)=>{
+            try{
+                const guildMember = await this.findByQuery({ id });
+                if(guildMember.length > 0){
+                    resolve(guildMember[0]);
+                }
+                else{
+                    reject(new Error("GuildMember not found"));
+                }
+            }catch(e){
+                reject(e);
+            }
+        });
+    }
+
     findByQuery(querys){
         return new Promise((resolve, reject)=>{
             const keys = Object.keys(querys);
