@@ -3,12 +3,18 @@ import AccountData from "../Network/data/AccountData";
 
 class AccountRepository{
     findByUsernameAndPassword(username, password){
-        return new Promise((resolve, reject)=>{
-            const account = AccountData.find(account => account.username === username && account.password === password);
-            if(account){
-                resolve(Account.fromHashMap(account));
-            }else{
-                reject(new Error("Account not found"));
+        return new Promise(async (resolve, reject)=>{
+            try{
+                const query = { username, password };
+                const accounts = await this.findByQuery(query);
+                if(accounts.length > 0){
+                    resolve(accounts[0]);
+                }
+                else{
+                    reject(new Error("Account not found"));
+                }
+            }catch(e){
+                reject(e);
             }
         });
     }
