@@ -1,5 +1,5 @@
-import EventService from "../../../../../core/Service/Event.service";
-import QueryUtil from "../../../../../util/QueryUtil";
+import EventService from "../../../../core/Service/Event.service";
+import QueryUtil from "../../../../util/QueryUtil";
 
 export const get = async (req, res) =>{
     const query = req.query;

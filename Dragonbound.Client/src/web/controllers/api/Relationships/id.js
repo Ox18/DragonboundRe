@@ -1,5 +1,5 @@
-import RelationshipService from "../../../../../core/Service/Relationship.service";
-import QueryUtil from "../../../../../util/QueryUtil";
+import RelationshipService from "../../../../core/Service/Relationship.service";
+import QueryUtil from "../../../../util/QueryUtil";
 
 export const get = async (req, res) =>{
     const query = req.query;

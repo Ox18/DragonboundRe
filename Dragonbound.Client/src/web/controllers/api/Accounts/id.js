@@ -1,5 +1,5 @@
-import AccountService from "../../../../../core/Service/Account.service";
-import QueryUtil from "../../../../../util/QueryUtil";
+import AccountService from "../../../../core/Service/Account.service";
+import QueryUtil from "../../../../util/QueryUtil";
 
 export const get = async (req, res) =>{
     const query = req.query;

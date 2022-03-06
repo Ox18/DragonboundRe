@@ -1,11 +1,11 @@
-import GuldMemberService from "../../../../core/Service/GuldMember.service";
+import GuildMemberService from "../../../../core/Service/GuildMember.service";
 import QueryUtil from "../../../../util/QueryUtil";
 
 export const get = async (req, res) =>{
 
     const query = req.query;
 
-    const service = new GuldMemberService();
+    const service = new GuildMemberService();
 
     const queryNotStricted = QueryUtil.getNotStrictedWords(query);
 

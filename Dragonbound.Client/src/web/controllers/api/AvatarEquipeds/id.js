@@ -1,5 +1,5 @@
-import AvatarEquipedService from "../../../../../core/Service/AvatarEquiped.service";
-import QueryUtil from "../../../../../util/QueryUtil";
+import AvatarEquipedService from "../../../../core/Service/AvatarEquiped.service";
+import QueryUtil from "../../../../util/QueryUtil";
 
 export const get = async (req, res) =>{
     const query = req.query;

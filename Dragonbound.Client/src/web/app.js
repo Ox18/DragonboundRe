@@ -38,7 +38,7 @@ app.use(cors({ origin: true }));
 app.use((err, req, res, next) => {
     return res.status(500).json({
         status: "error",
-        message: "Internal server error: " + err.message
+        message: err.message
     });
 });
 

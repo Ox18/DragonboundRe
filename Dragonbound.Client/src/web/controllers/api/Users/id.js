@@ -1,5 +1,5 @@
-import UserService from "../../../../../core/Service/User.service";
-import QueryUtil from "../../../../../util/QueryUtil";
+import UserService from "../../../../core/Service/User.service";
+import QueryUtil from "../../../../util/QueryUtil";
 
 export const get = async (req, res) =>{
     const query = req.query;

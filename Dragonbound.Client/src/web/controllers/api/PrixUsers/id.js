@@ -1,5 +1,5 @@
-import PrixUserService from "../../../../../core/Service/PrixUser.service";
-import QueryUtil from "../../../../../util/QueryUtil";
+import PrixUserService from "../../../../core/Service/PrixUser.service";
+import QueryUtil from "../../../../util/QueryUtil";
 
 export const get = async (req, res) =>{
     const query = req.query;

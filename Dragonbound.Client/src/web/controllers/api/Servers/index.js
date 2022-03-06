@@ -5,16 +5,16 @@ export const get = async (req, res) =>{
 
     const query = req.query;
 
-    const serverService = new ServerService();
+    const service = new ServerService();
 
     const queryNotStricted = QueryUtil.getNotStrictedWords(query);
 
-    let servers = await serverService.findByQuery(queryNotStricted || {});
+    let items = await service.findByQuery(queryNotStricted || {});
 
     if(query?.fields){
         let fields = QueryUtil.fromFieldToArray(query.fields);
-        servers = servers.map(server => server.getPropertiesFromArray(fields));
+        items = items.map(item => item.getPropertiesFromArray(fields));
     }
 
-    res.json(servers);
+    res.json(items);
 }

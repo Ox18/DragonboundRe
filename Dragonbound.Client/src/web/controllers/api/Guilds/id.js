@@ -1,5 +1,5 @@
-import GuildService from "../../../../../core/Service/Guild.service";
-import QueryUtil from "../../../../../util/QueryUtil";
+import GuildService from "../../../../core/Service/Guild.service";
+import QueryUtil from "../../../../util/QueryUtil";
 
 export const get = async (req, res) =>{
     const query = req.query;

@@ -1,4 +1,4 @@
-import GuildMemberService from "../../../../core/Service/GuildMember.service";
+import ServerService from "../../../../core/Service/Server.service";
 import QueryUtil from "../../../../util/QueryUtil";
 
 export const get = async (req, res) =>{
@@ -7,7 +7,7 @@ export const get = async (req, res) =>{
     // get /:id 
     const id = Number(req.params.id);
 
-    const service = new GuildMemberService();
+    const service = new ServerService();
 
     let item = await service.findById(id);
 
