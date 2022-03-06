@@ -1,8 +1,9 @@
+import Account from "../Model/Account";
 import AccountData from "../Network/data/AccountData";
 
 class AccountRepository{
     findByUsernameAndPassword(username, password){
-        return AccountData.find(account => account.username === username && account.password === password);
+        return Account.fromHashMap( AccountData.find(account => account.username === username && account.password === password));
     }
 }
 

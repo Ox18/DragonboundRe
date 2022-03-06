@@ -1,8 +1,9 @@
 import ServerData from "../Network/data/ServerData";
+import Server from "../Model/Server";
 
 class ServerRepository{
     findAll(){
-        return ServerData;
+        return ServerData.map(server => Server.fromHashMap(server));
     }
 };
 

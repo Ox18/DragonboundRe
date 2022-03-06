@@ -1,6 +1,6 @@
 import ModelLib from "../../Libraries/ModelLib";
 
-class Server extends ModelLib{
+class Account extends ModelLib{
     constructor(){
         super({
             id: "",
@@ -13,4 +13,4 @@ class Server extends ModelLib{
     }
 }
 
-export default Server;
+export default Account;

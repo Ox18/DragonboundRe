@@ -1,8 +1,9 @@
 import AvatarEquipedData from "../Network/data/AvatarEquipedData";
+import AvatarEquiped from "../Model/AvatarEquiped";
 
 class AvatarEquipedRepository{
     findOneByUserId(userId){
-        return AvatarEquipedData.find(avatarEquiped => avatarEquiped.user_id === userId);
+        return AvatarEquiped.fromHashMap(AvatarEquipedData.find(avatarEquiped => avatarEquiped.user_id === userId));
     }   
 }
 
