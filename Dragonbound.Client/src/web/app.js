@@ -6,10 +6,14 @@ import session from 'express-session';
 import routes from "./routes";
 import DatabaseMySQL from '../core/DB/DatabaseMySQL';
 
+var queryParser = require('express-query-int');
+var bodyParser = require('body-parser')
 var MySQLStore = require('express-mysql-session')(session);
 var sessionStore = new MySQLStore(DatabaseMySQL.MySQLStoreOptions);
 var app = express();
 
+app.use(bodyParser.json());
+app.use(queryParser());
 app.set("trust proxy", true);
 app.use(session({
     key: "sessionid",

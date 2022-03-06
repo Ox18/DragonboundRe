@@ -1737,7 +1737,7 @@ bindings@^1.5.0:
   dependencies:
     file-uri-to-path "1.0.0"
 
-body-parser@1.19.2:
+body-parser@1.19.2, body-parser@^1.19.2:
   version "1.19.2"
   resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.19.2.tgz#4714ccd9c157d44797b8b5607d72c0b89952f26e"
   integrity sha512-SAAwOxgoCKMGs9uUAUFHygfLAyaniaoun6I8mFY9pRAJL9+Kec34aU+oIjDhTycub1jozEfEwx1W1IuOYxVSFw==
@@ -2713,6 +2713,11 @@ express-mysql-session@^2.1.7:
     express-session "1.17.2"
     mysql "2.18.1"
     underscore "1.13.1"
+
+express-query-int@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/express-query-int/-/express-query-int-3.0.0.tgz#acae1921d376f170cf5d2f31b10e2f62bb2dc7bd"
+  integrity sha512-fwuyB0gm75tgSQHimJHXQLRCIRht6ZHVHWh9A8WbtymA+KNPOc42O9NgWCcRW/OkfI6wHTqOYCNpzJsT8nUHzA==
 
 express-session@1.17.2, express-session@^1.17.2:
   version "1.17.2"

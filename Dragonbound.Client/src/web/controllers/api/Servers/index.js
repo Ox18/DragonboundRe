@@ -4,6 +4,8 @@ export const get = async (req, res) =>{
 
     const query = req.query;
 
+    console.log(query);
+
     const serverService = new ServerService();
 
     const servers = await serverService.findByQuery(query || {});
