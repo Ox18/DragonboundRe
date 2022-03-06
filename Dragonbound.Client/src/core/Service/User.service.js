@@ -11,8 +11,8 @@ class UserService{
         return this.repo.findById(id);
     }
     
-    async findByQuery(querys){
-        return this.repo.findByQuery(querys);
+    async findByQuery(params){
+        return this.repo.findByQuery(params);
     }
 }
 

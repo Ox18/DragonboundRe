@@ -7,8 +7,8 @@ class ServerService{
         return this.repo.findAll();
     }
 
-    async findByQuery(querys){
-        return this.repo.findByQuery(querys);
+    async findByQuery(params){
+        return this.repo.findByQuery(params);
     }
 
     async findById(id){
