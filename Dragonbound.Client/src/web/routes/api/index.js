@@ -12,13 +12,13 @@ import UsersRoute from "./Users";
 const router = Router();
 
 router.get("/get_status", Get_StatusController.get);
-router.use("/servers", ServersRoute);
-router.use("/accounts", AccountsRoute);
-router.use("/avatar_equipeds", AvatarEquipedsRoute);
-router.use("/events", EventsRoute);
-router.use("/guild_members", GuildMembersRoute);
-router.use("/prix_users", PrixUsersRoute);
-router.use("/relationships", RelationshipsRoute);
-router.use("/users", UsersRoute);
+router.use("/v1/servers", ServersRoute);
+router.use("/v1/accounts", AccountsRoute);
+router.use("/v1/avatar_equipeds", AvatarEquipedsRoute);
+router.use("/v1/events", EventsRoute);
+router.use("/v1/guild_members", GuildMembersRoute);
+router.use("/v1/prix_users", PrixUsersRoute);
+router.use("/v1/relationships", RelationshipsRoute);
+router.use("/v1/users", UsersRoute);
 
 export default router;

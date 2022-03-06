@@ -9,23 +9,14 @@ export const get = async (req, res) =>{
 
     const service = new UserService();
 
-    const queryNotStricted = QueryUtil.getNotStrictedWords(query);
+    const queryNotStricted = QueryUtil.getNotStrictedWords(query) || {};
 
-    let items = await service.findByQuery(queryNotStricted || {});
+    let response = await service.findByQuery({ query: queryNotStricted, count, offset });
 
     if(query?.fields){
         let fields = QueryUtil.fromFieldToArray(query.fields);
-        items = items.map(item => item.getPropertiesFromArray(fields));
+        response.entries = response.entries.map(item => item.getPropertiesFromArray(fields));
     }
 
-    const entries = items.slice((offset - 1) * count, offset * count);
-
-    const total = items.length; 
-
-    res.json({
-        entries,
-        offset,
-        count,
-        total
-    });
+    res.json(response);
 }
