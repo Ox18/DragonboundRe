@@ -1,16 +1,22 @@
 import EventData from "../Network/data/EventData";
+import Event from "../Model/Event";
 import ResourceNotFoundException from "../Exception/ResourceNotFoundException";
 
 class EventRepository{
-    findByUserId(userId){
+    findByUserId(user_id){
         return new Promise(async (resolve, reject)=>{
+            const params = {
+                query: {
+                    user_id
+                }
+            };
             try{
-                const events = await this.findByQuery({ user_id: userId });
-                if(events.length > 0){
-                    resolve(events[0]);
+                const response = await this.findByQuery(params);
+                if(response.entries.length > 0){
+                    resolve(response.entries[0]);
                 }
                 else{
-                    reject(new ResourceNotFoundException("user_id: " + userId));
+                    reject(new ResourceNotFoundException("user_id: "+user_id));
                 }
             }catch(e){
                 reject(e);
@@ -20,13 +26,18 @@ class EventRepository{
 
     findById(id){
         return new Promise(async (resolve, reject)=>{
+            const params = { 
+                query: {
+                    id
+                }
+            }
             try{
-                const event = await this.findByQuery({ id });
-                if(event.length > 0){
-                    resolve(event[0]);
+                const response = await this.findByQuery(params);
+                if(response.entries.length > 0){
+                    resolve(response.entries[0]);
                 }
                 else{
-                    reject(new ResourceNotFoundException("id: " + id));
+                    reject(new ResourceNotFoundException("id: "+id));
                 }
             }catch(e){
                 reject(e);
@@ -34,21 +45,31 @@ class EventRepository{
         });
     }
 
-    findByQuery(querys){
+    findByQuery({
+        query = {},
+        offset = 1,
+        count = 100
+    }){
         return new Promise((resolve, reject)=>{
-            const keys = Object.keys(querys);
+            const keys = Object.keys(query);
 
             try{
-                const events = EventData.filter(event => {
+                const items = EventData.filter(item => {
                     let result = true;
                     keys.forEach(key => {
-                        if(event[key] !== querys[key]){
+                        if(item[key] !== query[key]){
                             result = false;
                         }
                     });
                     return result;
-                }).map(event => event);
-                resolve(events);
+                }).map(item => Event.fromHashMap(item));
+                const entries = items.slice((offset - 1) * count, offset * count);
+                resolve({
+                    entries,
+                    total: items.length,
+                    count,
+                    offset
+                });
             }catch(ex){
                 reject(ex);
             }

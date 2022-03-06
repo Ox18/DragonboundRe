@@ -5,13 +5,18 @@ import ResourceNotFoundException from "../Exception/ResourceNotFoundException";
 class UserRepository{
     findByAccountId(account_id){
         return new Promise(async (resolve, reject)=>{
+            const params = {
+                query: {
+                    account_id
+                }
+            }
             try{
-                const users = await this.findByQuery({ account_id });
-                if(users.length > 0){
-                    resolve(users[0]);
+                const response = await this.findByQuery(params);
+                if(response.entries.length > 0){
+                    resolve(response.entries[0]);
                 }
                 else{
-                    reject(new ResourceNotFoundException("account_id: " + account_id));
+                    reject(new ResourceNotFoundException("account_id: "+account_id));
                 }
             }catch(e){
                 reject(e);
@@ -21,13 +26,18 @@ class UserRepository{
 
     findById(id){
         return new Promise(async (resolve, reject)=>{
+            const params = { 
+                query: {
+                    id
+                }
+            }
             try{
-                const user = await this.findByQuery({ id });
-                if(user.length > 0){
-                    resolve(user[0]);
+                const response = await this.findByQuery(params);
+                if(response.entries.length > 0){
+                    resolve(response.entries[0]);
                 }
                 else{
-                    reject(new ResourceNotFoundException("id: " + id));
+                    reject(new ResourceNotFoundException("id: "+id));
                 }
             }catch(e){
                 reject(e);
@@ -35,27 +45,36 @@ class UserRepository{
         });
     }
 
-    findByQuery(querys){
+    findByQuery({
+        query = {},
+        offset = 1,
+        count = 100
+    }){
         return new Promise((resolve, reject)=>{
-            const keys = Object.keys(querys);
+            const keys = Object.keys(query);
 
             try{
-                const users = UserData.filter(user => {
+                const items = UserData.filter(item => {
                     let result = true;
                     keys.forEach(key => {
-                        if(user[key] !== querys[key]){
+                        if(item[key] !== query[key]){
                             result = false;
                         }
-                    }
-                    );
+                    });
                     return result;
-                }).map(user => User.fromHashMap(user));
-                resolve(users);
+                }).map(item => User.fromHashMap(item));
+                const entries = items.slice((offset - 1) * count, offset * count);
+                resolve({
+                    entries,
+                    total: items.length,
+                    count,
+                    offset
+                });
             }catch(ex){
                 reject(ex);
             }
         });
-    }
+    } 
 }
 
 export default UserRepository;

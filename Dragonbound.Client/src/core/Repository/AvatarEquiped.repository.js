@@ -3,28 +3,17 @@ import AvatarEquiped from "../Model/AvatarEquiped";
 import ResourceNotFoundException from "../Exception/ResourceNotFoundException";
 
 class AvatarEquipedRepository{
-    findOneByUserId(userId){
-        return new Promise(async (resolve, reject)=>{
-            try{
-                const avatarEquipeds = await this.findByQuery({ user_id: userId });
-                if(avatarEquipeds.length > 0){
-                    resolve(avatarEquipeds[0]);
-                }
-                else{
-                    reject(new ResourceNotFoundException("user_id: "+userId));
-                }
-            }catch(e){
-                reject(e);
-            }
-        });
-    }   
-    
     findById(id){
         return new Promise(async (resolve, reject)=>{
+            const params = { 
+                query: {
+                    id
+                }
+            }
             try{
-                const avatarEquiped = await this.findByQuery({ id });
-                if(avatarEquiped.length > 0){
-                    resolve(avatarEquiped[0]);
+                const response = await this.findByQuery(params);
+                if(response.entries.length > 0){
+                    resolve(response.entries[0]);
                 }
                 else{
                     reject(new ResourceNotFoundException("id: "+id));
@@ -35,21 +24,31 @@ class AvatarEquipedRepository{
         });
     }
 
-    findByQuery(querys){
+    findByQuery({
+        query = {},
+        offset = 1,
+        count = 100
+    }){
         return new Promise((resolve, reject)=>{
-            const keys = Object.keys(querys);
+            const keys = Object.keys(query);
 
             try{
-                const avatarEquipeds = AvatarEquipedData.filter(avatarEquiped => {
+                const items = AvatarEquipedData.filter(item => {
                     let result = true;
                     keys.forEach(key => {
-                        if(avatarEquiped[key] !== querys[key]){
+                        if(item[key] !== query[key]){
                             result = false;
                         }
                     });
                     return result;
-                }).map(avatarEquiped => AvatarEquiped.fromHashMap(avatarEquiped));
-                resolve(avatarEquipeds);
+                }).map(item => AvatarEquiped.fromHashMap(item));
+                const entries = items.slice((offset - 1) * count, offset * count);
+                resolve({
+                    entries,
+                    total: items.length,
+                    count,
+                    offset
+                });
             }catch(ex){
                 reject(ex);
             }

@@ -5,13 +5,18 @@ import ResourceNotFoundException from "../Exception/ResourceNotFoundException";
 class GuildRepository{    
     findById(id){
         return new Promise(async (resolve, reject)=>{
+            const params = { 
+                query: {
+                    id
+                }
+            }
             try{
-                const guild = await this.findByQuery({ id });
-                if(guild.length > 0){
-                    resolve(guild[0]);
+                const response = await this.findByQuery(params);
+                if(response.entries.length > 0){
+                    resolve(response.entries[0]);
                 }
                 else{
-                    reject(new ResourceNotFoundException("id: " + id));
+                    reject(new ResourceNotFoundException("id: "+id));
                 }
             }catch(e){
                 reject(e);
@@ -19,21 +24,31 @@ class GuildRepository{
         });
     }
 
-    findByQuery(querys){
+    findByQuery({
+        query = {},
+        offset = 1,
+        count = 100
+    }){
         return new Promise((resolve, reject)=>{
-            const keys = Object.keys(querys);
+            const keys = Object.keys(query);
 
             try{
-                const guilds = GuildData.filter(guild => {
+                const items = GuildData.filter(item => {
                     let result = true;
                     keys.forEach(key => {
-                        if(guild[key] !== querys[key]){
+                        if(item[key] !== query[key]){
                             result = false;
                         }
                     });
                     return result;
-                }).map(guild => Guild.fromHashMap(guild));
-                resolve(guilds);
+                }).map(item => Guild.fromHashMap(item));
+                const entries = items.slice((offset - 1) * count, offset * count);
+                resolve({
+                    entries,
+                    total: items.length,
+                    count,
+                    offset
+                });
             }catch(ex){
                 reject(ex);
             }

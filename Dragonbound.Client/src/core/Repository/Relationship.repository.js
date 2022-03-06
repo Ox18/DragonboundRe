@@ -5,13 +5,19 @@ import ResourceNotFoundException from "../Exception/ResourceNotFoundException";
 class RelationShipRepository{
     findByUserId(userId){
         return new Promise(async (resolve, reject)=>{
+            const params = {
+                query: {
+                    user_id: userId
+                }
+            };
+
             try{
-                const relationships = await this.findByQuery({ user_id: userId });
-                if(relationships.length > 0){
-                    resolve(relationships[0]);
+                const response = await this.findByQuery(params);
+                if(response.entries.length > 0){
+                    resolve(response.entries[0]);
                 }
                 else{
-                    reject(new ResourceNotFoundException("user_id: " + userId));
+                    reject(new ResourceNotFoundException("user_id: "+userId));
                 }
             }catch(e){
                 reject(e);
@@ -21,41 +27,55 @@ class RelationShipRepository{
 
     findById(id){
         return new Promise(async (resolve, reject)=>{
-            try{
-                const relationship = await this.findByQuery({ id });
-                if(relationship.length > 0){
-                    resolve(relationship[0]);
-                }
-                else{
-                    reject(new ResourceNotFoundException("id: "+ id));
+            const params = { 
+                query: {
+                    id
                 }
             }
-            catch(e){
+            try{
+                const response = await this.findByQuery(params);
+                if(response.entries.length > 0){
+                    resolve(response.entries[0]);
+                }
+                else{
+                    reject(new ResourceNotFoundException("id: "+id));
+                }
+            }catch(e){
                 reject(e);
             }
         });
     }
 
-    findByQuery(querys){
+    findByQuery({
+        query = {},
+        offset = 1,
+        count = 100
+    }){
         return new Promise((resolve, reject)=>{
-            const keys = Object.keys(querys);
+            const keys = Object.keys(query);
 
             try{
-                const relationships = RelationshipData.filter(relationship => {
+                const items = RelationshipData.filter(item => {
                     let result = true;
                     keys.forEach(key => {
-                        if(relationship[key] !== querys[key]){
+                        if(item[key] !== query[key]){
                             result = false;
                         }
                     });
                     return result;
-                }).map(relationship => Relationship.fromHashMap(relationship));
-                resolve(relationships);
+                }).map(item => Relationship.fromHashMap(item));
+                const entries = items.slice((offset - 1) * count, offset * count);
+                resolve({
+                    entries,
+                    total: items.length,
+                    count,
+                    offset
+                });
             }catch(ex){
                 reject(ex);
             }
         });
-    }
+    } 
 }
 
 export default RelationShipRepository;

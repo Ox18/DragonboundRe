@@ -3,18 +3,22 @@ import PrixUser from "../Model/PrixUser";
 import ResourceNotFoundException from "../Exception/ResourceNotFoundException";
 
 class PrixUserRepository{
-    findByUserId(userId){
+    findByUserId(user_id){
         return new Promise(async (resolve, reject)=>{
-            try{
-                const prixUsers = await this.findByQuery({ user_id: userId });
-                if(prixUsers.length > 0){
-                    resolve(prixUsers[0]);
-                }
-                else{
-                    reject(new ResourceNotFoundException("user_id: " + userId));
+            const params = {
+                query: {
+                    user_id
                 }
             }
-            catch(e){
+            try{
+                const response = await this.findByQuery(params);
+                if(response.entries.length > 0){
+                    resolve(response.entries[0]);
+                }
+                else{
+                    reject(new ResourceNotFoundException("user_id: "+user_id));
+                }
+            }catch(e){
                 reject(e);
             }
         })
@@ -22,13 +26,18 @@ class PrixUserRepository{
 
     findById(id){
         return new Promise(async (resolve, reject)=>{
+            const params = { 
+                query: {
+                    id
+                }
+            }
             try{
-                const prixUser = await this.findByQuery({ id });
-                if(prixUser.length > 0){
-                    resolve(prixUser[0]);
+                const response = await this.findByQuery(params);
+                if(response.entries.length > 0){
+                    resolve(response.entries[0]);
                 }
                 else{
-                    reject(new ResourceNotFoundException("id: " + id));
+                    reject(new ResourceNotFoundException("id: "+id));
                 }
             }catch(e){
                 reject(e);
@@ -36,26 +45,36 @@ class PrixUserRepository{
         });
     }
 
-    findByQuery(querys){
+    findByQuery({
+        query = {},
+        offset = 1,
+        count = 100
+    }){
         return new Promise((resolve, reject)=>{
-            const keys = Object.keys(querys);
-            
+            const keys = Object.keys(query);
+
             try{
-                const prixUsers = PrixUserData.filter(prixUser => {
+                const items = PrixUserData.filter(item => {
                     let result = true;
-                    keys.foreach(key => {
-                        if(prixUser[key] !== querys[key]){
+                    keys.forEach(key => {
+                        if(item[key] !== query[key]){
                             result = false;
                         }
                     });
                     return result;
-                }).map(prixUser => PrixUser.fromHashMap(prixUser));
-                resolve(prixUsers);
+                }).map(item => PrixUser.fromHashMap(item));
+                const entries = items.slice((offset - 1) * count, offset * count);
+                resolve({
+                    entries,
+                    total: items.length,
+                    count,
+                    offset
+                });
             }catch(ex){
                 reject(ex);
             }
         });
-    }
+    }    
 }
 
 export default PrixUserRepository;

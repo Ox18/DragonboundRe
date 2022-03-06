@@ -6,7 +6,7 @@ class ServerRepository{
     findAll(){
         return new Promise(async (resolve, reject)=>{
             try{
-                const servers = await this.findByQuery({});
+                const servers = await this.findByQuery();
                 resolve(servers);
             }catch(e){
                 reject(e);
@@ -16,13 +16,18 @@ class ServerRepository{
 
     findById(id){
         return new Promise(async (resolve, reject)=>{
+            const params = { 
+                query: {
+                    id
+                }
+            }
             try{
-                const server = await this.findByQuery({ id });
-                if(server.length > 0){
-                    resolve(server[0]);
+                const response = await this.findByQuery(params);
+                if(response.entries.length > 0){
+                    resolve(response.entries[0]);
                 }
                 else{
-                    reject(new ResourceNotFoundException("id: " + id));
+                    reject(new ResourceNotFoundException("id: "+id));
                 }
             }catch(e){
                 reject(e);
@@ -30,26 +35,36 @@ class ServerRepository{
         });
     }
 
-    findByQuery(querys){
+    findByQuery({
+        query = {},
+        offset = 1,
+        count = 100
+    }){
         return new Promise((resolve, reject)=>{
-            const keys = Object.keys(querys);
+            const keys = Object.keys(query);
 
             try{
-                const servers = ServerData.filter(server => {
+                const items = ServerData.filter(item => {
                     let result = true;
                     keys.forEach(key => {
-                        if(server[key] !== querys[key]){
+                        if(item[key] !== query[key]){
                             result = false;
                         }
                     });
                     return result;
-                }).map(server => Server.fromHashMap(server));
-                resolve(servers);
+                }).map(item => Server.fromHashMap(item));
+                const entries = items.slice((offset - 1) * count, offset * count);
+                resolve({
+                    entries,
+                    total: items.length,
+                    count,
+                    offset
+                });
             }catch(ex){
                 reject(ex);
             }
         });
-    }
+    } 
 };
 
 export default ServerRepository;

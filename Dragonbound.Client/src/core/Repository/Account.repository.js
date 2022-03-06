@@ -6,38 +6,36 @@ class AccountRepository{
     findByUsernameAndPassword(username, password){
         return new Promise(async (resolve, reject)=>{
             try{
-                const query = { username, password };
-                const accounts = await this.findByQuery(query);
-                if(accounts.length > 0){
-                    resolve(accounts[0]);
+                const params = {
+                    query: {
+                        username,
+                        password
+                    }
+                }
+                const response = await this.findByQuery({ params });
+                if(response.entries.length > 0){
+                    resolve(response.entries[0]);
                 }
                 else{
                     reject(new ResourceNotFoundException("username: "+username+", password: "+password));
                 }
-            }catch(e){
-                reject(e);
-            }
-        });
-    }
-
-    findAll(){
-        return new Promise((resolve, reject)=>{
-            try{
-                const accounts = AccountData.map(account => Account.fromHashMap(account));
-                resolve(accounts);
-            }catch(e){
-                reject(e);
+            }catch(ex){
+                reject(ex);
             }
         });
     }
 
     findById(id){
         return new Promise(async (resolve, reject)=>{
+            const params = { 
+                query: {
+                    id
+                }
+            }
             try{
-                const query = { id };
-                const accounts = await this.findByQuery(query);
-                if(accounts.length > 0){
-                    resolve(accounts[0]);
+                const response = await this.findByQuery(params);
+                if(response.entries.length > 0){
+                    resolve(response.entries[0]);
                 }
                 else{
                     reject(new ResourceNotFoundException("id: "+id));
@@ -48,21 +46,31 @@ class AccountRepository{
         });
     }
 
-    findByQuery(querys){
+    findByQuery({
+        query = {},
+        offset = 1,
+        count = 100
+    }){
         return new Promise((resolve, reject)=>{
-            const keys = Object.keys(querys);
+            const keys = Object.keys(query);
 
             try{
-                const accounts = AccountData.filter(account => {
+                const items = AccountData.filter(item => {
                     let result = true;
                     keys.forEach(key => {
-                        if(account[key] !== querys[key]){
+                        if(item[key] !== query[key]){
                             result = false;
                         }
                     });
                     return result;
-                }).map(account => Account.fromHashMap(account));
-                resolve(accounts);
+                }).map(item => Account.fromHashMap(item));
+                const entries = items.slice((offset - 1) * count, offset * count);
+                resolve({
+                    entries,
+                    total: items.length,
+                    count,
+                    offset
+                });
             }catch(ex){
                 reject(ex);
             }
