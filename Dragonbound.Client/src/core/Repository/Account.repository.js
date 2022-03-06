@@ -1,5 +1,6 @@
 import Account from "../Model/Account";
 import AccountData from "../Network/data/AccountData";
+import ResourceNotFoundException from "../Exception/ResourceNotFoundException";
 
 class AccountRepository{
     findByUsernameAndPassword(username, password){
@@ -39,7 +40,7 @@ class AccountRepository{
                     resolve(accounts[0]);
                 }
                 else{
-                    reject(new Error("Account not found"));
+                    reject(new ResourceNotFoundException(id));
                 }
             }catch(e){
                 reject(e);
