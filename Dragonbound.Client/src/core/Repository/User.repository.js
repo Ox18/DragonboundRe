@@ -1,15 +1,21 @@
 import UserData from "../Network/data/UserData";
 import User from "../Model/User";
 import ResourceNotFoundException from "../Exception/ResourceNotFoundException";
+import ParamNotValidException from "../Exception/ParamNotValidException";
 
 class UserRepository{
     findByAccountId(account_id){
         return new Promise(async (resolve, reject)=>{
+            if(account_id === 0 || account_id < 0 || typeof account_id !== "number" || isNaN(account_id)){
+                reject(new ParamNotValidException("account_id"));
+            }
+
             const params = {
                 query: {
                     account_id
                 }
             }
+
             try{
                 const response = await this.findByQuery(params);
                 if(response.entries.length > 0){
@@ -26,6 +32,11 @@ class UserRepository{
 
     findById(id){
         return new Promise(async (resolve, reject)=>{
+
+            if(id === 0 || id < 0 || typeof id !== "number" || isNaN(id)){
+                reject(new ParamNotValidException("id"));
+            }
+
             const params = { 
                 query: {
                     id

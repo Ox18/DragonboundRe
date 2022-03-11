@@ -6,8 +6,7 @@ import ParamNotValidException from "../Exception/ParamNotValidException";
 class ServerRepository{
     findById(id = 0){
         return new Promise(async (resolve, reject)=>{
-            if(id === 0){
-                // generate exception ParamNotValidException
+            if(id === 0 || id < 0 || typeof id !== "number" || isNaN(id)){
                 reject(new ParamNotValidException("id"));
             }
 
@@ -19,7 +18,7 @@ class ServerRepository{
             try{
                 const response = await this.findByQuery(params);
                 if(response.entries.length > 0){
-                    resolve(response.entries[0]);
+                    resolve(Server.fromHashMap(response.entries[0]));
                 }
                 else{
                     reject(new ResourceNotFoundException("id: "+id));
