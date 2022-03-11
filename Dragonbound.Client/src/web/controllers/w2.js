@@ -4,7 +4,7 @@ import { NUMBER_CONST } from "../../consts/NUMBER_CONST";
 const serverService = new ServerService();
 
 export const get = async (req, res) => {
-    const response = await serverService.findAll();
+    const response = await serverService.findByQuery();
     const servers = response.entries.map(server => [server.name, server.type, server.port, server.players, server.maxPlayers, server.minRank, server.maxRank]);    
     const DATE_NOW = new Date();
     

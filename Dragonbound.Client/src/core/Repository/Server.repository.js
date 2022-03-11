@@ -1,21 +1,16 @@
 import ServerData from "../Network/data/ServerData";
 import Server from "../Model/Server";
 import ResourceNotFoundException from "../Exception/ResourceNotFoundException";
+import ParamNotValidException from "../Exception/ParamNotValidException";
 
 class ServerRepository{
-    findAll(){
+    findById(id = 0){
         return new Promise(async (resolve, reject)=>{
-            try{
-                const servers = await this.findByQuery();
-                resolve(servers);
-            }catch(e){
-                reject(e);
+            if(id === 0){
+                // generate exception ParamNotValidException
+                reject(new ParamNotValidException("id"));
             }
-        });
-    }
 
-    findById(id){
-        return new Promise(async (resolve, reject)=>{
             const params = { 
                 query: {
                     id
