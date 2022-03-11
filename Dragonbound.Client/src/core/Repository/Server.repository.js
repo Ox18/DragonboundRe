@@ -39,7 +39,7 @@ class ServerRepository{
         query = {},
         offset = 1,
         count = 100
-    }){
+    } = {}){
         return new Promise((resolve, reject)=>{
             const keys = Object.keys(query);
 

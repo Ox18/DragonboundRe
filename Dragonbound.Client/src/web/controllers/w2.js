@@ -4,9 +4,8 @@ import { NUMBER_CONST } from "../../consts/NUMBER_CONST";
 const serverService = new ServerService();
 
 export const get = async (req, res) => {
-    let servers = await serverService.findAll();
-        servers = servers.map(server => [server.name, server.type, server.port, server.players, server.maxPlayers, server.minRank, server.maxRank]);
-    
+    const response = await serverService.findAll();
+    const servers = response.entries.map(server => [server.name, server.type, server.port, server.players, server.maxPlayers, server.minRank, server.maxRank]);    
     const DATE_NOW = new Date();
     
     res.json([
