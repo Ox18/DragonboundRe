@@ -1,10 +1,14 @@
 {
+  "exclude": [
+    "**/*.spec.ts"
+  ],
   "compilerOptions": {
-    "target": "es6",
+    "target": "esnext",
     "module": "commonjs",
-    "rootDir": "./",
-    "outDir": "./build",
-    "esModuleInterop": true,
-    "strict": true
+    "outDir":"./build",
+    "rootDir":"./src" /* assuming that your code live in ./src */,
+    "moduleResolution":"node",
+    "baseUrl":".",
+    "esModuleInterop": true
   }
 }
