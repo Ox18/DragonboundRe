@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "module": "commonjs",                                /* Specify what module code is generated. */
+    "outDir": "./lib", 
+    "rootDir": "./src",
+    "baseUrl": "./src",
+    "paths": {
+        "@entities/*": ["domain/entities/*"],
+        "@interfaces/repositories/*": ["domain/interfaces/repositories/*"],
+        "@interfaces/use-cases/*": ["domain/interfaces/use-cases/*"],
+    },
+    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+  }
+}
