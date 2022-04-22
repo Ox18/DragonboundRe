@@ -9,7 +9,7 @@
         "@entities/*": ["domain/entities/*"],
         "@interfaces/repositories/*": ["domain/interfaces/repositories/*"],
         "@interfaces/use-cases/*": ["domain/interfaces/use-cases/*"],
-        "@routers/*": ["presentation/routers/*"],
+        "@routers/*": ["presentation/routers/*"]
     },
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   }
