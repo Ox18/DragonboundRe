@@ -3,21 +3,18 @@ import { badRequest, serverError, noContent } from "@/presentation/helpers";
 import { CreateUser } from "@/domain/usecases";
 
 export class CreateUserController implements Controller {
-	constructor(
-		private readonly validation: Validation,
-		private readonly createUser: CreateUser
-	) {}
+	constructor(private readonly createUser: CreateUser) {}
 
 	async handle(request: CreateUserController.Request): Promise<HttpResponse> {
 		try {
-			const error = this.validation.validate(request);
-			if (error) {
-				return badRequest(error);
-			}
-			await this.createUser.create({
-				...request,
-			});
-			return noContent();
+			// const error = this.validation.validate(request);
+			// if (error) {
+			// 	return badRequest(error);
+			// }
+			// await this.createUser.create({
+			// 	...request,
+			// });
+			return badRequest(new Error("Not implemented"));
 		} catch (error) {
 			return serverError(error);
 		}

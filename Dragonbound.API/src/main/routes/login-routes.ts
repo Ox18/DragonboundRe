@@ -1,7 +1,7 @@
 import { Router } from "express";
+import { adaptRoute } from "../adapters";
+import { makeCreateUserController } from "../factories/controllers/create-user-controller-factory";
 
 export default (router: Router): void => {
-	router.get("/", (req, res) => {
-		res.send("Hello World!");
-	});
+	router.get("/", adaptRoute(makeCreateUserController()));
 };

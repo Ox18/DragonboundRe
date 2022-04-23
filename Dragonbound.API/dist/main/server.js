@@ -22,13 +22,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 require("module-alias/register");
-(async function IIE() {
+const env_1 = __importDefault(require("@/main/config/env"));
+(async () => {
     const { setupApp } = await Promise.resolve().then(() => __importStar(require("./config/app")));
     const app = await setupApp();
-    app.listen(3000, () => {
-        console.log("Server is running on port 3000");
-    });
+    app.listen(env_1.default.port, () => console.log(`Server running at http://localhost:${env_1.default.port}`));
 })();
 //# sourceMappingURL=server.js.map
