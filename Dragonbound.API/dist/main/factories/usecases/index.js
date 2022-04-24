@@ -15,4 +15,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./create-user-factory"), exports);
+__exportStar(require("./get-users-factory"), exports);
 //# sourceMappingURL=index.js.map

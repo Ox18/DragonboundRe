@@ -4,7 +4,6 @@ import { Request, Response } from "express";
 
 export const adaptRoute = (controller: Controller) => {
 	return async (req: Request, res: Response) => {
-		console.log("GA")
 		const request = {
 			...(req.body || {}),
 			...(req.params || {}),
