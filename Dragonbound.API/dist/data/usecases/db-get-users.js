@@ -2,18 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DbGetUsers = void 0;
 class DbGetUsers {
-    constructor() {
+    constructor(getUsersRepository) {
+        this.getUsersRepository = getUsersRepository;
         this.get = async (params) => {
-            return new Promise((resolve) => {
-                resolve({
-                    resources: [],
-                    pagination: {
-                        offset: params.offset,
-                        count: 0,
-                        totalResults: 0,
-                    },
-                });
-            });
+            const response = await this.getUsersRepository.get(params);
+            return response;
         };
     }
 }

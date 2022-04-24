@@ -1,18 +1,13 @@
 import { GetUsers } from "@/domain/usecases";
+import { GetUsersRepository } from "../protocols/db";
 
 export class DbGetUsers implements GetUsers {
+	constructor(private readonly getUsersRepository: GetUsersRepository) {}
+
 	get: (params: GetUsers.Params) => Promise<GetUsers.Result> = async (
 		params: GetUsers.Params
 	) => {
-		return new Promise((resolve) => {
-			resolve({
-				resources: [],
-				pagination: {
-					offset: params.offset,
-					count: 0,
-					totalResults: 0,
-				},
-			});
-		});
+		const response = await this.getUsersRepository.get(params);
+		return response;
 	};
 }

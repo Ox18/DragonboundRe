@@ -6,4 +6,6 @@ export interface GetUsersRepository {
 
 export namespace GetUsersRepository {
 	export type Params = GetUsers.Params;
+
+	export type Result = GetUsers.Result;
 }
