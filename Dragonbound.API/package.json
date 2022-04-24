@@ -15,6 +15,7 @@
   "dependencies": {
     "express": "^4.17.3",
     "module-alias": "^2.2.2",
+    "mysql2": "^2.3.3",
     "rimraf": "^3.0.2"
   },
   "devDependencies": {

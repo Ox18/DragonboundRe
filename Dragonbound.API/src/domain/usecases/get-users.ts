@@ -1,4 +1,4 @@
-import { Pagination, UserModel } from "../models";
+import { UserModel } from "../models";
 
 export interface GetUsers {
 	get: (params: GetUsers.Params) => Promise<GetUsers.Result>;
@@ -10,5 +10,12 @@ export namespace GetUsers {
 		limit?: number;
 	};
 
-	export type Result = Pagination<UserModel>;
+	export type Result = {
+		resources: UserModel[];
+		pagination: {
+			offset: number;
+			count: number;
+			totalResults: number;
+		};
+	};
 }

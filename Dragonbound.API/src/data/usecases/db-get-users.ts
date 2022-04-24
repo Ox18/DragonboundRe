@@ -8,7 +8,7 @@ export class DbGetUsers implements GetUsers {
 			resolve({
 				resources: [],
 				pagination: {
-					offset: 0,
+					offset: params.offset,
 					count: 0,
 					totalResults: 0,
 				},

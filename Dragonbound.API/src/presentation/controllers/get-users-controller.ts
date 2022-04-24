@@ -1,5 +1,5 @@
-import { Controller, HttpResponse, Validation } from "@/presentation/protocols";
-import { badRequest, serverError, ok } from "@/presentation/helpers";
+import { Controller, HttpResponse } from "@/presentation/protocols";
+import { serverError, ok } from "@/presentation/helpers";
 import { GetUsers } from "@/domain/usecases";
 
 export class GetUsersController implements Controller {
@@ -7,7 +7,7 @@ export class GetUsersController implements Controller {
 
 	async handle(request: GetUsersController.Request): Promise<HttpResponse> {
 		try {
-			const { limit = 10, offset = 1 } = request;
+			const { limit = 10, offset = 1 } = request
 			const users = await this.getUsers.get({
 				limit,
 				offset,
