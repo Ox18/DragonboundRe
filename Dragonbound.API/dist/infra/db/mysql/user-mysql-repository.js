@@ -30,6 +30,11 @@ class UserMysqlRepository {
             },
         };
     }
+    async create(params) {
+        const query = new query_builder_1.QueryBuilder().insert(this.tableName, params).generate();
+        const response = await db_1.MySQLHelper.query(query);
+        return true;
+    }
 }
 exports.UserMysqlRepository = UserMysqlRepository;
 //# sourceMappingURL=user-mysql-repository.js.map

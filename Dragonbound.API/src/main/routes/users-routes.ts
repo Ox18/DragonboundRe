@@ -1,7 +1,11 @@
 import { Router } from "express";
 import { adaptRoute } from "@/main/adapters";
-import { makeGetUsersController } from "@/main/factories/controllers/get-users-controller-factory";
+import {
+	makeGetUsersController,
+	makeCreateUserController,
+} from "@/main/factories/controllers";
 
 export default (router: Router): void => {
 	router.get("/users", adaptRoute(makeGetUsersController()));
+	router.post("/users", adaptRoute(makeCreateUserController()));
 };

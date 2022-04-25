@@ -1,10 +1,12 @@
 import { MySQLHelper } from "@/infra/db";
 
-import { GetUsersRepository } from "@/data/protocols/db";
+import { CreateUserRepository, GetUsersRepository } from "@/data/protocols/db";
 import { QueryBuilder } from "./query-builder";
 import { UserModel } from "@/domain/models";
 
-export class UserMysqlRepository implements GetUsersRepository {
+export class UserMysqlRepository
+	implements GetUsersRepository, CreateUserRepository
+{
 	private readonly tableName = "users";
 
 	async get(
@@ -36,5 +38,15 @@ export class UserMysqlRepository implements GetUsersRepository {
 				offset: Number(params.offset),
 			},
 		};
+	}
+
+	async create(
+		params: CreateUserRepository.Params
+	): Promise<CreateUserRepository.Result> {
+		const query = new QueryBuilder().insert(this.tableName, params).generate();
+
+		const response = await MySQLHelper.query(query);
+
+		return true;
 	}
 }

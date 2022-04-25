@@ -1,5 +1,5 @@
 export interface CreateUser {
-	create: (user: CreateUser.Params) => Promise<CreateUser.Result>;
+	create: (params: CreateUser.Params) => Promise<CreateUser.Result>;
 }
 
 export namespace CreateUser {
@@ -9,7 +9,8 @@ export namespace CreateUser {
 		gp?: number;
 		gold?: number;
 		cash?: number;
-		gender: string;
+		gender?: string;
+		unlock?: number;
 		photo_url?: string;
 		country?: string;
 	};

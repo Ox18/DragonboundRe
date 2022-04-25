@@ -16,6 +16,7 @@
     ],
     "exportall.config.folderListener": [
         "/src/main/middlewares",
-        "/src/data/protocols/db/user"
+        "/src/data/protocols/db/user",
+        "/src/domain/usecases"
     ]
 }

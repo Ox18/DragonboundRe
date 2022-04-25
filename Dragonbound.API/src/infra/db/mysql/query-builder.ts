@@ -49,7 +49,15 @@ export class QueryBuilder {
 	public join(data: string): QueryBuilder {
 		return this.addStep("join", data);
 	}
-	
+
+	public insert(table: string, data: any): QueryBuilder {
+
+        const columns = Object.keys(data).map(key => "`" + key + "`");
+        const values = Object.values(data).map((value: any) => `'${value}'`);
+
+        const query = `${table} (${columns.join(", ")}) values (${values.join(", ")})`;
+        return this.addStep("insert into", query);
+	}
 
 	public generate(): string {
 		return this.query.slice(0, -1);

@@ -1,4 +1,4 @@
-import { GetUsers } from "../../../../domain/usecases";
+import { GetUsers } from "@/domain/usecases";
 
 export interface GetUsersRepository {
 	get(params: GetUsers.Params): Promise<GetUsers.Result>;

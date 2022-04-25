@@ -1,11 +1,13 @@
 import { CreateUser } from "@/domain/usecases";
+import { CreateUserRepository } from "../protocols/db";
 
 export class DbCreateUser implements CreateUser {
-	constructor() {}
+	constructor(private readonly createUserRepository: CreateUserRepository) {}
 
-	async create(userData: CreateUser.Params): Promise<CreateUser.Result> {
-		return new Promise((resolve) => {
-			resolve(true);
-		})
-	}
+	create: (params: CreateUser.Params) => Promise<CreateUser.Result> = async (
+		params: CreateUser.Params
+	) => {
+		const response = await this.createUserRepository.create(params);
+		return response;
+	};
 }

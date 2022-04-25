@@ -8,14 +8,8 @@ class CreateUserController {
     }
     async handle(request) {
         try {
-            // const error = this.validation.validate(request);
-            // if (error) {
-            // 	return badRequest(error);
-            // }
-            // await this.createUser.create({
-            // 	...request,
-            // });
-            return (0, helpers_1.badRequest)(new Error("Not implemented"));
+            const response = await this.createUser.create(request);
+            return (0, helpers_1.ok)(response);
         }
         catch (error) {
             return (0, helpers_1.serverError)(error);
