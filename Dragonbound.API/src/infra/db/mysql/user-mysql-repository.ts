@@ -1,19 +1,39 @@
 import { MySQLHelper } from "@/infra/db";
 
 import { GetUsersRepository } from "@/data/protocols/db";
+import { QueryBuilder } from "./query-builder";
+import { UserModel } from "@/domain/models";
 
 export class UserMysqlRepository implements GetUsersRepository {
+	private readonly tableName = "users";
+
 	async get(
 		params: GetUsersRepository.Params
 	): Promise<GetUsersRepository.Result> {
-		const users = await MySQLHelper.query("SELECT * FROM users", []);
-		console.log(users)
+		const queryTotal = new QueryBuilder()
+			.select("count(*) as total")
+			.from(this.tableName)
+			.generate();
+
+		const responseTotal = await MySQLHelper.query(queryTotal);
+		const total = responseTotal[0].total;
+
+		const query = new QueryBuilder()
+			.selectAll()
+			.from(this.tableName)
+			.limit(params.offset, params.limit)
+			.generate();
+
+		const users = await MySQLHelper.query(query);
+
+		const processedUsers = users.map((user) => user as UserModel);
+
 		return {
-			resources: [],
+			resources: processedUsers,
 			pagination: {
-				totalResults: Number(users.length),
+				totalResults: Number(total),
 				count: Number(users.length),
-				offset: 0,
+				offset: Number(params.offset),
 			},
 		};
 	}

@@ -7,7 +7,7 @@ export class GetUsersController implements Controller {
 
 	async handle(request: GetUsersController.Request): Promise<HttpResponse> {
 		try {
-			const { limit = 10, offset = 1 } = request
+			const { limit = 10, offset = 0 } = request
 			const users = await this.getUsers.get({
 				limit,
 				offset,

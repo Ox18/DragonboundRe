@@ -3,16 +3,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.QueryBuilder = void 0;
 class QueryBuilder {
     constructor() {
-        this.query = [];
+        this.query = "";
     }
     addStep(step, data) {
-        this.query.push({
-            [step]: data,
-        });
+        this.query += `${step} ${data} `;
         return this;
     }
     select(data) {
         return this.addStep("select", data);
+    }
+    selectMultiple(data) {
+        return this.addStep("select", data.join(", "));
+    }
+    selectAll() {
+        return this.addStep("select", "*");
     }
     from(data) {
         return this.addStep("from", data);
@@ -23,8 +27,8 @@ class QueryBuilder {
     orderBy(data) {
         return this.addStep("orderBy", data);
     }
-    limit(data) {
-        return this.addStep("limit", data);
+    limit(data, listPerPage) {
+        return this.addStep("limit", `${data},${listPerPage}`);
     }
     offset(data) {
         return this.addStep("offset", data);
@@ -37,6 +41,9 @@ class QueryBuilder {
     }
     join(data) {
         return this.addStep("join", data);
+    }
+    generate() {
+        return this.query.slice(0, -1);
     }
 }
 exports.QueryBuilder = QueryBuilder;

@@ -1,46 +1,57 @@
 export class QueryBuilder {
-	private readonly query = [];
+	private query = "";
 
-	private addStep(step: string, data: object): QueryBuilder {
-		this.query.push({
-			[step]: data,
-		});
+	private addStep(step: string, data: any): QueryBuilder {
+		this.query += `${step} ${data} `;
 		return this;
 	}
 
-	public select(data: object): QueryBuilder {
+	public select(data: string): QueryBuilder {
 		return this.addStep("select", data);
 	}
 
-	public from(data: object): QueryBuilder {
+	public selectMultiple(data: string[]): QueryBuilder {
+		return this.addStep("select", data.join(", "));
+	}
+
+	public selectAll(): QueryBuilder {
+		return this.addStep("select", "*");
+	}
+
+	public from(data: string): QueryBuilder {
 		return this.addStep("from", data);
 	}
 
-	public where(data: object): QueryBuilder {
+	public where(data: string): QueryBuilder {
 		return this.addStep("where", data);
 	}
 
-	public orderBy(data: object): QueryBuilder {
+	public orderBy(data: string): QueryBuilder {
 		return this.addStep("orderBy", data);
 	}
 
-	public limit(data: object): QueryBuilder {
-		return this.addStep("limit", data);
+	public limit(data: number, listPerPage: number): QueryBuilder {
+		return this.addStep("limit", `${data},${listPerPage}`);
 	}
 
-	public offset(data: object): QueryBuilder {
+	public offset(data: number): QueryBuilder {
 		return this.addStep("offset", data);
 	}
 
-	public groupBy(data: object): QueryBuilder {
+	public groupBy(data: string): QueryBuilder {
 		return this.addStep("groupBy", data);
 	}
 
-	public having(data: object): QueryBuilder {
+	public having(data: string): QueryBuilder {
 		return this.addStep("having", data);
 	}
 
-	public join(data: object): QueryBuilder {
+	public join(data: string): QueryBuilder {
 		return this.addStep("join", data);
+	}
+	
+
+	public generate(): string {
+		return this.query.slice(0, -1);
 	}
 }

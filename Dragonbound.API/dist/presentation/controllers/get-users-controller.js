@@ -8,7 +8,7 @@ class GetUsersController {
     }
     async handle(request) {
         try {
-            const { limit = 10, offset = 1 } = request;
+            const { limit = 10, offset = 0 } = request;
             const users = await this.getUsers.get({
                 limit,
                 offset,
