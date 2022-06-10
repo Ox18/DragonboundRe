@@ -1,113 +1,50 @@
+# DragonboundRE (v133)
 
-# SocialBound 
+DragonboundRE is a project for educational purposes to learn more about Reverse Engineering in a web environment. The main goal of this project is to create a functional mock client that can be used to understand WebSocket based architectures. This can be used to get much better practice on developing applications with real-time data exchange.
 
-**Discord Group** :speech_balloon: https://discord.gg/pApEqzeMEW
-
-## Important announcement
-I will no longer support the basic or advanced customer of this branch. I am doing the project from 0 with the current version of the game in the Remake branch.
-
-<br>
-
-Initial configuration
-Save it inside the src folder
-
-# .env file configuration
-(It is necessary to create it)
-save it in the src folder
-
-PORT_SERVER_WEB=3000<br>
-PORT_SERVER_GAME=9001<br>
-DB_HOST=localhost<br>
-DB_USER=root<br>
-DB_PASSWORD=<br>
-DB_DATABASE=name_of_database<br>
-DB_CONNECTION_LIMIT=500<br>
-
-<br>
-
-![image](https://user-images.githubusercontent.com/73305665/128940443-964344fc-7b66-461a-b2c0-2bdf669ad778.png)
-
-### What is the difference between basic and advanced?
+> **Why Dragonbound?**  
+> Because Dragonbound is inspired by an old and fun game that is long gone. Another reason is that the animations used in this game [in the case of buttons, explosions and others] looks like a paper without animation.
 
 
-||Basic|Adanced|
-|--|--|--|
-| 🌪 Weather Effect |✖ | ✔ |
-| 🚜 Animation Mobile |✖  | ✔ |
-| 💨 Wind |✔ | ✔ |
-| 🏆 Ranking Search |✔ | ✔ |
-| 💻 Multiple servers |✖  | ✔ |
-| 🍪 Use session | ✖ | ✔ |
-| 💰 Buy Avatar | ✔ | ✔ |
-| 👚 Avatar Rares| ✔ | ✔ |
-| 💥 Bunge | ✖ | ✔ |
-| 🎁 Send a gift | ✖ | ✔ |
-| 🔧 Build % | 65% | 92% |
+## Projects
 
-<br><br>
-# 1. Server Basic
+This repository consists of two projects.
 
-### Utilities:
-- [DataBase.sql](https://github.com/alexwathever/Openbound-HTML5/blob/main/Client%20-%20Basic%20-%20v1-119/DataBase/dragonbound.sql)
+### - [Dragonbound.Server](https://github.com/Ox18/DragonboundRe/tree/remake/Dragonbound.Server)
 
-### Requirements:
-- NodeJS (v6.8+)
-- MySQL
+This is the server emulator, where the data of what the client does is shared.
 
-# 2. Server Advanced
-### Utilities:
-- [DataBase.sql](https://github.com/alexwathever/Openbound-HTML5/blob/main/Client%20-%20Advanced%20-%20v120/DataBase/game.sql)
+### - [Dragonbound.Client](https://github.com/Ox18/DragonboundRe/tree/remake/Dragonbound.Client)
 
-### Requirements:
-- NodeJS (v14.4) [backward incompatible due to old ECMAscript]
-- MySQL
+This is the project where the client will connect to the game.
 
-### Install Modules:
-```bash
-npm install
-```
-or
-```bash
-yarn install
-```
+## Instructions
 
-### Run Server:
-```
-node web.js
-node game.js
-```
-<br><br>
+### Install the necessary dependencies for both projects
 
-<h2>Contributors</h2>
+Open a terminal in each of the Client and Server project folders.
+Make sure you have installed NodeJS before.
+After that, in the terminal run the following command:
 
-<h3>Developers</h3>
+```npm i```
 
- - [AlexWathever](https://github.com/alexwathever/)  (Alex)
- - [SafedG](https://github.com/safedg)  (Safed)
- - [AndrewC](https://github.com/rksmw/) (AndrewC)
- - [Eddy](https://github.com/eddycasos/) (Eddy)
+or if you use yarn
 
-<h3>Tester</h3>
+```yarn```
 
- - [rayjencode](https://github.com/rayjencode/) (Melon Shake)
+### Execute projects
 
-## 🔥 Recommended extensions
+There is nothing more to do, just run the projects in a terminal each, with the command:
 
-### Animation Frogtion
-Animation for the game buttons, this will make it look like gunbound.
-<br>
-documentation: [https://github.com/Ox18/Frogtion](https://github.com/Ox18/Frogtion)<br>
-![Preview](https://github.com/Ox18/Frogtion/blob/master/images/example_1.gif)
+```npm run start```
 
+o
 
-## Licence and copyright
+```yarn start```
 
-All repositories/programs that copies this repository must include the following line:
-
-This file is part of SocialBound-HTML5
-
-SocialBound-HMTL5 is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-
-SocialBound-HMTL5 is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with OpenBound. If not, see  [http://www.gnu.org/licenses/](http://www.gnu.org/licenses/).
+<br />
+<br />
+Personally, I prefer to use YARN for the effectiveness and speed it brings when installing dependencies but, the use of package manager is at your discretion.
+After going through several projects trying to do the same project, they lack objectivity and make the project a disaster.
+This project tries to solve the errors that present those other private servers that have a lot of failures. I am open to any idea or suggestion.
+<br >
