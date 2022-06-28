@@ -1,9 +1,13 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.contentType = void 0;
-const contentType = (_req, res, next) => {
-    res.type("json");
-    next();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = (_req, res, next) => {
+  res.type("json");
+  next();
 };
-exports.contentType = contentType;
-//# sourceMappingURL=content-type.js.map
+
+exports.default = _default;

@@ -1,1 +1,0 @@
-{"version":3,"file":"get-users-controller-factory.js","sourceRoot":"","sources":["../../../../src/main/factories/controllers/get-users-controller-factory.ts"],"names":[],"mappings":";;;AAAA,4DAAgE;AAEhE,wDAA2D;AAEpD,MAAM,sBAAsB,GAAG,GAAe,EAAE;IACtD,MAAM,UAAU,GAAG,IAAI,gCAAkB,CAAC,IAAA,yBAAc,GAAE,CAAC,CAAC;IAC5D,OAAO,UAAU,CAAC;AACnB,CAAC,CAAC;AAHW,QAAA,sBAAsB,0BAGjC"}

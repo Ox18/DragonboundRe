@@ -5,9 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-require("dotenv").config();
+const morgan = require("morgan");
 
-var _default = {
-  port: process.env.PORT || 9001
-};
+var _default = morgan("dev");
+
 exports.default = _default;

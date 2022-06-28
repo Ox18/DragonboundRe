@@ -1,11 +1,15 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.cors = void 0;
-const cors = (_req, res, next) => {
-    res.set("access-control-allow-origin", "*");
-    res.set("access-control-allow-headers", "*");
-    res.set("access-control-allow-methods", "*");
-    next();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = (_req, res, next) => {
+  res.set("access-control-allow-origin", "*");
+  res.set("access-control-allow-headers", "*");
+  res.set("access-control-allow-methods", "*");
+  next();
 };
-exports.cors = cors;
-//# sourceMappingURL=cors.js.map
+
+exports.default = _default;

@@ -1,23 +1,29 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.adaptRoute = void 0;
-const adaptRoute = (controller) => {
-    return async (req, res) => {
-        const request = {
-            ...(req.body || {}),
-            ...(req.params || {}),
-            ...(req.query || {}),
-        };
-        const httpResponse = await controller.handle(request);
-        if (httpResponse.statusCode >= 200 && httpResponse.statusCode <= 299) {
-            res.status(httpResponse.statusCode).json(httpResponse.body);
-        }
-        else {
-            res.status(httpResponse.statusCode).json({
-                error: httpResponse.body.message,
-            });
-        }
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = controller => {
+  return async (req, res) => {
+    const request = {
+      body: req.body,
+      params: req.params,
+      query: req.query,
+      headers: req.headers
     };
+    const httpResponse = await controller.handle(request);
+
+    if (httpResponse.statusCode >= 200 && httpResponse.statusCode <= 299) {
+      res.status(httpResponse.statusCode).json(httpResponse.body);
+    } else {
+      res.status(httpResponse.statusCode).json({
+        error: httpResponse.body.name,
+        message: httpResponse.body.message
+      });
+    }
+  };
 };
-exports.adaptRoute = adaptRoute;
-//# sourceMappingURL=express-route-adapter.js.map
+
+exports.default = _default;

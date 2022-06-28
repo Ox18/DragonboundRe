@@ -50,3 +50,6 @@ Personally, I prefer to use YARN for the effectiveness and speed it brings when 
 After going through several projects trying to do the same project, they lack objectivity and make the project a disaster.
 This project tries to solve the errors that present those other private servers that have a lot of failures. I am open to any idea or suggestion.
 <br >
+
+### FOLDER TO NGINX
+/usr/local/etc/nginx/

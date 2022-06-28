@@ -1,36 +1,37 @@
 {
-  "name": "dragonbound.api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node dist/main/server.js",
-    "debug": "nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy ./dist/main/server.js",
-    "build": "rimraf dist && tsc -p tsconfig-build.json",
-    "build:watch": "rimraf dist && tsc -p tsconfig-build.json -w"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.3",
-    "module-alias": "^2.2.2",
-    "mysql2": "^2.3.3",
-    "rimraf": "^3.0.2"
-  },
-  "devDependencies": {
-    "@types/express": "^4.17.13",
-    "@types/jest": "^27.4.1",
-    "@types/node": "^17.0.25",
-    "@types/supertest": "^2.0.12",
-    "jest": "^27.5.1",
-    "nodemon": "^2.0.15",
-    "supertest": "^6.2.2",
-    "ts-jest": "^27.1.4",
-    "ts-node": "^10.7.0",
-    "typescript": "^4.6.3"
-  },
-  "_moduleAliases": {
-    "@": "dist"
-  }
+	"name": "api",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "babel src -d dist",
+		"start:dev": "babel-node src/main/server.js",
+		"test": "jest --detectOpenHandles",
+		"start:prod": "node dist/main/server.js",
+		"start:prod-pm2": "pm2 start dist/main/server.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/cli": "^7.17.10",
+		"@babel/core": "^7.18.5",
+		"@babel/node": "^7.18.5",
+		"@babel/preset-env": "^7.18.2",
+		"babel-plugin-module-resolver": "^4.1.0",
+		"bcrypt": "^5.0.1",
+		"dotenv": "^16.0.1",
+		"eslint": "^8.18.0",
+		"eslint-import-resolver-babel-module": "^5.3.1",
+		"eslint-plugin-import": "^2.26.0",
+		"jest": "^28.1.1",
+		"morgan": "^1.10.0"
+	},
+	"dependencies": {
+		"body-parser": "^1.20.0",
+		"express": "^4.18.1",
+		"multer": "^1.4.5-lts.1",
+		"mysql2": "^2.3.3",
+		"sequelize": "^6.21.1"
+	}
 }
