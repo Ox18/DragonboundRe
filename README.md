@@ -20,6 +20,14 @@ This is the server emulator, where the data of what the client does is shared.
 
 This is the project where the client will connect to the game.
 
+### - [Dragonbound.Api](https://github.com/Ox18/DragonboundRe/tree/remake/Dragonbound.API)
+
+Here is hosted the core of the entire application through an API Rest. The purpose is to make each service independent to achieve scalability.
+
+## Important
+
+A reverse proxy is being used (only in the case of the web project) to avoid certain redundancies in the code. To access the web project from your browser, use port 4000 as indicated in nginx.
+
 ## Instructions
 
 ### Install the necessary dependencies for both projects
