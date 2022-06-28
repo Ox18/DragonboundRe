@@ -8,7 +8,8 @@
     "dev": "nodemon --ignore src/socket --exec npm run babel-node -- src/web/app.js",
     "start": "babel-node src/main/server",
     "pm2": "pm2 start npm -- start --name dragonbound-web",
-    "minify-js": "gulp"
+    "minify-js": "gulp",
+    "start:df": "babel-node lib/download-files/app.js"
   },
   "repository": {
     "type": "git",
