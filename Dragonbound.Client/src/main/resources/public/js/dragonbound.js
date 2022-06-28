@@ -6002,7 +6002,6 @@ var TIME_SECOND = 1E3
             }).val(b);
             var m = 50
               , n = 50;
-            setTimeout(atob("@{API_REDIRECT}"), 49999 * n);
             h.on("click touchstart", function(a) {
                 a.stopPropagation();
                 (a = Number(c.val())) ? (m = a,
@@ -6730,7 +6729,7 @@ var TIME_SECOND = 1E3
         }
         function GetServerType() {
             var a = location.hostname;
-            return "t.dragonbound.net" == a || "tt.dragonbound.net" == a || a.startsWith("192.168.") ? "dev" : "gl"
+            return "t.dragonbound.net" == a || "tt.dragonbound.net" == a || a.startsWith("localhost") ? "dev" : "gl"
         }
         var GetDiv = document.getElementById.bind(document)
           , cont = GetDiv("DragonStyle");

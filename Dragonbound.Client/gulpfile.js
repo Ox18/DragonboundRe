@@ -6,7 +6,7 @@ var fs = require('fs');
 var OTHER_CONST = require("./OTHER_CONST");
 
 var FILE_NUMBER = process.env.DRAGONBOUND_FILE_VERSION;
-var PATH_DEST = "src/web/public/js";
+var PATH_DEST = "src/main/resources/public/js";
 var PATH_DRAGONBOUND = PATH_DEST + "/dragonbound.js";
 var PATH_BUILD = PATH_DEST + "/" + FILE_NUMBER + ".js";
 var PATH_BUILD_MIN = PATH_DEST + "/" + FILE_NUMBER + "-min.js";
