@@ -6,7 +6,7 @@
   "scripts": {
     "babel-node": "babel-node",
     "dev": "nodemon --ignore src/socket --exec npm run babel-node -- src/web/app.js",
-    "start": "babel-node src/web/app.js",
+    "start": "babel-node src/main/server",
     "pm2": "pm2 start npm -- start --name dragonbound-web",
     "minify-js": "gulp"
   },
@@ -23,11 +23,12 @@
   "homepage": "https://github.com/Ox18/Socialbound#readme",
   "dependencies": {
     "body-parser": "^1.19.2",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "express-async-errors": "^3.1.1",
-    "express-mysql-session": "^2.1.7",
+    "express-mysql-session": "^2.1.8",
     "express-query-int": "^3.0.0",
     "express-session": "^1.17.2",
     "jest": "^27.5.1",
@@ -42,6 +43,8 @@
     "ejs": "^3.1.6",
     "gulp": "^4.0.2",
     "gulp-minify": "^3.1.0",
+    "helmet": "^5.1.0",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.15"
   }
 }
