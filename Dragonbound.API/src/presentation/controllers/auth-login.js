@@ -29,13 +29,7 @@ export class AuthLoginController {
             return ok({
                 account,
                 user
-            })
-
-            // this.user_id = a;
-            // this.user_rank = b;
-            // this.user_auth_key = d;
-            // this.user_country = c;
-            //return ok([0, 26, "zwpeoriewrwemflwe", "PE", "Alex"]);
+            });
         } catch (ex) {
             return serverError(ex);
         }
