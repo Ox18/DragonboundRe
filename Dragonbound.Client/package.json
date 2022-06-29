@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/Ox18/Socialbound#readme",
   "dependencies": {
-    "body-parser": "^1.19.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
@@ -41,6 +40,8 @@
     "@babel/node": "^7.16.8",
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
     "ejs": "^3.1.6",
     "gulp": "^4.0.2",
     "gulp-minify": "^3.1.0",
