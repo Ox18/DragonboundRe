@@ -8,8 +8,9 @@ exports.AuthLoginController = void 0;
 var _httpHelper = require("../helpers/http-helper");
 
 class AuthLoginController {
-  constructor(findByWhereAccount) {
+  constructor(findByWhereAccount, findByWhereUser) {
     this.findByWhereAccount = findByWhereAccount;
+    this.findByWhereUser = findByWhereUser;
   }
 
   async handle(params) {
@@ -28,16 +29,27 @@ class AuthLoginController {
       });
 
       if (account === undefined) {
-        return (0, _httpHelper.ok)(["Account not found", "Please check your username and password"]);
-      } // this.user_id = a;
+        return (0, _httpHelper.ok)(0);
+      }
+
+      const user = await this.findByWhereUser.findByWhere({
+        account_id: account.id
+      });
+
+      if (user === undefined) {
+        return (0, _httpHelper.ok)(["User not found", "Please, contact the administrator"]);
+      }
+
+      return (0, _httpHelper.ok)({
+        account,
+        user
+      }); // this.user_id = a;
       // this.user_rank = b;
       // this.user_auth_key = d;
       // this.user_country = c;
-
-
-      return (0, _httpHelper.ok)([1, 24, "zwpeoriewrwemflwe", "PE"]);
+      //return ok([0, 26, "zwpeoriewrwemflwe", "PE", "Alex"]);
     } catch (ex) {
-      return (0, _httpHelper.ok)(["Error", ex.message]);
+      return (0, _httpHelper.serverError)(ex);
     }
   }
 

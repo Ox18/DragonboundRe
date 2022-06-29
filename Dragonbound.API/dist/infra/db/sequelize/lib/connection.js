@@ -11,6 +11,8 @@ var _mysqlConfig = require("./mysql-config");
 
 var _Account = _interopRequireDefault(require("../models/Account"));
 
+var _User = _interopRequireDefault(require("../models/User"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const connection = new _sequelize.Sequelize(..._mysqlConfig.mysqlConfig);
@@ -20,3 +22,4 @@ exports.db = db;
 db.Sequelize = _sequelize.Sequelize;
 db.connection = connection;
 db.Account = (0, _Account.default)(connection, _sequelize.Sequelize);
+db.User = (0, _User.default)(connection, _sequelize.Sequelize);
