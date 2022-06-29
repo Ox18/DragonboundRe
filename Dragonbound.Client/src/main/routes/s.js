@@ -1,16 +1,5 @@
-import { postAjaxLoginService } from "../../services/api_local/post-ajaxLogin.service";
+import getIndexController from "../../presentation/controllers/s/get-index";
 
 export default (router) => {
-    router.get("/s", async (req, res) => {
-        if (req.session.auth) {
-            try {
-                const response = await postAjaxLoginService(req.session.auth);
-                res.json(response);
-            } catch (ex) {
-                res.json(["Error occurred", ex.message]);
-            }
-        } else {
-            res.json([0]);
-        }
-    })
+    router.get("/s", getIndexController);
 }

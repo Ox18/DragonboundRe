@@ -8,15 +8,22 @@ export default (connection, Sequelize) => {
         rank: {
             type: Sequelize.INTEGER,
             allowNull: false,
+            defaultValue: 0,
         },
         country: {
             type: Sequelize.STRING,
             allowNull: false,
+            defaultValue: ''
         },
         game_id: {
             type: Sequelize.STRING,
             allowNull: false,
             unique: true,
+        },
+        gender: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            defaultValue: 'm'
         }
     });
     return User;

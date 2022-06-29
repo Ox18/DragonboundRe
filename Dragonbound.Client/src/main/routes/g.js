@@ -1,6 +1,5 @@
+import postIndexController from "../../presentation/controllers/g/post-index";
+
 export default (router) => {
-    router.post("/g", async (req, res) => {
-        req.session.destroy();
-        res.redirect('/');
-    })
+    router.post("/g", postIndexController);
 }

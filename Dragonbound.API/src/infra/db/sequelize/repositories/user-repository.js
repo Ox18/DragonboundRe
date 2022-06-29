@@ -11,4 +11,8 @@ export class UserRepository {
         });
         return user?.get();
     }
+
+    async create(user) {
+        return await this.userModel.create(user);
+    }
 }

@@ -1,0 +1,8 @@
+POST http://localhost:9001/auth/register HTTP/1.1
+content-type: application/json
+
+{
+    "name": "t222hola",
+    "password": "xd",
+    "gender": "m"
+}
