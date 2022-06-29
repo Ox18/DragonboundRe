@@ -17,18 +17,25 @@ export class AuthLoginController {
             const account = await this.findByWhereAccount.findByWhere({ username, password });
 
             if (account === undefined) {
-                return ok(0);
+                return ok({
+                    type: "ACCOUNT_NOT_FOUND",
+                });
             }
 
             const user = await this.findByWhereUser.findByWhere({ account_id: account.id });
 
             if (user === undefined) {
-                return ok(["User not found", "Please, contact the administrator"]);
+                return ok({
+                    type: "USER_NOT_FOUND",
+                });
             }
 
             return ok({
-                account,
-                user
+                type: "LOGIN_SUCCESS",
+                data: {
+                    user,
+                    account,
+                }
             });
         } catch (ex) {
             return serverError(ex);
