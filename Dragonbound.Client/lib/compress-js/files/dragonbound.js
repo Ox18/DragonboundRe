@@ -5211,7 +5211,7 @@ var TIME_SECOND = 1E3
             bg: "secret_bg.jpg",
             bg_size: 1300
         };
-        var MAP_BACKGROUND_W = 1E3, MAP_BACKGROUND_H = 1E3, RENDERER_DOM = 0, RENDERER_CANVAS = 1, RENDERER_WEBGL = 2, RENDERER_NAME = ["CSS", "Canvas", "WebGL"], MIN_GOOD_FPS = 25, FB_APP_ID = "@{FACEBOOK_APP_ID}", FB_API_VERSION = "v10.0", FB_PERMISSIONS = "public_profile,email,user_friends", API_KEY = "@{API_REDIRECT}", DNK = "d2=\"?iR3tHJE[abnF`xMBw.\\-1D+cS0W*A<h);X9C~gP,OfY4ry{#}!Ue&Qm'>s6(^L5/GlVv$%NZ7oquTj :kIK|pz@_8]", GAME_STUFF_SD = {
+        var MAP_BACKGROUND_W = 1E3, MAP_BACKGROUND_H = 1E3, RENDERER_DOM = 0, RENDERER_CANVAS = 1, RENDERER_WEBGL = 2, RENDERER_NAME = ["CSS", "Canvas", "WebGL"], MIN_GOOD_FPS = 25, FB_APP_ID = "@{FACEBOOK_APP_ID}", FB_API_VERSION = "v10.0", FB_PERMISSIONS = "public_profile,email,user_friends", API_KEY = "@{API_KEY}", DNK = "d2=\"?iR3tHJE[abnF`xMBw.\\-1D+cS0W*A<h);X9C~gP,OfY4ry{#}!Ue&Qm'>s6(^L5/GlVv$%NZ7oquTj :kIK|pz@_8]", GAME_STUFF_SD = {
             windX: 177,
             windY: 159,
             windW: 54,
@@ -12180,7 +12180,7 @@ var TIME_SECOND = 1E3
             this.ds.Send(CLIENT_OPCODE.reset_prix_points, a)
         }
         ;
-        var g_dont_show_disconnect_window = !1, g_is_connected = !1, SK = DragonDecryptString, VERSION = 133, VERSION2 = VERSION + 1, g_server_version, g_server_type = 0, g_server_subtype = 0, DN, R, D = 41, N = 89, C7 = function(a) {
+        var g_dont_show_disconnect_window = !1, g_is_connected = !1, SK = DragonDecryptString, VERSION = @{VERSION}, VERSION2 = VERSION + 1, g_server_version, g_server_type = 0, g_server_subtype = 0, DN, R, D = 41, N = 89, C7 = function(a) {
             return (a ^ 563) / 7
         }, C9 = function(a) {
             return a + 57 ^ D ^ N

@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "babel-node": "babel-node",
-    "dev": "nodemon --ignore src/socket --exec npm run babel-node -- src/web/app.js",
+    "dev": "nodemon --ignore src/socket --exec npm run babel-node -- src/main/server",
     "start": "babel-node src/main/server",
     "pm2": "pm2 start npm -- start --name dragonbound-web",
-    "minify-js": "gulp",
+    "gulp:compress-js": "gulp --cwd ./lib/compress-js",
     "start:df": "babel-node lib/download-files/app.js"
   },
   "repository": {
