@@ -1,3 +1,7 @@
+
+import { Client } from "../../models/Client";
+import { PacketHelper } from "../helper/packet-helper";
+
 export class SuperServerController {
     constructor(ws, id) {
         this.ws = ws;
@@ -5,19 +9,16 @@ export class SuperServerController {
         this.ws.on("connection", this.onConnection.bind(this));
     }
 
-    onConnection(client, request) {
-        var client_id = request.headers['sec-websocket-key'];
+    onConnection(connection, request) {
+        var webSocketId = request.headers['sec-websocket-key'];
         const serverId = this.getServerIdFromRequest(request);
-        if(serverId === this.id){
-            console.log(client_id);
-            console.log("super server connected with id: " + serverId);
+        if (serverId === this.id) {
+            const client = new Client(webSocketId, this.ws, connection, this);
         }
+        // const response = [9, 133, "xd", 1, 1];
+        // connection.send(PacketHelper.Encode(...response));
     }
-
-    onMessage(){
-
-    }
-
+    
     getServerIdFromRequest(request) {
         return parseInt(request.url.split("/")[1]);
     }
