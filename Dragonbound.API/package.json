@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"build": "babel src -d dist",
-		"start:dev": "babel-node src/main/server.js",
+		"start": "babel-node src/main/server.js",
 		"test": "jest --detectOpenHandles",
 		"start:prod": "node dist/main/server.js",
 		"start:prod-pm2": "pm2 start dist/main/server.js"
@@ -25,7 +25,8 @@
 		"eslint-import-resolver-babel-module": "^5.3.1",
 		"eslint-plugin-import": "^2.26.0",
 		"jest": "^28.1.1",
-		"morgan": "^1.10.0"
+		"morgan": "^1.10.0",
+		"yup": "^0.32.11"
 	},
 	"dependencies": {
 		"body-parser": "^1.20.0",
