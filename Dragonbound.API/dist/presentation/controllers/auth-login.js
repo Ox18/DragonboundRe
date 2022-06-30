@@ -29,7 +29,9 @@ class AuthLoginController {
       });
 
       if (account === undefined) {
-        return (0, _httpHelper.ok)(0);
+        return (0, _httpHelper.ok)({
+          type: "ACCOUNT_NOT_FOUND"
+        });
       }
 
       const user = await this.findByWhereUser.findByWhere({
@@ -37,12 +39,17 @@ class AuthLoginController {
       });
 
       if (user === undefined) {
-        return (0, _httpHelper.ok)(["User not found", "Please, contact the administrator"]);
+        return (0, _httpHelper.ok)({
+          type: "USER_NOT_FOUND"
+        });
       }
 
       return (0, _httpHelper.ok)({
-        account,
-        user
+        type: "LOGIN_SUCCESS",
+        data: {
+          user,
+          account
+        }
       });
     } catch (ex) {
       return (0, _httpHelper.serverError)(ex);

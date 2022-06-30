@@ -20,7 +20,8 @@ class AccountRepository {
   }
 
   async create(account) {
-    return await this.accountModel.create(account);
+    const response = await this.accountModel.create(account);
+    return response?.get();
   }
 
 }

@@ -12715,7 +12715,7 @@ var TIME_SECOND = 1E3
             ;
             R = k;
             a && (d.SetHandler("receive", Object.freeze(k)),
-            d.Connect("ws://" + a + "/" + c));
+            d.Connect("ws://" + a + ":9002/" + c));
             DN = this;
             this.ds = d;
             return !0
