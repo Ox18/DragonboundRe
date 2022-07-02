@@ -13,7 +13,7 @@ export class ServerRepository {
     }
 
     async findAllArray() {
-        const servers = this.findAll();
+        const servers = await this.findAll();
         return servers.map(server => this.__convertToArray(server));
     }
 

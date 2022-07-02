@@ -1,4 +1,4 @@
-import { ok } from "../helpers/http-helper";
+import { ok, serverError } from "../helpers/http-helper";
 
 export class OnlineServersController {
     constructor(
@@ -22,6 +22,7 @@ export class OnlineServersController {
                 ]
             )
         } catch (ex) {
+            console.log(ex)
             return serverError(ex);
         }
     }

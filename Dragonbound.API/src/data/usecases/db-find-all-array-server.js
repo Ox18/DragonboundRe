@@ -5,7 +5,7 @@ export class DbFindAllArrayServer {
         this.ServerRepository = ServerRepository;
     }
 
-    async findAll() {
+    async findAllArray() {
         const response = await this.ServerRepository.findAllArray();
         return response;
     }
