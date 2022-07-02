@@ -28,7 +28,6 @@ export class SuperServerController {
             const client = new Client(webSocketId, connection, this);
             this.clients.subscribe(client);
             client.send([SERVER_OPCODE.hi, this.version, this.name, this.type, this.subtype]);
-            console.log(this);
         }
     }
 

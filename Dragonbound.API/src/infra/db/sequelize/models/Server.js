@@ -8,6 +8,10 @@ export default (connection, Sequelize) => {
             type: Sequelize.INTEGER,
             allowNull: false,
         },
+        subtype: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+        },
         port: {
             type: Sequelize.INTEGER,
             allowNull: false,
