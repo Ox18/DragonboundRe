@@ -1,8 +1,8 @@
 import { Repository } from "../lib/repository";
 
-export class AccountRepository extends Repository {
+export class AvatarRepository extends Repository {
     constructor() {
         super();
-        this.model = this.db.Account;
+        this.model = this.db.Avatar;
     }
 }

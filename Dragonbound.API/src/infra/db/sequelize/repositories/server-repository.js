@@ -1,25 +1,14 @@
-import { db } from "../lib/connection";
+import { Repository } from "../lib/repository";
 
-export class ServerRepository {
+export class ServerRepository extends Repository {
     constructor() {
-        this.serverModel = db.Server;
-    }
-
-    async findByWhere(where) {
-        const server = await this.serverModel.findOne({
-            where
-        });
-        return server.get();
+        super();
+        this.model = this.db.Server;
     }
 
     async findAllArray() {
         const servers = await this.findAll();
         return servers.map(server => this.__convertToArray(server));
-    }
-
-    async findAll() {
-        const servers = await this.serverModel.findAll();
-        return servers.map(server => server.get());
     }
 
     __convertToArray(server) {

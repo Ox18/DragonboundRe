@@ -1,18 +1,7 @@
-import { db } from "../lib/connection";
+import { Repository } from "../lib/repository";
 
-export class UserRepository {
+export class UserRepository extends Repository {
     constructor() {
-        this.userModel = db.User;
-    }
-
-    async findByWhere(where) {
-        const user = await this.userModel.findOne({
-            where
-        });
-        return user?.get();
-    }
-
-    async create(user) {
-        return await this.userModel.create(user);
+        this.model = this.db.User;
     }
 }
