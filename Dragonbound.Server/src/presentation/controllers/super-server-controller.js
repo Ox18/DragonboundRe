@@ -1,8 +1,12 @@
-
+import { SERVER_OPCODE } from "../../consts/server-opcode";
 import { Client } from "../../models/Client";
-import { PacketHelper } from "../helper/packet-helper";
 
 export class SuperServerController {
+    name = "SuperServer";
+    version = 133;
+    type = 1;
+    subtype = 2;
+
     constructor(ws, id) {
         this.ws = ws;
         this.id = id;
@@ -14,9 +18,8 @@ export class SuperServerController {
         const serverId = this.getServerIdFromRequest(request);
         if (serverId === this.id) {
             const client = new Client(webSocketId, this.ws, connection, this);
+            client.send([SERVER_OPCODE.hi, this.version, this.name, this.type, this.subtype]);
         }
-        // const response = [9, 133, "xd", 1, 1];
-        // connection.send(PacketHelper.Encode(...response));
     }
     
     getServerIdFromRequest(request) {

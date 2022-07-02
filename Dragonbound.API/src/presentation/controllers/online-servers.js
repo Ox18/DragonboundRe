@@ -2,15 +2,15 @@ import { ok } from "../helpers/http-helper";
 
 export class OnlineServersController {
     constructor(
-        findAllServers
+        findAllArrayServers
     ) {
-        this.findAllServers = findAllServers;
+        this.findAllArrayServers = findAllArrayServers;
     }
 
 
     async handle() {
         try {
-            const response = await this.findAllServers.findAll();
+            const response = await this.findAllArrayServers.findAllArray();
 
             return ok(
                 [

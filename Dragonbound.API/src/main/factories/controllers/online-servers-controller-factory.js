@@ -1,7 +1,7 @@
 import { OnlineServersController } from "../../../presentation/controllers/online-servers";
-import { makeDbFindAllServer } from "../usecases/find-all-server-factory";
+import { makeDbFindAllArrayServer } from "../usecases/find-all-array-server-factory";
 
 export const makeOnlineServersController = () => {
-    const controller = new OnlineServersController(makeDbFindAllServer());
+    const controller = new OnlineServersController(makeDbFindAllArrayServer());
     return controller
 }

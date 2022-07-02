@@ -7,10 +7,10 @@ exports.makeOnlineServersController = void 0;
 
 var _onlineServers = require("../../../presentation/controllers/online-servers");
 
-var _findAllServerFactory = require("../usecases/find-all-server-factory");
+var _findAllArrayServerFactory = require("../usecases/find-all-array-server-factory");
 
 const makeOnlineServersController = () => {
-  const controller = new _onlineServers.OnlineServersController((0, _findAllServerFactory.makeDbFindAllServer)());
+  const controller = new _onlineServers.OnlineServersController((0, _findAllArrayServerFactory.makeDbFindAllArrayServer)());
   return controller;
 };
 
