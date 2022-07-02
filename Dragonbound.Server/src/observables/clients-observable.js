@@ -14,4 +14,8 @@ export class ClientsObservable {
     notify(...args) {
         this.observers.forEach(obs => obs.update(...args));
     }
+
+    getCount() {
+        return this.observers.length;
+    }
 }

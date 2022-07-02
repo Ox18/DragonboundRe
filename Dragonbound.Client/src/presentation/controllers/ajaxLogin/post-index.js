@@ -19,7 +19,7 @@ export default async (req, res) => {
                 req.session.account = account;
                 req.session.user = user;
                 req.session.auth = req.body;
-                res.json([0, user?.rank, req.sessionID, user?.country, user?.game_id]);
+                res.json([0, user.rank, req.sessionID, user.id, user.game_id]);
                 break;
             default:
                 res.json(0);

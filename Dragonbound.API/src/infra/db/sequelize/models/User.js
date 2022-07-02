@@ -24,7 +24,37 @@ export default (connection, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false,
             defaultValue: 'm'
-        }
+        },
+        gp: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            defaultValue: 1000
+        },
+        gold: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            defaultValue: 500000
+        },
+        cash: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            defaultValue: 20000
+        },
+        unlock: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
+        photo_url: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            defaultValue: "",
+        }, 
+        name_changes: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
     });
     return User;
 }

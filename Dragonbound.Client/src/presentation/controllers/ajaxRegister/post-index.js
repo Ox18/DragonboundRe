@@ -22,7 +22,7 @@ export default async (req, res) => {
                 req.session.account = account;
                 req.session.user = user;
                 req.session.auth = { username: body.name, password: body.password };
-                res.json([0, user?.rank, req.sessionID, user?.country, user?.game_id]);
+                res.json([0, user.rank, req.sessionID, user.id, user.game_id]);
                 break;
             default:
                 throw new Error(`Unknown error`);
