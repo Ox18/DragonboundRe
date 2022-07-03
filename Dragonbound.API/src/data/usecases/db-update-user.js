@@ -1,12 +1,12 @@
-export class DbCreateUser {
+export class DbUpdateUser {
     constructor(
         repository
     ) {
         this.repository = repository;
     }   
 
-    async create() {
-        const response = await this.repository.create(...arguments);
+    async update() {
+        const response = await this.repository.update(...arguments);
         return response;
     }
 }

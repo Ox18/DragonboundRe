@@ -1,4 +1,4 @@
-export class DbCreateUser {
+export class DbCreateServer {
     constructor(
         repository
     ) {

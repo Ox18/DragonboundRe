@@ -1,12 +1,14 @@
 export class DbFindByWhereAccount {
     constructor(
-        AccountRepository
+        repository
     ) {
-        this.AccountRepository = AccountRepository;
-    }
+        this.repository = repository;
+    }   
 
-    async findByWhere(where) {
-        const response = await this.AccountRepository.findByWhere(where);
+    async findByWhere() {
+        const response = await this.repository.findByWhere(...arguments);
         return response;
     }
 }
+        
+        

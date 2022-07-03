@@ -1,12 +1,12 @@
-export class DbCreateUser {
+export class DbDeleteUser {
     constructor(
         repository
     ) {
         this.repository = repository;
     }   
 
-    async create() {
-        const response = await this.repository.create(...arguments);
+    async delete() {
+        const response = await this.repository.delete(...arguments);
         return response;
     }
 }

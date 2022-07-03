@@ -1,4 +1,4 @@
-export class DbCreateUser {
+export class DbCreateUserAvatarEquipped {
     constructor(
         repository
     ) {

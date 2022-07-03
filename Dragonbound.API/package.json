@@ -8,7 +8,8 @@
 		"start": "babel-node src/main/server.js",
 		"test": "jest --detectOpenHandles",
 		"start:prod": "node dist/main/server.js",
-		"start:prod-pm2": "pm2 start dist/main/server.js"
+		"start:prod-pm2": "pm2 start dist/main/server.js",
+		"start:make-functions": "node lib/make-data-functions/index"
 	},
 	"keywords": [],
 	"author": "",

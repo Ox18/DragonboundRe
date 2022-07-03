@@ -1,12 +1,12 @@
-export class DbCreateUser {
+export class DbFindByWhereAvatar {
     constructor(
         repository
     ) {
         this.repository = repository;
     }   
 
-    async create() {
-        const response = await this.repository.create(...arguments);
+    async findByWhere() {
+        const response = await this.repository.findByWhere(...arguments);
         return response;
     }
 }

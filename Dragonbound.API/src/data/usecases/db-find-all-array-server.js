@@ -1,12 +1,14 @@
 export class DbFindAllArrayServer {
     constructor(
-        ServerRepository
+        repository
     ) {
-        this.ServerRepository = ServerRepository;
-    }
+        this.repository = repository;
+    }   
 
     async findAllArray() {
-        const response = await this.ServerRepository.findAllArray();
+        const response = await this.repository.findAllArray(...arguments);
         return response;
     }
 }
+        
+        

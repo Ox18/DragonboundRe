@@ -1,12 +1,12 @@
-export class DbCreateUser {
+export class DbFindAllUserEvents {
     constructor(
         repository
     ) {
         this.repository = repository;
     }   
 
-    async create() {
-        const response = await this.repository.create(...arguments);
+    async findAll() {
+        const response = await this.repository.findAll(...arguments);
         return response;
     }
 }

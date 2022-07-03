@@ -1,4 +1,4 @@
-export class DbCreateUser {
+export class DbCreateGuild {
     constructor(
         repository
     ) {

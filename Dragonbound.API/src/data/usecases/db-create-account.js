@@ -1,12 +1,14 @@
 export class DbCreateAccount {
     constructor(
-        AccountRepository
+        repository
     ) {
-        this.AccountRepository = AccountRepository;
-    }
+        this.repository = repository;
+    }   
 
-    async create(user) {
-        const response = await this.AccountRepository.create(user);
+    async create() {
+        const response = await this.repository.create(...arguments);
         return response;
     }
 }
+        
+        

@@ -1,4 +1,4 @@
-export class DbFindByWhereUser {
+export class DbFindByWhereUserAvatarEquipped {
     constructor(
         repository
     ) {
