@@ -57,6 +57,7 @@ gulp.task("default", async (done) => {
         const MERGE_JSON = JSON.stringify(MERGE_TEXT, null, 2);
         fs.writeFileSync("../../src/main/resources/public/js/1089276.js", MERGE_JSON);
         fs.unlinkSync("./files/secret-dragonbound-min.js");
+        fs.unlinkSync("./files/secret-dragonbound.js");
     });
     
     done();
