@@ -51,12 +51,13 @@ gulp.task("default", async (done) => {
     const stream = gulp.src("./files/secret-dragonbound.js", { allowEmpty: true })
         .pipe(minify({ noSource: true }))
         .pipe(gulp.dest("./files"));
+
     stream.on("end", function () {
         const MERGE_TEXT = fs.readFileSync("./files/secret-dragonbound-min.js", "utf8");
         const MERGE_JSON = JSON.stringify(MERGE_TEXT, null, 2);
-        fs.writeFileSync("./files/secret-dragonbound.js", MERGE_JSON);
+        fs.writeFileSync("../../src/main/resources/public/js/1089276.js", MERGE_JSON);
         fs.unlinkSync("./files/secret-dragonbound-min.js");
-    }
-    )
+    });
+    
     done();
 })

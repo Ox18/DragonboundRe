@@ -9,7 +9,7 @@
 		"test": "jest --detectOpenHandles",
 		"start:prod": "node dist/main/server.js",
 		"start:prod-pm2": "pm2 start dist/main/server.js",
-		"start:make-functions": "node lib/make-data-functions/index"
+		"start:make-functions": "babel-node lib/make-data-functions/index"
 	},
 	"keywords": [],
 	"author": "",
