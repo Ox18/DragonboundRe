@@ -1,0 +1,52 @@
+{
+  "name": "socialbound",
+  "version": "1.0.0",
+  "description": "**Discord Group** :speech_balloon: https://discord.gg/pApEqzeMEW",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --ignore src/socket --exec npm run babel-node -- src/main/server",
+    "start": "babel-node src/main/server",
+    "start:pm2": "pm2 start npm -- start --name dragonbound-web"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ox18/Socialbound.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ox18/Socialbound/issues"
+  },
+  "homepage": "https://github.com/Ox18/Socialbound#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "express-async-errors": "^3.1.1",
+    "express-mysql-session": "^2.1.8",
+    "express-query-int": "^3.0.0",
+    "express-session": "^1.17.2",
+    "jest": "^27.5.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.0",
+    "@babel/core": "^7.17.0",
+    "@babel/node": "^7.16.8",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "@babel/preset-env": "^7.16.11",
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "ejs": "^3.1.6",
+    "gulp": "^4.0.2",
+    "gulp-minify": "^3.1.0",
+    "helmet": "^5.1.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
+    "yup": "^0.32.11"
+  }
+}

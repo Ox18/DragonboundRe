@@ -1,0 +1,5 @@
+{
+    "register": {
+        "user_exist": "El usuario ya existe"
+    }
+}
