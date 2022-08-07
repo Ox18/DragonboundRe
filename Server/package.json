@@ -1,0 +1,29 @@
+{
+	"name": "socket",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "nodemon --ignore src/socket --exec npm run babel-node -- src/main/main",
+		"start": "babel-node src/main/main",
+		"start:pm2": "pm2 start npm -- start --name dragonbound-client"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"dotenv": "^16.0.1",
+		"express": "^4.18.1",
+		"ws": "^8.8.1"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.17.0",
+		"@babel/core": "^7.17.0",
+		"@babel/node": "^7.16.8",
+		"@babel/plugin-transform-runtime": "^7.17.0",
+		"@babel/preset-env": "^7.16.11",
+		"babel-plugin-module-resolver": "^4.1.0",
+	    "mysql2": "^2.3.3",
+	    "sequelize": "^6.21.3"
+	}
+}

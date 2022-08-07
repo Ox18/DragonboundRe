@@ -1,0 +1,1 @@
+export const generateTimestamp = () => new Date().toLocaleString().split(',').join(' ');
