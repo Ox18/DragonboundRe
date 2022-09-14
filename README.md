@@ -1,6 +1,10 @@
-# DragonboundRE (v133)
+## Announcement: 
+This project is being converted to a microservices architecture. 
+If you want to know more about that implementation, I invite you to check this organization where I upload weekly updates. https://github.com/u-roboro
 
-DragonboundRE is a project for educational purposes to learn more about Reverse Engineering in a web environment. The main goal of this project is to create a functional mock client that can be used to understand WebSocket based architectures. This can be used to get much better practice on developing applications with real-time data exchange.
+# DragonboundRE (v133)
+ 
+DragonboundRE is a project for educational purposes to learn more about Reverse Engineering in a web environment. The main goal of this project is to create a functional mock client that can be used to understand WebSocket based architectures. This can be used to get much better practice on developing applications with real-time data exchange. 
 
 > **Why Dragonbound?**  
 > Because Dragonbound is inspired by an old and fun game that is long gone. Another reason is that the animations used in this game [in the case of buttons, explosions and others] looks like a paper without animation.
