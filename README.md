@@ -9,8 +9,6 @@ DragonboundRE is a project for educational purposes to learn more about Reverse 
 > **Why Dragonbound?**  
 > Because Dragonbound is inspired by an old and fun game that is long gone. Another reason is that the animations used in this game [in the case of buttons, explosions and others] looks like a paper without animation.
 
-> **Discord Group** :speech_balloon: <br>
-> https://discord.gg/pApEqzeMEW
 
 ## Projects
 
