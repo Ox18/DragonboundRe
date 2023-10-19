@@ -1,1 +1,0 @@
-GET http://localhost:9001/checkName?name=wilmerdelgado HTTP/1.1

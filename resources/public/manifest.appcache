@@ -1,0 +1,54 @@
+CACHE MANIFEST
+
+# code
+js/avatars.js?2
+js/avatars.Original.js?1
+js/DragonBound.compiled.js?2
+js/DragonOriginal.js?1
+css/DragonBound.min.css?2
+css/DragonBound.Original.css?1
+
+# lobby
+images/lobby_stuff4.png
+images/themes/gl/bg_full.jpg
+images/themes/gl/maps.png
+#images/arrow.png
+#images/avatars/fh00011.png
+#images/avatars/fb00011.png
+images/bg_channels2.jpg
+images/bg-gb-scrollbar-track-y.png
+images/bg-gb-scrollbar-trackend-y.png
+images/bg-gb-scrollbar-thumb-y.png
+
+# room
+images/room_stuff2.png
+images/ready2.gif
+images/start2.gif
+images/me.gif
+images/items.png
+images/bg_blue.jpg
+#images/fb_boy.gif
+#images/fb_girl.gif
+
+# game
+images/game_stuff3.png?3
+images/turn_timer.png
+images/repeat_x.png
+images/thor.png
+images/lightnings.png
+images/1/gold.png
+images/1/turn.png
+images/1/turnwa.png
+images/1/bpush1.png
+images/1/bselect1.png
+images/scores_stuff.png
+#images/hand.cur
+#//2.dragonbound.net/static/images/hotlink-ok/trans.gif
+
+# shop
+images/shop_stuff3.png
+
+NETWORK:
+*
+http://*
+https://*

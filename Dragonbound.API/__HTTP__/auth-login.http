@@ -1,7 +1,0 @@
-POST http://localhost:9001/auth/login HTTP/1.1
-content-type: application/json
-
-{
-    "u": "testing",
-    "p": "testing"
-}
