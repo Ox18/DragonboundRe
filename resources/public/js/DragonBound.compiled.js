@@ -5687,7 +5687,7 @@ function LoadRanking(e, o, t) {
     if (!(1 != e && 2 != e) && ($(".ranking_btn").removeClass("selected"), $("#ranking_btn_type" + e).addClass("selected"), !g_is_ranking_loading)) {
         if (isNaN(o) || (o = o - o % RANKING_PAGE_SIZE + 1), rankings_cache[e][o] && get_time() < rankings_cache[e][o].x) debug && console.log("[DragonRankings] From Cache:", o), DragonRankings_BuildPage(rankings_cache[e][o].d, e, t, o);
         else {
-            var a = "http://" + ("dev" == SERVER_TYPE ? "www" : "rankings") + ".carlosx.byethost15.com:" + (1 == e ? "br" == SERVER_TYPE ? 9921 : 9911 : "br" == SERVER_TYPE ? 9922 : 9912) + "/r.php";
+            var a = location.origin + "/r.php";
             debug && console.log("[DragonRankings] Asking For:", o), debug && t0(), g_is_ranking_loading = !0, $.get(a, {
                 s: o
             }, function(a) {

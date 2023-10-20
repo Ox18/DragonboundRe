@@ -24,6 +24,10 @@ export const userRepository: UserRepositoryImpl = {
 
     return user;
   },
+
+  getTotal: async (): Promise<number> => {
+    return await UserModel.countDocuments({});
+  }
 };
 
 export default userRepository;

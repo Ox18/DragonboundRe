@@ -22,6 +22,8 @@ export default controller<CreateUser>()
       return res.json(0);
     }
 
-    return res.json([user._id, user.rank, 10000, "xxxx", user.country]);
+    const totalPlayers = await userRepository.getTotal();
+
+    return res.json([user._id, user.rank, totalPlayers, "xxxx", user.country]);
   })
   .routes("/s.php");

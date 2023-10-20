@@ -17,10 +17,12 @@ export default controller<any>()
     req.session.set("user", user._id);
     req.session.set("account", account._id);
 
+    const totalPlayers = await userRepository.getTotal();
+
     return res.json([
       user._id,
       user.rank,
-      10000,
+      totalPlayers,
       "xxxx",
       user.country,
     ])
