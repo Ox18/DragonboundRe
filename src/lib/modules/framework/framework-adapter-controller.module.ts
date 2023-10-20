@@ -38,7 +38,7 @@ export const frameworkAdapterController = (
       };
 
       // @ts-ignore
-      await controller._handle(requestData);
+      await controller._handle(requestData, res);
     } catch (error) {
 
       if (error instanceof BaseException) {

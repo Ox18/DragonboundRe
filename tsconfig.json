@@ -10,7 +10,7 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["*"],
     }
   },
   "include": ["src"],

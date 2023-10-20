@@ -8,6 +8,7 @@ const schema = new mongoose.Schema({
   nickname: String,
   rank: Number,
   country: String,
+  account: String,
 })
 
 const collection = "users";
