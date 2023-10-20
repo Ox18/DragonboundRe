@@ -1,7 +1,7 @@
 import path from "path";
 import { application } from "./lib/application";
-import { initializeServers } from "./mock/services/initialize-servers.service";
+import { initialize } from "./mock/services/initalize.service";
 
 application(path.join(__dirname)).then(async () => {
-  await initializeServers();
+  await initialize();
 });

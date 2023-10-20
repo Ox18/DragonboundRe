@@ -2,18 +2,17 @@
   "compilerOptions": {
     "outDir": "dist",
     "module": "commonjs",
-    "target": "ES6",
+    "target": "es2019",
     "esModuleInterop": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "rootDir": "./src",
     "baseUrl": "src",
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "paths": {
-      "src/*": ["./src/*"]
+      "@/*": ["*"]
     }
   },
   "include": ["src"],
-  "exclude": [],
-  "types": ["node"]
+  "exclude": []
 }

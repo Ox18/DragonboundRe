@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-import { Server } from "../types/model";
 import { config } from "../config";
 import { Model } from "./model";
 
@@ -20,7 +19,7 @@ const schema = new mongoose.Schema({
 
 const collection = "servers";
 
-export default Model<Server>({
+export default Model({
   connection,
   schema,
   collection,

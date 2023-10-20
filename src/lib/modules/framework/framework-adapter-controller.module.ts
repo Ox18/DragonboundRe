@@ -3,6 +3,7 @@ import { RequestSessionController } from "../../types/request-controller.type";
 import { TemplateController } from "../../../lib/controllers/template.controller";
 import { FrameworkAdapterControllerParams } from "../../types/framework.type";
 import { Request, Response } from "express";
+import { BaseException } from "../../exceptions/base.exception";
 
 export const frameworkAdapterController = (
   params: FrameworkAdapterControllerParams
@@ -47,7 +48,12 @@ export const frameworkAdapterController = (
         res.status(200).json(data);
       }
     } catch (error) {
-      res.status(500).json({ error });
+
+      if (error instanceof BaseException) {
+        res.status(error.statusCode).send(error.message);
+      } else {
+        res.status(500).json({ error });
+      }
     }
   });
 };

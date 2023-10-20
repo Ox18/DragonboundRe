@@ -7,12 +7,11 @@ type ParamsModel = {
   collection: string;
 }
 
-export function Model<T = any>(params: ParamsModel) {
+export function Model(params: ParamsModel) {
   const connectionModel = mongoose.createConnection(params.connection, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
 
-  // @ts-ignore
-  return connectionModel.model<T>(params.collection, params.schema);
+  return connectionModel.model(params.collection, params.schema);
 }

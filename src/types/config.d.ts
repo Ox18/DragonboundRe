@@ -1,4 +1,4 @@
-import { ConfigHealth } from "@/lib/types/config-health.type";
+import { ConfigHealth } from "../lib/types/config-health.type";
 
 type ConnectionModel = {
   connection: string;

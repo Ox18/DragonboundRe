@@ -10,3 +10,8 @@ export type Server = {
   };
   identifier: number;
 }
+
+export type Account = {
+  username: string;
+  password: string;
+}
