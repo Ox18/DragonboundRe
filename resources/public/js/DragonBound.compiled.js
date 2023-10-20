@@ -5658,7 +5658,7 @@ function LoadRanks() {
     if ($(".ranking_btn").removeClass("selected"), $("#ranking_btn_ranks").addClass("selected"), !g_is_ranking_loading) {
         var e = get_time();
         if (ranks_cache && e < ranks_cache_expire) return debug && console.log("from cache"), DragonRankings_BuildRanks(ranks_cache);
-        var o = "http://rankings.dragonbound.net:" + ("br" == SERVER_TYPE ? 9921 : 9911) + "/i";
+        var o = location.origin + "/i";
         g_is_ranking_loading = !0, debug && t0(), $.get(o, function(o) {
             debug && t1("[DragonRankings] Ranks Query Time"), g_is_ranking_loading = !1, debug && console.log("Got Ranks:", o), 4 != o.length ? console.error("Bad ranks data", o) : (ranks_cache = o, ranks_cache_expire = e + RANKING_CACHE_TIME, DragonRankings_BuildRanks(o))
         }, "json").error(function() {
