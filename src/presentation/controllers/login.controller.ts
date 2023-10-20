@@ -1,5 +1,6 @@
 import { controller } from "../../lib/modules/controller-manager.module";
 import accountRepository from "../../infraestructure/repository/account.repository";
+import userRepository from "@/infraestructure/repository/user.repository";
 
 export default controller<any>()
   .handle(async (req, res) => {
@@ -7,9 +8,24 @@ export default controller<any>()
 
     const account = await accountRepository.signIn({ username, password });
 
-    if (!account) {
-      res.json(["Login failed", "The username or password is incorrect"]);
+    const user = await userRepository.getByAccount(account?._id);
+
+    if (!account || !user) {
+      return res.json(["Login failed", "The username or password is incorrect"]);
     }
+
+    req.session.set("user", user._id);
+    req.session.set("account", account._id);
+
+    return res.json([
+      user._id,
+      user.rank,
+      10000,
+      "xxxx",
+      user.country,
+    ])
+
+
 
     // [Case] >> Banned
     // return [

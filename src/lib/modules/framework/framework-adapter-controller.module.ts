@@ -2,8 +2,6 @@
 import { RequestSessionController } from "../../types/request-controller.type";
 import { FrameworkAdapterControllerParams } from "../../types/framework.type";
 import { Request, Response } from "express";
-import { BaseException } from "../../exceptions/base.exception";
-
 export const frameworkAdapterController = (
   params: FrameworkAdapterControllerParams
 ): void => {
@@ -22,7 +20,10 @@ export const frameworkAdapterController = (
         data: req.session.user,
         set: (key: string, value: any) => {
           // @ts-ignore
+          req.session.user = req.session.user || {};
+          // @ts-ignore
           req.session.user[key] = value;
+          req.session.save();
         },
         // @ts-ignore
         isActive: !!req.session.user,
@@ -40,12 +41,7 @@ export const frameworkAdapterController = (
       // @ts-ignore
       await controller._handle(requestData, res);
     } catch (error) {
-
-      if (error instanceof BaseException) {
-        res.status(error.statusCode).send(error.message);
-      } else {
-        res.status(500).json({ error });
-      }
+      console.log(error)
     }
   });
 };

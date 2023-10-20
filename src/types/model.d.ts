@@ -14,6 +14,7 @@ export type Server = {
 export type Account = {
   username: string;
   password: string;
+  _id: string;
 }
 
 export type User = {
@@ -21,4 +22,5 @@ export type User = {
   rank: number;
   country: string;
   account: string;
+  _id: string;
 }

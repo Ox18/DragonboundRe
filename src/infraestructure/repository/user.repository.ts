@@ -11,7 +11,11 @@ export const userRepository: UserRepositoryImpl = {
     await UserModel.insertMany(users);
   },
 
-  getByAccount: async (account: string): Promise<User | null> => {
+  getByAccount: async (account: string | null): Promise<User | null> => {
+    if (!account) {
+      return null;
+    }
+
     const user = await UserModel.findOne({ account });
 
     if (!user) {

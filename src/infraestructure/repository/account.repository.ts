@@ -18,6 +18,15 @@ const accountRepository: AccountImpl = {
 
     return account;
   },
+  getById(id: string): Promise<Account | null> {
+    const account = AccountModel.findById(id);
+
+    if (!account) {
+      return null;
+    }
+
+    return account;
+  }
 };
 
 export default accountRepository;

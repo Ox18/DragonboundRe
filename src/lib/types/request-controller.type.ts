@@ -7,7 +7,10 @@ export type RequestController<T> = {
 
 export type RequestSessionController = {
     set: (key: string, value: any) => void;
-    data: Record<string, any>;
-    destroy: (callbackError: (error: any) => void) => void;
+    data: {
+        user: string;
+        account: string;
+    };
+    destroy: (callbackError?: (error: any) => void) => void;
     isActive: boolean;
 }
