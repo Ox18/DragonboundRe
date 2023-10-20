@@ -1,10 +1,7 @@
-import { rest } from "../../lib/modules/controller-manager.module";
+import { controller } from "../../lib/modules/controller-manager.module";
 
-export default rest()
-  .handle(async (_request) => {
-    return [
-      1,
-      2
-    ];
+export default controller()
+  .handle(async (_request, res) => {
+    res.json([1, 2]);
   })
   .routes("/my_username");

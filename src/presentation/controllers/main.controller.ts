@@ -1,8 +1,7 @@
-import { template } from "../../lib/modules/controller-manager.module";
+import { controller } from "../../lib/modules/controller-manager.module";
 
-export default template()
-  .templateName("pages/index")
-  .handle(async (_request) => {
-    return {};
+export default controller()
+  .handle(async (_request, res) => {
+    res.render("pages/index");
   })
   .routes("/");

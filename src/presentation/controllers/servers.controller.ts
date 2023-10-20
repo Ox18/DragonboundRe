@@ -1,9 +1,9 @@
 import { config } from "../../config";
-import { rest } from "../../lib/modules/controller-manager.module";
+import { controller } from "../../lib/modules/controller-manager.module";
 import { ServerRepository } from "../../infraestructure/repository/server.repository";
 
-export default rest()
-  .handle(async (_request) => {
+export default controller()
+  .handle(async (_request, res) => {
     const servers = await ServerRepository.getAll();
 
     const serversList = servers.map((server) => [
@@ -16,11 +16,11 @@ export default rest()
       server.rank.max ?? undefined,
     ]);
 
-    return [
+    res.json([
       config.game.version,
       0, // not used
       0, // not used
       ...serversList,
-    ];
+    ]);
   })
   .routes("/w.php");

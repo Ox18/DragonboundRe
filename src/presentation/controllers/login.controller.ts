@@ -1,22 +1,18 @@
-import { rest } from "../../lib/modules/controller-manager.module";
-import { LoginFailException } from "../../exceptions/loginFail.exception";
+import { controller } from "../../lib/modules/controller-manager.module";
 import accountRepository from "../../infraestructure/repository/account.repository";
 
-const controller = rest<any>()
-  .handle(async (req) => {
+export default controller<any>()
+  .handle(async (req, res) => {
     const { username, password } = req.data;
 
     const account = await accountRepository.signIn({ username, password });
 
     if (!account) {
-      return [
-        "Login failed",
-        "The username or password is incorrect",
-      ]
+      res.json(["Login failed", "The username or password is incorrect"]);
     }
 
     // [Case] >> Banned
-    // return [               
+    // return [
     //   "Uso de aimbot hack",  // reason
     //   new Date(),            // date until
     //   ""                     // not used
@@ -26,7 +22,7 @@ const controller = rest<any>()
     // return [
     //   12000,  // days in integers
     //   200,    // seconds
-    //   19000,  // total players    
+    //   19000,  // total players
     //   199     // my user id
     // ]
 
@@ -40,13 +36,13 @@ const controller = rest<any>()
     // ]
 
     // [Case] >> Password needed too (Facebook login)
-    // return [-5, 1] 
+    // return [-5, 1]
 
     // [Case] >> Password change needed (Facebook login)
     // GM account reset password
     // return [-9]
 
-    // [Case] >> Password change needed 
+    // [Case] >> Password change needed
     // return [-11]
 
     // [Case] >> Message
@@ -54,10 +50,6 @@ const controller = rest<any>()
     //   "Title",
     //   "Description",
     // ]
-
-    
   })
   .routes("/f.php")
   .methods(["POST"]);
-
-export default controller;

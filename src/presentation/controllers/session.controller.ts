@@ -1,15 +1,12 @@
-import { rest } from "../../lib/modules/controller-manager.module";
+import { controller } from "../../lib/modules/controller-manager.module";
 
 type CreateUser = {
   username: string;
   password: string;
 };
 
-const controller = rest<CreateUser>()
-.handle(async (req) => {
-  return [0,0,0, 1, 1]
-})
-.routes("/s.php")
-
-export default controller;
-
+export default controller<CreateUser>()
+  .handle(async (req, res) => {
+    res.json([0, 0, 0, 1, 1]);
+  })
+  .routes("/s.php");

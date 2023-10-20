@@ -1,6 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 import { RequestSessionController } from "../../types/request-controller.type";
-import { TemplateController } from "../../../lib/controllers/template.controller";
 import { FrameworkAdapterControllerParams } from "../../types/framework.type";
 import { Request, Response } from "express";
 import { BaseException } from "../../exceptions/base.exception";
@@ -39,14 +38,7 @@ export const frameworkAdapterController = (
       };
 
       // @ts-ignore
-      const data = await controller._handle(requestData);
-
-      if (controller instanceof TemplateController) {
-        // @ts-ignore
-        res.render(controller._templateName, data);
-      } else {
-        res.status(200).json(data);
-      }
+      await controller._handle(requestData);
     } catch (error) {
 
       if (error instanceof BaseException) {
