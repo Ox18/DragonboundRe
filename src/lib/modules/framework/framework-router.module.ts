@@ -1,7 +1,7 @@
 import { Express } from "express";
 import { frameworkAdapterController } from "./framework-adapter-controller.module";
-import { MainController } from "@/lib/controllers/main.controller";
-import { FrameworkAdapterControllerParams } from "@/lib/types/framework.type";
+import { MainController } from "../../controllers/main.controller";
+import { FrameworkAdapterControllerParams } from "../../types/framework.type";
 
 export const frameworkRouter = (
   app: Express,
@@ -14,6 +14,7 @@ export const frameworkRouter = (
         : controller._routes;
 
     for (const route of routes) {
+      // @ts-ignore
       for (const method of controller._methods) {
 
         const adapterParams: FrameworkAdapterControllerParams = {

@@ -1,0 +1,100 @@
+[
+  {
+    "name": "High Ranks",
+    "ip": "192.168.0.1",
+    "port": 9001,
+    "playersOnline": 0,
+    "maxPlayers": 4000,
+    "identifier": 0,
+    "rank": { "min": 7, "max": 23 }
+  },
+  {
+    "name": "Mid Ranks",
+    "ip": "192.168.0.1",
+    "port": 9002,
+    "playersOnline": 0,
+    "maxPlayers": 4000,
+    "identifier": 1,
+    "rank": { "min": 7, "max": 17 }
+  },
+  {
+    "name": "Beginners",
+    "ip": "192.168.1.5",
+    "port": 9003,
+    "playersOnline": 0,
+    "maxPlayers": 4000,
+    "identifier": 2
+  },
+  {
+    "name": "All",
+    "ip": "192.168.0.1",
+    "port": 9004,
+    "playersOnline": 0,
+    "maxPlayers": 4000,
+    "identifier": 3
+  },
+  {
+    "name": "All",
+    "ip": "192.168.0.1",
+    "port": 9005,
+    "playersOnline": 0,
+    "maxPlayers": 4000,
+    "identifier": 4
+  },
+  {
+    "name": "Bunge.",
+    "ip": "192.168.0.1",
+    "port": 9006,
+    "playersOnline": 0,
+    "maxPlayers": 4000,
+    "identifier": 5
+  },
+  {
+    "name": "All",
+    "ip": "192.168.0.1",
+    "port": 9007,
+    "playersOnline": 0,
+    "maxPlayers": 4000,
+    "identifier": 6
+  },
+  {
+    "name": "All",
+    "ip": "192.168.0.1",
+    "port": 9008,
+    "playersOnline": 0,
+    "maxPlayers": 4000,
+    "identifier": 7
+  },
+  {
+    "name": "Aduka.",
+    "ip": "192.168.0.1",
+    "port": 9009,
+    "playersOnline": 0,
+    "maxPlayers": 4000,
+    "identifier": 8
+  },
+  {
+    "name": "Avatar On.",
+    "ip": "192.168.0.1",
+    "port": 9010,
+    "playersOnline": 0,
+    "maxPlayers": 4000,
+    "identifier": 9
+  },
+  {
+    "name": "Avatar Off.",
+    "ip": "192.168.0.1",
+    "port": 9011,
+    "playersOnline": 0,
+    "maxPlayers": 4000,
+    "identifier": 10
+  },
+  {
+    "name": "Guilds.",
+    "ip": "192.168.0.1",
+    "port": 9012,
+    "playersOnline": 0,
+    "maxPlayers": 1000,
+    "identifier": 11
+  }
+]

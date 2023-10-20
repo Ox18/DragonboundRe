@@ -1,11 +1,11 @@
-import { ControllerManager } from "../../lib/modules/controller-manager.module";
+import { rest } from "../../lib/modules/controller-manager.module";
 
 type CreateUser = {
   username: string;
   password: string;
 };
 
-const controller = ControllerManager.rest<CreateUser>()
+const controller = rest<CreateUser>()
 .handle(async (req) => {
   return [0,0,0, 1, 1]
 })

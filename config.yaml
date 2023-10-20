@@ -8,3 +8,7 @@ database:
     connection: mongodb://localhost:27017/users
   account:
     connection: mongodb://localhost:27017/accounts
+  servers:
+    connection: mongodb://localhost:27017/servers
+game:
+  version: 29

@@ -1,12 +1,12 @@
 import { AccountModel } from "../../models/account.model";
-import { ControllerManager } from "../../lib/modules/controller-manager.module";
+import { rest } from "../../lib/modules/controller-manager.module";
 
 type Login = {
   username: string;
   password: string;
 };
 
-const controller = ControllerManager.rest<Login>()
+const controller = rest<Login>()
   .handle(async (req) => {
     const { username, password } = req.data;
 

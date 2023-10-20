@@ -1,49 +1,53 @@
-import { RequestSessionController } from "@/lib/types/request-controller.type";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+import { RequestSessionController } from "../../types/request-controller.type";
 import { TemplateController } from "../../../lib/controllers/template.controller";
-import { FrameworkAdapterControllerParams } from "@/lib/types/framework.type";
+import { FrameworkAdapterControllerParams } from "../../types/framework.type";
+import { Request, Response } from "express";
 
-export const frameworkAdapterController = (params: FrameworkAdapterControllerParams): void => {
-    const {
-        method,
-        route,
-        controller,
-        router,
-    } = params;
+export const frameworkAdapterController = (
+  params: FrameworkAdapterControllerParams
+): void => {
+  const { method, route, controller, router } = params;
 
-    router[method](route, async (req, res) => {
-        try {
+  router[method](route, async (req: Request, res: Response) => {
+    try {
+      const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
-            const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+      const sessionManager: RequestSessionController = {
+        destroy: (callbackError: (error: any) => void) => {
+          // @ts-ignore
+          req.session.destroy(callbackError);
+        },
+        // @ts-ignore
+        data: req.session.user,
+        set: (key: string, value: any) => {
+          // @ts-ignore
+          req.session.user[key] = value;
+        },
+        // @ts-ignore
+        isActive: !!req.session.user,
+      };
 
-            const sessionManager:RequestSessionController  = {
-                destroy: (callbackError: (error: any) => void) => {
-                    req.session.destroy(callbackError);
-                },
-                data: req.session.user,
-                set: (key: string, value: any) => {
-                    req.session.user[key] = value;
-                },
-                isActive: !!req.session.user
-            };
+      const requestData = {
+        data: req.body,
+        queryParams: req.query,
+        params: req.params,
+        ip,
+        // @ts-ignore
+        session: req.session ? sessionManager : undefined,
+      };
 
+      // @ts-ignore
+      const data = await controller._handle(requestData);
 
-            const requestData = {
-                data: req.body,
-                queryParams: req.query,
-                params: req.params,
-                ip,
-                session: req.session ? sessionManager : undefined,
-            }
-
-            const data = await controller._handle(requestData)
-
-            if (controller instanceof TemplateController) {
-                res.render(controller._templateName, data)
-            } else {
-                res.status(200).json(data)
-            }
-        } catch (error) {
-            res.status(500).json({ error })
-        }
-    });
+      if (controller instanceof TemplateController) {
+        // @ts-ignore
+        res.render(controller._templateName, data);
+      } else {
+        res.status(200).json(data);
+      }
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  });
 };

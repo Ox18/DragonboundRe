@@ -8,5 +8,9 @@ export interface ConfigData extends ConfigHealth {
   database: {
     user: ConnectionModel;
     account: ConnectionModel;
+    servers: ConnectionModel;
+  };
+  game: {
+    version: number;
   }
 }

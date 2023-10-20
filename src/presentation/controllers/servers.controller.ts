@@ -1,31 +1,26 @@
-import { ControllerManager } from "../../lib/modules/controller-manager.module";
+import { config } from "../../config";
+import { rest } from "../../lib/modules/controller-manager.module";
+import { ServerRepository } from "../../infraestructure/repository/server.repository";
 
-type CreateUser = {
-  username: string;
-  password: string;
-};
+export default rest()
+  .handle(async (_request) => {
+    const servers = await ServerRepository.getAll();
 
-const controller = ControllerManager.rest<CreateUser>()
-  .handle(async (request) => {
+    const serversList = servers.map((server) => [
+      server.name,
+      server.ip,
+      server.port,
+      server.playersOnline,
+      server.maxPlayers,
+      server.rank.min ?? undefined,
+      server.rank.max ?? undefined,
+    ]);
 
     return [
-      29,
-      20715,
-      174967,
-      ["High Ranks", "141.255.164.107", 9001, 857, 4000, 7, 23],
-      ["Mid Ranks", "141.255.164.108", 9002, 2507, 4000, 7, 17],
-      ["Beginners", "192.168.1.5", 9003, 1726, 4000, 0, 6],
-      ["All", "141.255.164.108", 9004, 2502, 4000],
-      ["All", "141.255.164.107", 9005, 3913, 4000],
-      ["Bunge.", "141.255.164.108", 9006, 2237, 4000],
-      ["All", "141.255.164.107", 9007, 1469, 4000],
-      ["All", "141.255.164.108", 9008, 1650, 4000],
-      ["Aduka.", "141.255.164.107", 9009, 329, 4000],
-      ["Avatar On.", "141.255.164.108", 9010, 340, 4000],
-      ["Avatar Off.", "141.255.164.107", 9011, 944, 4000],
-      ["Guilds.", "141.255.164.108", 9012, 2, 1000],
+      config.game.version,
+      0, // not used
+      0, // not used
+      ...serversList,
     ];
   })
   .routes("/w.php");
-
-export default controller;

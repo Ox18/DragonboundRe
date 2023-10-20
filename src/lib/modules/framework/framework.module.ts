@@ -1,7 +1,7 @@
 import path from "path";
 import express, { Express } from "express";
 import { frameworkRouter } from "./framework-router.module";
-import { MainController } from "@/lib/controllers/main.controller";
+import { MainController } from "../../controllers/main.controller";
 import { frameworkEngine } from "./framework-engine.module";
 import { logManager } from "../log-manager.module";
 import { frameworkMiddleware } from "./framework-middlewares.module";
