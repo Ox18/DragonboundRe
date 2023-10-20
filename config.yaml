@@ -1,3 +1,10 @@
 service:
   port: 3000
   name: st-app
+session:
+  secret: game
+database:
+  user:
+    connection: mongodb://localhost:27017/users
+  account:
+    connection: mongodb://localhost:27017/accounts

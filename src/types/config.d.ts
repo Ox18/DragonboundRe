@@ -1,8 +1,12 @@
-export type ConfigData = {
+import { ConfigHealth } from "@/lib/types/config-health.type";
+
+type ConnectionModel = {
+  connection: string;
+}
+
+export interface ConfigData extends ConfigHealth {
   database: {
-    host: string;
-    port: number;
-    username: string;
-    password: string;
-  };
-};
+    user: ConnectionModel;
+    account: ConnectionModel;
+  }
+}

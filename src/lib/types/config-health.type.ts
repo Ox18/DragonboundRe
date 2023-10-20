@@ -1,4 +1,9 @@
 export type ConfigHealth = {
-    port: number;
-    name: string;
+    service: {
+        port: number;
+        name: string;
+    };
+    session: {
+        secret: string;
+    };
 }
