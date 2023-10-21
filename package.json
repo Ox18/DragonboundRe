@@ -17,7 +17,8 @@
     "@types/morgan": "^1.9.7",
     "js-yaml": "^4.1.0",
     "nodemon": "^3.0.1",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "@types/mongoose": "^5.11.97"
   },
   "dependencies": {
     "body-parser": "^1.20.2",

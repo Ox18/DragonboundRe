@@ -6,9 +6,18 @@ session:
 database:
   user:
     connection: mongodb://localhost:27017/users
+    collection: users
   account:
     connection: mongodb://localhost:27017/accounts
+    collection: accounts
   servers:
     connection: mongodb://localhost:27017/servers
+    collection: servers
+  items: 
+    connection: mongodb://localhost:27017/items
+    collection: items
+  guild:
+    connection: mongodb://localhost:27017/guilds
+    collection: guilds
 game:
   version: 29

@@ -1,0 +1,191 @@
+{
+  "account": [
+    {
+      "id": "6442f504ad557a280988e999",
+      "username": "lnferno",
+      "password": "test"
+    },
+    {
+      "id": "507f191e810c19729de86888",
+      "username": "carlosx",
+      "password": "test"
+    }
+  ],
+  "guildMember": [
+    {
+      "guild": "507f191e810c19729de860e3",
+      "user": "6442f504ad557a280988e424",
+      "job": 1
+    }
+  ],
+  "guild": [
+    {
+      "id": "507f191e810c19729de860e3",
+      "name": "GM"
+    }
+  ],
+  "itemEquipped": [
+    {
+      "head": 170,
+      "body": 308,
+      "eyes": 477,
+      "flag": 118,
+      "background": 418,
+      "foreground": 444,
+      "user": "6442f504ad557a280988e424"
+    }
+  ],
+  "itemInventory": [
+    {
+      "user": "6442f504ad557a280988e424",
+      "item": "464"
+    }
+  ],
+  "server": [
+    {
+      "name": "High Ranks",
+      "ip": "192.168.0.1",
+      "port": 9001,
+      "playersOnline": 0,
+      "maxPlayers": 4000,
+      "identifier": 0,
+      "rank": { "min": 7, "max": 23 }
+    },
+    {
+      "name": "Mid Ranks",
+      "ip": "192.168.0.1",
+      "port": 9002,
+      "playersOnline": 0,
+      "maxPlayers": 4000,
+      "identifier": 1,
+      "rank": { "min": 7, "max": 17 }
+    },
+    {
+      "name": "Beginners",
+      "ip": "192.168.1.5",
+      "port": 9003,
+      "playersOnline": 0,
+      "maxPlayers": 4000,
+      "identifier": 2
+    },
+    {
+      "name": "All",
+      "ip": "192.168.0.1",
+      "port": 9004,
+      "playersOnline": 0,
+      "maxPlayers": 4000,
+      "identifier": 3
+    },
+    {
+      "name": "All",
+      "ip": "192.168.0.1",
+      "port": 9005,
+      "playersOnline": 0,
+      "maxPlayers": 4000,
+      "identifier": 4
+    },
+    {
+      "name": "Bunge.",
+      "ip": "192.168.0.1",
+      "port": 9006,
+      "playersOnline": 0,
+      "maxPlayers": 4000,
+      "identifier": 5
+    },
+    {
+      "name": "All",
+      "ip": "192.168.0.1",
+      "port": 9007,
+      "playersOnline": 0,
+      "maxPlayers": 4000,
+      "identifier": 6
+    },
+    {
+      "name": "All",
+      "ip": "192.168.0.1",
+      "port": 9008,
+      "playersOnline": 0,
+      "maxPlayers": 4000,
+      "identifier": 7
+    },
+    {
+      "name": "Aduka.",
+      "ip": "192.168.0.1",
+      "port": 9009,
+      "playersOnline": 0,
+      "maxPlayers": 4000,
+      "identifier": 8
+    },
+    {
+      "name": "Avatar On.",
+      "ip": "192.168.0.1",
+      "port": 9010,
+      "playersOnline": 0,
+      "maxPlayers": 4000,
+      "identifier": 9
+    },
+    {
+      "name": "Avatar Off.",
+      "ip": "192.168.0.1",
+      "port": 9011,
+      "playersOnline": 0,
+      "maxPlayers": 4000,
+      "identifier": 10
+    },
+    {
+      "name": "Guilds.",
+      "ip": "192.168.0.1",
+      "port": 9012,
+      "playersOnline": 0,
+      "maxPlayers": 1000,
+      "identifier": 11
+    }
+  ],
+  "userEvent": [
+    {
+      "user": "6442f504ad557a280988e424",
+      "events": {
+        "facebook": {
+          "leftTime": 300000000,
+          "config": {
+            "cash": 4000,
+            "gold": 1000,
+            "timeWait": 300000000
+          }
+        },
+        "hourly": {
+          "leftTime": 300000000,
+          "config": {
+            "cash": 4000,
+            "gold": 1000,
+            "timeWait": 300000000
+          }
+        }
+      }
+    }
+  ],
+  "users": [
+    {
+      "nickname": "lnferno",
+      "rank": 24,
+      "country": "US",
+      "account": "6442f504ad557a280988e999",
+      "gp": 1000,
+      "cash": 1000,
+      "gold": 3000,
+      "gender": "m",
+      "photoUrl": "https://avatars.githubusercontent.com/u/73305665?v=4"
+    },
+    {
+      "nickname": "CarlosX",
+      "rank": 24,
+      "country": "US",
+      "account": "507f191e810c19729de86888",
+      "gp": 1000,
+      "cash": 1000,
+      "gold": 3000,
+      "gender": "m",
+      "photoUrl": "https://avatars.githubusercontent.com/u/566906?v=4"
+    }
+  ]
+}

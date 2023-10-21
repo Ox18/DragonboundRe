@@ -7,11 +7,13 @@ export const frameworkAdapterController = (
 ): void => {
   const { method, route, controller, router } = params;
 
+  // @ts-ignore
   router[method](route, async (req: Request, res: Response) => {
     try {
       const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
       const sessionManager: RequestSessionController = {
+        // @ts-ignore
         destroy: (callbackError: (error: any) => void) => {
           // @ts-ignore
           req.session.destroy(callbackError);

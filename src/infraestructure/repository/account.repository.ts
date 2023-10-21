@@ -1,25 +1,22 @@
-import { Account } from "../../types/model";
-import { AccountModel } from "../../models/account.model";
-import { AccountImpl } from "infraestructure/implementation/account.impl";
 
-const accountRepository: AccountImpl = {
-  deleteAll: async (): Promise<void> => {
-    await AccountModel.deleteMany({});
-  },
-  bulk: async (accounts: any[]): Promise<void> => {
-    await AccountModel.insertMany(accounts);
-  },
-  signIn: async (data): Promise<Account | null> => {
-    const account = await AccountModel.findOne(data);
 
-    if (!account) {
-      return null;
-    }
+import { Account } from "@/domain/models/account.model";
+import accountModel from "../models/account.model";
 
-    return account;
-  },
-  getById(id: string): Promise<Account | null> {
-    const account = AccountModel.findById(id);
+export default class AccountRepository {
+  static async deleteAll(): Promise<void> {
+    await accountModel.deleteMany({});
+  }
+
+  static async bulk(accounts: any[]): Promise<void> {
+    await accountModel.insertMany(accounts);
+  }
+
+  static async signIn(data: {
+    username: string;
+    password: string;
+  }): Promise<Account | null> {
+    const account = await accountModel.findOne(data);
 
     if (!account) {
       return null;
@@ -27,6 +24,14 @@ const accountRepository: AccountImpl = {
 
     return account;
   }
-};
 
-export default accountRepository;
+  static getById(id: string): Promise<Account | null> {
+    const account = accountModel.findById(id);
+
+    if (!account) {
+      return null;
+    }
+
+    return account;
+  }
+}

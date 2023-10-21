@@ -1,33 +1,30 @@
-import { UserModel } from "@/models/user.model";
-import { UserRepositoryImpl } from "../implementation/user.impl";
-import { User } from "@/types/model";
+import { User } from "@/domain/models/user.model";
+import userModel from "../models/user.model";
 
-export const userRepository: UserRepositoryImpl = {
-  deleteAll: async (): Promise<void> => {
-    await UserModel.deleteMany({});
-  },
+export default class UserRepository {
+  static async deleteAll(): Promise<void> {
+    await userModel.deleteMany({});
+  }
 
-  bulk: async (users: any[]): Promise<void> => {
-    await UserModel.insertMany(users);
-  },
+  static async bulk(users: any[]): Promise<void> {
+    await userModel.insertMany(users);
+  }
 
-  getByAccount: async (account: string | null): Promise<User | null> => {
+  static async getByAccount(account: string | null): Promise<User | null> {
     if (!account) {
       return null;
     }
 
-    const user = await UserModel.findOne({ account });
+    const user = await userModel.findOne({ account });
 
     if (!user) {
       return null;
     }
 
     return user;
-  },
-
-  getTotal: async (): Promise<number> => {
-    return await UserModel.countDocuments({});
   }
-};
 
-export default userRepository;
+  static async getTotal(): Promise<number> {
+    return await userModel.countDocuments({});
+  }
+}
