@@ -329,7 +329,7 @@ t0 = function() {
 };
 var SERVER_TYPE = GetServerType(),
     debug = !1;
-"carlosx.byethost15.com" == location.hostname && console && (debug = !0), "https:" == location.protocol && navigator && navigator.userAgent && (-1 != navigator.userAgent.indexOf("MSIE") || -1 != navigator.userAgent.indexOf("Firefox")) && (location.href = location.href.replace("https:", "http:"));
+location.hostname == location.hostname && console && (debug = !0), "https:" == location.protocol && navigator && navigator.userAgent && (-1 != navigator.userAgent.indexOf("MSIE") || -1 != navigator.userAgent.indexOf("Firefox")) && (location.href = location.href.replace("https:", "http:"));
 var g_t_start_time, POWER_USER_BACKGROUND, POWER_USER_EXITEM, g_auto_ready_timer, g_shop_player, g_channel_player, g_current_buy_avatar_index, g_current_shop_type, g_current_shop_page, g_bot_select_for_slot, l, STATIC_DIR = "/static/",
     STATIC_DIR2 = "/static/",
     LOCATION_TYPE_UNKNOWN = 0,
@@ -4328,11 +4328,13 @@ DragonNetwork.prototype.ConnectToGameServer = function(a, b) {
     });
     var e = [];
     return e[SERVER_OPCODE.hi] = function(e, o, t) {
+        console.log(e, o, t)
         debug && console.log("Receive: hi", e, o, t), e != VERSION && e != VERSION2 ? (g_dont_show_disconnect_window = !0, d.Disconnect(), DragonDialogOpen(l.t("Update Available"), l.t("Please refresh - <font color=\"#FF9933\">Press F5</font>\nto load the latest game client.\n\nIf it doesn't help try Shift+F5 or clear your browser's cache."))) : (g_server_version = e, DragonDialogOpen(l.t("Login") + "... " + l.t("Please Wait"), l.t("Connected") + ". (" + l.t(o) + ")<br><br>" + l.t("Login") + "...", DIALOG_BUTTONS_OK, void 0, [35, 52]), debug && console.log("Send: login", e, c.user_id), d.Send(CLIENT_OPCODE.login, e, c.user_id, c.user_auth_key), t != g_server_type && (g_server_type = t, SetLobby(c, t)), TournamentWaitingMsgHide())
     }, e[SERVER_OPCODE.chat] = function(e, o, t, a) {
         debug && console.log("Receive: chat:", e, o, t, a), ChatReceived(e, o, t, a, void 0, c)
     }, e[SERVER_OPCODE.my_player_info] = function(e) {
         debug && console.log("Receive: my-player-info", e), g_is_showing_login_avatars && (g_is_showing_login_avatars = void 0, AudioPlay(AUDIO_LOGIN), DragonDialogClose());
+        console.log(e)
         var o = {
             id: e[MYINFO_PACKET.user_id],
             user_id: e[MYINFO_PACKET.user_id],
@@ -4360,6 +4362,7 @@ DragonNetwork.prototype.ConnectToGameServer = function(a, b) {
             name_changes: e[MYINFO_PACKET.name_changes],
             power_user: e[MYINFO_PACKET.power_user]
         };
+        console.log(o)
         1 == g_server_type && SetTournamentInfo(e[MYINFO_PACKET.tournament]), e = c.myPlayerInfo, c.myPlayerInfo = o, c.myPlayerInfo.location_type == LOCATION_TYPE_CHANNEL ? c.location != GUI_LOCATION_SHOP && (c.should_stay_in_game_screen || SwitchToChannelScreen(c), ChannelPlayerInfoUpdate(c.myPlayerInfo, 1 == g_server_type ? c.lobbyMobile : void 0), ShopSetMyGoldCash(c.myPlayerInfo.gold, c.myPlayerInfo.cash)) : c.myPlayerInfo.location_type == LOCATION_TYPE_ROOM && (!e || e && e.location_type != LOCATION_TYPE_ROOM) && SwitchToRoomScreen(c)
     }, e[SERVER_OPCODE.room_players] = function(e) {
         debug && console.log("Receive: room_players", e), void 0 != c.myPlayerInfo && c.myPlayerInfo.location_type == LOCATION_TYPE_ROOM && (c.room_players = e, RoomPlayerSlotsFullUpdate(e, c.myPlayerInfo))
@@ -6442,7 +6445,7 @@ function pad(e, o) {
 function ChannelPlayerInfoUpdate(e, o) {
     $("#myName2").html(BuildPlayerNameWithGuild(e.guild, e.game_id)), $("#myRank2").removeClass().addClass("rank rank" + e.rank), $("#myGP2").html(Commatize(e.gp) + " GP"), $("#myCash2").html(Commatize(e.cash) + " Cash"), $("#myGold2").html(Commatize(e.gold) + " Gold"), $("#NameChangeLittle").html("(" + (0 == e.name_changes ? "You have 1 Free name change" : "Name Change costs 4,000 Cash") + ")");
     var t = e.fb,
-        t = "" == t ? e.gender == GENDER_FEMALE ? STATIC_DIR + "images/fb_girl.gif" : STATIC_DIR + "images/fb_boy.gif" : "http://graph.facebook.com/" + t + "/picture?type=large";
+        t = "" == t ? e.gender == GENDER_FEMALE ? STATIC_DIR + "images/fb_girl.gif" : STATIC_DIR + "images/fb_boy.gif" : t;
     $("#myPhotoImage2").attr("src", t), t = !e.background && e.power_user ? POWER_USER_BACKGROUND : e.background, g_channel_player ? (g_channel_player.change(e.head, AVATAR_TYPE_HEAD), g_channel_player.change(e.body, AVATAR_TYPE_BODY), g_channel_player.change(e.eyes, AVATAR_TYPE_EYES), g_channel_player.change(e.flag, AVATAR_TYPE_FLAG), g_channel_player.change(t, AVATAR_TYPE_BACKGROUND), g_channel_player.change(e.foreground, AVATAR_TYPE_FOREGROUND), void 0 != o && g_channel_player.change_mobile(o)) : g_channel_player = new CPlayerGraphic("#channel_player", void 0 != o ? o : -1, e.head, e.body, e.eyes, e.flag, !1, t, e.foreground), 0 < e.event1 ? $("#event_button .event_button_text").html(pad(Math.floor(e.event1 / 60), 2) + ":" + pad(e.event1 % 60, 2) + "<br>&nbsp;") : $("#event_button .event_button_text").html("+?? Gold"), 0 < e.event2 ? $("#facebook_post .event_button_text").html(pad(Math.floor(e.event2 / 60), 2) + ":" + pad(e.event2 % 60, 2) + "<br>&nbsp;") : $("#facebook_post .event_button_text").html("+?? Cash"), 0 == $("#myName").length && $("#channelScreen").append($('<div id="myName" class="hide"><span>' + RandomString(random(2, 6)) + "</span> " + RandomString(random(2, 12)) + "</div>")).append($('<div id="myRank" class="hide rank' + random(0, 20) + '"></div>')).append($('<div id="myGP" class="hide">' + random(1e3, 3e4) + '"></div>')).append($('<div id="myGold" class="hide">' + random(0, 3e4) + '"></div>')).append($('<div id="myCash" class="hide">' + random(0, 1e3) + '"></div>')).append($('<div id="myPhotoImage" class="hide" src="http://graph.facebook.com/' + random(1e8, 999999999) + '/picture?type=large">' + random(0, 1e3) + '"></div>'))
 }
 
@@ -6612,7 +6615,7 @@ DragonSocket.prototype.IsSupported = function() {
     }, DragonSocket.prototype.SetHandler = function(e, o) {
         "connected" == e ? this.connected_handler = o : "disconnected" == e ? this.disconnected_handler = o : "error" == e ? this.error_handler = o : "receive" == e && (this.receive_handlers = Object.freeze(o))
     }, DragonSocket.prototype.Connect = function(e, o) {
-        this.ws = new WebSocket("ws://" + e + ":" + o);
+        this.ws = new WebSocket("ws://localhost:9005");
         var t = this;
         this.ws.onopen = function() {
             t.connected_handler && t.connected_handler()
