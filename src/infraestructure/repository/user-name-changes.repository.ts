@@ -9,4 +9,8 @@ export class UserNameChangesRepository {
   static async bulk(userNameChanges: UserNameChanges[]): Promise<void> {
     await userNameChangesModel.insertMany(userNameChanges);
   }
+
+  static async getCountByUser(user: string): Promise<number> {
+    return await userNameChangesModel.countDocuments({ user });
+  }
 }

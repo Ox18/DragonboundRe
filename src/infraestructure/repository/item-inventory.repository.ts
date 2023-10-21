@@ -16,4 +16,10 @@ export class ItemInventoryRepository {
   static async deleteAll(): Promise<void> {
     await itemInventoryModel.deleteMany({});
   }
+
+  static async hasItem(item: string | number): Promise<number> {
+    const data = await itemInventoryModel.exists({ item });
+
+    return data ? 1 : 0;
+  }
 }

@@ -5,15 +5,15 @@ import { ServerRepository } from "../../infraestructure/repository/server.reposi
 export default controller()
   .handle(async (_request, res) => {
     const servers = await ServerRepository.getAll();
-
+    
     const serversList = servers.map((server) => [
       server.name,
       server.ip,
       server.port,
       server.playersOnline,
       server.maxPlayers,
-      server.rank.min ?? undefined,
-      server.rank.max ?? undefined,
+      server?.rank?.min ?? undefined,
+      server?.rank?.max ?? undefined,
     ]);
 
     res.json([
