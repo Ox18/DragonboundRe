@@ -14,6 +14,7 @@ const schema = new mongoose.Schema({
   gold: Number,
   cash: Number,
   photoUrl: String,
+  gm: Boolean,
 })
 
 export default Model<User>({

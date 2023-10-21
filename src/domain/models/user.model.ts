@@ -9,4 +9,5 @@ export type User = {
   cash: number;
   gender: string;
   photoUrl: string;
+  gm: boolean;
 };

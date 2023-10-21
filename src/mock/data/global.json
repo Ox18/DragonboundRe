@@ -184,7 +184,8 @@
       "cash": 1000,
       "gold": 3000,
       "gender": "m",
-      "photoUrl": "https://avatars.githubusercontent.com/u/73305665?v=4"
+      "photoUrl": "https://avatars.githubusercontent.com/u/73305665?v=4",
+      "gm": true
     },
     {
       "id": "6442f504ad557a280988e445",
@@ -196,7 +197,8 @@
       "cash": 1000,
       "gold": 3000,
       "gender": "m",
-      "photoUrl": "https://avatars.githubusercontent.com/u/566906?v=4"
+      "photoUrl": "https://avatars.githubusercontent.com/u/566906?v=4",
+      "gm": true
     }
   ]
 }
