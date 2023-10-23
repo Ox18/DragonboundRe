@@ -10,6 +10,7 @@ export const frameworkAdapterController = (
   // @ts-ignore
   router[method](route, async (req: Request, res: Response) => {
     try {
+      
       const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
       const sessionManager: RequestSessionController = {
@@ -41,7 +42,7 @@ export const frameworkAdapterController = (
       };
 
       // @ts-ignore
-      await controller._handle(requestData, res);
+      await controller._handle(requestData, res, req);
     } catch (error) {
       console.log(error)
     }

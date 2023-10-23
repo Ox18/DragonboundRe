@@ -6334,8 +6334,7 @@ function GotFullGuildMembersList(e, o) {
             r = "??";
         for (0 == n ? r = "Member" : 1 == n ? r = "Leader" : 2 == n && (r = "Semi-Leader"), t = '<div class="refresh_button_guildies">Refresh Guild List</div><div id="guild_leave" class="opacity_button"></div><div><span class="GuildName blackShadow">' + r + '</span> of Guild:<br><span class="GuildName blackShadow">' + a + '</span><div style="clear: both"></div></div>', a = 2; a < e.length; a++) {
             var s, n = e[a],
-                r = n[FRIEND_INDEX_IMAGE],
-                r = "" == r ? n[FRIEND_INDEX_GENDER] == GENDER_FEMALE ? STATIC_DIR + "images/fb_girl.gif" : STATIC_DIR + "images/fb_boy.gif" : "http://graph.facebook.com/" + r + "/picture?type=large";
+                r = n[FRIEND_INDEX_IMAGE];
             0 == n[FRIEND_INDEX_SERVER] ? s = "Offline" : 0 < n[FRIEND_INDEX_SERVER] ? s = "Server " + n[FRIEND_INDEX_SERVER] : 0 > n[FRIEND_INDEX_SERVER] && (s = 0 == n[FRIEND_INDEX_ROOM] ? "Lobby" : "Room: " + n[FRIEND_INDEX_ROOM]), t += '<div id="guild_member_' + n[FRIEND_INDEX_ID] + '" friend="' + n[FRIEND_INDEX_ID] + '" class="guildMemberListItem' + (1 == a % 2 ? " odd" : "") + '"> <div class="friendListPhoto"><img class="friendListPhotoImg" src="' + r + '"></div> <div class="friendListRank rank rank' + n[FRIEND_INDEX_RANK] + '"></div> <div class="friendListName blackShadow">' + n[FRIEND_INDEX_NAME] + '</div> <div class="friendListGP blackShadow">GP ' + n[FRIEND_INDEX_GP] + '</div> <div class="friendListLocation blackShadow">' + s + "</div> </div>"
         }
         $("#guildMembersListHtml").html(t), $("#guildMembersList").tinyscrollbar_update("top"), $(".guildMemberListItem").bind("click", function() {
@@ -6367,8 +6366,7 @@ function UpdateFriendsList(e, o) {
     RoomTabChangeTo(TAB_FRIENDS), TabChangeTo(TAB_FRIENDS);
     for (var t = '<div class="refresh_button_friends">Refresh Friends List</div>', a = 0; a < e.length; a++) {
         var n, r = e[a],
-            s = r[FRIEND_INDEX_IMAGE],
-            s = "" == s ? r[FRIEND_INDEX_GENDER] == GENDER_FEMALE ? STATIC_DIR + "images/fb_girl.gif" : STATIC_DIR + "/images/fb_boy.gif" : "http://graph.facebook.com/" + s + "/picture?type=large";
+            s = r[FRIEND_INDEX_IMAGE];
         0 == r[FRIEND_INDEX_SERVER] ? n = "Offline" : 0 < r[FRIEND_INDEX_SERVER] ? n = "Server " + r[FRIEND_INDEX_SERVER] : 0 > r[FRIEND_INDEX_SERVER] && (n = 0 == r[FRIEND_INDEX_ROOM] ? "Lobby" : "Room: " + r[FRIEND_INDEX_ROOM]), t += '<div id="friend_' + r[FRIEND_INDEX_ID] + '" friend="' + r[FRIEND_INDEX_ID] + '" class="friendListItem' + (1 == a % 2 ? " odd" : "") + '"> <div class="friendListPhoto"><img class="friendListPhotoImg" src="' + s + '"></div> <div class="friendListRank rank rank' + r[FRIEND_INDEX_RANK] + '"></div> <div class="friendListName blackShadow">' + r[FRIEND_INDEX_NAME] + '</div> <div class="friendListGP blackShadow">GP ' + r[FRIEND_INDEX_GP] + '</div> <div class="friendListLocation blackShadow">' + n + "</div> </div>"
     }
     $("#friendsListHtml").html(t), $(".friendListItem").bind("click", function() {

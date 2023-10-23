@@ -1,9 +1,10 @@
 import { controller } from "../../lib/modules/controller-manager.module";
 import accountRepository from "../../infraestructure/repository/account.repository";
 import userRepository from "@/infraestructure/repository/user.repository";
+import * as accountSession from "@/services/account-session";
 
 export default controller<any>()
-  .handle(async (req, res) => {
+  .handle(async (req, res, requestNative) => {
     const { username, password } = req.data;
 
     const account = await accountRepository.signIn({ username, password });
@@ -11,7 +12,10 @@ export default controller<any>()
     const user = await userRepository.getByAccount(account?._id);
 
     if (!account || !user) {
-      return res.json(["Login failed", "The username or password is incorrect"]);
+      return res.json([
+        "Login failed",
+        "The username or password is incorrect",
+      ]);
     }
 
     req.session.set("user", user._id);
@@ -19,15 +23,12 @@ export default controller<any>()
 
     const totalPlayers = await userRepository.getTotal();
 
-    return res.json([
-      user._id,
-      user.rank,
-      totalPlayers,
-      "xxxx",
-      user.country,
-    ])
+    await accountSession.create({
+      request: requestNative,
+      account: account._id,
+    });
 
-
+    return res.json([user._id, user.rank, totalPlayers, "xxxx", user.country]);
 
     // [Case] >> Banned
     // return [

@@ -27,7 +27,7 @@ export default class UserRepository {
   static async getTotal(): Promise<number> {
     return await userModel.countDocuments({});
   }
-  
+
   static async getById(id: string): Promise<User | null> {
     const user = await userModel.findById(id);
 
@@ -36,5 +36,9 @@ export default class UserRepository {
     }
 
     return user;
+  }
+
+  static async getAll(): Promise<User[]> {
+    return await userModel.find({});
   }
 }
