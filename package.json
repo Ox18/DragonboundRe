@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf dist && tsc -p tsconfig-build.json",
+    "build": "tsc -p tsconfig-build.json",
     "dev": "nodemon -L --watch ./src --nolazy ./src/index.ts",
-    "start": "node -r ts-node/register -r tsconfig-paths/register dist/index.js"
+    "start": "node -r ts-node/register -r tsconfig-paths/register dist/index.js",
+    "delete-build": "rimraf dist"
   },
   "keywords": [],
   "author": "",
