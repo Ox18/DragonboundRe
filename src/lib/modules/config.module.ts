@@ -1,3 +1,6 @@
+import { configReplacerSecret } from "./config-replacer-secret.module";
+
+require('dotenv').config(); 
 const yaml = require("js-yaml");
 const fs = require("fs");
 
@@ -13,7 +16,11 @@ const getLoaded = (buffer: any) => {
 
 export const config = <T>() => {
   const configBuffer = getBufferConfig();
-  const configLoaded = getLoaded(configBuffer);
+  let configLoaded = getLoaded(configBuffer);
+
+  configReplacerSecret(configLoaded);
+
+  console.log(configLoaded)
 
   return configLoaded as T;
 };
