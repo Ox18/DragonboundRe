@@ -4532,7 +4532,7 @@ DragonNetwork.prototype.SetLoginUserDetails = function(e, o, t, a) {
 }, DragonNetwork.prototype.BrokerConnect = function() {
     g_dont_show_disconnect_window = !0, this.ds && this.ds.Disconnect();
     var e, o, t = this;
-    "gl" == SERVER_TYPE ? (e = "localhost:3000", o = 80) : "br" == SERVER_TYPE ? (e = "localhost:3000", o = 9100) : (e = "localhost:3000", o = 80), $("#BrokerScreen").is(":visible") || AudioPlay(AUDIO_BROKER), $("#BrokerTitle").html(l.t("Loading Channels") + "... " + l.t("Please Wait") + "..."), $(".BrokerChannel").removeClass("BrokerChannelOnline BrokerChannelFull opacity_button"), $("#BrokerScreen").show(), $.get("http://" + e + (80 != o ? ":" + o : "") + "/w.php", {}, function(e) {
+    "gl" == SERVER_TYPE ? (e = "localhost:3000", o = 80) : "br" == SERVER_TYPE ? (e = "localhost:3000", o = 9100) : (e = "localhost:3000", o = 80), $("#BrokerScreen").is(":visible") || AudioPlay(AUDIO_BROKER), $("#BrokerTitle").html(l.t("Loading Channels") + "... " + l.t("Please Wait") + "..."), $(".BrokerChannel").removeClass("BrokerChannelOnline BrokerChannelFull opacity_button"), $("#BrokerScreen").show(), $.get(location.origin + "/w.php", {}, function(e) {
         t.BrokerResponse2(e)
     }, "json").fail(function() {
         $("#BrokerTitle").html(l.t("Error! Wait 30 seconds, then press this button") + " ->")
