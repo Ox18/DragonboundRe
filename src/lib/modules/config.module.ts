@@ -20,7 +20,5 @@ export const config = <T>() => {
 
   configReplacerSecret(configLoaded);
 
-  console.log(configLoaded)
-
   return configLoaded as T;
 };
