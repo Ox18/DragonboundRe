@@ -6613,7 +6613,7 @@ DragonSocket.prototype.IsSupported = function() {
     }, DragonSocket.prototype.SetHandler = function(e, o) {
         "connected" == e ? this.connected_handler = o : "disconnected" == e ? this.disconnected_handler = o : "error" == e ? this.error_handler = o : "receive" == e && (this.receive_handlers = Object.freeze(o))
     }, DragonSocket.prototype.Connect = function(e, o) {
-        this.ws = location.origin.indexOf("localhost") > -1 ? new WebSocket("ws://localhost:9005") : new WebSocket("ws://dragonbound-broker.onrender.com/");
+        this.ws = location.origin.indexOf("localhost") > -1 ? new WebSocket("ws://localhost:9005") : new WebSocket("wss://dragonbound-broker.onrender.com/");
         var t = this;
         this.ws.onopen = function() {
             t.connected_handler && t.connected_handler()
