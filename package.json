@@ -17,6 +17,7 @@
     "@types/express-session": "^1.17.9",
     "@types/mongoose": "^5.11.97",
     "@types/morgan": "^1.9.7",
+    "cron": "^3.1.5",
     "dotenv": "^16.3.1",
     "js-yaml": "^4.1.0",
     "nodemon": "^3.0.1",

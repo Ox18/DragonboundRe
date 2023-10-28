@@ -6,6 +6,7 @@ import { MainController } from "../../controllers/main.controller";
 import { frameworkEngine } from "./framework-engine.module";
 import { logManager } from "../log-manager.module";
 import { frameworkMiddleware } from "./framework-middlewares.module";
+import { frameworkNoSleep } from "./framework-no-sleep.module";
 
 const logger = logManager("application");
 
@@ -30,6 +31,7 @@ export class Framework {
   }
 
   start(): void {
+    frameworkNoSleep()
     this.app.listen(this.port, () => {
       logger.info(`Server started at http://localhost:${this.port}`);
     });
